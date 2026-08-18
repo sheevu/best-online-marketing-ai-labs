@@ -1,0 +1,4 @@
+import type {MetadataRoute} from "next";
+import {areas} from "./lib/areas";
+import {cities} from "./lib/cities";
+export default function sitemap():MetadataRoute.Sitemap{const base="https://sudarshan-ai-labs-lucknow.sudarshanailabs.chatgpt.site";return[{url:base,lastModified:new Date(),changeFrequency:"weekly",priority:1},{url:`${base}/digital-marketing-services/`,lastModified:new Date(),changeFrequency:"monthly",priority:.9},{url:`${base}/digital-marketing-services/uttar-pradesh/`,lastModified:new Date(),changeFrequency:"monthly",priority:.9},...areas.map(a=>({url:`${base}/digital-marketing-services/${a.slug}-lucknow/`,lastModified:new Date(),changeFrequency:"monthly" as const,priority:.8})),...cities.map(c=>({url:`${base}/digital-marketing-services/uttar-pradesh/${c.slug}/`,lastModified:new Date(),changeFrequency:"monthly" as const,priority:.8}))]}
