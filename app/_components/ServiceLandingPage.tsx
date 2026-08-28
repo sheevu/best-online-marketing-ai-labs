@@ -1,0 +1,154 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  absoluteUrl,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  coreServiceLinks,
+  ORGANIZATION_ID,
+  WHATSAPP_URL,
+} from "../lib/site";
+
+type Item = { title: string; text: string };
+
+export type ServicePageData = {
+  slug: string;
+  title: string;
+  description: string;
+  eyebrow: string;
+  h1: string;
+  intro: string;
+  fit: string[];
+  outcomes: Item[];
+  process: Item[];
+  faqs: [string, string][];
+  related?: [string, string][];
+};
+
+export function serviceMetadata(data: ServicePageData): Metadata {
+  const url = `/${data.slug}`;
+  return {
+    title: data.title,
+    description: data.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url,
+      type: "website",
+      locale: "en_IN",
+      siteName: "Sudarshan AI Labs",
+      images: [
+        {
+          url: "/sudarshan-lucknow-hero.webp",
+          width: 1672,
+          height: 941,
+          alt: `${data.h1} by Sudarshan AI Labs`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+      images: ["/sudarshan-lucknow-hero.webp"],
+    },
+  };
+}
+
+export default function ServiceLandingPage({ data }: { data: ServicePageData }) {
+  const url = absoluteUrl(`/${data.slug}`);
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: data.h1,
+    url,
+    description: data.description,
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed: [
+      { "@type": "City", name: "Lucknow" },
+      { "@type": "State", name: "Uttar Pradesh" },
+      { "@type": "Country", name: "India" },
+    ],
+    availableChannel: {
+      "@type": "ServiceChannel",
+      servicePhone: CONTACT_PHONE,
+      serviceUrl: url,
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: data.h1, item: url },
+    ],
+  };
+
+  return (
+    <main className="service-owner">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceSchema, breadcrumbSchema]) }}
+      />
+      <nav className="area-nav" aria-label="Service navigation">
+        <Link className="brand" href="/">
+          <span className="brand-mark">S</span>
+          <span>SUDARSHAN <b>AI LABS</b></span>
+        </Link>
+        <div>
+          <Link href="/digital-marketing-services">Services</Link>
+          <Link href="/about-sheevum-goel">Founder</Link>
+          <Link href="/contact">Contact</Link>
+        </div>
+        <a className="button button-small" href={WHATSAPP_URL}>Free Audit ↗</a>
+      </nav>
+
+      <header className="service-hero">
+        <div className="breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/digital-marketing-services">Services</Link><span>›</span>{data.h1}</div>
+        <p className="eyebrow">{data.eyebrow}</p>
+        <h1>{data.h1}</h1>
+        <p>{data.intro}</p>
+        <div className="hero-actions">
+          <a className="button" href={WHATSAPP_URL}>Request a Free Audit ↗</a>
+          <a className="text-link" href="#deliverables">See what is included ↓</a>
+        </div>
+      </header>
+
+      <section className="service-fit">
+        <div><p className="section-kicker">WHO THIS IS FOR</p><h2>A focused service for businesses ready to improve the complete customer journey.</h2></div>
+        <ul>{data.fit.map((item) => <li key={item}>{item}</li>)}</ul>
+      </section>
+
+      <section className="service-deliverables" id="deliverables">
+        <div className="area-section-title"><p className="section-kicker light">DELIVERABLES</p><h2>What we examine, build and improve</h2><p>Scope is agreed from the audit. No guaranteed rankings, lead volumes or invented local proof.</p></div>
+        <div className="service-card-grid">{data.outcomes.map((item, index) => <article key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+      </section>
+
+      <section className="service-process">
+        <div><p className="section-kicker">BUILD • AUTOMATE • TRANSFER</p><h2>A practical process your team can understand and own.</h2></div>
+        <div>{data.process.map((item, index) => <article key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+      </section>
+
+      <section className="area-faq">
+        <div><p className="section-kicker">SERVICE FAQ</p><h2>Questions before you begin</h2></div>
+        <div>{data.faqs.map(([question, answer]) => <details key={question}><summary><span>{question}</span><b>+</b></summary><p>{answer}</p></details>)}</div>
+      </section>
+
+      <section className="service-links">
+        <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
+        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href]) => <Link key={href} href={href}>{label}<span>↗</span></Link>)}</nav>
+      </section>
+
+      <section className="area-cta">
+        <p>FREE 20-MINUTE DIGITAL GROWTH AUDIT</p>
+        <h2>Start with the highest-impact gap, not the longest agency checklist.</h2>
+        <span>Share your website, Google listing or current process. We will identify the first three priorities and explain the realistic next step.</span>
+        <div><a className="button" href={WHATSAPP_URL}>Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></div>
+      </section>
+
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</span></footer>
+    </main>
+  );
+}

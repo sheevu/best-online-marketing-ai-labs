@@ -1,60 +1,992 @@
 "use client";
-import {useEffect,useRef,useState} from "react";
-import {ArrowRight,ArrowUpRight,Browsers,CaretDown,CaretLeft,CaretRight,ChartLineUp,CheckCircle,GlobeHemisphereWest,InstagramLogo,Lightning,List,MagnifyingGlass,MapPin,Megaphone,PhoneCall,Robot,Sparkle,Target,WhatsappLogo,X} from "@phosphor-icons/react/dist/ssr";
+/* eslint-disable @next/next/no-html-link-for-pages */
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Browsers,
+  CaretDown,
+  CaretLeft,
+  CaretRight,
+  ChartLineUp,
+  CheckCircle,
+  GlobeHemisphereWest,
+  InstagramLogo,
+  Lightning,
+  List,
+  MagnifyingGlass,
+  MapPin,
+  Megaphone,
+  PhoneCall,
+  Robot,
+  Sparkle,
+  Target,
+  WhatsappLogo,
+  X,
+} from "@phosphor-icons/react/dist/ssr";
+import { ORGANIZATION_ID, SITE_URL } from "./lib/site";
 
-const wa="https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
-const services=[
- {title:"Own local search",text:"Local SEO and Google Maps systems that help nearby customers find and trust you.",tag:"Local visibility",href:"/digital-marketing-services/#local-seo",Icon:MapPin,theme:"coral"},
- {title:"Rank with useful content",text:"Technical SEO, service pages and clear answers shaped for Google and AI search.",tag:"Organic growth",href:"/digital-marketing-services/#seo-content",Icon:MagnifyingGlass,theme:"sky"},
- {title:"Build a memorable brand",text:"Social strategy, creative campaigns and content people recognise across channels.",tag:"Social presence",href:"/digital-marketing-services/#social-media",Icon:InstagramLogo,theme:"lemon"},
- {title:"Turn visits into leads",text:"Fast websites and landing pages with focused messages and frictionless actions.",tag:"Conversion design",href:"/digital-marketing-services/#website-development",Icon:Browsers,theme:"lavender"},
- {title:"Reach ready buyers",text:"Google and Meta campaigns aligned with your offer, audience and sales capacity.",tag:"Paid growth",href:"/digital-marketing-services/#paid-media",Icon:Megaphone,theme:"mint"},
- {title:"Follow up intelligently",text:"Practical AI and WhatsApp workflows that help your team respond and organise leads.",tag:"Automation",href:"/digital-marketing-services/#ai-automation",Icon:Robot,theme:"peach"}
+const wa =
+  "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
+const services = [
+  {
+    title: "Own local search",
+    text: "Local SEO and Google Maps systems that help nearby customers find and trust you.",
+    tag: "Local visibility",
+    href: "/seo-services-lucknow",
+    Icon: MapPin,
+    theme: "coral",
+  },
+  {
+    title: "Rank with useful content",
+    text: "Technical SEO, service pages and clear answers shaped for Google and AI search.",
+    tag: "Organic growth",
+    href: "/seo-services-lucknow",
+    Icon: MagnifyingGlass,
+    theme: "sky",
+  },
+  {
+    title: "Build a memorable brand",
+    text: "Social strategy, creative campaigns and content people recognise across channels.",
+    tag: "Social presence",
+    href: "/social-media-marketing-lucknow",
+    Icon: InstagramLogo,
+    theme: "lemon",
+  },
+  {
+    title: "Turn visits into leads",
+    text: "Fast websites and landing pages with focused messages and frictionless actions.",
+    tag: "Conversion design",
+    href: "/website-design",
+    Icon: Browsers,
+    theme: "lavender",
+  },
+  {
+    title: "Reach ready buyers",
+    text: "Google and Meta campaigns aligned with your offer, audience and sales capacity.",
+    tag: "Paid growth",
+    href: "/google-ads-services",
+    Icon: Megaphone,
+    theme: "mint",
+  },
+  {
+    title: "Follow up intelligently",
+    text: "Practical AI and WhatsApp workflows that help your team respond and organise leads.",
+    tag: "Automation",
+    href: "/ai-automation-lucknow",
+    Icon: Robot,
+    theme: "peach",
+  },
 ];
-const products=[
- {name:"Swaraj Tech Pack",price:"₹89",tag:"Starter bundle",text:"A lightweight digital launch pack for micro-businesses taking their first step online.",href:"https://vyapai.in/products/swaraj-tech-pack"},
- {name:"Prarambh Kick-Start Pack",price:"₹999",tag:"WhatsApp setup",text:"WhatsApp Business, catalogue and digital onboarding essentials for growing MSMEs.",href:"https://vyapai.in/products/prarambh-kick-start-pack"},
- {name:"Udaan Vyapari Pack",price:"₹999",tag:"Merchant growth",text:"Smart digital marketing and lead organisation designed for local merchants.",href:"https://vyapai.in/products/udaan-vyapari-pack"},
- {name:"Raftar Booster Pack",price:"₹999",tag:"Lead generation",text:"Campaign support and lead-generation workflows to accelerate monthly outreach.",href:"https://vyapai.in/products/raftar-booster-pack"},
- {name:"AI Chatbot & Assistant",price:"₹999",tag:"AI automation",text:"A customer-facing assistant for common questions, support and lead capture.",href:"https://vyapai.in/products/ai-chatbot-assistant"},
- {name:"SEO & Content Boost",price:"₹999",tag:"Search visibility",text:"An SEO audit with content optimisation to strengthen your local online presence.",href:"https://vyapai.in/products/seo-content-boost"},
- {name:"Landing Page Lead Gen",price:"₹999",tag:"Conversion",text:"A focused campaign page built to turn visits and advertising clicks into enquiries.",href:"https://vyapai.in/products/landing-pages-lead-generation-"},
- {name:"Website Launch Pack",price:"₹999",tag:"Web presence",text:"A modern five-page website foundation with local SEO and brand essentials.",href:"https://vyapai.in/products/full-custom-website-5-pages-"}
+const products = [
+  {
+    name: "Swaraj Tech Pack",
+    price: "₹89",
+    tag: "Starter bundle",
+    text: "A lightweight digital launch pack for micro-businesses taking their first step online.",
+    href: "https://vyapai.in/products/swaraj-tech-pack",
+  },
+  {
+    name: "Prarambh Kick-Start Pack",
+    price: "₹999",
+    tag: "WhatsApp setup",
+    text: "WhatsApp Business, catalogue and digital onboarding essentials for growing MSMEs.",
+    href: "https://vyapai.in/products/prarambh-kick-start-pack",
+  },
+  {
+    name: "Udaan Vyapari Pack",
+    price: "₹999",
+    tag: "Merchant growth",
+    text: "Smart digital marketing and lead organisation designed for local merchants.",
+    href: "https://vyapai.in/products/udaan-vyapari-pack",
+  },
+  {
+    name: "Raftar Booster Pack",
+    price: "₹999",
+    tag: "Lead generation",
+    text: "Campaign support and lead-generation workflows to accelerate monthly outreach.",
+    href: "https://vyapai.in/products/raftar-booster-pack",
+  },
+  {
+    name: "AI Chatbot & Assistant",
+    price: "₹999",
+    tag: "AI automation",
+    text: "A customer-facing assistant for common questions, support and lead capture.",
+    href: "https://vyapai.in/products/ai-chatbot-assistant",
+  },
+  {
+    name: "SEO & Content Boost",
+    price: "₹999",
+    tag: "Search visibility",
+    text: "An SEO audit with content optimisation to strengthen your local online presence.",
+    href: "https://vyapai.in/products/seo-content-boost",
+  },
+  {
+    name: "Landing Page Lead Gen",
+    price: "₹999",
+    tag: "Conversion",
+    text: "A focused campaign page built to turn visits and advertising clicks into enquiries.",
+    href: "https://vyapai.in/products/landing-pages-lead-generation-",
+  },
+  {
+    name: "Website Launch Pack",
+    price: "₹999",
+    tag: "Web presence",
+    text: "A modern five-page website foundation with local SEO and brand essentials.",
+    href: "https://vyapai.in/products/full-custom-website-5-pages-",
+  },
 ];
-const goals={visibility:{label:"Get found locally",title:"Local visibility engine",copy:"Google Business Profile, local landing pages, reviews and search content working as one discoverability system.",items:["Google Maps foundation","Area-specific SEO pages","Review and citation rhythm"],Icon:MapPin},leads:{label:"Generate better leads",title:"Lead conversion engine",copy:"Focused ads, landing pages and WhatsApp qualification built around useful enquiries instead of vanity clicks.",items:["High-intent campaigns","Conversion landing page","WhatsApp qualification flow"],Icon:Target},automation:{label:"Save team time",title:"AI follow-up engine",copy:"Simple automations that keep enquiries organised, speed up first response and reduce repetitive work.",items:["Smart response templates","Lead labels and routing","Follow-up reminders"],Icon:Robot}};
-const faqs=[
- ["What makes your Lucknow marketing approach different?","We connect local search, content, websites, advertising and follow-up around one customer journey. The plan is shaped around your category, locality and ability to serve new enquiries."],
- ["Can you improve our Google Maps visibility?","We improve the controllable signals: profile completeness, categories, services, location consistency, reviews, useful local content and website relevance. Fixed ranking positions cannot be guaranteed."],
- ["Do you work with small businesses and startups?","Yes. We work with MSMEs, clinics, coaching institutes, retailers, real estate firms, professional services and growing startups in Lucknow and across India."],
- ["Will we own the work you create?","Yes. Our Build, Automate, Transfer model is designed around ownership. Agreed websites, content, systems and knowledge are handed over to your team."],
- ["How do we begin?","Start with a free growth audit. Share your website or Google listing and we will identify the most useful priorities before suggesting a scope."]
+const goals = {
+  visibility: {
+    label: "Get found locally",
+    title: "Local visibility engine",
+    copy: "Google Business Profile, local landing pages, reviews and search content working as one discoverability system.",
+    items: [
+      "Google Maps foundation",
+      "Area-specific SEO pages",
+      "Review and citation rhythm",
+    ],
+    Icon: MapPin,
+  },
+  leads: {
+    label: "Generate better leads",
+    title: "Lead conversion engine",
+    copy: "Focused ads, landing pages and WhatsApp qualification built around useful enquiries instead of vanity clicks.",
+    items: [
+      "High-intent campaigns",
+      "Conversion landing page",
+      "WhatsApp qualification flow",
+    ],
+    Icon: Target,
+  },
+  automation: {
+    label: "Save team time",
+    title: "AI follow-up engine",
+    copy: "Simple automations that keep enquiries organised, speed up first response and reduce repetitive work.",
+    items: [
+      "Smart response templates",
+      "Lead labels and routing",
+      "Follow-up reminders",
+    ],
+    Icon: Robot,
+  },
+};
+const faqs = [
+  [
+    "What makes your Lucknow marketing approach different?",
+    "We connect local search, content, websites, advertising and follow-up around one customer journey. The plan is shaped around your category, locality and ability to serve new enquiries.",
+  ],
+  [
+    "Can you improve our Google Maps visibility?",
+    "We improve the controllable signals: profile completeness, categories, services, location consistency, reviews, useful local content and website relevance. Fixed ranking positions cannot be guaranteed.",
+  ],
+  [
+    "Do you work with small businesses and startups?",
+    "Yes. We work with MSMEs, clinics, coaching institutes, retailers, real estate firms, professional services and growing startups in Lucknow and across India.",
+  ],
+  [
+    "Will we own the work you create?",
+    "Yes. Our Build, Automate, Transfer model is designed around ownership. Agreed websites, content, systems and knowledge are handed over to your team.",
+  ],
+  [
+    "How do we begin?",
+    "Start with a free growth audit. Share your website or Google listing and we will identify the most useful priorities before suggesting a scope.",
+  ],
 ];
-const schema={"@context":"https://schema.org","@type":"Organization",name:"Sudarshan AI Labs",legalName:"NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",url:"https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site",telephone:"+91-7080842220",email:"sudarshanailabs@gmail.com",description:"Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",address:{"@type":"PostalAddress",addressLocality:"Lucknow",addressRegion:"Uttar Pradesh",addressCountry:"IN"},areaServed:["Lucknow","Uttar Pradesh","India"],founder:{"@type":"Person",name:"Sheevum Goel",url:"https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site/about-sheevum-goel/"},sameAs:["https://in.linkedin.com/company/sudarshan-ai-labs","https://www.facebook.com/sudarshanlabsinc/"]};
+const schema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService"],
+  "@id": ORGANIZATION_ID,
+  name: "Sudarshan AI Labs",
+  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  url: SITE_URL,
+  logo: `${SITE_URL}/favicon.svg`,
+  image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
+  telephone: "+91-7080842220",
+  email: "sudarshanailabs@gmail.com",
+  description:
+    "Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lucknow",
+    addressRegion: "Uttar Pradesh",
+    addressCountry: "IN",
+  },
+  areaServed: ["Lucknow", "Uttar Pradesh", "India"],
+  founder: {
+    "@type": "Person",
+    "@id": `${SITE_URL}/about-sheevum-goel#sheevum-goel`,
+    name: "Sheevum Goel",
+    url: `${SITE_URL}/about-sheevum-goel`,
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+91-7080842220",
+    email: "sudarshanailabs@gmail.com",
+    contactType: "sales",
+    areaServed: "IN",
+    availableLanguage: ["English", "Hindi"],
+  },
+  sameAs: [
+    "https://in.linkedin.com/company/sudarshan-ai-labs",
+    "https://www.facebook.com/sudarshanlabsinc/",
+  ],
+};
 
-export default function Home(){const [menu,setMenu]=useState(false);const [locations,setLocations]=useState(false);const [goal,setGoal]=useState<keyof typeof goals>("visibility");const [productPage,setProductPage]=useState(0);const slider=useRef<HTMLDivElement>(null);const drag=useRef({down:false,x:0,left:0});const autoPaused=useRef(false);const active=goals[goal];const goToProduct=(index:number)=>{const safe=(index+products.length)%products.length;const card=slider.current?.children[safe] as HTMLElement|undefined;if(card&&slider.current){slider.current.scrollTo({left:card.offsetLeft-slider.current.offsetLeft,behavior:"smooth"});setProductPage(safe)}};const slide=(direction:number)=>goToProduct(productPage+direction);useEffect(()=>{const nodes=document.querySelectorAll<HTMLElement>(".v-home section:not(.v-hero-shell),.v-footer");nodes.forEach((node,index)=>{node.classList.add("v-reveal");node.style.setProperty("--reveal-order",String(index%2))});const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.1,rootMargin:"0px 0px -40px"});nodes.forEach(node=>observer.observe(node));return()=>observer.disconnect()},[]);useEffect(()=>{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const timer=window.setInterval(()=>{if(!autoPaused.current&&!document.hidden)goToProduct(productPage+1)},4300);return()=>window.clearInterval(timer)},[productPage]);return <main id="top" className="v-home">
- <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>
- <header className="v-site-header"><div className="v-topline"><span><Lightning weight="fill"/> Lucknow businesses: request a complimentary digital visibility audit</span><div><a href="tel:+917080842220"><PhoneCall weight="bold"/> +91 70808 42220</a><a href={wa}><WhatsappLogo weight="fill"/> WhatsApp</a></div></div><nav className="v-nav" aria-label="Main navigation"><a className="v-brand" href="#top" aria-label="Sudarshan AI Labs home"><span className="v-logo"><Sparkle weight="fill"/></span><span>SUDARSHAN <b>AI LABS</b><small>LUCKNOW DIGITAL GROWTH</small></span></a><div className={`v-links ${menu?"open":""}`}><a href="#services" onClick={()=>setMenu(false)}>Services</a><a href="#products" onClick={()=>setMenu(false)}>Products</a><a href="#approach" onClick={()=>setMenu(false)}>How we work</a><div className={`v-location-menu ${locations?"active":""}`}><button onClick={()=>setLocations(!locations)} aria-expanded={locations}>Locations <CaretDown weight="bold"/></button><div className="v-location-panel"><a href="/digital-marketing-services/" onClick={()=>{setLocations(false);setMenu(false)}}><MapPin weight="duotone"/><span><b>Lucknow neighbourhoods</b><small>Explore 20 local service areas</small></span><ArrowUpRight/></a><a href="/digital-marketing-services/uttar-pradesh/" onClick={()=>{setLocations(false);setMenu(false)}}><GlobeHemisphereWest weight="duotone"/><span><b>Uttar Pradesh cities</b><small>Explore 20 growing business markets</small></span><ArrowUpRight/></a></div></div><a href="/about-sheevum-goel/" onClick={()=>setMenu(false)}>Founder</a><a href="#faq" onClick={()=>setMenu(false)}>FAQ</a><a href="/contact" onClick={()=>setMenu(false)}>Contact</a><a className="v-mobile-audit" href={wa}>Get free audit <ArrowUpRight/></a></div><a className="v-pill v-pill-dark nav-cta" href={wa}><span>Free growth audit</span><ArrowUpRight weight="bold"/></a><button className="v-menu" onClick={()=>setMenu(!menu)} aria-expanded={menu} aria-label="Toggle navigation">{menu?<X/>:<List/>}</button></nav></header>
+export default function Home() {
+  const [menu, setMenu] = useState(false);
+  const [locations, setLocations] = useState(false);
+  const [goal, setGoal] = useState<keyof typeof goals>("visibility");
+  const [productPage, setProductPage] = useState(0);
+  const slider = useRef<HTMLDivElement>(null);
+  const drag = useRef({ down: false, x: 0, left: 0 });
+  const autoPaused = useRef(false);
+  const active = goals[goal];
+  const goToProduct = (index: number) => {
+    const safe = (index + products.length) % products.length;
+    const card = slider.current?.children[safe] as HTMLElement | undefined;
+    if (card && slider.current) {
+      slider.current.scrollTo({
+        left: card.offsetLeft - slider.current.offsetLeft,
+        behavior: "smooth",
+      });
+      setProductPage(safe);
+    }
+  };
+  const slide = (direction: number) => goToProduct(productPage + direction);
+  useEffect(() => {
+    const nodes = document.querySelectorAll<HTMLElement>(
+      ".v-home section:not(.v-hero-shell),.v-footer",
+    );
+    nodes.forEach((node, index) => {
+      node.classList.add("v-reveal");
+      node.style.setProperty("--reveal-order", String(index % 2));
+    });
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.1, rootMargin: "0px 0px -40px" },
+    );
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      if (!autoPaused.current && !document.hidden) goToProduct(productPage + 1);
+    }, 4300);
+    return () => window.clearInterval(timer);
+  }, [productPage]);
+  return (
+    <main id="top" className="v-home">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <header className="v-site-header">
+        <div className="v-topline">
+          <span>
+            <Lightning weight="fill" /> Lucknow businesses: request a
+            complimentary digital visibility audit
+          </span>
+          <div>
+            <a href="tel:+917080842220">
+              <PhoneCall weight="bold" /> +91 70808 42220
+            </a>
+            <a href={wa}>
+              <WhatsappLogo weight="fill" /> WhatsApp
+            </a>
+          </div>
+        </div>
+        <nav className="v-nav" aria-label="Main navigation">
+          <a
+            className="v-brand"
+            href="#top"
+            aria-label="Sudarshan AI Labs home"
+          >
+            <span className="v-logo">
+              <Sparkle weight="fill" />
+            </span>
+            <span>
+              SUDARSHAN <b>AI LABS</b>
+              <small>LUCKNOW DIGITAL GROWTH</small>
+            </span>
+          </a>
+          <div className={`v-links ${menu ? "open" : ""}`}>
+            <a href="#services" onClick={() => setMenu(false)}>
+              Services
+            </a>
+            <a href="#products" onClick={() => setMenu(false)}>
+              Products
+            </a>
+            <a href="#approach" onClick={() => setMenu(false)}>
+              How we work
+            </a>
+            <div className={`v-location-menu ${locations ? "active" : ""}`}>
+              <button
+                onClick={() => setLocations(!locations)}
+                aria-expanded={locations}
+              >
+                Locations <CaretDown weight="bold" />
+              </button>
+              <div className="v-location-panel">
+                <a
+                  href="/digital-marketing-services/"
+                  onClick={() => {
+                    setLocations(false);
+                    setMenu(false);
+                  }}
+                >
+                  <MapPin weight="duotone" />
+                  <span>
+                    <b>Lucknow neighbourhoods</b>
+                    <small>Explore 20 local service areas</small>
+                  </span>
+                  <ArrowUpRight />
+                </a>
+                <a
+                  href="/digital-marketing-services/uttar-pradesh/"
+                  onClick={() => {
+                    setLocations(false);
+                    setMenu(false);
+                  }}
+                >
+                  <GlobeHemisphereWest weight="duotone" />
+                  <span>
+                    <b>Uttar Pradesh cities</b>
+                    <small>Explore 20 growing business markets</small>
+                  </span>
+                  <ArrowUpRight />
+                </a>
+              </div>
+            </div>
+            <a href="/about-sheevum-goel/" onClick={() => setMenu(false)}>
+              Founder
+            </a>
+            <a href="#faq" onClick={() => setMenu(false)}>
+              FAQ
+            </a>
+            <a href="/contact" onClick={() => setMenu(false)}>
+              Contact
+            </a>
+            <a className="v-mobile-audit" href={wa}>
+              Get free audit <ArrowUpRight />
+            </a>
+          </div>
+          <a className="v-pill v-pill-dark nav-cta" href={wa}>
+            <span>Free growth audit</span>
+            <ArrowUpRight weight="bold" />
+          </a>
+          <button
+            className="v-menu"
+            onClick={() => setMenu(!menu)}
+            aria-expanded={menu}
+            aria-label="Toggle navigation"
+          >
+            {menu ? <X /> : <List />}
+          </button>
+        </nav>
+      </header>
 
- <section className="v-hero-shell"><div className="v-aurora a-one"/><div className="v-aurora a-two"/><div className="v-hero-card"><div className="v-hero-copy"><div className="v-proof"><span><Sparkle weight="fill"/> AI-powered</span><span><MapPin weight="fill"/> Lucknow-first</span><span><GlobeHemisphereWest weight="fill"/> Built for Bharat</span></div><h1>AI-powered growth<br/><em>for Lucknow MSMEs.</em></h1><p>Get found, build trust and turn attention into enquiries with local visibility, high-converting websites, performance campaigns and practical AI automation.</p><div className="v-hero-actions"><a className="v-pill v-pill-dark" href={wa}>Start with a free audit <ArrowRight weight="bold"/></a><a className="v-video-link" href="/digital-marketing-services/"><span><ChartLineUp weight="bold"/></span> Explore digital marketing services</a></div><div className="v-hero-signals"><span><b>01</b> Get found locally</span><span><b>02</b> Convert attention</span><span><b>03</b> Automate follow-up</span></div><div className="v-micro"><span className="pulse-dot"/> Clear priorities. Transparent scope. Assets you own.</div></div><div className="v-visual" aria-label="Illustrated founder of Sudarshan AI Labs with Lucknow skyline"><img src="/sudarshan-lucknow-hero.webp" width="1672" height="941" loading="eager" fetchPriority="high" decoding="async" alt="Sheevum Goel of Sudarshan AI Labs building growth systems for Lucknow MSMEs"/><div className="float-chip chip-search"><MagnifyingGlass weight="bold"/><span><b>Local search</b>Get discovered</span></div><div className="float-chip chip-leads"><WhatsappLogo weight="fill"/><span><b>Lead flow</b>Respond faster</span></div><div className="orbit-badge"><Sparkle weight="fill"/><span>BUILD<br/>AUTOMATE<br/>TRANSFER</span></div></div></div>
- <div className="v-feature-row"><article className="vf-coral"><MapPin weight="duotone"/><div><h2>Local visibility</h2><p>Own high-intent searches across Lucknow.</p></div><ArrowUpRight/></article><article className="vf-sky"><Browsers weight="duotone"/><div><h2>Conversion websites</h2><p>Turn visits into useful conversations.</p></div><ArrowUpRight/></article><article className="vf-lemon"><Robot weight="duotone"/><div><h2>AI + WhatsApp</h2><p>Automate repetitive work, keep the human touch.</p></div><ArrowUpRight/></article></div></section>
+      <section className="v-hero-shell">
+        <div className="v-aurora a-one" />
+        <div className="v-aurora a-two" />
+        <div className="v-hero-card">
+          <div className="v-hero-copy">
+            <div className="v-proof">
+              <span>
+                <Sparkle weight="fill" /> AI-powered
+              </span>
+              <span>
+                <MapPin weight="fill" /> Lucknow-first
+              </span>
+              <span>
+                <GlobeHemisphereWest weight="fill" /> Built for Bharat
+              </span>
+            </div>
+            <h1>
+              AI-powered growth
+              <br />
+              <em>for Lucknow MSMEs.</em>
+            </h1>
+            <p>
+              Get found, build trust and turn attention into enquiries with
+              local visibility, high-converting websites, performance campaigns
+              and practical AI automation.
+            </p>
+            <div className="v-hero-actions">
+              <a className="v-pill v-pill-dark" href={wa}>
+                Start with a free audit <ArrowRight weight="bold" />
+              </a>
+              <a className="v-video-link" href="/digital-marketing-services/">
+                <span>
+                  <ChartLineUp weight="bold" />
+                </span>{" "}
+                Explore digital marketing services
+              </a>
+            </div>
+            <div className="v-hero-signals">
+              <span>
+                <b>01</b> Get found locally
+              </span>
+              <span>
+                <b>02</b> Convert attention
+              </span>
+              <span>
+                <b>03</b> Automate follow-up
+              </span>
+            </div>
+            <div className="v-micro">
+              <span className="pulse-dot" /> Clear priorities. Transparent
+              scope. Assets you own.
+            </div>
+          </div>
+          <div
+            className="v-visual"
+            aria-label="Illustrated founder of Sudarshan AI Labs with Lucknow skyline"
+          >
+            <Image
+              src="/sudarshan-lucknow-hero.webp"
+              width={1672}
+              height={941}
+              priority
+              sizes="(max-width: 900px) 100vw, 48vw"
+              alt="Sheevum Goel of Sudarshan AI Labs building growth systems for Lucknow MSMEs"
+            />
+            <div className="float-chip chip-search">
+              <MagnifyingGlass weight="bold" />
+              <span>
+                <b>Local search</b>Get discovered
+              </span>
+            </div>
+            <div className="float-chip chip-leads">
+              <WhatsappLogo weight="fill" />
+              <span>
+                <b>Lead flow</b>Respond faster
+              </span>
+            </div>
+            <div className="orbit-badge">
+              <Sparkle weight="fill" />
+              <span>
+                BUILD
+                <br />
+                AUTOMATE
+                <br />
+                TRANSFER
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="v-feature-row">
+          <article className="vf-coral">
+            <MapPin weight="duotone" />
+            <div>
+              <h2>Local visibility</h2>
+              <p>Own high-intent searches across Lucknow.</p>
+            </div>
+            <ArrowUpRight />
+          </article>
+          <article className="vf-sky">
+            <Browsers weight="duotone" />
+            <div>
+              <h2>Conversion websites</h2>
+              <p>Turn visits into useful conversations.</p>
+            </div>
+            <ArrowUpRight />
+          </article>
+          <article className="vf-lemon">
+            <Robot weight="duotone" />
+            <div>
+              <h2>AI + WhatsApp</h2>
+              <p>Automate repetitive work, keep the human touch.</p>
+            </div>
+            <ArrowUpRight />
+          </article>
+        </div>
+      </section>
 
- <section className="v-marquee" aria-label="Capabilities"><div><span>LOCAL SEO</span><span>GOOGLE MAPS</span><span>WEB DESIGN</span><span>PERFORMANCE ADS</span><span>AI AUTOMATION</span><span>WHATSAPP FUNNELS</span><span>LOCAL SEO</span><span>GOOGLE MAPS</span></div></section>
+      <section className="v-marquee" aria-label="Capabilities">
+        <div>
+          <span>LOCAL SEO</span>
+          <span>GOOGLE MAPS</span>
+          <span>WEB DESIGN</span>
+          <span>PERFORMANCE ADS</span>
+          <span>AI AUTOMATION</span>
+          <span>WHATSAPP FUNNELS</span>
+          <span>LOCAL SEO</span>
+          <span>GOOGLE MAPS</span>
+        </div>
+      </section>
 
- <section className="v-section v-services" id="services"><div className="v-section-head"><div><span className="v-kicker">WHAT WE BUILD</span><h2>A complete growth system.<br/><em>Not disconnected marketing.</em></h2></div><p>Every service has a clear role—from being discovered to earning trust, capturing an enquiry and following up well.</p></div><div className="v-service-grid">{services.map(({title,text,tag,href,Icon,theme},i)=><article className={`v-service ${theme}`} key={title}><div className="v-service-top"><span>0{i+1}</span><Icon weight="duotone"/></div><div><small>{tag}</small><h3>{title}</h3><p>{text}</p></div><a href={href} aria-label={`Learn about ${title}`}>View service details <ArrowUpRight weight="bold"/></a></article>)}</div></section>
+      <section className="v-section v-services" id="services">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">WHAT WE BUILD</span>
+            <h2>
+              A complete growth system.
+              <br />
+              <em>Not disconnected marketing.</em>
+            </h2>
+          </div>
+          <p>
+            Every service has a clear role—from being discovered to earning
+            trust, capturing an enquiry and following up well.
+          </p>
+        </div>
+        <div className="v-service-grid">
+          {services.map(({ title, text, tag, href, Icon, theme }, i) => (
+            <article className={`v-service ${theme}`} key={title}>
+              <div className="v-service-top">
+                <span>0{i + 1}</span>
+                <Icon weight="duotone" />
+              </div>
+              <div>
+                <small>{tag}</small>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+              <a href={href} aria-label={`Learn about ${title}`}>
+                View service details <ArrowUpRight weight="bold" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
 
- <section className="v-section v-products" id="products" aria-labelledby="products-title"><div className="v-product-head"><div><span className="v-kicker">PRODUCTS & STARTER PLANS</span><h2 id="products-title">Practical growth tools.<br/><em>Clear starting prices.</em></h2></div><div className="v-slider-controls"><button onClick={()=>slide(-1)} aria-label="View previous products"><CaretLeft weight="bold"/></button><button onClick={()=>slide(1)} aria-label="View next products"><CaretRight weight="bold"/></button></div></div><div className="v-product-track" ref={slider} tabIndex={0} aria-label="Auto-sliding Sudarshan AI Labs product plans" aria-live="off" onMouseEnter={()=>{autoPaused.current=true}} onMouseLeave={()=>{autoPaused.current=false}} onFocus={()=>{autoPaused.current=true}} onBlur={()=>{autoPaused.current=false}} onScroll={event=>{const el=event.currentTarget;const cards=Array.from(el.children) as HTMLElement[];const nearest=cards.reduce((best,card,index)=>Math.abs(card.offsetLeft-el.offsetLeft-el.scrollLeft)<best.distance?{index,distance:Math.abs(card.offsetLeft-el.offsetLeft-el.scrollLeft)}:best,{index:0,distance:Infinity});setProductPage(nearest.index)}} onPointerDown={event=>{autoPaused.current=true;if(event.pointerType==="mouse"){drag.current={down:true,x:event.clientX,left:event.currentTarget.scrollLeft};event.currentTarget.setPointerCapture(event.pointerId)}}} onPointerMove={event=>{if(drag.current.down)event.currentTarget.scrollLeft=drag.current.left-(event.clientX-drag.current.x)}} onPointerUp={event=>{drag.current.down=false;autoPaused.current=false;if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId)}} onPointerCancel={()=>{drag.current.down=false;autoPaused.current=false}}>{products.map((product,index)=><article className={`v-product-card ${index===productPage?"is-current":""}`} key={product.name}><div className="v-product-number">{String(index+1).padStart(2,"0")}</div><span>{product.tag}</span><h3>{product.name}</h3><p>{product.text}</p><div className="v-product-price"><small>Starting at</small><strong>{product.price}</strong></div><a href={product.href} target="_blank" rel="noreferrer" aria-label={`Explore ${product.name}`}>Explore plan <ArrowUpRight weight="bold"/></a></article>)}</div><div className="v-product-dots" aria-label="Choose a product">{products.map((product,index)=><button key={product.name} className={index===productPage?"active":""} onClick={()=>goToProduct(index)} aria-label={`Show ${product.name}`} aria-current={index===productPage?"true":undefined}/>)}</div><p className="v-price-note">Auto-slider pauses while you hover, drag or use the controls. Indicative starting prices from the 26 July 2026 catalogue; final scope depends on requirements.</p></section>
+      <section
+        className="v-section v-products"
+        id="products"
+        aria-labelledby="products-title"
+      >
+        <div className="v-product-head">
+          <div>
+            <span className="v-kicker">PRODUCTS & STARTER PLANS</span>
+            <h2 id="products-title">
+              Practical growth tools.
+              <br />
+              <em>Clear starting prices.</em>
+            </h2>
+          </div>
+          <div className="v-slider-controls">
+            <button
+              onClick={() => slide(-1)}
+              aria-label="View previous products"
+            >
+              <CaretLeft weight="bold" />
+            </button>
+            <button onClick={() => slide(1)} aria-label="View next products">
+              <CaretRight weight="bold" />
+            </button>
+          </div>
+        </div>
+        <div
+          className="v-product-track"
+          ref={slider}
+          tabIndex={0}
+          aria-label="Auto-sliding Sudarshan AI Labs product plans"
+          aria-live="off"
+          onMouseEnter={() => {
+            autoPaused.current = true;
+          }}
+          onMouseLeave={() => {
+            autoPaused.current = false;
+          }}
+          onFocus={() => {
+            autoPaused.current = true;
+          }}
+          onBlur={() => {
+            autoPaused.current = false;
+          }}
+          onScroll={(event) => {
+            const el = event.currentTarget;
+            const cards = Array.from(el.children) as HTMLElement[];
+            const nearest = cards.reduce(
+              (best, card, index) =>
+                Math.abs(card.offsetLeft - el.offsetLeft - el.scrollLeft) <
+                best.distance
+                  ? {
+                      index,
+                      distance: Math.abs(
+                        card.offsetLeft - el.offsetLeft - el.scrollLeft,
+                      ),
+                    }
+                  : best,
+              { index: 0, distance: Infinity },
+            );
+            setProductPage(nearest.index);
+          }}
+          onPointerDown={(event) => {
+            autoPaused.current = true;
+            if (event.pointerType === "mouse") {
+              drag.current = {
+                down: true,
+                x: event.clientX,
+                left: event.currentTarget.scrollLeft,
+              };
+              event.currentTarget.setPointerCapture(event.pointerId);
+            }
+          }}
+          onPointerMove={(event) => {
+            if (drag.current.down)
+              event.currentTarget.scrollLeft =
+                drag.current.left - (event.clientX - drag.current.x);
+          }}
+          onPointerUp={(event) => {
+            drag.current.down = false;
+            autoPaused.current = false;
+            if (event.currentTarget.hasPointerCapture(event.pointerId))
+              event.currentTarget.releasePointerCapture(event.pointerId);
+          }}
+          onPointerCancel={() => {
+            drag.current.down = false;
+            autoPaused.current = false;
+          }}
+        >
+          {products.map((product, index) => (
+            <article
+              className={`v-product-card ${index === productPage ? "is-current" : ""}`}
+              key={product.name}
+            >
+              <div className="v-product-number">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+              <span>{product.tag}</span>
+              <h3>{product.name}</h3>
+              <p>{product.text}</p>
+              <div className="v-product-price">
+                <small>Starting at</small>
+                <strong>{product.price}</strong>
+              </div>
+              <a
+                href={product.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Explore ${product.name}`}
+              >
+                Explore plan <ArrowUpRight weight="bold" />
+              </a>
+            </article>
+          ))}
+        </div>
+        <div className="v-product-dots" aria-label="Choose a product">
+          {products.map((product, index) => (
+            <button
+              key={product.name}
+              className={index === productPage ? "active" : ""}
+              onClick={() => goToProduct(index)}
+              aria-label={`Show ${product.name}`}
+              aria-current={index === productPage ? "true" : undefined}
+            />
+          ))}
+        </div>
+        <p className="v-price-note">
+          Auto-slider pauses while you hover, drag or use the controls.
+          Indicative starting prices from the 26 July 2026 catalogue; final
+          scope depends on requirements.
+        </p>
+      </section>
 
- <section className="v-section v-selector" id="approach"><div className="selector-copy"><span className="v-kicker light">INTERACTIVE GROWTH PLANNER</span><h2>What should your business <em>solve first?</em></h2><p>Choose your immediate goal to see the connected system we would prioritise.</p><div className="goal-tabs" role="tablist">{Object.entries(goals).map(([key,item])=><button key={key} className={goal===key?"active":""} onClick={()=>setGoal(key as keyof typeof goals)} role="tab" aria-selected={goal===key}>{item.label}</button>)}</div></div><div className="goal-result" aria-live="polite"><div className="goal-icon"><active.Icon weight="duotone"/></div><span>RECOMMENDED STARTING POINT</span><h3>{active.title}</h3><p>{active.copy}</p><ul>{active.items.map(item=><li key={item}><CheckCircle weight="fill"/>{item}</li>)}</ul><a href={wa}>Plan this system <ArrowRight weight="bold"/></a></div></section>
+      <section className="v-section v-selector" id="approach">
+        <div className="selector-copy">
+          <span className="v-kicker light">INTERACTIVE GROWTH PLANNER</span>
+          <h2>
+            What should your business <em>solve first?</em>
+          </h2>
+          <p>
+            Choose your immediate goal to see the connected system we would
+            prioritise.
+          </p>
+          <div className="goal-tabs" role="tablist">
+            {Object.entries(goals).map(([key, item]) => (
+              <button
+                key={key}
+                className={goal === key ? "active" : ""}
+                onClick={() => setGoal(key as keyof typeof goals)}
+                role="tab"
+                aria-selected={goal === key}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="goal-result" aria-live="polite">
+          <div className="goal-icon">
+            <active.Icon weight="duotone" />
+          </div>
+          <span>RECOMMENDED STARTING POINT</span>
+          <h3>{active.title}</h3>
+          <p>{active.copy}</p>
+          <ul>
+            {active.items.map((item) => (
+              <li key={item}>
+                <CheckCircle weight="fill" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href={wa}>
+            Plan this system <ArrowRight weight="bold" />
+          </a>
+        </div>
+      </section>
 
- <section className="v-section v-method"><div className="v-section-head"><div><span className="v-kicker">OUR OPERATING MODEL</span><h2>We build businesses that<br/><em>need agencies less.</em></h2></div><p>Your team should own the system, knowledge and assets. That is why our work moves through three deliberate stages.</p></div><div className="method-cards"><article><b>01</b><span>BUILD</span><h3>Create the foundation</h3><p>Clear positioning, searchable content, conversion pages and connected customer channels.</p></article><article><b>02</b><span>AUTOMATE</span><h3>Reduce repetitive work</h3><p>Practical workflows for responses, lead organisation, reporting and recurring activity.</p></article><article><b>03</b><span>TRANSFER</span><h3>Hand over with clarity</h3><p>Your team receives the assets, documentation and confidence to operate independently.</p></article></div></section>
+      <section className="v-section v-method">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">OUR OPERATING MODEL</span>
+            <h2>
+              We build businesses that
+              <br />
+              <em>need agencies less.</em>
+            </h2>
+          </div>
+          <p>
+            Your team should own the system, knowledge and assets. That is why
+            our work moves through three deliberate stages.
+          </p>
+        </div>
+        <div className="method-cards">
+          <article>
+            <b>01</b>
+            <span>BUILD</span>
+            <h3>Create the foundation</h3>
+            <p>
+              Clear positioning, searchable content, conversion pages and
+              connected customer channels.
+            </p>
+          </article>
+          <article>
+            <b>02</b>
+            <span>AUTOMATE</span>
+            <h3>Reduce repetitive work</h3>
+            <p>
+              Practical workflows for responses, lead organisation, reporting
+              and recurring activity.
+            </p>
+          </article>
+          <article>
+            <b>03</b>
+            <span>TRANSFER</span>
+            <h3>Hand over with clarity</h3>
+            <p>
+              Your team receives the assets, documentation and confidence to
+              operate independently.
+            </p>
+          </article>
+        </div>
+      </section>
 
- <section className="v-lucknow"><div className="lucknow-copy"><span className="v-kicker light">LOCAL INTELLIGENCE</span><h2>Lucknow roots.<br/><em>Uttar Pradesh scale.</em></h2><p>Explore genuinely useful local service pages for 20 Lucknow neighbourhoods and 20 major Uttar Pradesh cities.</p><div><a className="v-pill v-pill-light" href="/digital-marketing-services/">Explore Lucknow areas <ArrowUpRight/></a><a href="/digital-marketing-services/uttar-pradesh/">Browse UP cities <ArrowRight/></a></div></div><div className="lucknow-stat"><span>40</span><p>locally relevant service pages built around real business patterns, search intent and customer needs.</p><div className="mini-locations"><b>Gomti Nagar</b><b>Hazratganj</b><b>Indira Nagar</b><b>Kanpur</b><b>Agra</b><b>Varanasi</b></div></div></section>
+      <section className="v-lucknow">
+        <div className="lucknow-copy">
+          <span className="v-kicker light">LOCAL INTELLIGENCE</span>
+          <h2>
+            Lucknow roots.
+            <br />
+            <em>Uttar Pradesh scale.</em>
+          </h2>
+          <p>
+            Explore genuinely useful local service pages for 20 Lucknow
+            neighbourhoods and 20 major Uttar Pradesh cities.
+          </p>
+          <div>
+            <a
+              className="v-pill v-pill-light"
+              href="/digital-marketing-services/"
+            >
+              Explore Lucknow areas <ArrowUpRight />
+            </a>
+            <a href="/digital-marketing-services/uttar-pradesh/">
+              Browse UP cities <ArrowRight />
+            </a>
+          </div>
+        </div>
+        <div className="lucknow-stat">
+          <span>40</span>
+          <p>
+            locally relevant service pages built around real business patterns,
+            search intent and customer needs.
+          </p>
+          <div className="mini-locations">
+            <b>Gomti Nagar</b>
+            <b>Hazratganj</b>
+            <b>Indira Nagar</b>
+            <b>Kanpur</b>
+            <b>Agra</b>
+            <b>Varanasi</b>
+          </div>
+        </div>
+      </section>
 
- <section className="v-section v-faq" id="faq"><div><span className="v-kicker">QUESTIONS, ANSWERED</span><h2>Simple answers.<br/><em>No agency fog.</em></h2><p>Need something specific? Start a WhatsApp conversation and we will point you in the right direction.</p></div><div>{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
+      <section className="v-section v-faq" id="faq">
+        <div>
+          <span className="v-kicker">QUESTIONS, ANSWERED</span>
+          <h2>
+            Simple answers.
+            <br />
+            <em>No agency fog.</em>
+          </h2>
+          <p>
+            Need something specific? Start a WhatsApp conversation and we will
+            point you in the right direction.
+          </p>
+        </div>
+        <div>
+          {faqs.map(([q, a]) => (
+            <details key={q}>
+              <summary>
+                {q}
+                <span>+</span>
+              </summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
- <section className="v-final"><div className="v-final-orb"><Sparkle weight="fill"/></div><span>FREE 20-MINUTE DIGITAL GROWTH AUDIT</span><h2>Ready to become easier to find—and easier to choose?</h2><p>Share your business name and website or Google listing. We will identify the three most useful actions to take next.</p><a className="v-pill v-pill-light" href={wa}>Start on WhatsApp <WhatsappLogo weight="fill"/></a></section>
+      <section className="v-final">
+        <div className="v-final-orb">
+          <Sparkle weight="fill" />
+        </div>
+        <span>FREE 20-MINUTE DIGITAL GROWTH AUDIT</span>
+        <h2>Ready to become easier to find—and easier to choose?</h2>
+        <p>
+          Share your business name and website or Google listing. We will
+          identify the three most useful actions to take next.
+        </p>
+        <a className="v-pill v-pill-light" href={wa}>
+          Start on WhatsApp <WhatsappLogo weight="fill" />
+        </a>
+      </section>
 
- <section className="v-orbit-growth" aria-labelledby="orbit-title"><div className="v-orbit-copy"><span className="v-kicker light">THE CONNECTED GROWTH ORBIT</span><h2 id="orbit-title">Every channel moving around <em>one business goal.</em></h2><p>Search, content, campaigns, conversion and follow-up should not work in isolation. Sudarshan AI Labs connects them into one measurable customer journey.</p><div className="v-orbit-proof"><span><b>01</b> Discover</span><span><b>02</b> Trust</span><span><b>03</b> Convert</span></div></div><div className="v-orbit-stage" aria-label="Animated connected digital growth system"><div className="orbit-ring ring-one"/><div className="orbit-ring ring-two"/><div className="orbit-ring ring-three"/><i className="orbit-spark spark-one"/><i className="orbit-spark spark-two"/><i className="orbit-spark spark-three"/><div className="orbit-core"><Sparkle weight="fill"/><small>SUDARSHAN AI LABS</small><strong>Build your<br/>growth orbit.</strong><a href={wa}>Get a free audit <ArrowUpRight weight="bold"/></a></div><div className="orbit-node node-seo"><MagnifyingGlass weight="bold"/><span><b>Search visibility</b><small>Get discovered</small></span></div><div className="orbit-node node-brand"><Sparkle weight="bold"/><span><b>Brand trust</b><small>Stay memorable</small></span></div><div className="orbit-node node-web"><Browsers weight="bold"/><span><b>Conversion pages</b><small>Turn visits into leads</small></span></div><div className="orbit-node node-ai"><Robot weight="bold"/><span><b>AI follow-up</b><small>Respond intelligently</small></span></div><div className="orbit-node node-ads"><Target weight="bold"/><span><b>Performance ads</b><small>Reach ready buyers</small></span></div></div></section>
+      <section className="v-orbit-growth" aria-labelledby="orbit-title">
+        <div className="v-orbit-copy">
+          <span className="v-kicker light">THE CONNECTED GROWTH ORBIT</span>
+          <h2 id="orbit-title">
+            Every channel moving around <em>one business goal.</em>
+          </h2>
+          <p>
+            Search, content, campaigns, conversion and follow-up should not work
+            in isolation. Sudarshan AI Labs connects them into one measurable
+            customer journey.
+          </p>
+          <div className="v-orbit-proof">
+            <span>
+              <b>01</b> Discover
+            </span>
+            <span>
+              <b>02</b> Trust
+            </span>
+            <span>
+              <b>03</b> Convert
+            </span>
+          </div>
+        </div>
+        <div
+          className="v-orbit-stage"
+          aria-label="Animated connected digital growth system"
+        >
+          <div className="orbit-ring ring-one" />
+          <div className="orbit-ring ring-two" />
+          <div className="orbit-ring ring-three" />
+          <i className="orbit-spark spark-one" />
+          <i className="orbit-spark spark-two" />
+          <i className="orbit-spark spark-three" />
+          <div className="orbit-core">
+            <Sparkle weight="fill" />
+            <small>SUDARSHAN AI LABS</small>
+            <strong>
+              Build your
+              <br />
+              growth orbit.
+            </strong>
+            <a href={wa}>
+              Get a free audit <ArrowUpRight weight="bold" />
+            </a>
+          </div>
+          <div className="orbit-node node-seo">
+            <MagnifyingGlass weight="bold" />
+            <span>
+              <b>Search visibility</b>
+              <small>Get discovered</small>
+            </span>
+          </div>
+          <div className="orbit-node node-brand">
+            <Sparkle weight="bold" />
+            <span>
+              <b>Brand trust</b>
+              <small>Stay memorable</small>
+            </span>
+          </div>
+          <div className="orbit-node node-web">
+            <Browsers weight="bold" />
+            <span>
+              <b>Conversion pages</b>
+              <small>Turn visits into leads</small>
+            </span>
+          </div>
+          <div className="orbit-node node-ai">
+            <Robot weight="bold" />
+            <span>
+              <b>AI follow-up</b>
+              <small>Respond intelligently</small>
+            </span>
+          </div>
+          <div className="orbit-node node-ads">
+            <Target weight="bold" />
+            <span>
+              <b>Performance ads</b>
+              <small>Reach ready buyers</small>
+            </span>
+          </div>
+        </div>
+      </section>
 
- <footer className="v-footer"><div><a className="v-brand" href="#top"><span className="v-logo">S</span><span>SUDARSHAN <b>AI LABS</b></span></a><p>AI-powered digital marketing, Local SEO, websites and automation for Lucknow and India.</p></div><nav><b>Explore</b><a href="#services">Services</a><a href="#products">Products & plans</a><a href="#approach">Approach</a><a href="/about-sheevum-goel/">About the Founder</a><a href="/digital-marketing-services/">Lucknow Areas</a><a href="/digital-marketing-services/uttar-pradesh/">UP Cities</a></nav><nav><b>Connect</b><a href="tel:+917080842220">+91 70808 42220</a><a href="mailto:sudarshanailabs@gmail.com">Email us</a><a href="https://vyapai.in/">Vyapai <ArrowUpRight/></a><a href="https://www.linkedin.com/in/sheevumgoel">LinkedIn <ArrowUpRight/></a></nav><small>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</small></footer>
- </main>}
+      <footer className="v-footer">
+        <div>
+          <a className="v-brand" href="#top">
+            <span className="v-logo">S</span>
+            <span>
+              SUDARSHAN <b>AI LABS</b>
+            </span>
+          </a>
+          <p>
+            AI-powered digital marketing, Local SEO, websites and automation for
+            Lucknow and India.
+          </p>
+        </div>
+        <nav>
+          <b>Explore</b>
+          <a href="#services">Services</a>
+          <a href="#products">Products & plans</a>
+          <a href="#approach">Approach</a>
+          <a href="/about-sheevum-goel/">About the Founder</a>
+          <a href="/seo-services-lucknow">SEO Services</a>
+          <a href="/social-media-marketing-lucknow">Social Media</a>
+          <a href="/lead-generation-lucknow">Lead Generation</a>
+          <a href="/ai-automation-lucknow">AI Automation</a>
+          <a href="/digital-marketing-services/">Lucknow Areas</a>
+          <a href="/digital-marketing-services/uttar-pradesh/">UP Cities</a>
+        </nav>
+        <nav>
+          <b>Connect</b>
+          <a href="tel:+917080842220">+91 70808 42220</a>
+          <a href="mailto:sudarshanailabs@gmail.com">Email us</a>
+          <a href="https://vyapai.in/">
+            Vyapai <ArrowUpRight />
+          </a>
+          <a href="https://www.linkedin.com/in/sheevumgoel">
+            LinkedIn <ArrowUpRight />
+          </a>
+        </nav>
+        <small>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</small>
+      </footer>
+    </main>
+  );
+}
