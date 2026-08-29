@@ -1,1 +1,5 @@
-import {redirect} from "next/navigation";export default function Page(){redirect("/#services")}
+import { permanentRedirect } from "next/navigation";
+
+export default function Page() {
+  permanentRedirect("/social-media-marketing-lucknow");
+}

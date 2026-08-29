@@ -1,4 +1,55 @@
-import type {Metadata} from "next";
-import {cities} from "../../lib/cities";
-export const metadata:Metadata={title:"Digital Marketing Services Across Uttar Pradesh",description:"Explore city-specific digital marketing, SEO, advertising, website and lead-generation services across 20 major Uttar Pradesh cities.",alternates:{canonical:"/digital-marketing-services/uttar-pradesh/"}};
-export default function UttarPradeshCities(){return <main className="areas-index city-index"><nav className="area-nav"><a className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></a><a className="button button-small" href="https://wa.me/message/GWOSMDL3UO6OH1">Free Audit ↗</a></nav><header><p className="eyebrow">20 CITY-SPECIFIC GROWTH PAGES • UTTAR PRADESH</p><h1>Digital Marketing Services Across Uttar Pradesh</h1><p>Choose your city for locally relevant industries, marketing challenges, services, FAQs and a direct consultation with Sudarshan AI Labs.</p></header><section className="area-directory">{cities.map((c,i)=><a href={`/digital-marketing-services/${c.slug}/`} key={c.slug}><span>{String(i+1).padStart(2,"0")}</span><h2>{c.name}</h2><p>{c.meta}</p><b>Explore {c.name} ↗</b></a>)}</section><footer className="area-footer"><p>SEO • Google Ads • Social Media • Websites • Local SEO • WhatsApp Funnels</p><span>© 2026 Sudarshan AI Labs</span></footer></main>}
+/* eslint-disable @next/next/no-html-link-for-pages */
+import type { Metadata } from "next";
+import { cities } from "../../lib/cities";
+export const metadata: Metadata = {
+  title: "Digital Marketing Services Across Uttar Pradesh",
+  description:
+    "Explore city-specific digital marketing, SEO, advertising, website and lead-generation services across 20 major Uttar Pradesh cities.",
+  alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },
+};
+export default function UttarPradeshCities() {
+  return (
+    <main className="areas-index city-index">
+      <nav className="area-nav">
+        <a className="brand" href="/">
+          <span className="brand-mark">S</span>
+          <span>
+            SUDARSHAN <b>AI LABS</b>
+          </span>
+        </a>
+        <a
+          className="button button-small"
+          href="https://wa.me/message/GWOSMDL3UO6OH1"
+        >
+          Free Audit ↗
+        </a>
+      </nav>
+      <header>
+        <p className="eyebrow">20 CITY-SPECIFIC GROWTH PAGES • UTTAR PRADESH</p>
+        <h1>Digital Marketing Services Across Uttar Pradesh</h1>
+        <p>
+          Choose your city for locally relevant industries, marketing
+          challenges, services, FAQs and a direct consultation with Sudarshan AI
+          Labs.
+        </p>
+      </header>
+      <section className="area-directory">
+        {cities.map((c, i) => (
+          <a href={`/digital-marketing-services/${c.slug}/`} key={c.slug}>
+            <span>{String(i + 1).padStart(2, "0")}</span>
+            <h2>{c.name}</h2>
+            <p>{c.meta}</p>
+            <b>Explore {c.name} ↗</b>
+          </a>
+        ))}
+      </section>
+      <footer className="area-footer">
+        <p>
+          SEO • Google Ads • Social Media • Websites • Local SEO • WhatsApp
+          Funnels
+        </p>
+        <span>© 2026 Sudarshan AI Labs</span>
+      </footer>
+    </main>
+  );
+}

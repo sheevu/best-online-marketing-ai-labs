@@ -27,8 +27,28 @@ test("renders production metadata and product catalogue", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>Best Digital Marketing Agency in Lucknow \| Sudarshan AI Labs<\/title>/i);
+  assert.match(html, /<title>Sudarshan AI Labs \| Digital Marketing &amp; AI Automation Lucknow<\/title>/i);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.sudarshan-ai\.com\/"\s*\/>/i);
+  assert.match(html, /https:\/\/www\.sudarshan-ai\.com\/#organization/i);
+  assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);
+  assert.doesNotMatch(html, /\/workspace\/sites\//i);
   assert.match(html, /id="products"/i);
   assert.match(html, /Swaraj Tech Pack/i);
   assert.doesNotMatch(html, /name=["']codex-preview["']/i);
+});
+
+test("renders a dedicated SEO owner page with self-canonical metadata", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("service-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("http://localhost/seo-services-lucknow", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<h1>SEO Services in Lucknow<\/h1>/i);
+  assert.match(html, /https:\/\/www\.sudarshan-ai\.com\/seo-services-lucknow/i);
+  assert.match(html, /"@type":"Service"/i);
 });

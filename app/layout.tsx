@@ -1,7 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import Analytics from "./_components/Analytics";
+import { SITE_URL } from "./lib/site";
 import "./globals.css";
-const geistSans=Geist({variable:"--font-geist-sans",subsets:["latin"]});
-const geistMono=Geist_Mono({variable:"--font-geist-mono",subsets:["latin"]});
-export const metadata:Metadata={metadataBase:new URL("https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site"),title:"Sudarshan AI Labs | AI-Powered Growth for Lucknow MSMEs",description:"Sudarshan AI Labs connects local visibility, conversion websites, performance campaigns and practical AI follow-up for Lucknow MSMEs.",keywords:["Sudarshan AI Labs","AI-powered business growth Lucknow","Lucknow MSME marketing","local business automation Lucknow","conversion websites Lucknow","AI automation for business"],alternates:{canonical:"/"},openGraph:{title:"Sudarshan AI Labs | AI-Powered Growth for Lucknow MSMEs",description:"A connected growth system for local visibility, conversion, campaigns and practical AI follow-up.",url:"/",siteName:"Sudarshan AI Labs",locale:"en_IN",type:"website",images:[{url:"/sudarshan-lucknow-hero.webp",width:1672,height:941,alt:"Sudarshan AI Labs growth systems for Lucknow MSMEs"}]},twitter:{card:"summary_large_image",title:"Sudarshan AI Labs | AI-Powered Growth for Lucknow MSMEs",description:"Local visibility, conversion websites, performance campaigns and practical AI follow-up for Lucknow businesses.",images:["/sudarshan-lucknow-hero.webp"]},robots:{index:true,follow:true,googleBot:{index:true,follow:true,"max-image-preview":"large","max-snippet":-1,"max-video-preview":-1}},verification:{google:"oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E"},other:{"geo.region":"IN-UP","geo.placename":"Lucknow"},icons:{icon:"/favicon.svg",shortcut:"/favicon.svg"}};
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body></html>}
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Sudarshan AI Labs | Digital Marketing & AI Automation Lucknow",
+    template: "%s | Sudarshan AI Labs",
+  },
+  description: "Digital marketing, SEO, social media, lead generation, websites and practical AI automation for Lucknow MSMEs.",
+  keywords: ["digital marketing services in Lucknow", "SEO services Lucknow", "social media marketing in Lucknow", "lead generation Lucknow", "AI automation Lucknow", "AI for business"],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Sudarshan AI Labs | Digital Marketing & AI Automation Lucknow",
+    description: "Connected local visibility, conversion, campaigns and practical AI systems for Lucknow MSMEs.",
+    url: "/",
+    siteName: "Sudarshan AI Labs",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "/sudarshan-lucknow-hero.webp", width: 1672, height: 941, alt: "Sudarshan AI Labs growth systems for Lucknow MSMEs" }],
+  },
+  twitter: { card: "summary_large_image", title: "Sudarshan AI Labs | Digital Growth & AI", description: "Digital visibility, conversion and practical AI systems for Lucknow businesses.", images: ["/sudarshan-lucknow-hero.webp"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  verification: { google: "oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E" },
+  other: { "geo.region": "IN-UP", "geo.placename": "Lucknow" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body>{children}<Analytics /></body></html>;
+}

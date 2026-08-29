@@ -100,6 +100,14 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
 
+## Production SEO and Analytics
+
+- The preferred production origin is `https://www.sudarshan-ai.com`.
+- The Worker permanently redirects the apex and legacy ChatGPT Site host to the preferred origin and removes trailing slashes.
+- Canonicals, Open Graph URLs, structured data, `robots.txt`, `sitemap.xml`, and `llms.txt` use the same origin.
+- Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to a valid GA4 measurement ID (for example, `G-XXXXXXXXXX`) to enable Google Analytics. When it is unset, no Google Analytics script is emitted.
+- Keep Search Console and Bing Webmaster Tools verified against the preferred origin and resubmit `/sitemap.xml` after production deployment.
+
 The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
 
 ## Learn More
