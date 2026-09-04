@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { areas } from "./lib/areas";
 import { cities } from "./lib/cities";
+import { serviceCatalog } from "./lib/service-catalog";
 import { SITE_URL } from "./lib/site";
 
 const updated = new Date("2026-08-28T00:00:00.000Z");
@@ -15,11 +16,13 @@ const servicePaths = [
   "/google-ads-services",
   "/website-design",
 ];
+const catalogServicePaths = serviceCatalog.map((service) => "/" + service.slug);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified: updated, changeFrequency: "weekly", priority: 1 },
     ...servicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.9 })),
+    ...catalogServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.8 })),
     { url: `${SITE_URL}/about-sheevum-goel`, lastModified: updated, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/contact`, lastModified: updated, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/digital-marketing-services/uttar-pradesh`, lastModified: updated, changeFrequency: "monthly", priority: 0.6 },

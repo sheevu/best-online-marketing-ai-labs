@@ -49,6 +49,34 @@ body {
   color: #42516a;
   font: 400 20px/1.65 Georgia, serif;
 }
+.service-facts {
+  padding: 0 8vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
+}
+.service-facts article {
+  min-height: 150px;
+  padding: 30px 26px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.service-facts article:last-child {
+  border-right: 1px solid var(--line);
+}
+.service-facts span,
+.service-keywords > span {
+  color: var(--orange);
+  font: 800 10px var(--font-geist-mono);
+  letter-spacing: 0.12em;
+}
+.service-facts strong {
+  margin-top: 15px;
+  font-size: 17px;
+  line-height: 1.45;
+}
 .service-fit,
 .service-process,
 .service-links {
@@ -120,6 +148,16 @@ body {
 .service-card-grid p {
   color: #aebbd0;
   font-size: 14px;
+}
+.service-keywords {
+  margin-top: 48px;
+  padding-top: 25px;
+  border-top: 1px solid #ffffff20;
+}
+.service-keywords p {
+  margin: 13px 0 0;
+  color: #d5deeb;
+  line-height: 1.8;
 }
 .service-process {
   background: linear-gradient(145deg, #eaf3ff, #fff7eb);
@@ -208,6 +246,51 @@ body {
   color: var(--blue);
   font-size: 12px;
 }
+.catalog-service-menu {
+  padding: 100px 8vw;
+  background: #f7faff;
+}
+.catalog-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 46px;
+}
+.catalog-service-grid a {
+  min-height: 260px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.catalog-service-grid a:hover {
+  transform: translateY(-4px);
+  border-color: #93bced;
+  box-shadow: 0 18px 38px #173d7012;
+}
+.catalog-service-grid span {
+  color: var(--orange);
+  font: 800 10px var(--font-geist-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.catalog-service-grid h3 {
+  margin: 35px 0 10px;
+  font-size: 21px;
+  line-height: 1.08;
+}
+.catalog-service-grid p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.catalog-service-grid b {
+  margin-top: auto;
+  color: var(--blue);
+  font-size: 12px;
+}
 @media (max-width: 820px) {
   .service-hero {
     min-height: auto;
@@ -225,10 +308,28 @@ body {
     padding: 76px 22px;
     grid-template-columns: 1fr;
   }
+  .service-facts {
+    padding: 0 22px;
+    grid-template-columns: 1fr;
+  }
+  .service-facts article,
+  .service-facts article:last-child {
+    min-height: 0;
+    padding: 24px 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
   .service-card-grid,
   .service-process > div:last-child,
   .service-links nav,
   .contact-options {
+    grid-template-columns: 1fr;
+  }
+  .catalog-service-menu {
+    padding: 76px 22px;
+  }
+  .catalog-service-grid {
     grid-template-columns: 1fr;
   }
   .contact-options {

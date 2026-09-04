@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { areas } from "../lib/areas";
+import { serviceCatalog } from "../lib/service-catalog";
 import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL } from "../lib/site";
 
 const base = SITE_URL;
@@ -250,6 +251,24 @@ export default function LucknowServices() {
               <p>{service.copy}</p>
               <a href={wa}>Discuss this service ↗</a>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="catalog-service-menu" id="service-menu" aria-labelledby="service-menu-title">
+        <div className="pillar-section-head">
+          <p className="eyebrow">COMPLETE SERVICE MENU</p>
+          <h2 id="service-menu-title">One clear page for every commercial need</h2>
+          <p>Browse the search intent, channels and scope behind each service in the current Sudarshan AI Labs menu.</p>
+        </div>
+        <div className="catalog-service-grid">
+          {serviceCatalog.map((service, index) => (
+            <a href={"/" + service.slug} key={service.slug}>
+              <span>{String(index + 1).padStart(2, "0")} • {service.category}</span>
+              <h3>{service.name}</h3>
+              <p>{service.metaDescription}</p>
+              <b>View service page ↗</b>
+            </a>
           ))}
         </div>
       </section>

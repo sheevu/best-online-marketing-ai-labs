@@ -19,6 +19,12 @@ export type ServicePageData = {
   eyebrow: string;
   h1: string;
   intro: string;
+  category?: string;
+  primaryKeyword?: string;
+  platforms?: string[];
+  coreDeliverables?: string[];
+  relatedKeywords?: string[];
+  bestFor?: string;
   fit: string[];
   outcomes: Item[];
   process: Item[];
@@ -117,6 +123,29 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         </div>
       </header>
 
+      {(data.primaryKeyword || data.platforms || data.bestFor) && (
+        <section className="service-facts" aria-label="Service details">
+          {data.primaryKeyword && (
+            <article>
+              <span>PRIMARY SEARCH INTENT</span>
+              <strong>{data.primaryKeyword}</strong>
+            </article>
+          )}
+          {data.platforms && (
+            <article>
+              <span>PLATFORMS / CHANNELS</span>
+              <strong>{data.platforms.join(" • ")}</strong>
+            </article>
+          )}
+          {data.bestFor && (
+            <article>
+              <span>BEST FOR</span>
+              <strong>{data.bestFor}</strong>
+            </article>
+          )}
+        </section>
+      )}
+
       <section className="service-fit">
         <div><p className="section-kicker">WHO THIS IS FOR</p><h2>A focused service for businesses ready to improve the complete customer journey.</h2></div>
         <ul>{data.fit.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -125,6 +154,12 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       <section className="service-deliverables" id="deliverables">
         <div className="area-section-title"><p className="section-kicker light">DELIVERABLES</p><h2>What we examine, build and improve</h2><p>Scope is agreed from the audit. No guaranteed rankings, lead volumes or invented local proof.</p></div>
         <div className="service-card-grid">{data.outcomes.map((item, index) => <article key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        {data.relatedKeywords && (
+          <div className="service-keywords">
+            <span>RELATED SEARCHES</span>
+            <p>{data.relatedKeywords.join(" • ")}</p>
+          </div>
+        )}
       </section>
 
       <section className="service-process">
