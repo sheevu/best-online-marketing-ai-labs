@@ -3706,7 +3706,8 @@ footer {
     0 10px 26px #3420440a;
 }
 .v-links > a,
-.v-location-menu > button {
+.v-location-menu > button,
+.v-services-menu > button {
   height: 39px;
   padding: 0 15px;
   border: 0;
@@ -3728,13 +3729,25 @@ footer {
 }
 .v-links > a:hover,
 .v-location-menu > button:hover,
-.v-location-menu.active > button {
+.v-location-menu.active > button,
+.v-services-menu > button:hover,
+.v-services-menu.active > button {
   background: #f1ebff;
   color: #694fe0;
   transform: translateY(-1px);
 }
 .v-location-menu {
   position: relative;
+}
+.v-services-menu {
+  position: relative;
+}
+.v-services-menu > button svg {
+  width: 12px;
+  transition: transform 0.2s;
+}
+.v-services-menu.active > button svg {
+  transform: rotate(180deg);
 }
 .v-location-menu > button svg {
   width: 12px;
@@ -3878,7 +3891,8 @@ footer {
     padding-inline: 3vw;
   }
   .v-links > a,
-  .v-location-menu > button {
+  .v-location-menu > button,
+  .v-services-menu > button {
     padding-inline: 11px;
   }
   .nav-cta span {
@@ -3935,7 +3949,8 @@ footer {
     transform: translateY(0) scale(1);
   }
   .v-links > a,
-  .v-location-menu > button {
+  .v-location-menu > button,
+  .v-services-menu > button {
     width: 100%;
     height: 45px;
     justify-content: space-between;
@@ -4001,6 +4016,7 @@ footer {
   }
   .v-links,
   .v-location-panel,
+  .v-services-panel,
   .v-location-menu > button svg {
     transition: none;
   }
@@ -6543,6 +6559,100 @@ footer {
   }
   .pillar-cta h2 {
     font-size: 47px;
+  }
+}
+.v-services-panel {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: 390px;
+  padding: 10px;
+  border: 1px solid #e8ddd5;
+  border-radius: 22px;
+  background: #fffdf9;
+  box-shadow: 0 24px 60px #2a1b3d30;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -8px) scale(0.98);
+  transition: 0.22s;
+  transform-origin: top;
+}
+.v-services-menu.active .v-services-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+}
+.v-services-panel > a {
+  display: grid;
+  grid-template-columns: 44px 1fr 18px;
+  align-items: center;
+  gap: 11px;
+  padding: 14px;
+  border-radius: 15px;
+  transition: background 0.2s, transform 0.2s;
+}
+.v-services-panel > a:hover {
+  background: linear-gradient(100deg, #f3edff, #fff0e9);
+  transform: translateX(3px);
+}
+.v-services-panel > a > svg:first-child {
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(145deg, #ff63c6, #795cff);
+}
+.v-services-panel > a:last-child > svg:first-child {
+  background: linear-gradient(145deg, #3e8cff, #38bba0);
+}
+.v-services-panel > a > svg:last-child {
+  width: 16px;
+  color: #7463dd;
+}
+.v-services-panel b,
+.v-services-panel small {
+  display: block;
+}
+.v-services-panel b {
+  font-size: 12px;
+}
+.v-services-panel small {
+  margin-top: 4px;
+  color: #81798c;
+  font-size: 9px;
+}
+
+@media (max-width: 780px) {
+  .v-services-menu {
+    position: static;
+  }
+  .v-services-panel {
+    position: static;
+    width: auto;
+    padding: 5px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: none;
+    background: #f7f2ff;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .v-services-menu.active .v-services-panel {
+    display: block;
+    transform: none;
+  }
+  .v-services-panel > a {
+    grid-template-columns: 38px 1fr 16px;
+    padding: 11px;
+  }
+  .v-services-panel > a > svg:first-child {
+    width: 36px;
+    height: 36px;
+    padding: 9px;
   }
 }
 

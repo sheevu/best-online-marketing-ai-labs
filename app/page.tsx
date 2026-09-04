@@ -31,6 +31,8 @@ import {
   PRIMARY_ADDRESS,
   SITE_URL,
 } from "./lib/site";
+import { cities } from "./lib/cities";
+import { serviceCatalog } from "./lib/service-catalog";
 
 const wa =
   "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
@@ -250,6 +252,7 @@ const schema = {
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [locations, setLocations] = useState(false);
   const [goal, setGoal] = useState<keyof typeof goals>("visibility");
   const [productPage, setProductPage] = useState(0);
@@ -335,18 +338,60 @@ export default function Home() {
             </span>
           </a>
           <div className={`v-links ${menu ? "open" : ""}`}>
-            <a href="/digital-marketing-services/" onClick={() => setMenu(false)}>
-              Services
-            </a>
-            <a href="#products" onClick={() => setMenu(false)}>
+            <div className={`v-services-menu ${servicesOpen ? "active" : ""}`}>
+              <button
+                onClick={() => {
+                  setServicesOpen(!servicesOpen);
+                  setLocations(false);
+                }}
+                aria-expanded={servicesOpen}
+                aria-haspopup="true"
+              >
+                Services <CaretDown weight="bold" />
+              </button>
+              <div className="v-services-panel">
+                <a
+                  href="/digital-marketing-services/"
+                  onClick={() => {
+                    setServicesOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  <ChartLineUp weight="duotone" />
+                  <span>
+                    <b>All services</b>
+                    <small>Explore {serviceCatalog.length} core service pages</small>
+                  </span>
+                  <ArrowUpRight />
+                </a>
+                <a
+                  href="/digital-marketing-services/uttar-pradesh/"
+                  onClick={() => {
+                    setServicesOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  <GlobeHemisphereWest weight="duotone" />
+                  <span>
+                    <b>Services by city</b>
+                    <small>Browse {serviceCatalog.length * cities.length} service-city pages</small>
+                  </span>
+                  <ArrowUpRight />
+                </a>
+              </div>
+            </div>
+            <a href="#products" onClick={() => { setMenu(false); setServicesOpen(false); }}>
               Products
             </a>
-            <a href="#approach" onClick={() => setMenu(false)}>
+            <a href="#approach" onClick={() => { setMenu(false); setServicesOpen(false); }}>
               How we work
             </a>
             <div className={`v-location-menu ${locations ? "active" : ""}`}>
               <button
-                onClick={() => setLocations(!locations)}
+                onClick={() => {
+                  setLocations(!locations);
+                  setServicesOpen(false);
+                }}
                 aria-expanded={locations}
               >
                 Locations <CaretDown weight="bold" />
@@ -382,13 +427,13 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <a href="/about-sheevum-goel/" onClick={() => setMenu(false)}>
+            <a href="/about-sheevum-goel/" onClick={() => { setMenu(false); setServicesOpen(false); }}>
               Founder
             </a>
-            <a href="#faq" onClick={() => setMenu(false)}>
+            <a href="#faq" onClick={() => { setMenu(false); setServicesOpen(false); }}>
               FAQ
             </a>
-            <a href="/contact" onClick={() => setMenu(false)}>
+            <a href="/contact" onClick={() => { setMenu(false); setServicesOpen(false); }}>
               Contact
             </a>
             <a className="v-mobile-audit" href={wa}>
