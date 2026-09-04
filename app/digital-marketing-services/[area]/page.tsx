@@ -66,7 +66,10 @@ export async function generateMetadata({
     return generateCityMetadata({ params: Promise.resolve({ city: area }) });
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) return {};
-  const title = `${a.title.replace(/\s+\|\s+Sudarshan AI Labs$/, "")} | Sudarshan AI Labs`;
+  const preferredTitle = `Digital Marketing in ${a.name} | Sudarshan AI Labs`;
+  const title = preferredTitle.length <= 60
+    ? preferredTitle
+    : `Digital Marketing | ${a.name}, Lucknow`;
   return {
     title,
     description: a.meta,
