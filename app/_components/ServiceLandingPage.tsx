@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   absoluteUrl,
   CONTACT_EMAIL,
@@ -113,6 +114,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       </nav>
 
       <header className="service-hero">
+        <div className="service-hero-copy">
         <div className="breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/digital-marketing-services">Services</Link><span>›</span>{data.h1}</div>
         <p className="eyebrow">{data.eyebrow}</p>
         <h1>{data.h1}</h1>
@@ -121,6 +123,23 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
           <a className="button" href={WHATSAPP_URL}>Request a Free Audit ↗</a>
           <a className="text-link" href="#deliverables">See what is included ↓</a>
         </div>
+        </div>
+        <aside className="service-hero-visual" aria-label="Illustrated founder of Sudarshan AI Labs">
+          <div className="service-avatar-orb">
+            <span className="service-avatar-label">BUILD<br />AUTOMATE<br />TRANSFER</span>
+            <Image
+              src="/sheevum-goel-avatar-cutout.png"
+              alt="Illustrated Sheevum Goel avatar"
+              width={1120}
+              height={1400}
+              priority
+            />
+          </div>
+          <div className="service-hero-chip">
+            <span className="service-chip-dot" />
+            <span><b>Founder-led systems</b><small>Useful, measurable, ownable</small></span>
+          </div>
+        </aside>
       </header>
 
       {(data.primaryKeyword || data.platforms || data.bestFor) && (
@@ -153,7 +172,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-deliverables" id="deliverables">
         <div className="area-section-title"><p className="section-kicker light">DELIVERABLES</p><h2>What we examine, build and improve</h2><p>Scope is agreed from the audit. No guaranteed rankings, lead volumes or invented local proof.</p></div>
-        <div className="service-card-grid">{data.outcomes.map((item, index) => <article key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        <div className="service-card-grid">{data.outcomes.map((item, index) => <article key={item.title}><div className="service-card-thumb"><span>{String(index + 1).padStart(2, "0")}</span><Image src="/sheevum-goel-avatar-cutout.png" alt="" width={300} height={380} /></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
         {data.relatedKeywords && (
           <div className="service-keywords">
             <span>RELATED SEARCHES</span>
@@ -174,7 +193,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-links">
         <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
-        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href]) => <Link key={href} href={href}>{label}<span>↗</span></Link>)}</nav>
+        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.png" alt="" width={100} height={120} /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
       </section>
 
       <section className="area-cta">
