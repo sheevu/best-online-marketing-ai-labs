@@ -102,7 +102,7 @@ Use build and validation commands for targeted diagnosis after a remote failure,
 
 ## Production SEO and Analytics
 
-- The preferred production origin is `https://www.sudarshan-ai.com`.
+- The preferred production origin is `https://sudarshan-ai.com`.
 - The Worker permanently redirects the apex and legacy ChatGPT Site host to the preferred origin and removes trailing slashes.
 - Canonicals, Open Graph URLs, structured data, `robots.txt`, `sitemap.xml`, and `llms.txt` use the same origin.
 - Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to a valid GA4 measurement ID (for example, `G-XXXXXXXXXX`) to enable Google Analytics. When it is unset, no Google Analytics script is emitted.

@@ -6,7 +6,7 @@ import { absoluteUrl, ORGANIZATION_ID } from "../../../lib/site";
 
 const wa = "https://wa.me/message/GWOSMDL3UO6OH1";
 const ecosystem = [
-  ["Explore Vyapai", "https://vyapai.in/"],
+  ["Contact Sudarshan AI Labs", "/contact"],
   ["Read Growth Insights", "https://medium.com/@sheevumgoel"],
   [
     "Talk to Leeila AI",
@@ -16,7 +16,7 @@ const ecosystem = [
   ["Save Ideas on Pinterest", "https://pinterest.com/ailabslucknow"],
   [
     "Visit Our Google Site",
-    "https://sites.google.com/vyapai.in/ai-digital-marketing/home",
+    "/digital-marketing-services",
   ],
   ["Follow on Instagram", "https://www.instagram.com/surdarshanlabs"],
   ["Join on Facebook", "https://www.facebook.com/sudarshanlabsinc"],

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_URL } from "../lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, PRIMARY_ADDRESS, WHATSAPP_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Sudarshan AI Labs | Lucknow",
@@ -28,7 +28,7 @@ export default function Page() {
         <a href={`mailto:${CONTACT_EMAIL}`}><span>EMAIL</span><h2>{CONTACT_EMAIL}</h2><p>Email a detailed brief, existing audit or collaboration proposal.</p><b>Compose email ↗</b></a>
       </section>
       <section className="area-cta"><p>WHAT TO INCLUDE</p><h2>Business, goal, current challenge and preferred next action.</h2><span>We do not require passwords or sensitive customer data for an introductory audit. Never send credentials through a contact message.</span></section>
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }

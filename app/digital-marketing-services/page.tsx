@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { areas } from "../lib/areas";
-import { ORGANIZATION_ID, SITE_URL } from "../lib/site";
+import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL } from "../lib/site";
 
 const base = SITE_URL;
 const wa =
@@ -102,6 +102,7 @@ const businessSchema = {
     "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Gomti Nagar",
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
     addressCountry: "IN",
@@ -354,7 +355,7 @@ export default function LucknowServices() {
       </section>
       <footer className="area-footer">
         <p>Sudarshan AI Labs • Digital Marketing Services in Lucknow</p>
-        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED</span>
+        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );

@@ -27,9 +27,9 @@ test("renders production metadata and product catalogue", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>Sudarshan AI Labs \| Digital Marketing &amp; AI Automation Lucknow<\/title>/i);
-  assert.match(html, /<link rel="canonical" href="https:\/\/www\.sudarshan-ai\.com\/"\s*\/>/i);
-  assert.match(html, /https:\/\/www\.sudarshan-ai\.com\/#organization/i);
+  assert.match(html, /<title>Sudarshan AI Labs \| Digital Growth &amp; AI Automation in Lucknow<\/title>/i);
+  assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
+  assert.match(html, /https:\/\/sudarshan-ai\.com\/#organization/i);
   assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);
   assert.doesNotMatch(html, /\/workspace\/sites\//i);
   assert.match(html, /id="products"/i);
@@ -49,6 +49,6 @@ test("renders a dedicated SEO owner page with self-canonical metadata", async ()
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<h1>SEO Services in Lucknow<\/h1>/i);
-  assert.match(html, /https:\/\/www\.sudarshan-ai\.com\/seo-services-lucknow/i);
+  assert.match(html, /https:\/\/sudarshan-ai\.com\/seo-services-lucknow/i);
   assert.match(html, /"@type":"Service"/i);
 });

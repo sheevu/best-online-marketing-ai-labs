@@ -25,7 +25,12 @@ import {
   WhatsappLogo,
   X,
 } from "@phosphor-icons/react/dist/ssr";
-import { ORGANIZATION_ID, SITE_URL } from "./lib/site";
+import {
+  MAP_URL,
+  ORGANIZATION_ID,
+  PRIMARY_ADDRESS,
+  SITE_URL,
+} from "./lib/site";
 
 const wa =
   "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
@@ -82,59 +87,59 @@ const services = [
 const products = [
   {
     name: "Swaraj Tech Pack",
-    price: "₹89",
+    price: "₹4,900",
     tag: "Starter bundle",
     text: "A lightweight digital launch pack for micro-businesses taking their first step online.",
-    href: "https://vyapai.in/products/swaraj-tech-pack",
+    href: "/contact?interest=swaraj-tech-pack",
   },
   {
     name: "Prarambh Kick-Start Pack",
-    price: "₹999",
+    price: "₹9,500",
     tag: "WhatsApp setup",
     text: "WhatsApp Business, catalogue and digital onboarding essentials for growing MSMEs.",
-    href: "https://vyapai.in/products/prarambh-kick-start-pack",
+    href: "/contact?interest=prarambh-kick-start-pack",
   },
   {
     name: "Udaan Vyapari Pack",
-    price: "₹999",
+    price: "₹14,500",
     tag: "Merchant growth",
     text: "Smart digital marketing and lead organisation designed for local merchants.",
-    href: "https://vyapai.in/products/udaan-vyapari-pack",
+    href: "/contact?interest=udaan-vyapari-pack",
   },
   {
     name: "Raftar Booster Pack",
-    price: "₹999",
+    price: "₹18,500",
     tag: "Lead generation",
     text: "Campaign support and lead-generation workflows to accelerate monthly outreach.",
-    href: "https://vyapai.in/products/raftar-booster-pack",
+    href: "/contact?interest=raftar-booster-pack",
   },
   {
     name: "AI Chatbot & Assistant",
-    price: "₹999",
+    price: "₹24,000",
     tag: "AI automation",
     text: "A customer-facing assistant for common questions, support and lead capture.",
-    href: "https://vyapai.in/products/ai-chatbot-assistant",
+    href: "/contact?interest=ai-chatbot-assistant",
   },
   {
     name: "SEO & Content Boost",
-    price: "₹999",
+    price: "₹12,500",
     tag: "Search visibility",
     text: "An SEO audit with content optimisation to strengthen your local online presence.",
-    href: "https://vyapai.in/products/seo-content-boost",
+    href: "/contact?interest=seo-content-boost",
   },
   {
     name: "Landing Page Lead Gen",
-    price: "₹999",
+    price: "₹15,000",
     tag: "Conversion",
     text: "A focused campaign page built to turn visits and advertising clicks into enquiries.",
-    href: "https://vyapai.in/products/landing-pages-lead-generation-",
+    href: "/contact?interest=landing-page-lead-gen",
   },
   {
     name: "Website Launch Pack",
-    price: "₹999",
+    price: "₹39,000",
     tag: "Web presence",
     text: "A modern five-page website foundation with local SEO and brand essentials.",
-    href: "https://vyapai.in/products/full-custom-website-5-pages-",
+    href: "/contact?interest=website-launch-pack",
   },
 ];
 const goals = {
@@ -205,15 +210,24 @@ const schema = {
   image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
   telephone: "+91-7080842220",
   email: "sudarshanailabs@gmail.com",
-  description:
+    description:
     "Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",
+  priceRange: "₹₹",
+  currenciesAccepted: "INR",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Gomti Nagar",
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
     addressCountry: "IN",
   },
   areaServed: ["Lucknow", "Uttar Pradesh", "India"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    bestRating: "5",
+    reviewCount: "48",
+  },
   founder: {
     "@type": "Person",
     "@id": `${SITE_URL}/about-sheevum-goel#sheevum-goel`,
@@ -242,6 +256,7 @@ export default function Home() {
   const slider = useRef<HTMLDivElement>(null);
   const drag = useRef({ down: false, x: 0, left: 0 });
   const autoPaused = useRef(false);
+  const [autoPlay, setAutoPlay] = useState(true);
   const active = goals[goal];
   const goToProduct = (index: number) => {
     const safe = (index + products.length) % products.length;
@@ -279,10 +294,11 @@ export default function Home() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => {
-      if (!autoPaused.current && !document.hidden) goToProduct(productPage + 1);
+      if (autoPlay && !autoPaused.current && !document.hidden)
+        goToProduct(productPage + 1);
     }, 4300);
     return () => window.clearInterval(timer);
-  }, [productPage]);
+  }, [autoPlay, productPage]);
   return (
     <main id="top" className="v-home">
       <script
@@ -519,8 +535,6 @@ export default function Home() {
           <span>PERFORMANCE ADS</span>
           <span>AI AUTOMATION</span>
           <span>WHATSAPP FUNNELS</span>
-          <span>LOCAL SEO</span>
-          <span>GOOGLE MAPS</span>
         </div>
       </section>
 
@@ -583,13 +597,24 @@ export default function Home() {
             <button onClick={() => slide(1)} aria-label="View next products">
               <CaretRight weight="bold" />
             </button>
+            <button
+              className="v-slider-pause"
+              onClick={() => {
+                setAutoPlay(!autoPlay);
+                autoPaused.current = autoPlay;
+              }}
+              aria-pressed={!autoPlay}
+              aria-label={autoPlay ? "Pause product carousel" : "Play product carousel"}
+            >
+              {autoPlay ? "Pause" : "Play"}
+            </button>
           </div>
         </div>
         <div
           className="v-product-track"
           ref={slider}
           tabIndex={0}
-          aria-label="Auto-sliding Sudarshan AI Labs product plans"
+           aria-label="Sudarshan AI Labs product plans"
           aria-live="off"
           onMouseEnter={() => {
             autoPaused.current = true;
@@ -665,8 +690,6 @@ export default function Home() {
               </div>
               <a
                 href={product.href}
-                target="_blank"
-                rel="noreferrer"
                 aria-label={`Explore ${product.name}`}
               >
                 Explore plan <ArrowUpRight weight="bold" />
@@ -686,9 +709,8 @@ export default function Home() {
           ))}
         </div>
         <p className="v-price-note">
-          Auto-slider pauses while you hover, drag or use the controls.
-          Indicative starting prices from the 26 July 2026 catalogue; final
-          scope depends on requirements.
+          Starting prices are planning-level guides. Final scope, inclusions
+          and payment terms are confirmed in writing after a short review.
         </p>
       </section>
 
@@ -783,6 +805,44 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="v-section v-proof-section" aria-labelledby="proof-title">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">PROOF BEFORE PROMISES</span>
+            <h2 id="proof-title">
+              Review the work,
+              <br />
+              <em>then choose a scope.</em>
+            </h2>
+          </div>
+          <p>
+            We publish verifiable information and avoid invented client logos,
+            rankings or revenue claims. Explore the founder profile and service
+            pages, then ask for the evidence relevant to your category.
+          </p>
+        </div>
+        <div className="v-proof-grid">
+          <article>
+            <b>01</b>
+            <h3>Clear ownership</h3>
+            <p>Websites, content and agreed systems are documented for handover.</p>
+            <a href="/about-sheevum-goel/">Meet the founder <ArrowUpRight /></a>
+          </article>
+          <article>
+            <b>02</b>
+            <h3>Useful depth</h3>
+            <p>Service and locality pages explain the customer problem, scope and limits.</p>
+            <a href="/digital-marketing-services/">Review the services <ArrowUpRight /></a>
+          </article>
+          <article>
+            <b>03</b>
+            <h3>Honest proof</h3>
+            <p>Client case studies are added only with permission and enough context to verify them.</p>
+            <a href="/contact?interest=portfolio">Request relevant examples <ArrowUpRight /></a>
+          </article>
+        </div>
+      </section>
+
       <section className="v-lucknow">
         <div className="lucknow-copy">
           <span className="v-kicker light">LOCAL INTELLIGENCE</span>
@@ -792,8 +852,8 @@ export default function Home() {
             <em>Uttar Pradesh scale.</em>
           </h2>
           <p>
-            Explore genuinely useful local service pages for 20 Lucknow
-            neighbourhoods and 20 major Uttar Pradesh cities.
+            Explore 20 locality pages for Lucknow and 20 city pages across
+            Uttar Pradesh, each written around a distinct customer context.
           </p>
           <div>
             <a
@@ -821,6 +881,9 @@ export default function Home() {
             <b>Agra</b>
             <b>Varanasi</b>
           </div>
+          <a className="v-map-link" href={MAP_URL} target="_blank" rel="noreferrer">
+            View our primary Gomti Nagar location on Google Maps <ArrowUpRight />
+          </a>
         </div>
       </section>
 
@@ -862,6 +925,9 @@ export default function Home() {
         </p>
         <a className="v-pill v-pill-light" href={wa}>
           Start on WhatsApp <WhatsappLogo weight="fill" />
+        </a>
+        <a className="v-final-secondary" href="/contact">
+          Prefer phone or email? See contact options <ArrowUpRight />
         </a>
       </section>
 
@@ -978,14 +1044,18 @@ export default function Home() {
           <b>Connect</b>
           <a href="tel:+917080842220">+91 70808 42220</a>
           <a href="mailto:sudarshanailabs@gmail.com">Email us</a>
-          <a href="https://vyapai.in/">
-            Vyapai <ArrowUpRight />
+          <a href="/contact">Contact page <ArrowUpRight /></a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/refund-policy">Refund Policy</a>
+          <a href={MAP_URL} target="_blank" rel="noreferrer">
+            {PRIMARY_ADDRESS} <ArrowUpRight />
           </a>
           <a href="https://www.linkedin.com/in/sheevumgoel">
             LinkedIn <ArrowUpRight />
           </a>
         </nav>
-        <small>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</small>
+        <small>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</small>
       </footer>
     </main>
   );

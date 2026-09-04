@@ -1,7 +1,10 @@
-export const SITE_URL = "https://www.sudarshan-ai.com";
+export const SITE_URL = "https://sudarshan-ai.com";
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const CONTACT_EMAIL = "sudarshanailabs@gmail.com";
 export const CONTACT_PHONE = "+91-7080842220";
+export const PRIMARY_ADDRESS = "Gomti Nagar, Lucknow, Uttar Pradesh 226010";
+export const MAP_URL =
+  "https://www.google.com/maps/search/?api=1&query=Gomti+Nagar%2C+Lucknow%2C+Uttar+Pradesh+226010";
 export const WHATSAPP_URL =
   "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
 

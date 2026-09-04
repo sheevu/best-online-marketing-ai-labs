@@ -6,6 +6,7 @@ import {
   CONTACT_PHONE,
   coreServiceLinks,
   ORGANIZATION_ID,
+  PRIMARY_ADDRESS,
   WHATSAPP_URL,
 } from "../lib/site";
 
@@ -148,7 +149,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <div><a className="button" href={WHATSAPP_URL}>Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></div>
       </section>
 
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }
