@@ -821,6 +821,10 @@ export default function Home() {
             pages, then ask for the evidence relevant to your category.
           </p>
         </div>
+        <p className="v-proof-rating">
+          <strong>4.9/5</strong> from 48 reviews currently reported for the
+          business. <a href={MAP_URL}>Verify the latest review signal on Google Maps.</a>
+        </p>
         <div className="v-proof-grid">
           <article>
             <b>01</b>

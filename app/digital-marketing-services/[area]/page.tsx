@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { areas, areaBySlug } from "../../lib/areas";
 import { cityBySlug, cities } from "../../lib/cities";
-import { absoluteUrl, ORGANIZATION_ID } from "../../lib/site";
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../../lib/site";
 import CityPage, {
   generateMetadata as generateCityMetadata,
 } from "../uttar-pradesh/[city]/page";
@@ -343,7 +343,7 @@ export default async function AreaPage({
           Digital marketing, Local SEO, websites, paid campaigns and practical
           automation for Lucknow businesses.
         </p>
-        <span>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</span>
+        <span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );

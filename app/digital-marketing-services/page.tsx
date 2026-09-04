@@ -8,7 +8,7 @@ const wa =
   "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20Lucknow%20digital%20marketing%20audit.";
 
 export const metadata: Metadata = {
-  title: "Best Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+  title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
   description:
     "Digital marketing services in Lucknow for MSMEs: local SEO, Google Maps, websites, social media, ads and WhatsApp automation. Request a free audit.",
   alternates: { canonical: "/digital-marketing-services" },

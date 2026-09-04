@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cities, cityBySlug } from "../../../lib/cities";
-import { absoluteUrl, ORGANIZATION_ID } from "../../../lib/site";
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../../../lib/site";
 
 const wa = "https://wa.me/message/GWOSMDL3UO6OH1";
 const ecosystem = [
@@ -363,7 +363,7 @@ export default async function CityPage({
           Digital marketing, Local SEO, websites, paid campaigns and practical
           automation for Uttar Pradesh businesses.
         </p>
-        <span>© 2026 Sudarshan AI Labs • Lucknow, Uttar Pradesh</span>
+        <span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );
