@@ -26,6 +26,9 @@ export type ServicePageData = {
   coreDeliverables?: string[];
   relatedKeywords?: string[];
   bestFor?: string;
+  areaServed?: string;
+  locationLabel?: string;
+  locationHref?: string;
   fit: string[];
   outcomes: Item[];
   process: Item[];
@@ -66,6 +69,17 @@ export function serviceMetadata(data: ServicePageData): Metadata {
 
 export default function ServiceLandingPage({ data }: { data: ServicePageData }) {
   const url = absoluteUrl(`/${data.slug}`);
+  const areaServed = data.areaServed
+    ? [
+        { "@type": "City", name: data.areaServed },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "Country", name: "India" },
+      ]
+    : [
+        { "@type": "City", name: "Lucknow" },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "Country", name: "India" },
+      ];
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -74,11 +88,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
     url,
     description: data.description,
     provider: { "@id": ORGANIZATION_ID },
-    areaServed: [
-      { "@type": "City", name: "Lucknow" },
-      { "@type": "State", name: "Uttar Pradesh" },
-      { "@type": "Country", name: "India" },
-    ],
+    areaServed,
     availableChannel: {
       "@type": "ServiceChannel",
       servicePhone: CONTACT_PHONE,
@@ -115,7 +125,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <header className="service-hero">
         <div className="service-hero-copy">
-        <div className="breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/digital-marketing-services">Services</Link><span>›</span>{data.h1}</div>
+        <div className="breadcrumb"><Link href="/">Home</Link><span>›</span><Link href="/digital-marketing-services">Services</Link>{data.locationLabel && <><span>›</span><Link href={data.locationHref || "/digital-marketing-services/uttar-pradesh"}>{data.locationLabel}</Link></>}<span>›</span>{data.h1}</div>
         <p className="eyebrow">{data.eyebrow}</p>
         <h1>{data.h1}</h1>
         <p>{data.intro}</p>

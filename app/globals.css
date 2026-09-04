@@ -1480,6 +1480,46 @@ footer {
   font-weight: 800;
   margin-top: auto;
 }
+.city-service-catalogue {
+  padding: 95px 8vw;
+  background: #fff9ee;
+}
+.city-service-catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 45px;
+}
+.city-service-catalogue-grid a {
+  min-height: 112px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #d9c9ae;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  transition: 0.2s ease;
+}
+.city-service-catalogue-grid a:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+  box-shadow: 0 14px 25px #1e3a5f14;
+}
+.city-service-catalogue-grid span {
+  color: var(--orange);
+  font: 800 10px var(--font-geist-mono);
+}
+.city-service-catalogue-grid strong {
+  font-size: 15px;
+  line-height: 1.25;
+}
+.city-service-catalogue-grid b {
+  color: var(--blue);
+  font-size: 16px;
+}
 .muted {
   color: var(--muted);
 }
@@ -6572,6 +6612,13 @@ footer {
   .service-process > div:last-child,
   .service-links nav {
     grid-template-columns: 1fr;
+  }
+  .city-service-catalogue {
+    padding: 62px 24px;
+  }
+  .city-service-catalogue-grid {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
   }
   .service-deliverables {
     padding: 62px 24px;

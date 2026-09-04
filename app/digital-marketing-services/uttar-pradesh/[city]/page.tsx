@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cities, cityBySlug } from "../../../lib/cities";
+import { cityServicePath } from "../../../lib/city-service-page";
+import { serviceCatalog } from "../../../lib/service-catalog";
 import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../../../lib/site";
 
 const wa = "https://wa.me/message/GWOSMDL3UO6OH1";
@@ -245,6 +247,25 @@ export default async function CityPage({
                 Explore {s.name} ↗
               </a>
             </article>
+          ))}
+        </div>
+      </section>
+      <section className="city-service-catalogue">
+        <div className="area-section-title">
+          <p className="section-kicker">FULL SERVICE CATALOGUE FOR {c.name.toUpperCase()}</p>
+          <h2>Explore every service with a dedicated {c.name} page.</h2>
+          <p>
+            Each service below has its own city-specific page with scope,
+            deliverables, search context and a practical starting point.
+          </p>
+        </div>
+        <div className="city-service-catalogue-grid">
+          {serviceCatalog.map((service, i) => (
+            <a key={service.slug} href={cityServicePath(service.slug, c.slug)}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              <strong>{service.name}</strong>
+              <b>↗</b>
+            </a>
           ))}
         </div>
       </section>
