@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   },
   description: "Digital marketing, SEO, social media, lead generation, websites and practical AI automation for Lucknow MSMEs.",
   keywords: ["digital marketing services in Lucknow", "SEO services Lucknow", "social media marketing in Lucknow", "lead generation Lucknow", "AI automation Lucknow", "AI for business"],
-  alternates: { canonical: "/" },
   openGraph: {
     title: "Sudarshan AI Labs | Digital Growth & AI Automation in Lucknow",
     description: "Connected local visibility, conversion, campaigns and practical AI systems for Lucknow MSMEs.",
