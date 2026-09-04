@@ -335,7 +335,7 @@ export default function Home() {
             </span>
           </a>
           <div className={`v-links ${menu ? "open" : ""}`}>
-            <a href="#services" onClick={() => setMenu(false)}>
+            <a href="/digital-marketing-services/" onClick={() => setMenu(false)}>
               Services
             </a>
             <a href="#products" onClick={() => setMenu(false)}>
