@@ -37,7 +37,7 @@ const links = {
 };
 
 export const metadata: Metadata = {
-  title: "Sheevum Goel | AI Entrepreneur & Sudarshan AI Labs Founder",
+  title: "Sheevum Goel | Sudarshan AI Labs Founder",
   description:
     "Meet Sheevum Goel, a Lucknow entrepreneur, AI startup founder and growth strategist building AI, digital marketing and web development solutions for India.",
   keywords: [

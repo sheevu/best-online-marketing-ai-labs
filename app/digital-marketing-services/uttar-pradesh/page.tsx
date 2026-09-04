@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { cities } from "../../lib/cities";
 export const metadata: Metadata = {
-  title: "Digital Marketing Services Across Uttar Pradesh",
+  title: "Digital Marketing Across Uttar Pradesh | Sudarshan AI Labs",
   description:
     "Explore city-specific digital marketing, SEO, advertising, website and lead-generation services across 20 major Uttar Pradesh cities.",
   alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },

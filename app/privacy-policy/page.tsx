@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CONTACT_EMAIL, PRIMARY_ADDRESS } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Sudarshan AI Labs",
   description: "Privacy information for Sudarshan AI Labs website visitors and enquiries.",
   alternates: { canonical: "/privacy-policy" },
 };

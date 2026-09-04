@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Refund Policy", description: "Refund and cancellation information for Sudarshan AI Labs engagements.", alternates: { canonical: "/refund-policy" } };
+export const metadata: Metadata = { title: "Refund Policy | Sudarshan AI Labs", description: "Refund and cancellation information for Sudarshan AI Labs engagements.", alternates: { canonical: "/refund-policy" } };
 
 export default function RefundPolicy() {
   return (

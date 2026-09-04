@@ -66,12 +66,13 @@ export async function generateMetadata({
     return generateCityMetadata({ params: Promise.resolve({ city: area }) });
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) return {};
+  const title = `${a.title.replace(/\s+\|\s+Sudarshan AI Labs$/, "")} | Sudarshan AI Labs`;
   return {
-    title: a.title,
+    title,
     description: a.meta,
     alternates: { canonical: `/digital-marketing-services/${a.slug}-lucknow` },
     openGraph: {
-      title: a.title,
+      title,
       description: a.meta,
       type: "website",
       locale: "en_IN",

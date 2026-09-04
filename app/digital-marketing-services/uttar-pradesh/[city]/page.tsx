@@ -37,10 +37,12 @@ const serviceHref: Record<string, string> = {
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
 }
-const fittedTitle = (title: string, city: string) =>
-  title.length <= 60
-    ? title
-    : `Digital Marketing Services in ${city} | Growth Agency`;
+const fittedTitle = (title: string, city: string) => {
+  const branded = `${title.replace(/\s+\|\s+Sudarshan AI Labs$/, "")} | Sudarshan AI Labs`;
+  return branded.length <= 60
+    ? branded
+    : `Digital Marketing in ${city} | Sudarshan AI Labs`;
+};
 const fittedMeta = (meta: string) => {
   if (meta.length > 155) {
     const cut = meta.slice(0, 152);

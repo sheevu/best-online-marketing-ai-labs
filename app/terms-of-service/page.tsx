@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Terms of Service", description: "Terms for using Sudarshan AI Labs services and website.", alternates: { canonical: "/terms-of-service" } };
+export const metadata: Metadata = { title: "Terms of Service | Sudarshan AI Labs", description: "Terms for using Sudarshan AI Labs services and website.", alternates: { canonical: "/terms-of-service" } };
 
 export default function TermsOfService() {
   return (
