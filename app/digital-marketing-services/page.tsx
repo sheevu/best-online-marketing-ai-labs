@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
+import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import { areas } from "../lib/areas";
 import { serviceCatalog } from "../lib/service-catalog";
-import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL } from "../lib/site";
+import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, STARTING_PRICE_INR, WHATSAPP_URL } from "../lib/site";
 
 const base = SITE_URL;
-const wa =
-  "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20Lucknow%20digital%20marketing%20audit.";
+const wa = WHATSAPP_URL;
 
 export const metadata: Metadata = {
   title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
@@ -62,6 +62,7 @@ const services = [
     copy: "Reduce repetitive follow-up with practical greetings, qualification questions, labels, reusable answers, reminders and simple reporting while retaining human handover.",
   },
 ];
+const serviceIcons = [MagnifyingGlass, Sparkle, GlobeHemisphereWest, Megaphone, ChartLineUp, Robot];
 
 const faqs = [
   [
@@ -109,12 +110,19 @@ const businessSchema = {
     addressCountry: "IN",
   },
   areaServed: { "@type": "City", name: "Lucknow" },
+  priceRange: "Projects from ₹4,900",
   founder: {
     "@type": "Person",
     name: "Sheevum Goel",
     url: `${base}/about-sheevum-goel`,
   },
   knowsAbout: services.map((service) => service.title),
+  makesOffer: services.map((service) => ({
+    "@type": "Offer",
+    price: STARTING_PRICE_INR,
+    priceCurrency: "INR",
+    itemOffered: { "@type": "Service", name: service.title },
+  })),
 };
 const faqSchema = {
   "@context": "https://schema.org",
@@ -244,14 +252,16 @@ export default function LucknowServices() {
           </p>
         </div>
         <div className="pillar-service-grid">
-          {services.map((service, index) => (
-            <article id={service.id} key={service.id}>
+          {services.map((service, index) => {
+            const Icon = serviceIcons[index % serviceIcons.length];
+            return <article id={service.id} key={service.id}>
+              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
-              <a href={wa}>Discuss this service ↗</a>
-            </article>
-          ))}
+              <a href={wa}>Discuss service {String(index + 1).padStart(2, "0")} ↗</a>
+            </article>;
+          })}
         </div>
       </section>
 
@@ -267,7 +277,7 @@ export default function LucknowServices() {
               <span>{String(index + 1).padStart(2, "0")} • {service.category}</span>
               <h3>{service.name}</h3>
               <p>{service.metaDescription}</p>
-              <b>View service page ↗</b>
+              <b>Explore service {String(index + 1).padStart(2, "0")} ↗</b>
             </a>
           ))}
         </div>
@@ -374,6 +384,7 @@ export default function LucknowServices() {
       </section>
       <footer className="area-footer">
         <p>Sudarshan AI Labs • Digital Marketing Services in Lucknow</p>
+        <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
         <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>

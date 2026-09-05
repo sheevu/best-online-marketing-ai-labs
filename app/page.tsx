@@ -30,12 +30,14 @@ import {
   ORGANIZATION_ID,
   PRIMARY_ADDRESS,
   SITE_URL,
+  STARTING_PRICE_INR,
+  WHATSAPP_URL,
 } from "./lib/site";
+import { areas } from "./lib/areas";
 import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
 
-const wa =
-  "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.";
+const wa = WHATSAPP_URL;
 const services = [
   {
     title: "Own local search",
@@ -92,56 +94,56 @@ const products = [
     price: "₹4,900",
     tag: "Starter bundle",
     text: "A lightweight digital launch pack for micro-businesses taking their first step online.",
-    href: "/contact?interest=swaraj-tech-pack",
+    href: "/contact#contact-options",
   },
   {
     name: "Prarambh Kick-Start Pack",
     price: "₹9,500",
     tag: "WhatsApp setup",
     text: "WhatsApp Business, catalogue and digital onboarding essentials for growing MSMEs.",
-    href: "/contact?interest=prarambh-kick-start-pack",
+    href: "/contact#contact-options",
   },
   {
     name: "Udaan Vyapari Pack",
     price: "₹14,500",
     tag: "Merchant growth",
     text: "Smart digital marketing and lead organisation designed for local merchants.",
-    href: "/contact?interest=udaan-vyapari-pack",
+    href: "/contact#contact-options",
   },
   {
     name: "Raftar Booster Pack",
     price: "₹18,500",
     tag: "Lead generation",
     text: "Campaign support and lead-generation workflows to accelerate monthly outreach.",
-    href: "/contact?interest=raftar-booster-pack",
+    href: "/contact#contact-options",
   },
   {
     name: "AI Chatbot & Assistant",
     price: "₹24,000",
     tag: "AI automation",
     text: "A customer-facing assistant for common questions, support and lead capture.",
-    href: "/contact?interest=ai-chatbot-assistant",
+    href: "/contact#contact-options",
   },
   {
     name: "SEO & Content Boost",
     price: "₹12,500",
     tag: "Search visibility",
     text: "An SEO audit with content optimisation to strengthen your local online presence.",
-    href: "/contact?interest=seo-content-boost",
+    href: "/contact#contact-options",
   },
   {
     name: "Landing Page Lead Gen",
     price: "₹15,000",
     tag: "Conversion",
     text: "A focused campaign page built to turn visits and advertising clicks into enquiries.",
-    href: "/contact?interest=landing-page-lead-gen",
+    href: "/contact#contact-options",
   },
   {
     name: "Website Launch Pack",
     price: "₹39,000",
     tag: "Web presence",
     text: "A modern five-page website foundation with local SEO and brand essentials.",
-    href: "/contact?interest=website-launch-pack",
+    href: "/contact#contact-options",
   },
 ];
 const goals = {
@@ -214,7 +216,7 @@ const schema = {
   email: "sudarshanailabs@gmail.com",
     description:
     "Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",
-  priceRange: "₹₹",
+  priceRange: "Projects from ₹4,900",
   currenciesAccepted: "INR",
   address: {
     "@type": "PostalAddress",
@@ -224,12 +226,6 @@ const schema = {
     addressCountry: "IN",
   },
   areaServed: ["Lucknow", "Uttar Pradesh", "India"],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    bestRating: "5",
-    reviewCount: "48",
-  },
   founder: {
     "@type": "Person",
     "@id": `${SITE_URL}/about-sheevum-goel#sheevum-goel`,
@@ -249,6 +245,30 @@ const schema = {
     "https://www.facebook.com/sudarshanlabsinc/",
   ],
 };
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+const serviceSchemas = services.map((service) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.title,
+  description: service.text,
+  url: `${SITE_URL}${service.href}`,
+  provider: { "@id": ORGANIZATION_ID },
+  areaServed: { "@type": "City", name: "Lucknow" },
+  offers: {
+    "@type": "Offer",
+    price: STARTING_PRICE_INR,
+    priceCurrency: "INR",
+    description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+  },
+}));
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
@@ -306,7 +326,7 @@ export default function Home() {
     <main id="top" className="v-home">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, faqSchema, ...serviceSchemas]) }}
       />
       <header className="v-site-header">
         <div className="v-topline">
@@ -359,7 +379,7 @@ export default function Home() {
                 >
                   <ChartLineUp weight="duotone" />
                   <span>
-                    <b>All services</b>
+                    <span className="menu-label">All services</span>
                     <small>Explore {serviceCatalog.length} core service pages</small>
                   </span>
                   <ArrowUpRight />
@@ -373,7 +393,7 @@ export default function Home() {
                 >
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
-                    <b>Services by city</b>
+                    <span className="menu-label">Services by city</span>
                     <small>Browse {serviceCatalog.length * cities.length} service-city pages</small>
                   </span>
                   <ArrowUpRight />
@@ -406,7 +426,7 @@ export default function Home() {
                 >
                   <MapPin weight="duotone" />
                   <span>
-                    <b>Lucknow neighbourhoods</b>
+                    <span className="menu-label">Lucknow neighbourhoods</span>
                     <small>Explore 20 local service areas</small>
                   </span>
                   <ArrowUpRight />
@@ -420,7 +440,7 @@ export default function Home() {
                 >
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
-                    <b>Uttar Pradesh cities</b>
+                    <span className="menu-label">Uttar Pradesh cities</span>
                     <small>Explore 20 growing business markets</small>
                   </span>
                   <ArrowUpRight />
@@ -494,13 +514,13 @@ export default function Home() {
             </div>
             <div className="v-hero-signals">
               <span>
-                <b>01</b> Get found locally
+                <span className="signal-number">01</span> Get found locally
               </span>
               <span>
-                <b>02</b> Convert attention
+                <span className="signal-number">02</span> Convert attention
               </span>
               <span>
-                <b>03</b> Automate follow-up
+                <span className="signal-number">03</span> Automate follow-up
               </span>
             </div>
             <div className="v-micro">
@@ -523,13 +543,13 @@ export default function Home() {
             <div className="float-chip chip-search">
               <MagnifyingGlass weight="bold" />
               <span>
-                <b>Local search</b>Get discovered
+                <span className="chip-label">Local search</span>Get discovered
               </span>
             </div>
             <div className="float-chip chip-leads">
               <WhatsappLogo weight="fill" />
               <span>
-                <b>Lead flow</b>Respond faster
+                <span className="chip-label">Lead flow</span>Respond faster
               </span>
             </div>
             <div className="orbit-badge">
@@ -611,7 +631,7 @@ export default function Home() {
                 <p>{text}</p>
               </div>
               <a href={href} aria-label={`Learn about ${title}`}>
-                View service details <ArrowUpRight weight="bold" />
+                Explore {title} <ArrowUpRight weight="bold" />
               </a>
             </article>
           ))}
@@ -726,18 +746,19 @@ export default function Home() {
               <div className="v-product-number">
                 {String(index + 1).padStart(2, "0")}
               </div>
+              <div className="glossy-icon" aria-hidden="true"><Sparkle weight="duotone" /></div>
               <span>{product.tag}</span>
               <h3>{product.name}</h3>
               <p>{product.text}</p>
               <div className="v-product-price">
                 <small>Starting at</small>
-                <strong>{product.price}</strong>
+                <span className="price-value">{product.price}</span>
               </div>
               <a
                 href={product.href}
                 aria-label={`Explore ${product.name}`}
               >
-                Explore plan <ArrowUpRight weight="bold" />
+                Discuss {product.name} <ArrowUpRight weight="bold" />
               </a>
             </article>
           ))}
@@ -821,7 +842,8 @@ export default function Home() {
         </div>
         <div className="method-cards">
           <article>
-            <b>01</b>
+            <span className="glossy-icon" aria-hidden="true"><CheckCircle weight="duotone" /></span>
+            <span className="card-number">01</span>
             <span>BUILD</span>
             <h3>Create the foundation</h3>
             <p>
@@ -830,7 +852,8 @@ export default function Home() {
             </p>
           </article>
           <article>
-            <b>02</b>
+            <span className="glossy-icon" aria-hidden="true"><ChartLineUp weight="duotone" /></span>
+            <span className="card-number">02</span>
             <span>AUTOMATE</span>
             <h3>Reduce repetitive work</h3>
             <p>
@@ -839,7 +862,8 @@ export default function Home() {
             </p>
           </article>
           <article>
-            <b>03</b>
+            <span className="glossy-icon" aria-hidden="true"><MagnifyingGlass weight="duotone" /></span>
+            <span className="card-number">03</span>
             <span>TRANSFER</span>
             <h3>Hand over with clarity</h3>
             <p>
@@ -867,27 +891,27 @@ export default function Home() {
           </p>
         </div>
         <p className="v-proof-rating">
-          <strong>4.9/5</strong> from 48 reviews currently reported for the
-          business. <a href={MAP_URL}>Verify the latest review signal on Google Maps.</a>
+          <strong>Evidence first.</strong> Review the live business presence,
+          founder profile and relevant work before choosing a scope. <a href={MAP_URL}>View the Google Maps presence.</a>
         </p>
         <div className="v-proof-grid">
           <article>
-            <b>01</b>
+            <span className="card-number">01</span>
             <h3>Clear ownership</h3>
             <p>Websites, content and agreed systems are documented for handover.</p>
             <a href="/about-sheevum-goel/">Meet the founder <ArrowUpRight /></a>
           </article>
           <article>
-            <b>02</b>
+            <span className="card-number">02</span>
             <h3>Useful depth</h3>
             <p>Service and locality pages explain the customer problem, scope and limits.</p>
             <a href="/digital-marketing-services/">Review the services <ArrowUpRight /></a>
           </article>
           <article>
-            <b>03</b>
+            <span className="card-number">03</span>
             <h3>Honest proof</h3>
             <p>Client case studies are added only with permission and enough context to verify them.</p>
-            <a href="/contact?interest=portfolio">Request relevant examples <ArrowUpRight /></a>
+            <a href="/contact#contact-options">Request relevant examples <ArrowUpRight /></a>
           </article>
         </div>
       </section>
@@ -922,14 +946,27 @@ export default function Home() {
             locally relevant service pages built around real business patterns,
             search intent and customer needs.
           </p>
-          <div className="mini-locations">
-            <b>Gomti Nagar</b>
-            <b>Hazratganj</b>
-            <b>Indira Nagar</b>
-            <b>Kanpur</b>
-            <b>Agra</b>
-            <b>Varanasi</b>
-          </div>
+          <details className="location-directory">
+            <summary>Browse all 40 location pages <span>+</span></summary>
+            <div>
+              <nav aria-label="Lucknow locality pages">
+                <span className="directory-label">Lucknow localities</span>
+                {areas.map((area) => (
+                  <a key={area.slug} href={`/digital-marketing-services/${area.slug}-lucknow`}>
+                    {area.name}
+                  </a>
+                ))}
+              </nav>
+              <nav aria-label="Uttar Pradesh city pages">
+                <span className="directory-label">Uttar Pradesh cities</span>
+                {cities.map((city) => (
+                  <a key={city.slug} href={`/digital-marketing-services/${city.slug}`}>
+                    {city.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </details>
           <a className="v-map-link" href={MAP_URL} target="_blank" rel="noreferrer">
             View our primary Gomti Nagar location on Google Maps <ArrowUpRight />
           </a>
@@ -993,13 +1030,13 @@ export default function Home() {
           </p>
           <div className="v-orbit-proof">
             <span>
-              <b>01</b> Discover
+              <span className="orbit-number">01</span> Discover
             </span>
             <span>
-              <b>02</b> Trust
+              <span className="orbit-number">02</span> Trust
             </span>
             <span>
-              <b>03</b> Convert
+              <span className="orbit-number">03</span> Convert
             </span>
           </div>
         </div>
@@ -1028,35 +1065,35 @@ export default function Home() {
           <div className="orbit-node node-seo">
             <MagnifyingGlass weight="bold" />
             <span>
-              <b>Search visibility</b>
+              <span className="orbit-label">Search visibility</span>
               <small>Get discovered</small>
             </span>
           </div>
           <div className="orbit-node node-brand">
             <Sparkle weight="bold" />
             <span>
-              <b>Brand trust</b>
+              <span className="orbit-label">Brand trust</span>
               <small>Stay memorable</small>
             </span>
           </div>
           <div className="orbit-node node-web">
             <Browsers weight="bold" />
             <span>
-              <b>Conversion pages</b>
+              <span className="orbit-label">Conversion pages</span>
               <small>Turn visits into leads</small>
             </span>
           </div>
           <div className="orbit-node node-ai">
             <Robot weight="bold" />
             <span>
-              <b>AI follow-up</b>
+              <span className="orbit-label">AI follow-up</span>
               <small>Respond intelligently</small>
             </span>
           </div>
           <div className="orbit-node node-ads">
             <Target weight="bold" />
             <span>
-              <b>Performance ads</b>
+              <span className="orbit-label">Performance ads</span>
               <small>Reach ready buyers</small>
             </span>
           </div>

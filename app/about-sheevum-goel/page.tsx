@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: "/sheevum-goel-og.png",
+        url: "/sheevum-goel-og.jpg",
         width: 1200,
         height: 630,
         alt: "Sheevum Goel - Entrepreneur, AI for Bharat and Founder of Sudarshan AI Labs",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     title: "Sheevum Goel | AI Entrepreneur & Founder",
     description:
       "AI for Bharat, practical business automation and digital growth from Lucknow, India.",
-    images: ["/sheevum-goel-og.png"],
+    images: ["/sheevum-goel-og.jpg"],
   },
   robots: {
     index: true,

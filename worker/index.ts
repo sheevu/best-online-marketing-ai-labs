@@ -39,16 +39,20 @@ const worker = {
     ctx: ExecutionContext,
   ): Promise<Response> {
     const url = new URL(request.url);
-    const legacyHost =
-      url.hostname ===
-      "sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site";
-    const needsPreferredHost =
-      url.hostname === "sudarshan-ai.com" || legacyHost;
-    const needsHttps =
-      url.hostname === "www.sudarshan-ai.com" && url.protocol !== "https:";
+    const preferredHost = "sudarshan-ai.com";
+    const redirectHosts = new Set([
+      "www.sudarshan-ai.com",
+      "sudarshan-ai-labs.com",
+      "www.sudarshan-ai-labs.com",
+      "sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site",
+    ]);
+    const needsPreferredHost = redirectHosts.has(url.hostname);
+    const needsHttps = url.hostname === preferredHost && url.protocol !== "https:";
     const legacyRoutes: Record<string, string> = {
       "/seo-services": "/seo-services-lucknow",
       "/social-media-marketing": "/social-media-marketing-lucknow",
+      "/local-seo": "/local-seo-services",
+      "/website-development": "/website-design",
     };
     const normalizedPath =
       url.pathname.length > 1 && url.pathname.endsWith("/")
@@ -60,7 +64,7 @@ const worker = {
     if (needsPreferredHost || needsHttps || needsPathNormalization) {
       if (needsPreferredHost || needsHttps) {
         url.protocol = "https:";
-        url.hostname = "www.sudarshan-ai.com";
+        url.hostname = preferredHost;
       }
       url.pathname = redirectPath;
       return Response.redirect(url.toString(), 301);
@@ -84,7 +88,19 @@ const worker = {
       );
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    const headers = new Headers(response.headers);
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") {
+      headers.set("X-Robots-Tag", "all");
+      headers.set("Cache-Control", "public, max-age=300, s-maxage=3600");
+    }
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
   },
 };
 

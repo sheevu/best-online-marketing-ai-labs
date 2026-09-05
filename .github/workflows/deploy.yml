@@ -6,10 +6,18 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-production-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare
+    timeout-minutes: 12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,9 +34,20 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Verify rendered SEO routes
+        run: node --test tests/rendered-html.test.mjs
+
+      - name: Preserve verified build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sudarshan-production-dist
+          path: dist
+          retention-days: 1
+          if-no-files-found: error
+
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: deploy --minify

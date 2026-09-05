@@ -2,16 +2,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  ChartLineUp,
+  Compass,
+  GearSix,
+  MagnifyingGlass,
+  Sparkle,
+  Target,
+} from "@phosphor-icons/react/dist/ssr";
+import {
   absoluteUrl,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   coreServiceLinks,
   ORGANIZATION_ID,
   PRIMARY_ADDRESS,
+  STARTING_PRICE_INR,
   WHATSAPP_URL,
 } from "../lib/site";
 
 type Item = { title: string; text: string };
+const outcomeIcons = [Target, MagnifyingGlass, ChartLineUp, Sparkle];
+const processIcons = [Compass, GearSix, ChartLineUp, Sparkle];
 
 export type ServicePageData = {
   slug: string;
@@ -94,6 +105,12 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       servicePhone: CONTACT_PHONE,
       serviceUrl: url,
     },
+    offers: {
+      "@type": "Offer",
+      price: STARTING_PRICE_INR,
+      priceCurrency: "INR",
+      description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+    },
   };
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -138,7 +155,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
           <div className="service-avatar-orb">
             <span className="service-avatar-label">BUILD<br />AUTOMATE<br />TRANSFER</span>
             <Image
-              src="/sheevum-goel-avatar-cutout.png"
+              src="/sheevum-goel-avatar-cutout.webp"
               alt="Illustrated Sheevum Goel avatar"
               width={1120}
               height={1400}
@@ -182,7 +199,10 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-deliverables" id="deliverables">
         <div className="area-section-title"><p className="section-kicker light">DELIVERABLES</p><h2>What we examine, build and improve</h2><p>Scope is agreed from the audit. No guaranteed rankings, lead volumes or invented local proof.</p></div>
-        <div className="service-card-grid">{data.outcomes.map((item, index) => <article key={item.title}><div className="service-card-thumb"><span>{String(index + 1).padStart(2, "0")}</span><Image src="/sheevum-goel-avatar-cutout.png" alt="" width={300} height={380} /></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        <div className="service-card-grid">{data.outcomes.map((item, index) => {
+          const Icon = outcomeIcons[index % outcomeIcons.length];
+          return <article key={item.title}><div className="service-card-thumb"><span>{String(index + 1).padStart(2, "0")}</span><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={300} height={380} sizes="(max-width: 820px) 75vw, 25vw" /></div><span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span><h3>{item.title}</h3><p>{item.text}</p></article>;
+        })}</div>
         {data.relatedKeywords && (
           <div className="service-keywords">
             <span>RELATED SEARCHES</span>
@@ -193,7 +213,10 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-process">
         <div><p className="section-kicker">BUILD • AUTOMATE • TRANSFER</p><h2>A practical process your team can understand and own.</h2></div>
-        <div>{data.process.map((item, index) => <article key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        <div>{data.process.map((item, index) => {
+          const Icon = processIcons[index % processIcons.length];
+          return <article key={item.title}><span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span><b>{String(index + 1).padStart(2, "0")}</b><h3>{item.title}</h3><p>{item.text}</p></article>;
+        })}</div>
       </section>
 
       <section className="area-faq">
@@ -203,7 +226,13 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-links">
         <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
-        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.png" alt="" width={100} height={120} /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
+        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={100} height={120} sizes="100px" /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
+        <nav className="site-hub-links" aria-label="Explore Sudarshan AI Labs">
+          <Link href="/digital-marketing-services">All Lucknow services</Link>
+          <Link href="/digital-marketing-services/uttar-pradesh">Uttar Pradesh city directory</Link>
+          <Link href="/about-sheevum-goel">Founder profile</Link>
+          <Link href="/contact">Contact Sudarshan AI Labs</Link>
+        </nav>
       </section>
 
       <section className="area-cta">
@@ -213,7 +242,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <div><a className="button" href={WHATSAPP_URL}>Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></div>
       </section>
 
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }

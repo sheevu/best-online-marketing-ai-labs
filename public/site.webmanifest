@@ -1,0 +1,16 @@
+{
+  "name": "Sudarshan AI Labs",
+  "short_name": "Sudarshan",
+  "description": "Digital growth and practical AI systems for Lucknow MSMEs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffdf9",
+  "theme_color": "#171527",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

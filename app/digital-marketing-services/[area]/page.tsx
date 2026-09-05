@@ -1,15 +1,15 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
+import { ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound, permanentRedirect } from "next/navigation";
 import { areas, areaBySlug } from "../../lib/areas";
 import { cityBySlug, cities } from "../../lib/cities";
-import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../../lib/site";
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, STARTING_PRICE_INR, WHATSAPP_URL } from "../../lib/site";
 import CityPage, {
   generateMetadata as generateCityMetadata,
 } from "../uttar-pradesh/[city]/page";
 
-const wa =
-  "https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20local%20digital%20marketing%20audit.";
+const wa = WHATSAPP_URL;
 const serviceLinks = [
   [
     "SEO",
@@ -47,6 +47,7 @@ const serviceLinks = [
     "Qualification questions, response templates, labels and follow-up steps help small teams handle enquiries faster and recognise useful prospects.",
   ],
 ];
+const localIcons = [MapPin, Target, ChartLineUp, Sparkle];
 
 const cleanAreaSlug = (routeSlug: string) =>
   routeSlug.endsWith("-lucknow") ? routeSlug.slice(0, -8) : routeSlug;
@@ -106,6 +107,12 @@ export default async function AreaPage({
     provider: { "@id": ORGANIZATION_ID },
     areaServed: { "@type": "Place", name: `${a.name}, Lucknow` },
     serviceType: "Digital marketing services",
+    offers: {
+      "@type": "Offer",
+      price: STARTING_PRICE_INR,
+      priceCurrency: "INR",
+      description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+    },
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -204,14 +211,16 @@ export default async function AreaPage({
           </p>
         </div>
         <div className="area-service-grid">
-          {serviceLinks.map(([name, href, copy], i) => (
-            <article key={name}>
+          {serviceLinks.map(([name, href, copy], i) => {
+            const Icon = localIcons[i % localIcons.length];
+            return <article key={name}>
+              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
               <span>0{i + 1}</span>
               <h3>{name}</h3>
               <p>{copy}</p>
               <a href={href}>Explore {name} ↗</a>
-            </article>
-          ))}
+            </article>;
+          })}
         </div>
       </section>
       <section className="area-section">
@@ -347,6 +356,7 @@ export default async function AreaPage({
           Digital marketing, Local SEO, websites, paid campaigns and practical
           automation for Lucknow businesses.
         </p>
+        <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
         <span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>

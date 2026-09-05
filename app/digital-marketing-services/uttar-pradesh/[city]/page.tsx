@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
+import { Buildings, ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
 import { cities, cityBySlug } from "../../../lib/cities";
 import { cityServicePath } from "../../../lib/city-service-page";
 import { serviceCatalog } from "../../../lib/service-catalog";
-import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../../../lib/site";
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, STARTING_PRICE_INR, WHATSAPP_URL } from "../../../lib/site";
 
-const wa = "https://wa.me/message/GWOSMDL3UO6OH1";
+const wa = WHATSAPP_URL;
 const ecosystem = [
   ["Contact Sudarshan AI Labs", "/contact"],
   ["Read Growth Insights", "https://medium.com/@sheevumgoel"],
@@ -35,6 +36,7 @@ const serviceHref: Record<string, string> = {
   "Local SEO / Google Business Profile": "/seo-services-lucknow",
   "Lead Generation / WhatsApp Funnel": "/lead-generation-lucknow",
 };
+const cityIcons = [Buildings, MapPin, Target, ChartLineUp, Sparkle];
 
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
@@ -113,6 +115,12 @@ export default async function CityPage({
       containedInPlace: { "@type": "State", name: "Uttar Pradesh" },
     },
     serviceType: "Digital marketing services",
+    offers: {
+      "@type": "Offer",
+      price: STARTING_PRICE_INR,
+      priceCurrency: "INR",
+      description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+    },
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -194,8 +202,10 @@ export default async function CityPage({
         <div className="industry-grid">
           {c.industries.map((x, i) => {
             const [name, ...rest] = x.split(":");
+            const Icon = cityIcons[i % cityIcons.length];
             return (
               <article key={x}>
+                <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <h3>{name}</h3>
                 <p>{rest.join(":").trim()}</p>
@@ -210,12 +220,14 @@ export default async function CityPage({
           <h2>Challenges limiting growth in {c.name}</h2>
         </div>
         <div className="city-pain-list">
-          {c.pains.map((x, i) => (
-            <article key={x}>
+          {c.pains.map((x, i) => {
+            const Icon = cityIcons[i % cityIcons.length];
+            return <article key={x}>
+              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
               <b>{String(i + 1).padStart(2, "0")}</b>
               <p>{x}</p>
-            </article>
-          ))}
+            </article>;
+          })}
         </div>
         <p className="bridge-copy">
           These issues are addressed through accurate local information,
@@ -238,16 +250,18 @@ export default async function CityPage({
           </p>
         </div>
         <div className="area-service-grid">
-          {c.services.map((s, i) => (
-            <article key={s.name}>
+          {c.services.map((s, i) => {
+            const Icon = cityIcons[i % cityIcons.length];
+            return <article key={s.name}>
+              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
               <span>{String(i + 1).padStart(2, "0")}</span>
               <h3>{s.name}</h3>
               <p>{s.copy}</p>
               <a href={serviceHref[s.name] || "/contact"}>
                 Explore {s.name} ↗
               </a>
-            </article>
-          ))}
+            </article>;
+          })}
         </div>
       </section>
       <section className="city-service-catalogue">
@@ -386,6 +400,7 @@ export default async function CityPage({
           Digital marketing, Local SEO, websites, paid campaigns and practical
           automation for Uttar Pradesh businesses.
         </p>
+        <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
         <span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>

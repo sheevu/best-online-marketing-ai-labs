@@ -3,6 +3,10 @@
   "name": "sudarshan-ai-labs-lucknow",
   "main": "dist/server/index.js",
   "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "placement": {
+    "mode": "smart"
+  },
   "assets": {
     "directory": "dist/client",
     "binding": "ASSETS"
@@ -18,6 +22,7 @@
     }
   ],
   "observability": {
-    "enabled": true
+    "enabled": true,
+    "head_sampling_rate": 1
   }
 }

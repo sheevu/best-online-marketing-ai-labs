@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { cities } from "../../lib/cities";
+import StructuredData from "../../_components/StructuredData";
+import { absoluteUrl, ORGANIZATION_ID, WHATSAPP_URL } from "../../lib/site";
 export const metadata: Metadata = {
   title: "Digital Marketing Across Uttar Pradesh | Sudarshan AI Labs",
   description:
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function UttarPradeshCities() {
   return (
     <main className="areas-index city-index">
+      <StructuredData data={{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${absoluteUrl("/digital-marketing-services/uttar-pradesh")}#page`, url: absoluteUrl("/digital-marketing-services/uttar-pradesh"), name: "Digital Marketing Services Across Uttar Pradesh", about: { "@id": ORGANIZATION_ID }, hasPart: cities.map((city) => ({ "@type": "WebPage", name: city.name, url: absoluteUrl(`/digital-marketing-services/${city.slug}`) })) }} />
       <nav className="area-nav">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
@@ -19,7 +22,7 @@ export default function UttarPradeshCities() {
         </a>
         <a
           className="button button-small"
-          href="https://wa.me/message/GWOSMDL3UO6OH1"
+          href={WHATSAPP_URL}
         >
           Free Audit ↗
         </a>
@@ -48,6 +51,7 @@ export default function UttarPradeshCities() {
           SEO • Google Ads • Social Media • Websites • Local SEO • WhatsApp
           Funnels
         </p>
+        <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
         <span>© 2026 Sudarshan AI Labs</span>
       </footer>
     </main>
