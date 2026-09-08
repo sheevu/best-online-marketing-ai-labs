@@ -1,1 +1,8 @@
-import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages["google-ads"]);export default function Page(){return <ServicePage data={servicePages["google-ads"]}/>}
+import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
+import { googleAdsService } from "../lib/services";
+
+export const metadata = serviceMetadata(googleAdsService);
+
+export default function Page() {
+  return <ServiceLandingPage data={googleAdsService} />;
+}

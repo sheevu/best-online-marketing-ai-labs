@@ -1,1 +1,5 @@
-import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages.seo);export default function Page(){return <ServicePage data={servicePages.seo}/>}
+import { permanentRedirect } from "next/navigation";
+
+export default function Page() {
+  permanentRedirect("/seo-services-lucknow");
+}

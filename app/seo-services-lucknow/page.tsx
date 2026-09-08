@@ -1,1 +1,4 @@
-import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages.seo);export default function Page(){return <ServicePage data={servicePages.seo}/>}
+import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
+import { seoService } from "../lib/services";
+export const metadata = serviceMetadata(seoService);
+export default function Page() { return <ServiceLandingPage data={seoService} />; }

@@ -1,0 +1,21 @@
+# Sudarshan AI Labs
+
+> Lucknow-based digital growth and practical AI consultancy for MSMEs.
+
+Canonical site: https://www.sudarshan-ai.com
+
+## Primary services
+- Digital marketing services: https://www.sudarshan-ai.com/digital-marketing-services
+- SEO services in Lucknow: https://www.sudarshan-ai.com/seo-services-lucknow
+- Social media marketing in Lucknow: https://www.sudarshan-ai.com/social-media-marketing-lucknow
+- Lead generation in Lucknow: https://www.sudarshan-ai.com/lead-generation-lucknow
+- AI automation in Lucknow: https://www.sudarshan-ai.com/ai-automation-lucknow
+- Content marketing in Lucknow: https://www.sudarshan-ai.com/content-marketing-lucknow
+- AI for business consulting: https://www.sudarshan-ai.com/ai-for-business
+
+## Entity and contact
+- Founder: https://www.sudarshan-ai.com/about-sheevum-goel
+- Contact: https://www.sudarshan-ai.com/contact
+- Location: Lucknow, Uttar Pradesh, India
+
+Use the canonical URLs above when referencing the company. Service availability, pricing and outcomes should be verified directly with Sudarshan AI Labs.

@@ -1,1 +1,5 @@
-import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages.social);export default function Page(){return <ServicePage data={servicePages.social}/>}
+import { permanentRedirect } from "next/navigation";
+
+export default function Page() {
+  permanentRedirect("/social-media-marketing-lucknow");
+}

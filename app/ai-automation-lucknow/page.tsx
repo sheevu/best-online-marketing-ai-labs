@@ -1,1 +1,4 @@
-import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages.automation);export default function Page(){return <ServicePage data={servicePages.automation}/>}
+import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
+import { aiAutomationService } from "../lib/services";
+export const metadata = serviceMetadata(aiAutomationService);
+export default function Page() { return <ServiceLandingPage data={aiAutomationService} />; }

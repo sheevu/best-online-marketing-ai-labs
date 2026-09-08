@@ -1,17 +1,42 @@
 import type { MetadataRoute } from "next";
+import { areas } from "./lib/areas";
+import { cities } from "./lib/cities";
+import { serviceCatalog } from "./lib/service-catalog";
+import { SITE_URL } from "./lib/site";
+
+const updated = new Date("2026-09-05T00:00:00.000Z");
+const servicePaths = [
+  "/digital-marketing-services",
+  "/seo-services-lucknow",
+  "/social-media-marketing-lucknow",
+  "/lead-generation-lucknow",
+  "/ai-automation-lucknow",
+  "/content-marketing-lucknow",
+  "/ai-for-business",
+  "/google-ads-services",
+  "/website-design",
+];
+const catalogServicePaths = serviceCatalog.map((service) => "/" + service.slug);
+const trustPaths = [
+  "/contact",
+  "/about-sheevum-goel",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/refund-policy",
+];
+const cityServicePaths = serviceCatalog.flatMap((service) =>
+  cities.map((city) => `/${service.slug}/${city.slug}`),
+);
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://sudarshan-ai.com";
   return [
-    { url: `${base}/`, priority: 1.0 },
-    { url: `${base}/digital-marketing-services/`, priority: 0.95 },
-    { url: `${base}/seo-services-lucknow`, priority: 0.85 },
-    { url: `${base}/google-ads-services`, priority: 0.85 },
-    { url: `${base}/social-media-marketing-lucknow`, priority: 0.85 },
-    { url: `${base}/website-design`, priority: 0.85 },
-    { url: `${base}/lead-generation-lucknow`, priority: 0.85 },
-    { url: `${base}/ai-automation-lucknow`, priority: 0.85 },
-    { url: `${base}/about-sheevum-goel`, priority: 0.8 },
-    { url: `${base}/contact`, priority: 0.75 },
+    { url: SITE_URL, lastModified: updated, changeFrequency: "weekly", priority: 1 },
+    ...servicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.9 })),
+    ...catalogServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.8 })),
+    ...cityServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.55 })),
+    ...trustPaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "monthly" as const, priority: path === "/about-sheevum-goel" ? 0.7 : 0.5 })),
+    { url: `${SITE_URL}/digital-marketing-services/uttar-pradesh`, lastModified: updated, changeFrequency: "monthly", priority: 0.6 },
+    ...areas.map((area) => ({ url: `${SITE_URL}/digital-marketing-services/${area.slug}-lucknow`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.65 })),
+    ...cities.map((city) => ({ url: `${SITE_URL}/digital-marketing-services/${city.slug}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.45 })),
   ];
 }
-
