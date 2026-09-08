@@ -27,7 +27,7 @@ test("renders production metadata and product catalogue", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>Sudarshan AI Labs \| Digital Growth Lucknow<\/title>/i);
+  assert.match(html, /<title>AI Digital Marketing Agency in Lucknow \| Local SEO &amp; Google Maps Experts \| Sudarshan AI Labs<\/title>/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
   assert.match(html, /https:\/\/sudarshan-ai\.com\/#organization/i);
   assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);

@@ -7,10 +7,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sudarshan AI Labs | Digital Growth Lucknow",
+    default: "AI Digital Marketing Agency in Lucknow | Local SEO & Google Maps Experts | Sudarshan AI Labs",
     template: "%s",
   },
-  description: "Digital marketing, SEO, social media, lead generation, websites and practical AI automation for Lucknow MSMEs.",
+  description: "Sudarshan AI Labs helps Lucknow businesses improve Local SEO, Google Business Profile visibility, websites, paid campaigns and practical AI follow-up. Start with a clear digital growth audit.",
   keywords: ["digital marketing services in Lucknow", "SEO services Lucknow", "social media marketing in Lucknow", "lead generation Lucknow", "AI automation Lucknow", "AI for business"],
   alternates: { canonical: "/" },
   openGraph: {

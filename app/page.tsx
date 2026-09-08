@@ -492,9 +492,9 @@ export default function Home() {
               </span>
             </div>
             <h1>
-              AI-powered growth
+              AI digital marketing agency
               <br />
-              <em>for Lucknow MSMEs.</em>
+              <em>for Lucknow businesses.</em>
             </h1>
             <p>
               Get found, build trust and turn attention into enquiries with
