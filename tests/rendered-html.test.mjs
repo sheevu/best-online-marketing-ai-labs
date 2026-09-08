@@ -27,7 +27,7 @@ test("renders production metadata and product catalogue", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>Best Digital Marketing Agency in Lucknow \| Sudarshan AI Labs<\/title>/i);
+  assert.match(html, /<title>AI Digital Marketing Agency in Lucknow \| Local SEO &amp; Google Maps Experts \| Sudarshan AI Labs<\/title>/i);
   assert.match(html, /id="products"/i);
   assert.match(html, /Swaraj Tech Pack/i);
   assert.doesNotMatch(html, /name=["']codex-preview["']/i);

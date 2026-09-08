@@ -1,1 +1,1 @@
-import {redirect} from "next/navigation";export default function Page(){redirect("/#services")}
+import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages["google-ads"]);export default function Page(){return <ServicePage data={servicePages["google-ads"]}/>}

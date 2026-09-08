@@ -29,11 +29,111 @@ const faqs=[
  ["Will we own the work you create?","Yes. Our Build, Automate, Transfer model is designed around ownership. Agreed websites, content, systems and knowledge are handed over to your team."],
  ["How do we begin?","Start with a free growth audit. Share your website or Google listing and we will identify the most useful priorities before suggesting a scope."]
 ];
-const schema={"@context":"https://schema.org","@type":"Organization",name:"Sudarshan AI Labs",legalName:"NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",url:"https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site",telephone:"+91-7080842220",email:"sudarshanailabs@gmail.com",description:"Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",address:{"@type":"PostalAddress",addressLocality:"Lucknow",addressRegion:"Uttar Pradesh",addressCountry:"IN"},areaServed:["Lucknow","Uttar Pradesh","India"],founder:{"@type":"Person",name:"Sheevum Goel",url:"https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site/about-sheevum-goel/"},sameAs:["https://in.linkedin.com/company/sudarshan-ai-labs","https://www.facebook.com/sudarshanlabsinc/"]};
 
-export default function Home(){const [menu,setMenu]=useState(false);const [locations,setLocations]=useState(false);const [goal,setGoal]=useState<keyof typeof goals>("visibility");const [productPage,setProductPage]=useState(0);const slider=useRef<HTMLDivElement>(null);const drag=useRef({down:false,x:0,left:0});const autoPaused=useRef(false);const active=goals[goal];const goToProduct=(index:number)=>{const safe=(index+products.length)%products.length;const card=slider.current?.children[safe] as HTMLElement|undefined;if(card&&slider.current){slider.current.scrollTo({left:card.offsetLeft-slider.current.offsetLeft,behavior:"smooth"});setProductPage(safe)}};const slide=(direction:number)=>goToProduct(productPage+direction);useEffect(()=>{const nodes=document.querySelectorAll<HTMLElement>(".v-home section:not(.v-hero-shell),.v-footer");nodes.forEach((node,index)=>{node.classList.add("v-reveal");node.style.setProperty("--reveal-order",String(index%2))});const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.1,rootMargin:"0px 0px -40px"});nodes.forEach(node=>observer.observe(node));return()=>observer.disconnect()},[]);useEffect(()=>{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const timer=window.setInterval(()=>{if(!autoPaused.current&&!document.hidden)goToProduct(productPage+1)},4300);return()=>window.clearInterval(timer)},[productPage]);return <main id="top" className="v-home">
- <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>
- <header className="v-site-header"><div className="v-topline"><span><Lightning weight="fill"/> Lucknow businesses: request a complimentary digital visibility audit</span><div><a href="tel:+917080842220"><PhoneCall weight="bold"/> +91 70808 42220</a><a href={wa}><WhatsappLogo weight="fill"/> WhatsApp</a></div></div><nav className="v-nav" aria-label="Main navigation"><a className="v-brand" href="#top" aria-label="Sudarshan AI Labs home"><span className="v-logo"><Sparkle weight="fill"/></span><span>SUDARSHAN <b>AI LABS</b><small>LUCKNOW DIGITAL GROWTH</small></span></a><div className={`v-links ${menu?"open":""}`}><a href="#services" onClick={()=>setMenu(false)}>Services</a><a href="#products" onClick={()=>setMenu(false)}>Products</a><a href="#approach" onClick={()=>setMenu(false)}>How we work</a><div className={`v-location-menu ${locations?"active":""}`}><button onClick={()=>setLocations(!locations)} aria-expanded={locations}>Locations <CaretDown weight="bold"/></button><div className="v-location-panel"><a href="/digital-marketing-services/" onClick={()=>{setLocations(false);setMenu(false)}}><MapPin weight="duotone"/><span><b>Lucknow neighbourhoods</b><small>Explore 20 local service areas</small></span><ArrowUpRight/></a><a href="/digital-marketing-services/uttar-pradesh/" onClick={()=>{setLocations(false);setMenu(false)}}><GlobeHemisphereWest weight="duotone"/><span><b>Uttar Pradesh cities</b><small>Explore 20 growing business markets</small></span><ArrowUpRight/></a></div></div><a href="/about-sheevum-goel/" onClick={()=>setMenu(false)}>Founder</a><a href="#faq" onClick={()=>setMenu(false)}>FAQ</a><a href="/contact" onClick={()=>setMenu(false)}>Contact</a><a className="v-mobile-audit" href={wa}>Get free audit <ArrowUpRight/></a></div><a className="v-pill v-pill-dark nav-cta" href={wa}><span>Free growth audit</span><ArrowUpRight weight="bold"/></a><button className="v-menu" onClick={()=>setMenu(!menu)} aria-expanded={menu} aria-label="Toggle navigation">{menu?<X/>:<List/>}</button></nav></header>
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
+  "@id": "https://sudarshan-ai.com/#organization",
+  "name": "Sudarshan AI Labs",
+  "alternateName": ["Sudarshan AI", "Sudarshan AI Labs Lucknow", "Nava-Netra Neural Sudarshan Labs"],
+  "legalName": "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  "url": "https://sudarshan-ai.com",
+  "logo": "https://sudarshan-ai.com/sudarshan-lucknow-hero.webp",
+  "image": "https://sudarshan-ai.com/sudarshan-lucknow-hero.webp",
+  "telephone": "+91-7080842220",
+  "email": "sudarshanailabs@gmail.com",
+  "description": "Lucknow's #1 AI-powered digital marketing agency helping MSMEs improve Local SEO, Google Maps visibility, high-converting websites, paid ads and WhatsApp lead automation.",
+  "priceRange": "₹₹",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "Cash, Credit Card, UPI, Net Banking",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Gomti Nagar / Hazratganj",
+    "addressLocality": "Lucknow",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "226010",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "26.8467",
+    "longitude": "80.9462"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Lucknow" },
+    { "@type": "State", "name": "Uttar Pradesh" },
+    { "@type": "Country", "name": "India" }
+  ],
+  "founder": {
+    "@type": "Person",
+    "@id": "https://sudarshan-ai.com/about-sheevum-goel/#sheevum-goel",
+    "name": "Sheevum Goel",
+    "url": "https://sudarshan-ai.com/about-sheevum-goel/"
+  },
+  "sameAs": [
+    "https://in.linkedin.com/company/sudarshan-ai-labs",
+    "https://www.facebook.com/sudarshanlabsinc/",
+    "https://www.instagram.com/surdarshanlabs",
+    "https://www.youtube.com/@sheevumgoel",
+    "https://x.com/sheevum",
+    "https://vyapai.in/"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "48",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Marketing & AI Growth Services",
+    "itemListElement": services.map((s, idx) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": s.title,
+        "description": s.text,
+        "provider": { "@id": "https://sudarshan-ai.com/#organization" }
+      }
+    }))
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://sudarshan-ai.com/#website",
+  "url": "https://sudarshan-ai.com",
+  "name": "Sudarshan AI Labs",
+  "publisher": { "@id": "https://sudarshan-ai.com/#organization" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(([q, a]) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": a
+    }
+  }))
+};
+
+
+export default function Home(){const [menu,setMenu]=useState(false);const [locations,setLocations]=useState(false);const [goal,setGoal]=useState<keyof typeof goals>("visibility");const [productPage,setProductPage]=useState(0);const slider=useRef<HTMLDivElement>(null);const drag=useRef({down:false,x:0,left:0});const autoPaused=useRef(false);const active=goals[goal];const goToProduct=(index:number)=>{const safe=(index+products.length)%products.length;const card=slider.current?.children[safe] as HTMLElement|undefined;if(card&&slider.current){slider.current.scrollTo({left:card.offsetLeft-slider.current.offsetLeft,behavior:"smooth"});setProductPage(safe)}};const slide=(direction:number)=>goToProduct(productPage+direction);useEffect(()=>{const nodes=document.querySelectorAll<HTMLElement>(".v-home section:not(.v-hero-shell),.v-footer");nodes.forEach((node,index)=>{node.classList.add("v-reveal");node.style.setProperty("--reveal-order",String(index%2))});const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.1,rootMargin:"0px 0px -40px"});nodes.forEach(node=>observer.observe(node));return()=>observer.disconnect()},[]);useEffect(()=>{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const timer=window.setInterval(()=>{if(!autoPaused.current&&!document.hidden)goToProduct(productPage+1)},4300);return()=>window.clearInterval(timer)},[productPage]); return <main id="top" className="v-home">
+  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify([organizationSchema,websiteSchema,faqSchema])}}/>
+  <header className="v-site-header"><div className="v-topline"><span><Lightning weight="fill"/> Lucknow businesses: request a complimentary digital visibility audit</span><div><a href="tel:+917080842220"><PhoneCall weight="bold"/> +91 70808 42220</a><a href={wa}><WhatsappLogo weight="fill"/> WhatsApp</a></div></div><nav className="v-nav" aria-label="Main navigation"><a className="v-brand" href="#top" aria-label="Sudarshan AI Labs home"><span className="v-logo"><Sparkle weight="fill"/></span><span>SUDARSHAN <b>AI LABS</b><small>LUCKNOW DIGITAL GROWTH</small></span></a><div className={`v-links ${menu?"open":""}`}><a href="#services" onClick={()=>setMenu(false)}>Services</a><a href="#products" onClick={()=>setMenu(false)}>Products</a><a href="#approach" onClick={()=>setMenu(false)}>How we work</a><div className={`v-location-menu ${locations?"active":""}`}><button onClick={()=>setLocations(!locations)} aria-expanded={locations}>Locations <CaretDown weight="bold"/></button><div className="v-location-panel"><a href="/digital-marketing-services/" onClick={()=>{setLocations(false);setMenu(false)}}><MapPin weight="duotone"/><span><b>Lucknow neighbourhoods</b><small>Explore 20 local service areas</small></span><ArrowUpRight/></a><a href="/digital-marketing-services/uttar-pradesh/" onClick={()=>{setLocations(false);setMenu(false)}}><GlobeHemisphereWest weight="duotone"/><span><b>Uttar Pradesh cities</b><small>Explore 20 growing business markets</small></span><ArrowUpRight/></a></div></div><a href="/about-sheevum-goel/" onClick={()=>setMenu(false)}>Founder</a><a href="#faq" onClick={()=>setMenu(false)}>FAQ</a><a href="/contact" onClick={()=>setMenu(false)}>Contact</a><a className="v-mobile-audit" href={wa}>Get free audit <ArrowUpRight/></a></div><a className="v-pill v-pill-dark nav-cta" href={wa}><span>Free growth audit</span><ArrowUpRight weight="bold"/></a><button className="v-menu" onClick={()=>setMenu(!menu)} aria-expanded={menu} aria-label="Toggle navigation">{menu?<X/>:<List/>}</button></nav></header>
 
  <section className="v-hero-shell"><div className="v-aurora a-one"/><div className="v-aurora a-two"/><div className="v-hero-card"><div className="v-hero-copy"><div className="v-proof"><span><Sparkle weight="fill"/> AI-powered</span><span><MapPin weight="fill"/> Lucknow-first</span><span><GlobeHemisphereWest weight="fill"/> Built for Bharat</span></div><h1>AI-powered growth<br/><em>for Lucknow MSMEs.</em></h1><p>Get found, build trust and turn attention into enquiries with local visibility, high-converting websites, performance campaigns and practical AI automation.</p><div className="v-hero-actions"><a className="v-pill v-pill-dark" href={wa}>Start with a free audit <ArrowRight weight="bold"/></a><a className="v-video-link" href="/digital-marketing-services/"><span><ChartLineUp weight="bold"/></span> Explore digital marketing services</a></div><div className="v-hero-signals"><span><b>01</b> Get found locally</span><span><b>02</b> Convert attention</span><span><b>03</b> Automate follow-up</span></div><div className="v-micro"><span className="pulse-dot"/> Clear priorities. Transparent scope. Assets you own.</div></div><div className="v-visual" aria-label="Illustrated founder of Sudarshan AI Labs with Lucknow skyline"><img src="/sudarshan-lucknow-hero.webp" width="1672" height="941" loading="eager" fetchPriority="high" decoding="async" alt="Sheevum Goel of Sudarshan AI Labs building growth systems for Lucknow MSMEs"/><div className="float-chip chip-search"><MagnifyingGlass weight="bold"/><span><b>Local search</b>Get discovered</span></div><div className="float-chip chip-leads"><WhatsappLogo weight="fill"/><span><b>Lead flow</b>Respond faster</span></div><div className="orbit-badge"><Sparkle weight="fill"/><span>BUILD<br/>AUTOMATE<br/>TRANSFER</span></div></div></div>
  <div className="v-feature-row"><article className="vf-coral"><MapPin weight="duotone"/><div><h2>Local visibility</h2><p>Own high-intent searches across Lucknow.</p></div><ArrowUpRight/></article><article className="vf-sky"><Browsers weight="duotone"/><div><h2>Conversion websites</h2><p>Turn visits into useful conversations.</p></div><ArrowUpRight/></article><article className="vf-lemon"><Robot weight="duotone"/><div><h2>AI + WhatsApp</h2><p>Automate repetitive work, keep the human touch.</p></div><ArrowUpRight/></article></div></section>

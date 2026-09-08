@@ -22,7 +22,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import ScrollReveal from "./ScrollReveal";
 
-const profileUrl="https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site/about-sheevum-goel/";
+const profileUrl="https://sudarshan-ai.com/about-sheevum-goel/";
 const links={
   portfolio:"https://sheevum-goel-about.netlify.app/",
   x:"https://x.com/sheevum",
@@ -33,8 +33,8 @@ const links={
 };
 
 export const metadata:Metadata={
-  title:"Sheevum Goel | AI Entrepreneur & Sudarshan AI Labs Founder",
-  description:"Meet Sheevum Goel, a Lucknow entrepreneur, AI startup founder and growth strategist building AI, digital marketing and web development solutions for India.",
+  title:"Sheevum Goel | AI Entrepreneur & Founder of Sudarshan AI Labs Lucknow",
+  description:"Meet Sheevum Goel, entrepreneur, AI consultant and founder of Sudarshan AI Labs. Building AI-powered growth systems, Local SEO, and web solutions for Indian MSMEs.",
   keywords:[
     "Sheevum Goel",
     "Sheevum Goel entrepreneur",
@@ -56,15 +56,15 @@ export const metadata:Metadata={
   ],
   alternates:{canonical:"/about-sheevum-goel/"},
   openGraph:{
-    title:"Sheevum Goel | Entrepreneur Building AI for Bharat",
+    title:"Sheevum Goel | Entrepreneur Building AI for Bharat | Sudarshan AI Labs",
     description:"Founder of Sudarshan AI Labs. Building practical AI, digital growth and web solutions for MSMEs, startups and ambitious Indian businesses.",
-    url:"/about-sheevum-goel/",
+    url:"https://sudarshan-ai.com/about-sheevum-goel/",
     siteName:"Sudarshan AI Labs",
     locale:"en_IN",
     type:"profile",
-    images:[{url:"/sheevum-goel-og.png",width:1200,height:630,alt:"Sheevum Goel - Entrepreneur, AI for Bharat and Founder of Sudarshan AI Labs"}],
+    images:[{url:"https://sudarshan-ai.com/sheevum-goel-og.png",width:1200,height:630,alt:"Sheevum Goel - Entrepreneur, AI for Bharat and Founder of Sudarshan AI Labs"}],
   },
-  twitter:{card:"summary_large_image",title:"Sheevum Goel | AI Entrepreneur & Founder",description:"AI for Bharat, practical business automation and digital growth from Lucknow, India.",images:["/sheevum-goel-og.png"]},
+  twitter:{card:"summary_large_image",title:"Sheevum Goel | AI Entrepreneur & Founder",description:"AI for Bharat, practical business automation and digital growth from Lucknow, India.",images:["https://sudarshan-ai.com/sheevum-goel-og.png"],creator:"@sheevum"},
   robots:{index:true,follow:true,googleBot:{index:true,follow:true}},
 };
 
@@ -75,20 +75,29 @@ const profileSchema={
   url:profileUrl,
   name:"About Sheevum Goel - Entrepreneur and Founder of Sudarshan AI Labs",
   dateModified:"2026-08-20",
+  breadcrumb:{
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://sudarshan-ai.com/"},
+      {"@type":"ListItem","position":2,"name":"Sheevum Goel - Founder","item":profileUrl}
+    ]
+  },
   mainEntity:{
     "@type":"Person",
     "@id":`${profileUrl}#sheevum-goel`,
     name:"Sheevum Goel",
-    alternateName:"@sheevum",
+    alternateName:["@sheevum", "Shivam Goel"],
+    image:"https://sudarshan-ai.com/sheevum-founder-lucknow-hero.webp",
     url:links.portfolio,
     jobTitle:"Entrepreneur, AI Consultant and Founder of Sudarshan AI Labs",
     description:"Lucknow-based entrepreneur building practical AI, digital marketing, web development and business automation solutions for Indian MSMEs and startups.",
     homeLocation:{"@type":"Place",name:"Lucknow, Uttar Pradesh, India"},
     knowsAbout:["Artificial intelligence","Generative AI","AI automation","Digital marketing","Local SEO","Web development","No-code technology","FMCG growth","MSME digitisation"],
-    worksFor:{"@type":"Organization",name:"Sudarshan AI Labs",url:"https://vyapai.in/"},
+    worksFor:{"@type":"Organization",name:"Sudarshan AI Labs",url:"https://sudarshan-ai.com/"},
     sameAs:Object.values(links),
   },
 };
+
 
 const expertise=[
   {Icon:Robot,label:"AI startup strategy",title:"Useful AI before AI theatre",text:"Agentic workflows, business automation and Hindi-first product thinking shaped around real operating constraints."},

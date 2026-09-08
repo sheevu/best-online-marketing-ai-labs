@@ -40,7 +40,20 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    if (url.hostname === "www.sudarshan-ai.com") {
+      url.hostname = "sudarshan-ai.com";
+      return Response.redirect(url.toString(), 301);
+    }
+
+    const response = await handler.fetch(request, env, ctx);
+    if (request.method !== "GET" || response.status >= 400) return response;
+    const headers = new Headers(response.headers);
+    if (url.pathname.startsWith("/_next/") || /\.(?:css|js|svg|webp|png|jpg|jpeg|woff2?)$/i.test(url.pathname)) {
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    } else {
+      headers.set("Cache-Control", "public, max-age=0, s-maxage=300, stale-while-revalidate=600");
+    }
+    return new Response(response.body, { status: response.status, headers });
   },
 };
 

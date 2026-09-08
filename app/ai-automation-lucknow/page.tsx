@@ -1,0 +1,1 @@
+import {ServicePage,serviceMetadata,servicePages} from "../lib/service-page";export const metadata=serviceMetadata(servicePages.automation);export default function Page(){return <ServicePage data={servicePages.automation}/>}

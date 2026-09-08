@@ -1,15 +1,42 @@
 import type {Metadata} from "next";
 import {areas} from "../lib/areas";
 
-const base="https://sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site";
+const base="https://sudarshan-ai.com";
 const wa="https://wa.me/917080842220?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20Lucknow%20digital%20marketing%20audit.";
 
 export const metadata:Metadata={
  title:"Best Digital Marketing Services in Lucknow | Sudarshan AI Labs",
- description:"Digital marketing services in Lucknow for MSMEs: local SEO, Google Maps, websites, social media, ads and WhatsApp automation. Request a free audit.",
+ description:"Top-rated digital marketing services in Lucknow for MSMEs: Local SEO, Google Maps #1 rankings, high-converting websites, Meta/Google Ads & AI WhatsApp automation.",
  alternates:{canonical:"/digital-marketing-services/"},
- openGraph:{title:"Digital Marketing Services in Lucknow | Sudarshan AI Labs",description:"A connected local growth system for Lucknow businesses: SEO, Maps, websites, social media, ads and practical AI automation.",url:"/digital-marketing-services/",type:"website",locale:"en_IN"},
- keywords:["best digital marketing services in Lucknow","digital marketing services in Lucknow","Lucknow online marketing","digital marketing agency in Lucknow","local SEO services Lucknow"]
+ openGraph:{
+   title:"Best Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+   description:"A connected local growth system for Lucknow businesses: Local SEO, Google Maps, websites, social media, ads and practical AI automation.",
+   url:"https://sudarshan-ai.com/digital-marketing-services/",
+   type:"website",
+   locale:"en_IN",
+   images:[{url:"https://sudarshan-ai.com/sudarshan-lucknow-hero.webp",width:1672,height:941,alt:"Digital Marketing Services in Lucknow - Sudarshan AI Labs"}]
+ },
+ twitter:{
+   card:"summary_large_image",
+   title:"Best Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+   description:"Grow your business with Lucknow's premier AI-powered digital marketing agency.",
+   images:["https://sudarshan-ai.com/sudarshan-lucknow-hero.webp"],
+   creator:"@sheevum"
+ },
+ keywords:[
+   "best digital marketing services in Lucknow",
+   "digital marketing services in Lucknow",
+   "digital marketing agency in Lucknow",
+   "best digital marketing company in Lucknow",
+   "local SEO services Lucknow",
+   "SEO company in Lucknow",
+   "Google Maps ranking agency Lucknow",
+   "website design company Lucknow",
+   "social media marketing Lucknow",
+   "Google ads agency Lucknow",
+   "lead generation agency Lucknow",
+   "Lucknow online marketing"
+ ]
 };
 
 const services=[
@@ -30,9 +57,33 @@ const faqs=[
  ["What happens after the free audit?","You receive a prioritized view of the main gaps and the recommended starting point. If there is a fit, we define the work, ownership, measurement and handover clearly before execution."]
 ] as const;
 
-const businessSchema={"@context":"https://schema.org","@type":"ProfessionalService",name:"Sudarshan AI Labs",legalName:"NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",url:`${base}/digital-marketing-services/`,telephone:"+91-7080842220",email:"sudarshanailabs@gmail.com",description:"Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",address:{"@type":"PostalAddress",addressLocality:"Lucknow",addressRegion:"Uttar Pradesh",addressCountry:"IN"},areaServed:{"@type":"City",name:"Lucknow"},founder:{"@type":"Person",name:"Sheevum Goel",url:`${base}/about-sheevum-goel/`},knowsAbout:services.map(service=>service.title)};
+const businessSchema={
+  "@context":"https://schema.org",
+  "@type":["ProfessionalService", "LocalBusiness"],
+  "@id":`${base}/digital-marketing-services/#service`,
+  name:"Sudarshan AI Labs - Digital Marketing Services Lucknow",
+  legalName:"NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  url:`${base}/digital-marketing-services/`,
+  telephone:"+91-7080842220",
+  email:"sudarshanailabs@gmail.com",
+  description:"Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
+  address:{"@type":"PostalAddress",addressLocality:"Lucknow",addressRegion:"Uttar Pradesh",addressCountry:"IN"},
+  areaServed:{"@type":"City",name:"Lucknow"},
+  priceRange:"₹₹",
+  founder:{"@type":"Person",name:"Sheevum Goel",url:`${base}/about-sheevum-goel/`},
+  knowsAbout:services.map(service=>service.title),
+  hasOfferCatalog:{
+    "@type":"OfferCatalog",
+    name:"Digital Marketing Services in Lucknow",
+    itemListElement:services.map(s=>({
+      "@type":"Offer",
+      itemOffered:{"@type":"Service",name:s.title,description:s.copy}
+    }))
+  }
+};
 const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))};
-const breadcrumbSchema={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:base},{"@type":"ListItem",position:2,name:"Digital Marketing Services in Lucknow",item:`${base}/digital-marketing-services/`}]};
+const breadcrumbSchema={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${base}/`},{"@type":"ListItem",position:2,name:"Digital Marketing Services in Lucknow",item:`${base}/digital-marketing-services/`}]};
+
 
 export default function LucknowServices(){return <main className="areas-index lucknow-pillar">
  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify([businessSchema,faqSchema,breadcrumbSchema])}}/>
