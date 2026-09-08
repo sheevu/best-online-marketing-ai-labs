@@ -269,11 +269,11 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
   {
     "category": "Website Development",
     "name": "Website Development Company & Business Website Services",
-    "primaryKeyword": "website development company near me",
+    "primaryKeyword": "website development services",
     "slug": "website-development-company",
-    "seoTitle": "Website Development Company for Modern, SEO-Ready Business Websites",
-    "metaDescription": "Get a responsive, professional and SEO-ready business website designed for performance, trust, enquiries and long-term growth.",
-    "longDescription": "Professional website development for businesses that need a modern digital presence. Websites are structured for mobile usability, clear service communication, search visibility, speed and conversion-focused customer journeys.",
+    "seoTitle": "Website Development Services for Modern, SEO-Ready Business Websites",
+    "metaDescription": "Website development services for responsive, professional and SEO-ready business websites built for performance, trust, enquiries and long-term growth.",
+    "longDescription": "Professional website development services for businesses that need a modern digital presence. Websites are structured for mobile usability, clear service communication, search visibility, speed and conversion-focused customer journeys.",
     "platforms": [
       "Web",
       "Mobile Web"
@@ -289,6 +289,8 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     ],
     "relatedKeywords": [
       "website development",
+      "website development services",
+      "website development agency",
       "web development company",
       "website developers near me",
       "web design and development",
@@ -759,6 +761,9 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "relatedKeywords": [
       "whatsapp automation",
       "whatsapp marketing",
+      "whatsapp notifications",
+      "consent-based whatsapp messaging",
+      "human in the loop",
       "meta automation",
       "click to whatsapp ads"
     ],

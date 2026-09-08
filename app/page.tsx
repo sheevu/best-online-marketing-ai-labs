@@ -65,7 +65,7 @@ const services = [
   },
   {
     title: "Turn visits into leads",
-    text: "Fast websites and landing pages with focused messages and frictionless actions.",
+    text: "Website development and conversion pages with focused messages and frictionless actions.",
     tag: "Conversion design",
     href: "/website-design",
     Icon: Browsers,
@@ -615,7 +615,9 @@ export default function Home() {
           </div>
           <p>
             Every service has a clear role—from being discovered to earning
-            trust, capturing an enquiry and following up well.
+            trust, capturing an enquiry and following up well. As a digital
+            marketing company in Lucknow, we combine SEO, website development
+            and campaigns around the same customer journey.
           </p>
         </div>
         <div className="v-service-grid">
