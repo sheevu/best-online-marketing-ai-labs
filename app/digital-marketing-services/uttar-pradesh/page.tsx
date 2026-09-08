@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Explore city-specific digital marketing, SEO, advertising, website and lead-generation services across 20 major Uttar Pradesh cities.",
   alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },
+  robots: { index: false, follow: true },
 };
 export default function UttarPradeshCities() {
   return (

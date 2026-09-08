@@ -75,6 +75,7 @@ export async function generateMetadata({
     title,
     description: a.meta,
     alternates: { canonical: `/digital-marketing-services/${a.slug}-lucknow` },
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description: a.meta,

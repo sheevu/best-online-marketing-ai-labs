@@ -50,7 +50,7 @@ export function generateMetadata({
 }) {
   return params.then(({ serviceSlug, city }) => {
     const data = getPageData(serviceSlug, city);
-    return data ? serviceMetadata(data) : {};
+    return data ? { ...serviceMetadata(data), robots: { index: false, follow: true } } : {};
   });
 }
 
