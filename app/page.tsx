@@ -394,7 +394,7 @@ export default function Home() {
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
                     <span className="menu-label">Services by city</span>
-                    <small>Browse {serviceCatalog.length * cities.length} service-city pages</small>
+                    <small>Browse service-area guidance</small>
                   </span>
                   <ArrowUpRight />
                 </a>
@@ -427,7 +427,7 @@ export default function Home() {
                   <MapPin weight="duotone" />
                   <span>
                     <span className="menu-label">Lucknow neighbourhoods</span>
-                    <small>Explore 20 local service areas</small>
+                    <small>Explore Lucknow service areas</small>
                   </span>
                   <ArrowUpRight />
                 </a>
@@ -441,7 +441,7 @@ export default function Home() {
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
                     <span className="menu-label">Uttar Pradesh cities</span>
-                    <small>Explore 20 growing business markets</small>
+                    <small>Explore Uttar Pradesh markets</small>
                   </span>
                   <ArrowUpRight />
                 </a>
@@ -925,8 +925,8 @@ export default function Home() {
             <em>Uttar Pradesh scale.</em>
           </h2>
           <p>
-            Explore 20 locality pages for Lucknow and 20 city pages across
-            Uttar Pradesh, each written around a distinct customer context.
+            Explore practical service-area guidance for Lucknow and Uttar
+            Pradesh, written around genuine customer contexts.
           </p>
           <div>
             <a
@@ -947,7 +947,7 @@ export default function Home() {
             search intent and customer needs.
           </p>
           <details className="location-directory">
-            <summary>Browse all 40 location pages <span>+</span></summary>
+            <summary>Browse service-area guidance <span>+</span></summary>
             <div>
               <nav aria-label="Lucknow locality pages">
                 <span className="directory-label">Lucknow localities</span>
