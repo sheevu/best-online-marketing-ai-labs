@@ -23,6 +23,8 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import {
+  DUNS_NUMBER,
+  LEGAL_NAME,
   MAP_URL,
   ORGANIZATION_ID,
   PRIMARY_ADDRESS,
@@ -84,6 +86,13 @@ const services = [
   },
 ];
 const products = [
+  {
+    name: "Micro Growth Audit",
+    price: "₹89",
+    tag: "Entry starter",
+    text: "Instant digital visibility check, local search signal review and prioritized action plan for micro-businesses.",
+    href: "/contact#contact-options",
+  },
   {
     name: "Swaraj Tech Pack",
     price: "₹4,900",
@@ -203,29 +212,30 @@ const schema = {
   "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   "@id": ORGANIZATION_ID,
   name: "Sudarshan AI Labs",
-  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  legalName: LEGAL_NAME,
   alternateName: "NAVA NETRA NEURAL SUDARSHAN AI LABS PVT. LTD.",
+  duns: DUNS_NUMBER,
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.svg`,
   image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
-  telephone: "+91-7080842220",
+  telephone: "+91-9336299912",
   email: "sudarshanailabs@gmail.com",
   description:
     "Lucknow-based AI agents and digital marketing agency helping MSMEs improve local visibility, conversion, Hindi CRM and business automation.",
-  priceRange: "Projects from ₹4,900",
+  priceRange: "Services from ₹89",
   currenciesAccepted: "INR",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Gomti Nagar",
+    streetAddress: "C-469/C, Indira Nagar, Near HAL",
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
-    postalCode: "226010",
+    postalCode: "226016",
     addressCountry: "IN",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 26.8467,
-    longitude: 80.9462,
+    latitude: 26.8824,
+    longitude: 80.9916,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
@@ -255,7 +265,7 @@ const schema = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-7080842220",
+    telephone: "+91-9336299912",
     email: "sudarshanailabs@gmail.com",
     contactType: "sales",
     areaServed: "IN",
@@ -293,7 +303,7 @@ const serviceSchemas = services.map((service) => ({
     "@type": "Offer",
     price: STARTING_PRICE_INR,
     priceCurrency: "INR",
-    description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+    description: "Services from ₹89; final pricing depends on agreed scope.",
   },
 }));
 
@@ -313,8 +323,8 @@ export default function Home() {
             complimentary digital visibility audit
           </span>
           <div>
-            <a href="tel:+917080842220">
-              <PhoneCall weight="bold" /> +91 70808 42220
+            <a href="tel:+919336299912">
+              <PhoneCall weight="bold" /> +91 93362 99912
             </a>
             <a href={wa}>
               <WhatsappLogo weight="fill" /> WhatsApp
@@ -843,7 +853,7 @@ export default function Home() {
             <a href="/digital-marketing-services/uttar-pradesh">Browse Uttar Pradesh markets <ArrowRight /></a>
           </nav>
           <a className="v-map-link" href={MAP_URL} target="_blank" rel="noreferrer">
-            View our primary Gomti Nagar location on Google Maps <ArrowUpRight />
+            View our primary Indira Nagar location on Google Maps <ArrowUpRight />
           </a>
         </div>
       </section>
@@ -1003,7 +1013,7 @@ export default function Home() {
         </nav>
         <nav>
           <b>Connect</b>
-          <a href="tel:+917080842220">+91 70808 42220</a>
+          <a href="tel:+919336299912">+91 93362 99912</a>
           <a href="mailto:sudarshanailabs@gmail.com">Email us</a>
           <a href="/contact">Contact page <ArrowUpRight /></a>
           <a href="/privacy-policy">Privacy Policy</a>

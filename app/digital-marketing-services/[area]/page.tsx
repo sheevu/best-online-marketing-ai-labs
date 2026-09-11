@@ -112,7 +112,7 @@ export default async function AreaPage({
       "@type": "Offer",
       price: STARTING_PRICE_INR,
       priceCurrency: "INR",
-      description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+      description: "Services from ₹89; final pricing depends on agreed scope.",
     },
   };
   const faqSchema = {
@@ -318,8 +318,8 @@ export default async function AreaPage({
           <a className="button" href={wa}>
             Start on WhatsApp ↗
           </a>
-          <a className="cta-call" href="tel:+917080842220">
-            Call +91 70808 42220
+          <a className="cta-call" href="tel:+919336299912">
+            Call +91 93362 99912
           </a>
         </div>
       </section>

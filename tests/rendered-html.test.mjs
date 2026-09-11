@@ -66,13 +66,14 @@ test("renders production metadata and product catalogue", async () => {
   assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);
   assert.doesNotMatch(html, /\/workspace\/sites\//i);
   assert.match(html, /id="products"/i);
+  assert.match(html, /Micro Growth Audit/i);
   assert.match(html, /Swaraj Tech Pack/i);
   assert.match(html, /rel="apple-touch-icon"[^>]+apple-touch-icon\.png/i);
   assert.match(html, /utm_source=website(?:&amp;|&)utm_medium=planner(?:&amp;|&)utm_campaign=local_visibility/i);
   assert.match(html, /href="\/digital-marketing-services"/i);
   assert.match(html, /href="\/digital-marketing-services\/uttar-pradesh"/i);
   assert.match(html, /"@type":"FAQPage"/i);
-  assert.match(html, /"price":"4900"/i);
+  assert.match(html, /"price":"89"/i);
   assert.doesNotMatch(html, /"@type":"AggregateRating"/i);
   const emphasizedTags = html.match(/<(?:b|strong)\b/gi) ?? [];
   assert.ok(
@@ -105,7 +106,7 @@ test("renders a dedicated SEO owner page with self-canonical metadata", async ()
   assert.match(html, /<h1>SEO Services in Lucknow<\/h1>/i);
   assert.match(html, /https:\/\/sudarshan-ai\.com\/seo-services-lucknow/i);
   assert.match(html, /"@type":"Service"/i);
-  assert.match(html, /"price":"4900"/i);
+  assert.match(html, /"price":"89"/i);
 });
 
 test("keeps crawler endpoints public and canonicalizes legacy service routes", async () => {

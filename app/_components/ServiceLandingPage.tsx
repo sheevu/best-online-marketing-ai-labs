@@ -111,7 +111,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       "@type": "Offer",
       price: STARTING_PRICE_INR,
       priceCurrency: "INR",
-      description: "Projects from ₹4,900; final pricing depends on agreed scope.",
+      description: "Services from ₹89; final pricing depends on agreed scope.",
     },
   };
   const breadcrumbSchema = {

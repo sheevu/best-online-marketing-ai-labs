@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import { serviceCatalog } from "../lib/service-catalog";
-import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, STARTING_PRICE_INR, WHATSAPP_URL } from "../lib/site";
+import { DUNS_NUMBER, LEGAL_NAME, ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, STARTING_PRICE_INR, WHATSAPP_URL } from "../lib/site";
 
 const base = SITE_URL;
 const wa = WHATSAPP_URL;
@@ -95,21 +95,23 @@ const businessSchema = {
   "@type": "ProfessionalService",
   "@id": ORGANIZATION_ID,
   name: "Sudarshan AI Labs",
-  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  legalName: LEGAL_NAME,
+  duns: DUNS_NUMBER,
   url: `${base}/digital-marketing-services`,
-  telephone: "+91-7080842220",
+  telephone: "+91-9336299912",
   email: "sudarshanailabs@gmail.com",
   description:
     "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Gomti Nagar",
+    streetAddress: "C-469/C, Indira Nagar, Near HAL",
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
+    postalCode: "226016",
     addressCountry: "IN",
   },
   areaServed: { "@type": "City", name: "Lucknow" },
-  priceRange: "Projects from ₹4,900",
+  priceRange: "Services from ₹89",
   founder: {
     "@type": "Person",
     name: "Sheevum Goel",
@@ -384,7 +386,7 @@ export default function LucknowServices() {
       <footer className="area-footer">
         <p>Sudarshan AI Labs • Digital Marketing Services in Lucknow</p>
         <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
-        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
+        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );
