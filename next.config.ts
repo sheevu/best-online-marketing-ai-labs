@@ -24,6 +24,31 @@ const nextConfig: NextConfig = {
         destination: "/website-design",
         permanent: true,
       },
+      {
+        source: "/best-digital-marketing-agency-lucknow",
+        destination: "/digital-marketing-services",
+        permanent: true,
+      },
+      {
+        source: "/best-digital-marketing-agency-lucknow/lucknow",
+        destination: "/digital-marketing-services",
+        permanent: true,
+      },
+      {
+        source: "/digital-marketing-services/lucknow",
+        destination: "/digital-marketing-services",
+        permanent: true,
+      },
+      {
+        source: "/digital-marketing-services/uttar-pradesh/lucknow",
+        destination: "/digital-marketing-services",
+        permanent: true,
+      },
+      {
+        source: "/digital-marketing-services/uttar-pradesh/:city",
+        destination: "/digital-marketing-services/:city",
+        permanent: true,
+      },
     ];
   },
   async headers() {

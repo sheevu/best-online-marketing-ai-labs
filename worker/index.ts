@@ -53,12 +53,31 @@ const worker = {
       "/social-media-marketing": "/social-media-marketing-lucknow",
       "/local-seo": "/local-seo-services",
       "/website-development": "/website-design",
+      "/best-digital-marketing-agency-lucknow": "/digital-marketing-services",
+      "/best-digital-marketing-agency-lucknow/lucknow": "/digital-marketing-services",
+      "/digital-marketing-services/lucknow": "/digital-marketing-services",
+      "/digital-marketing-services/uttar-pradesh/lucknow": "/digital-marketing-services",
     };
     const normalizedPath =
       url.pathname.length > 1 && url.pathname.endsWith("/")
         ? url.pathname.slice(0, -1)
         : url.pathname;
-    const redirectPath = legacyRoutes[normalizedPath] ?? normalizedPath;
+
+    let redirectPath = legacyRoutes[normalizedPath] ?? normalizedPath;
+    const nestedCityPrefix = "/digital-marketing-services/uttar-pradesh/";
+    if (
+      redirectPath === normalizedPath &&
+      normalizedPath.startsWith(nestedCityPrefix)
+    ) {
+      const city = normalizedPath.slice(nestedCityPrefix.length);
+      if (city) {
+        redirectPath =
+          city === "lucknow"
+            ? "/digital-marketing-services"
+            : `/digital-marketing-services/${city}`;
+      }
+    }
+
     const needsPathNormalization = redirectPath !== url.pathname;
 
     if (needsPreferredHost || needsHttps || needsPathNormalization) {
