@@ -27,9 +27,14 @@ test("renders production metadata and product catalogue", async () => {
     /^text\/html\b/i,
   );
   const html = await response.text();
-  assert.match(html, /<title>AI Digital Marketing Agency in Lucknow \| Local SEO &amp; Google Maps Experts \| Sudarshan AI Labs<\/title>/i);
+  assert.match(
+    html,
+    /<title>Sudarshan AI Labs \| AI &amp; Digital Growth for Lucknow MSMEs<\/title>/i,
+  );
+  assert.match(html, /<html lang="en-IN">/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
   assert.match(html, /https:\/\/sudarshan-ai\.com\/#organization/i);
+  assert.doesNotMatch(html, /https:\/\/www\.sudarshan-ai\.com/i);
   assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);
   assert.doesNotMatch(html, /\/workspace\/sites\//i);
   assert.match(html, /id="products"/i);
@@ -42,11 +47,17 @@ test("renders production metadata and product catalogue", async () => {
   assert.match(html, /"price":"4900"/i);
   assert.doesNotMatch(html, /"@type":"AggregateRating"/i);
   const emphasizedTags = html.match(/<(?:b|strong)\b/gi) ?? [];
-  assert.ok(emphasizedTags.length <= 23, `expected at most 23 bold/strong tags, found ${emphasizedTags.length}`);
+  assert.ok(
+    emphasizedTags.length <= 23,
+    `expected at most 23 bold/strong tags, found ${emphasizedTags.length}`,
+  );
   const internalHrefs = [...html.matchAll(/href="([^"]+)"/gi)]
     .map((match) => match[1])
     .filter((href) => href.startsWith("/") && !href.startsWith("//"));
-  assert.ok(internalHrefs.every((href) => !href.includes("?")), "internal links must not contain query parameters");
+  assert.ok(
+    internalHrefs.every((href) => !href.includes("?")),
+    "internal links must not contain query parameters",
+  );
   assert.doesNotMatch(html, /name=["']codex-preview["']/i);
 });
 
@@ -55,7 +66,9 @@ test("renders a dedicated SEO owner page with self-canonical metadata", async ()
   workerUrl.searchParams.set("service-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
-    new Request("http://localhost/seo-services-lucknow", { headers: { accept: "text/html" } }),
+    new Request("http://localhost/seo-services-lucknow", {
+      headers: { accept: "text/html" },
+    }),
     { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
     { waitUntil() {}, passThroughOnException() {} },
   );
@@ -71,19 +84,89 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("crawler-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const env = {
+    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
+  };
   const ctx = { waitUntil() {}, passThroughOnException() {} };
 
-  const robots = await worker.fetch(new Request("http://localhost/robots.txt"), env, ctx);
+  const robots = await worker.fetch(
+    new Request("http://localhost/robots.txt"),
+    env,
+    ctx,
+  );
   assert.equal(robots.status, 200);
   assert.equal(robots.headers.get("x-robots-tag"), "all");
   assert.match(await robots.text(), /Allow: \//i);
 
-  const legacy = await worker.fetch(new Request("https://sudarshan-ai.com/local-seo"), env, ctx);
-  assert.equal(legacy.status, 301);
-  assert.equal(legacy.headers.get("location"), "https://sudarshan-ai.com/local-seo-services");
+  const sitemap = await worker.fetch(
+    new Request("http://localhost/sitemap.xml"),
+    env,
+    ctx,
+  );
+  assert.equal(sitemap.status, 200);
+  assert.equal(sitemap.headers.get("x-robots-tag"), "all");
+  const sitemapXml = await sitemap.text();
+  assert.match(sitemapXml, /https:\/\/sudarshan-ai\.com\/digital-marketing-services(?:<|&lt;)/i);
+  assert.doesNotMatch(sitemapXml, /best-digital-marketing-agency-lucknow/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow/i);
+  assert.doesNotMatch(sitemapXml, /https:\/\/www\.sudarshan-ai\.com/i);
 
-  const oldHost = await worker.fetch(new Request("https://www.sudarshan-ai.com/website-development"), env, ctx);
+  const legacy = await worker.fetch(
+    new Request("https://sudarshan-ai.com/local-seo"),
+    env,
+    ctx,
+  );
+  assert.equal(legacy.status, 301);
+  assert.equal(
+    legacy.headers.get("location"),
+    "https://sudarshan-ai.com/local-seo-services",
+  );
+
+  const oldHost = await worker.fetch(
+    new Request("https://www.sudarshan-ai.com/website-development"),
+    env,
+    ctx,
+  );
   assert.equal(oldHost.status, 301);
-  assert.equal(oldHost.headers.get("location"), "https://sudarshan-ai.com/website-design");
+  assert.equal(
+    oldHost.headers.get("location"),
+    "https://sudarshan-ai.com/website-design",
+  );
+
+  const duplicateLucknow = await worker.fetch(
+    new Request(
+      "https://www.sudarshan-ai.com/best-digital-marketing-agency-lucknow/lucknow/",
+    ),
+    env,
+    ctx,
+  );
+  assert.equal(duplicateLucknow.status, 301);
+  assert.equal(
+    duplicateLucknow.headers.get("location"),
+    "https://sudarshan-ai.com/digital-marketing-services",
+  );
+
+  const flatLucknow = await worker.fetch(
+    new Request("https://sudarshan-ai.com/digital-marketing-services/lucknow"),
+    env,
+    ctx,
+  );
+  assert.equal(flatLucknow.status, 301);
+  assert.equal(
+    flatLucknow.headers.get("location"),
+    "https://sudarshan-ai.com/digital-marketing-services",
+  );
+
+  const nestedCity = await worker.fetch(
+    new Request(
+      "https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh/kanpur",
+    ),
+    env,
+    ctx,
+  );
+  assert.equal(nestedCity.status, 301);
+  assert.equal(
+    nestedCity.headers.get("location"),
+    "https://sudarshan-ai.com/digital-marketing-services/kanpur",
+  );
 });
