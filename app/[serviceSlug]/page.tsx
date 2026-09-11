@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
 import {
+  activeServiceCatalog,
   serviceBySlug,
-  serviceCatalog,
   servicePageFromCatalog,
 } from "../lib/service-catalog";
 
 export function generateStaticParams() {
-  return serviceCatalog.map(({ slug }) => ({ serviceSlug: slug }));
+  return activeServiceCatalog.map(({ slug }) => ({ serviceSlug: slug }));
 }
 
 export function generateMetadata({
@@ -30,7 +30,7 @@ export default async function ServicePage({
   const entry = serviceBySlug(serviceSlug);
   if (!entry) notFound();
 
-  const related = serviceCatalog
+  const related = activeServiceCatalog
     .filter(
       (service) =>
         service.slug !== entry.slug && service.category === entry.category,

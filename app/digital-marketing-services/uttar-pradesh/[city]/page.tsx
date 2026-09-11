@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
+ 
 import type { Metadata } from "next";
 import { Buildings, ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
@@ -150,8 +150,8 @@ export default async function CityPage({
           </span>
         </a>
         <div>
-          <a href="/digital-marketing-services/uttar-pradesh/">UP Cities</a>
-          <a href="/digital-marketing-services/">Lucknow Areas</a>
+          <a href="/digital-marketing-services/uttar-pradesh">UP Cities</a>
+          <a href="/digital-marketing-services">Lucknow Areas</a>
           <a href="/contact">Contact</a>
         </div>
         <a className="button button-small" href={wa}>
@@ -162,7 +162,7 @@ export default async function CityPage({
         <div className="breadcrumb">
           <a href="/">Home</a>
           <span>›</span>
-          <a href="/digital-marketing-services/uttar-pradesh/">Uttar Pradesh</a>
+          <a href="/digital-marketing-services/uttar-pradesh">Uttar Pradesh</a>
           <span>›</span>
           {c.name}
         </div>
@@ -368,7 +368,7 @@ export default async function CityPage({
         <div>
           <h2>Explore services</h2>
           <nav>
-            <a href="/digital-marketing-services/">
+            <a href="/digital-marketing-services">
               Digital Marketing Services
             </a>
             <a href="/seo-services-lucknow">SEO Services</a>

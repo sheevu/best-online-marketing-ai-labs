@@ -1,19 +1,18 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
+ 
 import type { Metadata } from "next";
-import { cities } from "../../lib/cities";
 import StructuredData from "../../_components/StructuredData";
 import { absoluteUrl, ORGANIZATION_ID, WHATSAPP_URL } from "../../lib/site";
 export const metadata: Metadata = {
   title: "Digital Marketing Across Uttar Pradesh | Sudarshan AI Labs",
   description:
-    "Explore city-specific digital marketing, SEO, advertising, website and lead-generation services across 20 major Uttar Pradesh cities.",
+    "Explore regional digital marketing, SEO, website and lead-generation support across Uttar Pradesh, grounded in genuine service areas and customer demand.",
   alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },
   robots: { index: false, follow: true },
 };
 export default function UttarPradeshCities() {
   return (
     <main className="areas-index city-index">
-      <StructuredData data={{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${absoluteUrl("/digital-marketing-services/uttar-pradesh")}#page`, url: absoluteUrl("/digital-marketing-services/uttar-pradesh"), name: "Digital Marketing Services Across Uttar Pradesh", about: { "@id": ORGANIZATION_ID }, hasPart: cities.map((city) => ({ "@type": "WebPage", name: city.name, url: absoluteUrl(`/digital-marketing-services/${city.slug}`) })) }} />
+      <StructuredData data={{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${absoluteUrl("/digital-marketing-services/uttar-pradesh")}#page`, url: absoluteUrl("/digital-marketing-services/uttar-pradesh"), name: "Digital Marketing Services Across Uttar Pradesh", about: { "@id": ORGANIZATION_ID } }} />
       <nav className="area-nav">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
@@ -29,23 +28,27 @@ export default function UttarPradeshCities() {
         </a>
       </nav>
       <header>
-        <p className="eyebrow">20 CITY-SPECIFIC GROWTH PAGES • UTTAR PRADESH</p>
+        <p className="eyebrow">REGIONAL GROWTH SUPPORT • UTTAR PRADESH</p>
         <h1>Digital Marketing Services Across Uttar Pradesh</h1>
         <p>
-          Choose your city for locally relevant industries, marketing
-          challenges, services, FAQs and a direct consultation with Sudarshan AI
-          Labs.
+          We support suitable businesses across Uttar Pradesh with service,
+          search and conversion guidance based on their actual market and
+          operating area.
         </p>
       </header>
       <section className="area-directory">
-        {cities.map((c, i) => (
-          <a href={`/digital-marketing-services/${c.slug}/`} key={c.slug}>
-            <span>{String(i + 1).padStart(2, "0")}</span>
-            <h2>{c.name}</h2>
-            <p>{c.meta}</p>
-            <b>Explore {c.name} ↗</b>
-          </a>
-        ))}
+        <a href="/digital-marketing-services">
+          <span>01</span>
+          <h2>Lucknow service hub</h2>
+          <p>Review the complete service system and choose the most useful starting point.</p>
+          <b>Explore services ↗</b>
+        </a>
+        <a href="/contact">
+          <span>02</span>
+          <h2>Discuss your market</h2>
+          <p>Share the actual cities, customers and delivery areas your business can serve.</p>
+          <b>Request a practical audit ↗</b>
+        </a>
       </section>
       <footer className="area-footer">
         <p>

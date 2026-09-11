@@ -50,9 +50,17 @@ const worker = {
     const needsHttps = url.hostname === preferredHost && url.protocol !== "https:";
     const legacyRoutes: Record<string, string> = {
       "/seo-services": "/seo-services-lucknow",
+      "/local-seo": "/seo-services-lucknow",
+      "/local-seo-services": "/seo-services-lucknow",
+      "/seo-services-search-optimization": "/seo-services-lucknow",
       "/social-media-marketing": "/social-media-marketing-lucknow",
-      "/local-seo": "/local-seo-services",
+      "/social-media-marketing-services": "/social-media-marketing-lucknow",
       "/website-development": "/website-design",
+      "/website-development-company": "/website-design",
+      "/custom-web-development-company": "/website-design",
+      "/build-ecommerce-website": "/ecommerce-website-development",
+      "/youtube-shorts-short-video-marketing": "/youtube-marketing-seo-channel-growth",
+      "/video-content-repurposing": "/youtube-marketing-seo-channel-growth",
       "/best-digital-marketing-agency-lucknow": "/digital-marketing-services",
       "/best-digital-marketing-agency-lucknow/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/lucknow": "/digital-marketing-services",
@@ -107,7 +115,16 @@ const worker = {
       );
     }
 
-    const response = await handler.fetch(request, env, ctx);
+    // Public marketing pages are pre-rendered at build time, with native browser
+    // interactions and page-specific CSS. Keep the application handler for
+    // metadata endpoints, unknown routes and future dynamic functionality.
+    let response: Response | undefined;
+    if ((request.method === "GET" || request.method === "HEAD") && !url.pathname.includes(".") && !url.searchParams.has("_rsc") && !request.headers.has("rsc")) {
+      const assetPath = url.pathname === "/" ? "/__static/index.html" : `/__static${url.pathname}.html`;
+      const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url), { method: request.method }));
+      if (asset.status === 200) response = asset;
+    }
+    response ??= await handler.fetch(request, env, ctx);
     const headers = new Headers(response.headers);
     headers.set("X-Content-Type-Options", "nosniff");
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");

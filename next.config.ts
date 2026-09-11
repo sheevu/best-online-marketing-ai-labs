@@ -10,18 +10,58 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/local-seo",
+        destination: "/seo-services-lucknow",
+        permanent: true,
+      },
+      {
+        source: "/local-seo-services",
+        destination: "/seo-services-lucknow",
+        permanent: true,
+      },
+      {
+        source: "/seo-services-search-optimization",
+        destination: "/seo-services-lucknow",
+        permanent: true,
+      },
+      {
         source: "/social-media-marketing",
         destination: "/social-media-marketing-lucknow",
         permanent: true,
       },
       {
-        source: "/local-seo",
-        destination: "/local-seo-services",
+        source: "/social-media-marketing-services",
+        destination: "/social-media-marketing-lucknow",
         permanent: true,
       },
       {
         source: "/website-development",
         destination: "/website-design",
+        permanent: true,
+      },
+      {
+        source: "/website-development-company",
+        destination: "/website-design",
+        permanent: true,
+      },
+      {
+        source: "/custom-web-development-company",
+        destination: "/website-design",
+        permanent: true,
+      },
+      {
+        source: "/build-ecommerce-website",
+        destination: "/ecommerce-website-development",
+        permanent: true,
+      },
+      {
+        source: "/youtube-shorts-short-video-marketing",
+        destination: "/youtube-marketing-seo-channel-growth",
+        permanent: true,
+      },
+      {
+        source: "/video-content-repurposing",
+        destination: "/youtube-marketing-seo-channel-growth",
         permanent: true,
       },
       {

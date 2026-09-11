@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-html-link-for-pages, react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "../_components/ResponsiveImage";
 import {
   ArrowLeft,
   ArrowRight,
@@ -22,7 +22,6 @@ import {
   Target,
   XLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import ScrollReveal from "./ScrollReveal";
 import { ORGANIZATION_ID, SITE_URL } from "../lib/site";
 
 const profileUrl = `${SITE_URL}/about-sheevum-goel`;
@@ -34,6 +33,12 @@ const links = {
   medium: "https://sheevumgoel.medium.com/",
   command:
     "https://about-sheevum-goel.notion.site/Sudarshan-AI-Labs-Founder-Command-Center-37922c918f0f818babd4f91b7c941ee7?pvs=149",
+  startinup: "https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==",
+  finanvo: "https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited",
+  falconebiz: "https://www.falconebiz.com/company/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
+  zaubacorp: "https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
+  github: "https://github.com/sheevu",
+  githubCrm: "https://github.com/sheevu/NETRA-CRM-1",
 };
 
 export const metadata: Metadata = {
@@ -284,7 +289,6 @@ export default function AboutSheevumGoel() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
       />
-      <ScrollReveal />
 
       <header className="sg-header">
         <a className="v-brand" href="/" aria-label="Sudarshan AI Labs home">

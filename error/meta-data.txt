@@ -1,0 +1,21 @@
+<!-- Primary Meta Tags -->
+<title>Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP</title>
+<meta name="title" content="Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP">
+<meta name="description" content="Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh. Get a free audit today!">
+<meta name="keywords" content="digital marketing agency in lucknow, AI consulting in lucknow, seo services in bareilly, hindi crm, AI agents development, Sudarshan AI Labs">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sudarshan-ai.com/">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sudarshan-ai.com/">
+<meta property="og:title" content="Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow">
+<meta property="og:description" content="Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.">
+<meta property="og:image" content="https://sudarshan-ai.com/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://sudarshan-ai.com/">
+<meta property="twitter:title" content="Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow">
+<meta property="twitter:description" content="Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.">
+<meta property="twitter:image" content="https://sudarshan-ai.com/og-image.jpg">

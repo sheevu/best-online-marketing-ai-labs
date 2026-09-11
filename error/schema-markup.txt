@@ -1,0 +1,56 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sudarshan AI Labs",
+  "alternateName": "NAVA NETRA NEURAL SUDARSHAN AI LABS PVT. LTD.",
+  "image": "https://sudarshan-ai.com/logo.png",
+  "@id": "https://sudarshan-ai.com/#localbusiness",
+  "url": "https://sudarshan-ai.com/",
+  "telephone": "+91-XXXXXXXXXX",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Your Street Address",
+    "addressLocality": "Lucknow",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "226001",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 26.8467,
+    "longitude": 80.9462
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "sameAs": [
+    "https://sudarshan-ai.com"
+  ],
+  "areaServed": [
+    {
+      "@type": "State",
+      "name": "Uttar Pradesh"
+    },
+    {
+      "@type": "City",
+      "name": "Lucknow"
+    }
+  ],
+  "serviceType": [
+    "AI Agents Development",
+    "Digital Marketing Services",
+    "Local SEO Optimization",
+    "Hindi CRM Software"
+  ]
+}

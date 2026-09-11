@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "./ResponsiveImage";
 import {
   ChartLineUp,
   Compass,
@@ -37,6 +37,7 @@ export type ServicePageData = {
   coreDeliverables?: string[];
   relatedKeywords?: string[];
   bestFor?: string;
+  canonicalUrl?: string;
   areaServed?: string;
   locationLabel?: string;
   locationHref?: string;
@@ -48,7 +49,7 @@ export type ServicePageData = {
 };
 
 export function serviceMetadata(data: ServicePageData): Metadata {
-  const url = `/${data.slug}`;
+  const url = data.canonicalUrl ?? `/${data.slug}`;
   return {
     title: data.title,
     description: data.description,

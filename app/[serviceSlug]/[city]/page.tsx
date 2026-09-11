@@ -8,12 +8,12 @@ import {
   cityServicePath,
 } from "../../lib/city-service-page";
 import {
+  activeServiceCatalog,
   serviceBySlug,
-  serviceCatalog,
 } from "../../lib/service-catalog";
 
 export function generateStaticParams() {
-  return serviceCatalog.flatMap((service) =>
+  return activeServiceCatalog.flatMap((service) =>
     cities.map((city) => ({
       serviceSlug: service.slug,
       city: city.slug,
@@ -26,7 +26,7 @@ function getPageData(serviceSlug: string, citySlug: string) {
   const city = cityBySlug(citySlug);
   if (!entry || !city) return null;
 
-  const related = serviceCatalog
+  const related = activeServiceCatalog
     .filter(
       (service) =>
         service.slug !== entry.slug && service.category === entry.category,

@@ -12,7 +12,23 @@ export type ServiceCatalogEntry = {
   coreDeliverables: string[];
   relatedKeywords: string[];
   bestFor: string;
+  canonicalUrl?: string;
+  customOutcomes?: { title: string; text: string }[];
+  customProcess?: { title: string; text: string }[];
+  customFaqs?: [string, string][];
 };
+
+export const redirectedCatalogSlugs = new Set([
+  'best-digital-marketing-agency-lucknow',
+  'local-seo-services',
+  'seo-services-search-optimization',
+  'website-development-company',
+  'custom-web-development-company',
+  'build-ecommerce-website',
+  'social-media-marketing-services',
+  'youtube-shorts-short-video-marketing',
+  'video-content-repurposing',
+]);
 
 export const serviceCatalog: ServiceCatalogEntry[] = [
   {
@@ -177,6 +193,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Local SEO Services",
     "primaryKeyword": "local seo services",
     "slug": "local-seo-services",
+    "canonicalUrl": "/seo-services-lucknow",
     "seoTitle": "Local SEO Services for Google Search & Maps Visibility",
     "metaDescription": "Grow local visibility with SEO for Google Search and Maps, including local keywords, business profiles, citations and location-focused pages.",
     "longDescription": "Local SEO services designed to help nearby customers discover your business through search engines and maps. The service combines local keyword research, profile optimization, website improvements, citations and location relevance.",
@@ -208,6 +225,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "SEO Services & Search Optimization",
     "primaryKeyword": "seo services near me",
     "slug": "seo-services-search-optimization",
+    "canonicalUrl": "/seo-services-lucknow",
     "seoTitle": "SEO Services for Better Rankings, Visibility & Organic Growth",
     "metaDescription": "Improve search visibility with on-page SEO, technical optimization, keyword targeting, content improvements and search-focused site structure.",
     "longDescription": "A comprehensive SEO service covering website structure, content relevance, metadata, internal links and technical foundations. It is designed to improve organic visibility while aligning pages with real customer search intent.",
@@ -271,6 +289,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Website Development Company & Business Website Services",
     "primaryKeyword": "website development services",
     "slug": "website-development-company",
+    "canonicalUrl": "/website-design",
     "seoTitle": "Website Development Services for Modern, SEO-Ready Business Websites",
     "metaDescription": "Website development services for responsive, professional and SEO-ready business websites built for performance, trust, enquiries and long-term growth.",
     "longDescription": "Professional website development services for businesses that need a modern digital presence. Websites are structured for mobile usability, clear service communication, search visibility, speed and conversion-focused customer journeys.",
@@ -303,6 +322,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Custom Web Development Company Services",
     "primaryKeyword": "web development company",
     "slug": "custom-web-development-company",
+    "canonicalUrl": "/website-design",
     "seoTitle": "Custom Web Development Company for Scalable Business Solutions",
     "metaDescription": "Build custom, responsive and scalable web solutions with modern design, business workflows, integrations and performance-focused development.",
     "longDescription": "Custom web development for companies requiring more flexibility than a standard business website, including advanced workflows, integrations, dynamic sections and scalable digital experiences.",
@@ -364,6 +384,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Build Ecommerce Website & Online Store Setup",
     "primaryKeyword": "build ecommerce website",
     "slug": "build-ecommerce-website",
+    "canonicalUrl": "/ecommerce-website-development",
     "seoTitle": "Build an Ecommerce Website & Launch Your Online Store",
     "metaDescription": "Build a responsive ecommerce website with product listings, conversion-focused pages and the essential structure needed to start selling online.",
     "longDescription": "A practical online-store launch service for businesses that need to move from offline or social selling into a structured ecommerce experience with products, categories, customer journeys and mobile-ready pages.",
@@ -457,6 +478,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Social Media Marketing Services",
     "primaryKeyword": "social media marketing services",
     "slug": "social-media-marketing-services",
+    "canonicalUrl": "/social-media-marketing-lucknow",
     "seoTitle": "Social Media Marketing Services for Business Growth",
     "metaDescription": "Grow brand visibility with social media strategy, creative content, profile optimization, campaigns and audience engagement across major platforms.",
     "longDescription": "Multi-platform social media marketing designed to create a consistent brand presence, improve audience engagement and support business growth through planned content, campaigns and profile optimization.",
@@ -552,9 +574,59 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "YouTube Marketing, SEO & Channel Growth",
     "primaryKeyword": "youtube marketing services",
     "slug": "youtube-marketing-seo-channel-growth",
-    "seoTitle": "YouTube Marketing, SEO & Channel Growth Services",
-    "metaDescription": "Improve YouTube discovery with channel optimization, video SEO, titles, descriptions, thumbnails, playlists and content strategy.",
-    "longDescription": "A complete YouTube growth service focused on discoverability and content structure. It combines channel optimization, search-focused metadata, content planning and performance-oriented packaging.",
+    "seoTitle": "YouTube Marketing, SEO, Shorts & Video Repurposing Services",
+    "metaDescription": "Grow your audience with comprehensive YouTube SEO, high-retention Shorts, custom thumbnails, channel architecture and cross-platform video repurposing.",
+    "longDescription": "An end-to-end YouTube growth and video content system designed to build authority, capture search traffic and scale vertical video reach. We combine search-first video optimization, retention-focused scripting, YouTube Shorts production and cross-platform repurposing for Reels and LinkedIn.",
+    "customOutcomes": [
+      {
+        "title": "Search-First Video SEO & Google Visibility",
+        "text": "Rank videos on high-intent search queries across both YouTube and Google Search with structured chapters, optimized metadata, and keyword-dense descriptions."
+      },
+      {
+        "title": "High-Retention YouTube Shorts & Reels",
+        "text": "Transform core insights and offers into 30 to 60-second vertical videos engineered with compelling 3-second hooks and dynamic pacing."
+      },
+      {
+        "title": "Systematic Long-Form Video Repurposing",
+        "text": "Extract multiple bite-sized video shorts, carousel concepts, and social quotes from existing webinars, podcasts, client calls, and workshops."
+      },
+      {
+        "title": "CTR-Focused Packaging & Thumbnail Strategy",
+        "text": "Deploy tested visual hierarchy, high-contrast imagery, and curiosity-driven titles that elevate organic click-through rates and channel impressions."
+      }
+    ],
+    "customProcess": [
+      {
+        "title": "Channel Audit & Audience Intent Mapping",
+        "text": "We analyze channel watch-time patterns, search demand gaps, competitor packaging, and customer questions to build a high-ROI video content roadmap."
+      },
+      {
+        "title": "Production, Scripting & Repurposing Engine",
+        "text": "We deliver proven hook frameworks, episode outlines, and a seamless workflow to slice long recordings into platform-native vertical assets."
+      },
+      {
+        "title": "Publishing Optimization & Retention Review",
+        "text": "We optimize metadata, end screens, playlists, and cards on upload, monitoring audience retention charts to continually refine future topics."
+      }
+    ],
+    "customFaqs": [
+      [
+        "How do YouTube Shorts and long-form videos complement each other?",
+        "Shorts generate massive top-of-funnel reach and discovery, while optimized long-form videos build deep trust, topical authority, and high-value customer inquiries. We link both into a single growth flywheel."
+      ],
+      [
+        "Can you repurpose our existing Zoom calls, webinars, or presentations?",
+        "Yes. We extract key teaching moments and demonstrations from your long recordings, adding hooks, captions, and vertical formatting optimized for YouTube Shorts, Reels, and LinkedIn."
+      ],
+      [
+        "What equipment do we need to start producing YouTube content?",
+        "A recent smartphone, quiet room, clean natural or ring lighting, and an inexpensive wireless lavalier microphone are all you need to start. Content value and clear delivery far outweigh expensive studio equipment."
+      ],
+      [
+        "How do YouTube videos continue generating leads months after publishing?",
+        "Unlike ephemeral social feeds, YouTube functions as the world's second-largest search engine. Properly optimized evergreen videos compound search views and qualified inbound leads for months or years."
+      ]
+    ],
     "platforms": [
       "YouTube",
       "YouTube Search",
@@ -583,6 +655,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "YouTube Shorts & Multi-Platform Short Video Marketing",
     "primaryKeyword": "youtube shorts marketing",
     "slug": "youtube-shorts-short-video-marketing",
+    "canonicalUrl": "/youtube-marketing-seo-channel-growth",
     "seoTitle": "YouTube Shorts, Reels & Short Video Marketing Services",
     "metaDescription": "Create a repeatable short-video strategy for YouTube Shorts, Instagram Reels and Facebook Reels to expand reach and engagement.",
     "longDescription": "A cross-platform short-video service that transforms business ideas, long videos and offers into concise vertical content optimized for discovery across Shorts and Reels ecosystems.",
@@ -614,6 +687,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Video Content Repurposing for Reels, Shorts & Social Media",
     "primaryKeyword": "content repurposing services",
     "slug": "video-content-repurposing",
+    "canonicalUrl": "/youtube-marketing-seo-channel-growth",
     "seoTitle": "Video Content Repurposing for Reels, Shorts & Social Media",
     "metaDescription": "Turn long videos, webinars and recordings into reusable Reels, Shorts, clips, posts and social content for multiple channels.",
     "longDescription": "Content repurposing helps businesses extract more value from every recording by converting long-form videos into short vertical clips, social posts, caption ideas and channel-specific content assets.",
@@ -831,6 +905,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Digital Marketing Agency Services in Lucknow",
     "primaryKeyword": "best digital marketing agency in lucknow",
     "slug": "best-digital-marketing-agency-lucknow",
+    "canonicalUrl": "/digital-marketing-services",
     "seoTitle": "Best Digital Marketing Agency in Lucknow for Business Growth",
     "metaDescription": "Grow your Lucknow business with SEO, social media, websites, Google Maps, Meta marketing, content and digital lead generation under one strategy.",
     "longDescription": "An integrated digital marketing service for Lucknow businesses combining search visibility, local discovery, websites, social media, video content, paid campaigns and conversion-focused growth activities.",
@@ -865,6 +940,10 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
   }
 ] as ServiceCatalogEntry[];
 
+export const activeServiceCatalog = serviceCatalog.filter(
+  (service) => !redirectedCatalogSlugs.has(service.slug),
+);
+
 export const serviceBySlug = (slug: string) =>
   serviceCatalog.find((service) => service.slug === slug);
 
@@ -872,13 +951,44 @@ export function servicePageFromCatalog(
   entry: ServiceCatalogEntry,
   relatedServices: [string, string][],
 ): ServicePageData {
-  const outcomes = entry.coreDeliverables.map((deliverable) => ({
+  const outcomes = entry.customOutcomes ?? entry.coreDeliverables.map((deliverable) => ({
     title: deliverable,
-    text: `A scoped part of ${entry.name}, prioritised after the initial review and aligned with the agreed customer journey.`,
+    text: `Specific implementation of ${deliverable} aligned with your business goals, target audience, and local conversion funnel.`,
   }));
+
+  const process = entry.customProcess ?? [
+    {
+      title: "Review & Audit",
+      text: `We start with your core business goal, current market visibility, and the precise role ${entry.primaryKeyword} will play.`,
+    },
+    {
+      title: "Prioritise & Build",
+      text: "We execute the agreed high-impact scope, evidence, ownership, and practical workflows before expanding activity.",
+    },
+    {
+      title: "Transfer & Scale",
+      text: "All created assets, documentation, tracking, and operating playbooks are formally transferred to your team.",
+    },
+  ];
+
+  const faqs = entry.customFaqs ?? [
+    [
+      `What is included in ${entry.name}?`,
+      `${entry.coreDeliverables.join(", ")}. The final scope is tailored after reviewing your business model and target audience.`,
+    ],
+    [
+      `Who is ${entry.name} for?`,
+      `${entry.bestFor}. Designed to provide clear ROI and practical execution for growing enterprises.`,
+    ],
+    [
+      `How do we start with ${entry.name.toLowerCase()}?`,
+      "Share your website, listing or current process for a free digital growth audit. We will identify the highest-leverage starting point.",
+    ],
+  ];
 
   return {
     slug: entry.slug,
+    canonicalUrl: entry.canonicalUrl,
     title: entry.seoTitle,
     description: entry.metaDescription,
     eyebrow: `${entry.category.toUpperCase()} • SUDARSHAN AI LABS`,
@@ -892,34 +1002,8 @@ export function servicePageFromCatalog(
     bestFor: entry.bestFor,
     fit: entry.bestFor.split(",").map((item) => item.trim()).filter(Boolean),
     outcomes,
-    process: [
-      {
-        title: "Review",
-        text: `We start with the business goal, current visibility and the role ${entry.primaryKeyword} should play.`,
-      },
-      {
-        title: "Prioritise",
-        text: "We agree the useful scope, evidence, ownership and next action before adding more activity.",
-      },
-      {
-        title: "Transfer",
-        text: "The agreed assets, recommendations and operating notes are documented for your team.",
-      },
-    ],
-    faqs: [
-      [
-        `What is included in ${entry.name}?`,
-        `${entry.coreDeliverables.join(", ")}. The final scope is confirmed after reviewing the business, audience and current setup.`,
-      ],
-      [
-        `Who is ${entry.name} for?`,
-        `${entry.bestFor}. The service is shaped around the customer journey and capacity of the team, not a fixed package.`,
-      ],
-      [
-        `How do we start with ${entry.name.toLowerCase()}?`,
-        "Share your website, listing or current process for a free digital growth audit. We will identify the most useful starting point before suggesting a scope.",
-      ],
-    ],
+    process,
+    faqs,
     related: relatedServices,
   };
 }

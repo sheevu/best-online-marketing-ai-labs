@@ -1,14 +1,14 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "sudarshan-ai-labs-lucknow",
   "main": "dist/server/index.js",
   "compatibility_date": "2026-05-15",
-  "placement": {
-    "mode": "smart"
-  },
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "dist/client",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
   },
   "routes": [
     {

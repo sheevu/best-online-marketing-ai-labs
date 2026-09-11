@@ -13,6 +13,7 @@
 * {
   box-sizing: border-box;
 }
+[hidden] { display: none !important; }
 html {
   scroll-behavior: smooth;
 }
@@ -2285,7 +2286,6 @@ footer {
   height: 100%;
   object-fit: cover;
   object-position: 58% center;
-  animation: heroBreath 7s ease-in-out infinite alternate;
   transform-origin: 70% 60%;
 }
 .float-chip {
@@ -2836,6 +2836,18 @@ footer {
   color: #fff;
   font-size: 9px;
 }
+.location-directory-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+.location-directory-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 11px;
+}
 @media (max-width: 640px) {
   .location-directory > div {
     grid-template-columns: 1fr;
@@ -2958,7 +2970,7 @@ footer {
 }
 @keyframes pulse {
   70% {
-    box-shadow: 0 0 0 9px #45c88f00;
+    opacity: 0.45;
   }
 }
 @keyframes heroBreath {
@@ -3700,7 +3712,7 @@ footer {
 }
 @keyframes outlineTrace {
   to {
-    background-position: -240% 0;
+    opacity: 0.75;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6291,14 +6303,12 @@ footer {
 }
 @keyframes sectionBorderFlow {
   to {
-    background-position: 220% 0;
+    opacity: 0.45;
   }
 }
 @keyframes orbitPulse {
   50% {
-    box-shadow:
-      0 0 0 18px #ffffff0d,
-      0 0 32px #ff67c055;
+    opacity: 0.65;
   }
 }
 @keyframes stageBreathe {
@@ -6309,17 +6319,16 @@ footer {
 @keyframes ringBreathe {
   50% {
     opacity: 0.65;
-    box-shadow: 0 0 28px rgba(44, 198, 224, 0.13);
   }
 }
 @keyframes ctaShine {
   0%,
   66% {
-    left: -35%;
+    transform: translateX(0) skewX(-18deg);
   }
   88%,
   100% {
-    left: 125%;
+    transform: translateX(730%) skewX(-18deg);
   }
 }
 @media (max-width: 780px) {
@@ -6860,3 +6869,26 @@ footer {
     padding: 42px 24px;
   }
 }
+
+/* Readable fallbacks when gradient text clipping is unsupported. */
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+ .v-hero-copy h1 em, .v-home h2 em, .sg-hero h1 em, .sg-section h2 em { color: #7052b8; background: none; }
+}
+
+/* Preserve the palette with readable small text and usable touch targets. */
+.v-brand small { color: #6e637a; }
+.v-feature-row p { color: #4e475f; }
+.v-kicker { color: #6250d2; }
+.v-kicker.light { color: #c8baff; }
+.v-footer .v-brand b { color: #afa1ff; }
+.v-footer > small { color: #aaa2ba; }
+.v-product-dots button, .v-product-dots button.active {
+  width: 28px;
+  height: 28px;
+  padding: 10px;
+  background-clip: content-box;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.v-product-dots button.active { width: 42px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

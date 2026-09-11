@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Analytics from "./_components/Analytics";
-import CtaTracking from "./_components/CtaTracking";
 import { SITE_URL } from "./lib/site";
 import "./globals.css";
 
@@ -14,10 +12,13 @@ export const metadata: Metadata = {
     "Sudarshan AI Labs helps Lucknow MSMEs improve local search visibility, websites, paid campaigns, lead generation and practical AI automation.",
   keywords: [
     "Sudarshan AI Labs",
+    "digital marketing agency in lucknow",
     "AI consulting Lucknow",
-    "digital marketing Lucknow",
     "SEO services Lucknow",
     "AI automation Lucknow",
+    "digital marketing Lucknow",
+    "hindi crm",
+    "AI agents development",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -76,8 +77,7 @@ export default function RootLayout({
     <html lang="en-IN">
       <body>
         {children}
-        <Analytics />
-        <CtaTracking />
+        <script src="/site.js" defer data-site-script="true" />
       </body>
     </html>
   );

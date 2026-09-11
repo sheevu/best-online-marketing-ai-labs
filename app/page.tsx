@@ -1,7 +1,5 @@
-"use client";
-/* eslint-disable @next/next/no-html-link-for-pages */
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+ 
+import Image from "./_components/ResponsiveImage";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -23,7 +21,6 @@ import {
   Sparkle,
   Target,
   WhatsappLogo,
-  X,
 } from "@phosphor-icons/react/dist/ssr";
 import {
   MAP_URL,
@@ -33,8 +30,6 @@ import {
   STARTING_PRICE_INR,
   WHATSAPP_URL,
 } from "./lib/site";
-import { areas } from "./lib/areas";
-import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
 
 const wa = WHATSAPP_URL;
@@ -205,17 +200,18 @@ const faqs = [
 ];
 const schema = {
   "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService"],
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   "@id": ORGANIZATION_ID,
   name: "Sudarshan AI Labs",
   legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  alternateName: "NAVA NETRA NEURAL SUDARSHAN AI LABS PVT. LTD.",
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.svg`,
   image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
   telephone: "+91-7080842220",
   email: "sudarshanailabs@gmail.com",
-    description:
-    "Lucknow-based AI and digital growth company helping MSMEs improve local visibility, conversion and customer follow-up.",
+  description:
+    "Lucknow-based AI agents and digital marketing agency helping MSMEs improve local visibility, conversion, Hindi CRM and business automation.",
   priceRange: "Projects from ₹4,900",
   currenciesAccepted: "INR",
   address: {
@@ -223,9 +219,34 @@ const schema = {
     streetAddress: "Gomti Nagar",
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
+    postalCode: "226010",
     addressCountry: "IN",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 26.8467,
+    longitude: 80.9462,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    opens: "09:00",
+    closes: "19:00",
+  },
   areaServed: ["Lucknow", "Uttar Pradesh", "India"],
+  serviceType: [
+    "AI Agents Development",
+    "Digital Marketing Services",
+    "Local SEO Optimization",
+    "Hindi CRM Software",
+  ],
   founder: {
     "@type": "Person",
     "@id": `${SITE_URL}/about-sheevum-goel#sheevum-goel`,
@@ -243,6 +264,12 @@ const schema = {
   sameAs: [
     "https://in.linkedin.com/company/sudarshan-ai-labs",
     "https://www.facebook.com/sudarshanlabsinc/",
+    "https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==",
+    "https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited",
+    "https://www.falconebiz.com/company/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
+    "https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
+    "https://github.com/sheevu/NETRA-CRM-1",
+    "https://github.com/sheevu",
   ],
 };
 const faqSchema = {
@@ -271,57 +298,8 @@ const serviceSchemas = services.map((service) => ({
 }));
 
 export default function Home() {
-  const [menu, setMenu] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [locations, setLocations] = useState(false);
-  const [goal, setGoal] = useState<keyof typeof goals>("visibility");
-  const [productPage, setProductPage] = useState(0);
-  const slider = useRef<HTMLDivElement>(null);
-  const drag = useRef({ down: false, x: 0, left: 0 });
-  const autoPaused = useRef(false);
-  const [autoPlay, setAutoPlay] = useState(true);
-  const active = goals[goal];
-  const goToProduct = (index: number) => {
-    const safe = (index + products.length) % products.length;
-    const card = slider.current?.children[safe] as HTMLElement | undefined;
-    if (card && slider.current) {
-      slider.current.scrollTo({
-        left: card.offsetLeft - slider.current.offsetLeft,
-        behavior: "smooth",
-      });
-      setProductPage(safe);
-    }
-  };
-  const slide = (direction: number) => goToProduct(productPage + direction);
-  useEffect(() => {
-    const nodes = document.querySelectorAll<HTMLElement>(
-      ".v-home section:not(.v-hero-shell),.v-footer",
-    );
-    nodes.forEach((node, index) => {
-      node.classList.add("v-reveal");
-      node.style.setProperty("--reveal-order", String(index % 2));
-    });
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }),
-      { threshold: 0.1, rootMargin: "0px 0px -40px" },
-    );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => {
-      if (autoPlay && !autoPaused.current && !document.hidden)
-        goToProduct(productPage + 1);
-    }, 4300);
-    return () => window.clearInterval(timer);
-  }, [autoPlay, productPage]);
+  const productPage = 0;
+  const autoPlay = true;
   return (
     <main id="top" className="v-home">
       <script
@@ -357,25 +335,17 @@ export default function Home() {
               <small>LUCKNOW DIGITAL GROWTH</small>
             </span>
           </a>
-          <div className={`v-links ${menu ? "open" : ""}`}>
-            <div className={`v-services-menu ${servicesOpen ? "active" : ""}`}>
+          <div className="v-links" id="main-menu">
+            <div className="v-services-menu">
               <button
-                onClick={() => {
-                  setServicesOpen(!servicesOpen);
-                  setLocations(false);
-                }}
-                aria-expanded={servicesOpen}
+                aria-expanded="false"
                 aria-haspopup="true"
               >
                 Services <CaretDown weight="bold" />
               </button>
               <div className="v-services-panel">
                 <a
-                  href="/digital-marketing-services/"
-                  onClick={() => {
-                    setServicesOpen(false);
-                    setMenu(false);
-                  }}
+                  href="/digital-marketing-services"
                 >
                   <ChartLineUp weight="duotone" />
                   <span>
@@ -385,11 +355,7 @@ export default function Home() {
                   <ArrowUpRight />
                 </a>
                 <a
-                  href="/digital-marketing-services/uttar-pradesh/"
-                  onClick={() => {
-                    setServicesOpen(false);
-                    setMenu(false);
-                  }}
+                  href="/digital-marketing-services/uttar-pradesh"
                 >
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
@@ -400,29 +366,21 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <a href="#products" onClick={() => { setMenu(false); setServicesOpen(false); }}>
+            <a href="#products">
               Products
             </a>
-            <a href="#approach" onClick={() => { setMenu(false); setServicesOpen(false); }}>
+            <a href="#approach">
               How we work
             </a>
-            <div className={`v-location-menu ${locations ? "active" : ""}`}>
+            <div className="v-location-menu">
               <button
-                onClick={() => {
-                  setLocations(!locations);
-                  setServicesOpen(false);
-                }}
-                aria-expanded={locations}
+                aria-expanded="false"
               >
                 Locations <CaretDown weight="bold" />
               </button>
               <div className="v-location-panel">
                 <a
-                  href="/digital-marketing-services/"
-                  onClick={() => {
-                    setLocations(false);
-                    setMenu(false);
-                  }}
+                  href="/digital-marketing-services"
                 >
                   <MapPin weight="duotone" />
                   <span>
@@ -432,11 +390,7 @@ export default function Home() {
                   <ArrowUpRight />
                 </a>
                 <a
-                  href="/digital-marketing-services/uttar-pradesh/"
-                  onClick={() => {
-                    setLocations(false);
-                    setMenu(false);
-                  }}
+                  href="/digital-marketing-services/uttar-pradesh"
                 >
                   <GlobeHemisphereWest weight="duotone" />
                   <span>
@@ -447,13 +401,13 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <a href="/about-sheevum-goel/" onClick={() => { setMenu(false); setServicesOpen(false); }}>
+            <a href="/about-sheevum-goel">
               Founder
             </a>
-            <a href="#faq" onClick={() => { setMenu(false); setServicesOpen(false); }}>
+            <a href="#faq">
               FAQ
             </a>
-            <a href="/contact" onClick={() => { setMenu(false); setServicesOpen(false); }}>
+            <a href="/contact">
               Contact
             </a>
             <a className="v-mobile-audit" href={wa}>
@@ -466,11 +420,10 @@ export default function Home() {
           </a>
           <button
             className="v-menu"
-            onClick={() => setMenu(!menu)}
-            aria-expanded={menu}
+            aria-expanded="false" aria-controls="main-menu"
             aria-label="Toggle navigation"
           >
-            {menu ? <X /> : <List />}
+            <List />
           </button>
         </nav>
       </header>
@@ -505,7 +458,7 @@ export default function Home() {
               <a className="v-pill v-pill-dark" href={wa}>
                 Start with a free audit <ArrowRight weight="bold" />
               </a>
-              <a className="v-video-link" href="/digital-marketing-services/">
+              <a className="v-video-link" href="/digital-marketing-services">
                 <span>
                   <ChartLineUp weight="bold" />
                 </span>{" "}
@@ -656,20 +609,15 @@ export default function Home() {
           </div>
           <div className="v-slider-controls">
             <button
-              onClick={() => slide(-1)}
               aria-label="View previous products"
             >
               <CaretLeft weight="bold" />
             </button>
-            <button onClick={() => slide(1)} aria-label="View next products">
+            <button aria-label="View next products">
               <CaretRight weight="bold" />
             </button>
             <button
               className="v-slider-pause"
-              onClick={() => {
-                setAutoPlay(!autoPlay);
-                autoPaused.current = autoPlay;
-              }}
               aria-pressed={!autoPlay}
               aria-label={autoPlay ? "Pause product carousel" : "Play product carousel"}
             >
@@ -679,66 +627,9 @@ export default function Home() {
         </div>
         <div
           className="v-product-track"
-          ref={slider}
           tabIndex={0}
            aria-label="Sudarshan AI Labs product plans"
           aria-live="off"
-          onMouseEnter={() => {
-            autoPaused.current = true;
-          }}
-          onMouseLeave={() => {
-            autoPaused.current = false;
-          }}
-          onFocus={() => {
-            autoPaused.current = true;
-          }}
-          onBlur={() => {
-            autoPaused.current = false;
-          }}
-          onScroll={(event) => {
-            const el = event.currentTarget;
-            const cards = Array.from(el.children) as HTMLElement[];
-            const nearest = cards.reduce(
-              (best, card, index) =>
-                Math.abs(card.offsetLeft - el.offsetLeft - el.scrollLeft) <
-                best.distance
-                  ? {
-                      index,
-                      distance: Math.abs(
-                        card.offsetLeft - el.offsetLeft - el.scrollLeft,
-                      ),
-                    }
-                  : best,
-              { index: 0, distance: Infinity },
-            );
-            setProductPage(nearest.index);
-          }}
-          onPointerDown={(event) => {
-            autoPaused.current = true;
-            if (event.pointerType === "mouse") {
-              drag.current = {
-                down: true,
-                x: event.clientX,
-                left: event.currentTarget.scrollLeft,
-              };
-              event.currentTarget.setPointerCapture(event.pointerId);
-            }
-          }}
-          onPointerMove={(event) => {
-            if (drag.current.down)
-              event.currentTarget.scrollLeft =
-                drag.current.left - (event.clientX - drag.current.x);
-          }}
-          onPointerUp={(event) => {
-            drag.current.down = false;
-            autoPaused.current = false;
-            if (event.currentTarget.hasPointerCapture(event.pointerId))
-              event.currentTarget.releasePointerCapture(event.pointerId);
-          }}
-          onPointerCancel={() => {
-            drag.current.down = false;
-            autoPaused.current = false;
-          }}
         >
           {products.map((product, index) => (
             <article
@@ -770,8 +661,7 @@ export default function Home() {
             <button
               key={product.name}
               className={index === productPage ? "active" : ""}
-              onClick={() => goToProduct(index)}
-              aria-label={`Show ${product.name}`}
+              data-product-index={index} aria-label={`Show ${product.name}`}
               aria-current={index === productPage ? "true" : undefined}
             />
           ))}
@@ -792,21 +682,21 @@ export default function Home() {
             Choose your immediate goal to see the connected system we would
             prioritise.
           </p>
-          <div className="goal-tabs" role="tablist">
+          <div className="goal-tabs" role="tablist" aria-label="Business growth goals">
             {Object.entries(goals).map(([key, item]) => (
               <button
                 key={key}
-                className={goal === key ? "active" : ""}
-                onClick={() => setGoal(key as keyof typeof goals)}
+                className={key === "visibility" ? "active" : ""} id={`goal-tab-${key}`} aria-controls={`goal-panel-${key}`} data-goal={key} tabIndex={key === "visibility" ? 0 : -1}
                 role="tab"
-                aria-selected={goal === key}
+                aria-selected={key === "visibility"}
               >
                 {item.label}
               </button>
             ))}
           </div>
         </div>
-        <div className="goal-result" aria-live="polite">
+        {Object.entries(goals).map(([key, active]) => (
+        <div key={key} className="goal-result" id={`goal-panel-${key}`} role="tabpanel" aria-labelledby={`goal-tab-${key}`} hidden={key !== "visibility"}>
           <div className="goal-icon">
             <active.Icon weight="duotone" />
           </div>
@@ -824,7 +714,7 @@ export default function Home() {
           <a href={wa}>
             Plan this system <ArrowRight weight="bold" />
           </a>
-        </div>
+        </div>))}
       </section>
 
       <section className="v-section v-method">
@@ -901,13 +791,13 @@ export default function Home() {
             <span className="card-number">01</span>
             <h3>Clear ownership</h3>
             <p>Websites, content and agreed systems are documented for handover.</p>
-            <a href="/about-sheevum-goel/">Meet the founder <ArrowUpRight /></a>
+            <a href="/about-sheevum-goel">Meet the founder <ArrowUpRight /></a>
           </article>
           <article>
             <span className="card-number">02</span>
             <h3>Useful depth</h3>
             <p>Service and locality pages explain the customer problem, scope and limits.</p>
-            <a href="/digital-marketing-services/">Review the services <ArrowUpRight /></a>
+            <a href="/digital-marketing-services">Review the services <ArrowUpRight /></a>
           </article>
           <article>
             <span className="card-number">03</span>
@@ -933,42 +823,25 @@ export default function Home() {
           <div>
             <a
               className="v-pill v-pill-light"
-              href="/digital-marketing-services/"
+              href="/digital-marketing-services"
             >
               Explore Lucknow areas <ArrowUpRight />
             </a>
-            <a href="/digital-marketing-services/uttar-pradesh/">
+            <a href="/digital-marketing-services/uttar-pradesh">
               Browse UP cities <ArrowRight />
             </a>
           </div>
         </div>
         <div className="lucknow-stat">
-          <span>40</span>
+          <span>Core</span>
           <p>
-            locally relevant service pages built around real business patterns,
-            search intent and customer needs.
+            Service pages built around real business patterns, search intent
+            and customer needs.
           </p>
-          <details className="location-directory">
-            <summary>Browse service-area guidance <span>+</span></summary>
-            <div>
-              <nav aria-label="Lucknow locality pages">
-                <span className="directory-label">Lucknow localities</span>
-                {areas.map((area) => (
-                  <a key={area.slug} href={`/digital-marketing-services/${area.slug}-lucknow`}>
-                    {area.name}
-                  </a>
-                ))}
-              </nav>
-              <nav aria-label="Uttar Pradesh city pages">
-                <span className="directory-label">Uttar Pradesh cities</span>
-                {cities.map((city) => (
-                  <a key={city.slug} href={`/digital-marketing-services/${city.slug}`}>
-                    {city.name}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </details>
+          <nav className="location-directory location-directory-links" aria-label="Service areas">
+            <a href="/digital-marketing-services">Explore Lucknow service areas <ArrowUpRight /></a>
+            <a href="/digital-marketing-services/uttar-pradesh">Browse Uttar Pradesh markets <ArrowRight /></a>
+          </nav>
           <a className="v-map-link" href={MAP_URL} target="_blank" rel="noreferrer">
             View our primary Gomti Nagar location on Google Maps <ArrowUpRight />
           </a>
@@ -1120,13 +993,13 @@ export default function Home() {
           <a href="#services">Services</a>
           <a href="#products">Products & plans</a>
           <a href="#approach">Approach</a>
-          <a href="/about-sheevum-goel/">About the Founder</a>
+          <a href="/about-sheevum-goel">About the Founder</a>
           <a href="/seo-services-lucknow">SEO Services</a>
           <a href="/social-media-marketing-lucknow">Social Media</a>
           <a href="/lead-generation-lucknow">Lead Generation</a>
           <a href="/ai-automation-lucknow">AI Automation</a>
-          <a href="/digital-marketing-services/">Lucknow Areas</a>
-          <a href="/digital-marketing-services/uttar-pradesh/">UP Cities</a>
+          <a href="/digital-marketing-services">Lucknow Areas</a>
+          <a href="/digital-marketing-services/uttar-pradesh">UP Cities</a>
         </nav>
         <nav>
           <b>Connect</b>

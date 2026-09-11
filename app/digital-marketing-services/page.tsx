@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
+ 
 import type { Metadata } from "next";
 import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
-import { areas } from "../lib/areas";
 import { serviceCatalog } from "../lib/service-catalog";
 import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, STARTING_PRICE_INR, WHATSAPP_URL } from "../lib/site";
 
@@ -164,7 +163,7 @@ export default function LucknowServices() {
           </span>
         </a>
         <div>
-          <a href="/about-sheevum-goel/">Founder</a>
+          <a href="/about-sheevum-goel">Founder</a>
           <a className="button button-small" href={wa}>
             Free Audit ↗
           </a>
@@ -330,21 +329,21 @@ export default function LucknowServices() {
           <p className="eyebrow">LOCAL RELEVANCE</p>
           <h2>Useful guidance for businesses across Lucknow</h2>
           <p>
-            Explore locality pages built around genuine customer patterns and
-            business categories. These pages describe service areas; they do not
-            claim offices where none exist.
+            We serve Lucknow from our primary location and can support suitable
+            businesses across Uttar Pradesh. Service-area advice is included
+            when it reflects a real customer need, not to create a page for
+            every locality.
           </p>
         </div>
         <div className="pillar-area-links">
-          {areas.map((area) => (
-            <a
-              href={`/digital-marketing-services/${area.slug}-lucknow/`}
-              key={area.slug}
-            >
-              <span>{area.name}</span>
-              <b>View local guidance ↗</b>
-            </a>
-          ))}
+          <a href="/contact">
+            <span>Lucknow growth audit</span>
+            <b>Discuss your service area ↗</b>
+          </a>
+          <a href="/about-sheevum-goel">
+            <span>Founder and local context</span>
+            <b>Review our background ↗</b>
+          </a>
         </div>
       </section>
 

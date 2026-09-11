@@ -40,4 +40,6 @@ next-env.d.ts
 /.sites-runtime/
 /outputs/
 /work/
+/.playwright-cli/
+/public/images/
 *.tsbuildinfo

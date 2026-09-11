@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
+ 
 import type { Metadata } from "next";
 import { ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -142,7 +142,7 @@ export default async function AreaPage({
           </span>
         </a>
         <div>
-          <a href="/digital-marketing-services/">Lucknow Areas</a>
+          <a href="/digital-marketing-services">Lucknow Areas</a>
           <a href="/seo-services-lucknow">SEO</a>
           <a href="/contact">Contact</a>
         </div>
@@ -154,7 +154,7 @@ export default async function AreaPage({
         <div className="breadcrumb">
           <a href="/">Home</a>
           <span>›</span>
-          <a href="/digital-marketing-services/">Digital Marketing Services</a>
+          <a href="/digital-marketing-services">Digital Marketing Services</a>
           <span>›</span>
           {a.name}
         </div>
@@ -327,7 +327,7 @@ export default async function AreaPage({
         <div>
           <h2>Explore services</h2>
           <nav>
-            <a href="/digital-marketing-services/">
+            <a href="/digital-marketing-services">
               Digital Marketing Services
             </a>
             <a href="/seo-services-lucknow">SEO Services</a>
