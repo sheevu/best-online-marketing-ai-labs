@@ -6892,3 +6892,185 @@ footer {
 }
 .v-product-dots button.active { width: 42px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+
+/* 2026-09-14 responsive recovery layer */
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+img, svg, video, canvas, iframe {
+  max-width: 100%;
+}
+img, video {
+  height: auto;
+}
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+:where(.v-home, .service-owner, .area-page, .areas-index, .lucknow-pillar) {
+  min-width: 0;
+}
+:where(.v-home, .service-owner, .area-page, .areas-index, .lucknow-pillar) > * {
+  min-width: 0;
+}
+:where(.service-card, .v-product-card, .catalog-service-grid a, .city-service-catalogue-grid a, .service-links nav a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 900px) {
+  .service-hero,
+  .pillar-hero,
+  .hero,
+  .v-hero,
+  .v-orbit-growth {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .service-card-grid,
+  .catalog-service-grid,
+  .pillar-service-grid,
+  .city-service-catalogue-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .v-nav,
+  .area-nav,
+  .nav {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --mobile-gutter: 18px;
+  }
+  .stage,
+  .area-hero,
+  .area-section,
+  .area-services,
+  .city-service-catalogue,
+  .catalog-service-menu,
+  .pillar-hero,
+  .pillar-intro,
+  .pillar-services,
+  .pillar-proof,
+  .pillar-local,
+  .pillar-faq,
+  .pillar-cta,
+  .sg-poster-showcase,
+  .sg-collaboration {
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
+  }
+  .service-owner {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .service-hero,
+  .service-fit,
+  .service-process,
+  .service-links,
+  .service-deliverables,
+  .service-owner .area-faq,
+  .service-owner .area-cta {
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
+  }
+  .hero h1,
+  .service-hero h1,
+  .area-hero h1,
+  .areas-index header h1,
+  .pillar-hero h1,
+  .sg-hero h1,
+  .v-hero-copy h1 {
+    font-size: clamp(40px, 12vw, 54px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    overflow-wrap: anywhere;
+  }
+  .split h2,
+  .section-head h2,
+  .why h2,
+  .case h2,
+  .process h2,
+  .local h2,
+  .reviews h2,
+  .faq h2,
+  .area-section h2,
+  .area-section-title h2,
+  .pain-section h2,
+  .area-faq h2,
+  .area-cta h2,
+  .pillar-section-head h2,
+  .pillar-proof h2,
+  .pillar-local h2,
+  .pillar-faq h2,
+  .pillar-cta h2 {
+    font-size: clamp(34px, 10vw, 46px);
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+  .hero-actions,
+  .v-hero-actions,
+  .area-cta > div {
+    width: 100%;
+    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .button,
+  .v-hero-actions a,
+  .area-cta .button,
+  .area-cta .cta-call {
+    width: 100%;
+    min-height: 48px;
+    text-align: center;
+  }
+  .service-card-grid,
+  .catalog-service-grid,
+  .pillar-service-grid,
+  .city-service-catalogue-grid,
+  .price-grid,
+  .service-grid,
+  .pain-cards,
+  .need-grid,
+  .area-service-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .service-hero-visual,
+  .service-avatar-orb,
+  .hero-panel,
+  .v-hero-visual,
+  .v-orbit-stage {
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+  }
+  .service-avatar-orb {
+    height: min(105vw, 420px);
+  }
+  .service-links nav a,
+  .city-service-catalogue-grid a {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+  .breadcrumb {
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 380px) {
+  .brand,
+  .v-brand {
+    letter-spacing: 0.04em;
+  }
+  .button,
+  .v-pill {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .service-links nav a,
+  .city-service-catalogue-grid a {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+  .service-related-arrow,
+  .city-service-catalogue-grid b {
+    display: none;
+  }
+}
