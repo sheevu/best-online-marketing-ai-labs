@@ -46,6 +46,7 @@ export type ServicePageData = {
   process: Item[];
   faqs: [string, string][];
   related?: [string, string][];
+  cityLinks?: [string, string][];
 };
 
 export function serviceMetadata(data: ServicePageData): Metadata {
@@ -224,6 +225,25 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <div><p className="section-kicker">SERVICE FAQ</p><h2>Questions before you begin</h2></div>
         <div>{data.faqs.map(([question, answer]) => <details key={question}><summary><span>{question}</span><b>+</b></summary><p>{answer}</p></details>)}</div>
       </section>
+
+      {data.cityLinks && data.cityLinks.length > 0 && (
+        <section className="city-service-catalogue" aria-labelledby="service-city-title">
+          <div className="area-section-title">
+            <p className="section-kicker">20 CITY-SPECIFIC SERVICE PAGES</p>
+            <h2 id="service-city-title">Available across Uttar Pradesh</h2>
+            <p>Choose your city for locally relevant business context, service guidance, FAQs and a direct consultation.</p>
+          </div>
+          <nav className="city-service-catalogue-grid" aria-label={`${data.h1} by city`}>
+            {data.cityLinks.map(([label, href], index) => (
+              <Link key={href} href={href}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{label}</strong>
+                <b aria-hidden="true">↗</b>
+              </Link>
+            ))}
+          </nav>
+        </section>
+      )}
 
       <section className="service-links">
         <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
