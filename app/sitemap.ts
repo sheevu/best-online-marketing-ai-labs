@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { serviceCatalog } from "./lib/service-catalog";
+import { areas } from "./lib/areas";
+import { cities } from "./lib/cities";
 import { SITE_URL } from "./lib/site";
 
 const servicePaths = [
@@ -31,6 +33,9 @@ const catalogServicePaths = serviceCatalog
   .filter((service) => !redirectedCatalogSlugs.has(service.slug))
   .map((service) => "/" + service.slug);
 
+const localityPaths = areas.map((area) => `/digital-marketing-services/${area.slug}`);
+const cityPaths = cities.map((city) => `/digital-marketing-services/uttar-pradesh/${city.slug}`);
+
 const trustPaths = [
   "/contact",
   "/about-sheevum-goel",
@@ -60,6 +65,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...localityPaths.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: LAST_MODIFIED_DATE,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+    ...cityPaths.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: LAST_MODIFIED_DATE,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
     ...trustPaths.map((path) => ({
       url: `${SITE_URL}${path}`,
