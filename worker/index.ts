@@ -124,6 +124,10 @@ const worker = {
       const asset = await env.ASSETS.fetch(new Request(new URL(assetPath, url), { method: request.method }));
       if (asset.status === 200) response = asset;
     }
+    if (!response && (request.method === "GET" || request.method === "HEAD") && url.pathname.includes(".")) {
+      const asset = await env.ASSETS.fetch(request);
+      if (asset.status === 200) response = asset;
+    }
     response ??= await handler.fetch(request, env, ctx);
     const headers = new Headers(response.headers);
     headers.set("X-Content-Type-Options", "nosniff");
