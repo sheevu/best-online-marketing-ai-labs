@@ -336,7 +336,7 @@ export default function Home() {
           <a
             className="v-brand"
             href="#top"
-            aria-label="Sudarshan AI Labs home"
+            aria-label="Sudarshan AI Labs Lucknow Digital Growth home"
           >
             <span className="v-logo">
               <Sparkle weight="fill" />
@@ -597,7 +597,7 @@ export default function Home() {
                 <h3>{title}</h3>
                 <p>{text}</p>
               </div>
-              <a href={href} aria-label={`Learn about ${title}`}>
+              <a href={href}>
                 Explore {title} <ArrowUpRight weight="bold" />
               </a>
             </article>
@@ -661,7 +661,6 @@ export default function Home() {
               </div>
               <a
                 href={product.href}
-                aria-label={`Explore ${product.name}`}
               >
                 Discuss {product.name} <ArrowUpRight weight="bold" />
               </a>
