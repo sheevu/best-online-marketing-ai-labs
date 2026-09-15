@@ -52,7 +52,9 @@ while(queue.length) {
   let html = await response.text();
   // Preserve structured data. Native enhancements own browser interactions;
   // React's transport and hydration scripts are not part of this delivery mode.
-  html = html.replace(/<script\b([^>]*)>[\s\S]*?<\/script>/gi, (all,attrs)=>/type="application\/ld\+json"/.test(attrs)?all:'');
+  html = html.replace(/<script\b([^>]*)>[\s\S]*?<\/script>/gi, (all,attrs)=>
+    /type="application\/ld\+json"/.test(attrs) || /data-clarity-script="true"/.test(attrs) ? all : ''
+  );
   html = html.replace(/<link\b[^>]*>/gi, all => /rel="modulepreload"/.test(all) || (/rel="preload"/.test(all)&&/as="script"/.test(all)) ? '' : all);
   const cssLinks = [...html.matchAll(/<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="([^"]+)")[^>]*>/g)];
   const css = (await Promise.all(cssLinks.map(match => fs.readFile(path.join(client,new URL(match[1],origin).pathname),'utf8')))).join('\n');

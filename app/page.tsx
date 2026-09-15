@@ -21,6 +21,7 @@ import {
   Sparkle,
   Target,
   WhatsappLogo,
+  X,
 } from "@phosphor-icons/react/dist/ssr";
 import {
   DUNS_NUMBER,
@@ -433,7 +434,8 @@ export default function Home() {
             aria-expanded="false" aria-controls="main-menu"
             aria-label="Toggle navigation"
           >
-            <List />
+            <List className="menu-open-icon" />
+            <X className="menu-close-icon" />
           </button>
         </nav>
       </header>

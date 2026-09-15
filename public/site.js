@@ -7,17 +7,21 @@
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const menu = document.querySelector('.v-links');
   const menuButton = document.querySelector('.v-menu');
+  const setMenuState = open => {
+    menu?.classList.toggle('open', open);
+    menuButton?.setAttribute('aria-expanded', String(open));
+    menuButton?.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    document.documentElement.classList.toggle('menu-is-open', open);
+  };
   const closeMenus = () => {
-    menu?.classList.remove('open');
-    menuButton?.setAttribute('aria-expanded', 'false');
+    setMenuState(false);
     document.querySelectorAll('.v-services-menu, .v-location-menu').forEach(item => {
       item.classList.remove('active');
       item.querySelector('button')?.setAttribute('aria-expanded', 'false');
     });
   };
   menuButton?.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', String(open));
+    setMenuState(!menu.classList.contains('open'));
   });
   document.querySelectorAll('.v-services-menu > button, .v-location-menu > button').forEach(button => {
     button.addEventListener('click', () => {
@@ -44,6 +48,9 @@
       menuButton?.focus();
     }
   });
+  addEventListener('resize', () => {
+    if (innerWidth > 920 && menu?.classList.contains('open')) closeMenus();
+  }, {passive:true});
 
   const tabs = [...document.querySelectorAll('[data-goal]')];
   const selectGoal = tab => {

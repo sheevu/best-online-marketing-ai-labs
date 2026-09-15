@@ -7,6 +7,9 @@ test("production HTML ships native interactions and no React hydration", async (
   assert.doesNotMatch(html, /framework-.*\.js|__vite_rsc|rel="stylesheet"|\/_vinext\/image/);
   assert.match(html, /<style>/);
   assert.match(html, /<script src="\/assets\/site-[a-f0-9]+\.js" defer/);
+  assert.match(html, /<meta name="yandex-verification" content="796e217f3b74c89f"/);
+  assert.match(html, /data-clarity-script="true"/);
+  assert.match(html, /https:\/\/www\.clarity\.ms\/tag\//);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /loading="eager"[^>]*fetchPriority="high"/i);
   const llms = await readFile(new URL("../public/llms.txt", import.meta.url), "utf8");

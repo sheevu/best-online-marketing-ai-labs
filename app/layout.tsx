@@ -58,6 +58,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E",
+    other: {
+      "yandex-verification": "796e217f3b74c89f",
+    },
   },
   other: { "geo.region": "IN-UP", "geo.placename": "Lucknow" },
   manifest: "/site.webmanifest",
@@ -75,6 +78,18 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-IN">
+      <head>
+        <script
+          data-clarity-script="true"
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "yihvqld983");`,
+          }}
+        />
+      </head>
       <body>
         {children}
         <script src="/site.js" defer data-site-script="true" />

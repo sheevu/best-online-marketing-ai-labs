@@ -2140,6 +2140,15 @@ footer {
   width: 22px;
   height: 22px;
 }
+.v-menu .menu-close-icon {
+  display: none;
+}
+.v-menu[aria-expanded="true"] .menu-open-icon {
+  display: none;
+}
+.v-menu[aria-expanded="true"] .menu-close-icon {
+  display: block;
+}
 .v-hero-shell {
   padding: 18px 5.5vw 42px;
   position: relative;
@@ -6893,7 +6902,6 @@ footer {
 .v-product-dots button.active { width: 42px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-
 /* 2026-09-14 responsive recovery layer */
 html, body {
   max-width: 100%;
@@ -7072,5 +7080,161 @@ button, a {
   .service-related-arrow,
   .city-service-catalogue-grid b {
     display: none;
+  }
+}
+
+/* Keep the complete navigation usable on portrait tablets. */
+@media (min-width: 781px) and (max-width: 920px) {
+  html.menu-is-open {
+    overflow: hidden;
+  }
+  .v-topline {
+    justify-content: center;
+    min-height: 32px;
+    padding: 7px 15px;
+    text-align: center;
+  }
+  .v-topline > div {
+    display: none;
+  }
+  .v-nav {
+    height: 70px;
+    padding: 0 16px;
+  }
+  .v-brand small {
+    display: block;
+  }
+  .nav-cta {
+    display: none;
+  }
+  .v-menu {
+    display: flex;
+  }
+  .v-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 12px;
+    right: 12px;
+    display: flex;
+    max-height: calc(100dvh - 122px);
+    margin: 0;
+    padding: 13px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    border-radius: 22px;
+    background: #fffdf9;
+    box-shadow: 0 25px 65px #25172f38;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.985);
+  }
+  .v-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .v-links > a,
+  .v-location-menu > button,
+  .v-services-menu > button {
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    justify-content: space-between;
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+  .v-location-menu,
+  .v-services-menu {
+    position: static;
+  }
+  .v-location-panel,
+  .v-services-panel {
+    position: static;
+    display: none;
+    width: auto;
+    margin-top: 4px;
+    padding: 5px;
+    border: 0;
+    border-radius: 16px;
+    background: #f7f2ff;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .v-location-menu.active .v-location-panel,
+  .v-services-menu.active .v-services-panel {
+    display: block;
+    transform: none;
+  }
+  .v-mobile-audit {
+    display: flex !important;
+    margin-top: 5px;
+    background: #171527 !important;
+    color: #fff !important;
+  }
+}
+
+@media (max-width: 780px) {
+  html.menu-is-open {
+    overflow: hidden;
+  }
+  .v-links {
+    max-height: calc(100dvh - 118px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    gap: 4px;
+  }
+  .v-links > a,
+  .v-location-menu > button,
+  .v-services-menu > button {
+    min-height: 48px;
+    height: auto;
+    padding-block: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) {
+  .v-topline span {
+    font-size: 8px;
+    line-height: 1.35;
+  }
+  .v-nav {
+    padding-inline: 12px;
+  }
+  .v-brand {
+    gap: 8px;
+    font-size: 11px;
+  }
+  .v-brand small {
+    font-size: 5.5px;
+  }
+  .v-logo {
+    width: 36px;
+    height: 36px;
+  }
+  .v-links {
+    left: 8px;
+    right: 8px;
+  }
+  .v-location-panel > a,
+  .v-services-panel > a {
+    grid-template-columns: 34px minmax(0, 1fr) 16px;
+    gap: 8px;
+    padding: 10px 8px;
+  }
+  .v-location-panel > a > svg:first-child,
+  .v-services-panel > a > svg:first-child {
+    width: 34px;
+    height: 34px;
+    padding: 8px;
   }
 }
