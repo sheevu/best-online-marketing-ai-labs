@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { Buildings, ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
 import { cities, cityBySlug } from "../../../lib/cities";
-import { cityServicePath } from "../../../lib/city-service-page";
-import { serviceCatalog } from "../../../lib/service-catalog";
 import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, STARTING_PRICE_INR, WHATSAPP_URL } from "../../../lib/site";
 
 const wa = WHATSAPP_URL;
@@ -67,7 +65,7 @@ export async function generateMetadata({
   if (!c) return {};
   const title = fittedTitle(c.title, c.name),
     description = fittedMeta(c.meta),
-    url = `/digital-marketing-services/${c.slug}`;
+    url = `/digital-marketing-services/uttar-pradesh/${c.slug}`;
   return {
     title,
     description,
@@ -93,7 +91,7 @@ export default async function CityPage({
   const { city } = await params;
   const c = cityBySlug(city);
   if (!c) notFound();
-  const url = absoluteUrl(`/digital-marketing-services/${c.slug}`);
+  const url = absoluteUrl(`/digital-marketing-services/uttar-pradesh/${c.slug}`);
   const cityIndex = Math.max(
     0,
     cities.findIndex((x) => x.slug === c.slug),
@@ -132,6 +130,15 @@ export default async function CityPage({
       acceptedAnswer: { "@type": "Answer", text: a },
     })),
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: "Uttar Pradesh cities", item: absoluteUrl("/digital-marketing-services/uttar-pradesh") },
+      { "@type": "ListItem", position: 3, name: c.name, item: url },
+    ],
+  };
   return (
     <main className="city-page area-page">
       <script
@@ -141,6 +148,10 @@ export default async function CityPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">
@@ -265,23 +276,25 @@ export default async function CityPage({
           })}
         </div>
       </section>
-      <section className="city-service-catalogue">
+      <section className="city-core-services">
         <div className="area-section-title">
-          <p className="section-kicker">FULL SERVICE CATALOGUE FOR {c.name.toUpperCase()}</p>
-          <h2>Explore every service with a dedicated {c.name} page.</h2>
+          <p className="section-kicker">CONNECTED SERVICES FOR {c.name.toUpperCase()}</p>
+          <h2>Choose the service that matches your immediate goal.</h2>
           <p>
-            Each service below has its own city-specific page with scope,
-            deliverables, search context and a practical starting point.
+            These core service guides explain scope and deliverables once. This
+            city hub adds the local business context without duplicating dozens
+            of near-identical service pages.
           </p>
         </div>
-        <div className="city-service-catalogue-grid">
-          {serviceCatalog.map((service, i) => (
-            <a key={service.slug} href={cityServicePath(service.slug, c.slug)}>
-              <span>{String(i + 1).padStart(2, "0")}</span>
-              <strong>{service.name}</strong>
-              <b>↗</b>
+        <div className="city-core-services-grid">
+          {Object.entries(serviceHref).map(([name, href], i) => {
+            const Icon = cityIcons[i % cityIcons.length];
+            return <a key={name} href={href}>
+              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
+              <strong>{name}</strong>
+              <b aria-hidden="true">↗</b>
             </a>
-          ))}
+          })}
         </div>
       </section>
       <section className="area-section choose">

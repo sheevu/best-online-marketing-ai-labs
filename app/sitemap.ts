@@ -44,43 +44,35 @@ const trustPaths = [
   "/refund-policy",
 ];
 
-const LAST_MODIFIED_DATE = new Date("2026-09-11");
-
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "weekly",
       priority: 1,
     },
     ...servicePaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     })),
     ...catalogServicePaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...localityPaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
     ...cityPaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
     ...trustPaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: LAST_MODIFIED_DATE,
       changeFrequency: "monthly" as const,
       priority: path === "/about-sheevum-goel" ? 0.7 : 0.5,
     })),

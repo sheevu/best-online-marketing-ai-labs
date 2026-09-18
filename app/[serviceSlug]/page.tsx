@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
 import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
-import { cities } from "../lib/cities";
-import { cityServicePath } from "../lib/city-service-page";
 import {
   activeServiceCatalog,
   serviceBySlug,
@@ -40,17 +38,5 @@ export default async function ServicePage({
     .slice(0, 4)
     .map((service) => [service.name, "/" + service.slug] as [string, string]);
 
-  const cityLinks = cities.map(
-    (city) =>
-      [
-        `${entry.name.replace(/\\s+in Lucknow$/i, "")} in ${city.name}`,
-        cityServicePath(entry.slug, city.slug),
-      ] as [string, string],
-  );
-
-  return (
-    <ServiceLandingPage
-      data={{ ...servicePageFromCatalog(entry, related), cityLinks }}
-    />
-  );
+  return <ServiceLandingPage data={servicePageFromCatalog(entry, related)} />;
 }

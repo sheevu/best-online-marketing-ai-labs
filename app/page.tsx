@@ -2,11 +2,10 @@
 import Image from "./_components/ResponsiveImage";
 import {
   ArrowRight,
+  ArrowLeft,
   ArrowUpRight,
   Browsers,
   CaretDown,
-  CaretLeft,
-  CaretRight,
   ChartLineUp,
   CheckCircle,
   GlobeHemisphereWest,
@@ -34,8 +33,10 @@ import {
   WHATSAPP_URL,
 } from "./lib/site";
 import { serviceCatalog } from "./lib/service-catalog";
+import { cities } from "./lib/cities";
 
 const wa = WHATSAPP_URL;
+const productIcons = [Target, Sparkle, WhatsappLogo, ChartLineUp, Lightning, Robot, Browsers, MapPin];
 const services = [
   {
     title: "Own local search",
@@ -187,6 +188,22 @@ const goals = {
   },
 };
 const faqs = [
+  [
+    "Which is the best digital marketing agency in Lucknow for small businesses?",
+    "The best fit is an agency that understands local demand, explains scope clearly, measures qualified enquiries and leaves the business owning its website, content and data. Sudarshan AI Labs is built around those priorities for Lucknow MSMEs.",
+  ],
+  [
+    "What should you look for before hiring a digital marketing agency in Lucknow?",
+    "Check the agency's real business identity, local knowledge, service ownership, reporting method, mobile performance and willingness to explain limits. Ask for evidence relevant to your category instead of relying on broad ranking or revenue claims.",
+  ],
+  [
+    "How much do digital marketing services cost in Lucknow?",
+    "Cost depends on the channels, creative workload, ad budget, website scope and follow-up systems involved. We publish starting prices for planning and confirm the final scope in writing after a short audit.",
+  ],
+  [
+    "How does AI automation improve digital marketing results for small businesses?",
+    "AI can reduce repetitive work such as lead sorting, common responses, content repurposing and reporting. It works best with clear human review, consent-based messaging and a defined handover path.",
+  ],
   [
     "What makes your Lucknow marketing approach different?",
     "We connect local search, content, websites, advertising and follow-up around one customer journey. The plan is shaped around your category, locality and ability to serve new enquiries.",
@@ -390,7 +407,7 @@ export default function Home() {
                 Locations <CaretDown weight="bold" />
               </button>
               <div className="v-location-panel">
-                <a
+                <a className="v-location-featured"
                   href="/digital-marketing-services"
                 >
                   <MapPin weight="duotone" />
@@ -400,7 +417,7 @@ export default function Home() {
                   </span>
                   <ArrowUpRight />
                 </a>
-                <a
+                <a className="v-location-featured"
                   href="/digital-marketing-services/uttar-pradesh"
                 >
                   <GlobeHemisphereWest weight="duotone" />
@@ -410,6 +427,15 @@ export default function Home() {
                   </span>
                   <ArrowUpRight />
                 </a>
+                <div className="v-city-menu-grid" aria-label="Top 20 Uttar Pradesh city pages">
+                  {cities.map((city, index) => (
+                    <a href={`/digital-marketing-services/uttar-pradesh/${city.slug}`} key={city.slug}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      {city.name}
+                      <ArrowUpRight aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
             <a href="/about-sheevum-goel">
@@ -443,7 +469,7 @@ export default function Home() {
       <section className="v-hero-shell">
         <div className="v-aurora a-one" />
         <div className="v-aurora a-two" />
-        <div className="v-hero-card">
+        <div className="v-hero-card" data-reveal>
           <div className="v-hero-copy">
             <div className="v-proof">
               <span>
@@ -587,7 +613,7 @@ export default function Home() {
         </div>
         <div className="v-service-grid">
           {services.map(({ title, text, tag, href, Icon, theme }, i) => (
-            <article className={`v-service ${theme}`} key={title}>
+            <article className={`v-service ${theme}`} key={title} data-reveal>
               <div className="v-service-top">
                 <span>0{i + 1}</span>
                 <Icon weight="duotone" />
@@ -621,12 +647,15 @@ export default function Home() {
           </div>
           <div className="v-slider-controls">
             <button
+              className="v-slider-arrow v-slider-arrow-prev"
               aria-label="View previous products"
             >
-              <CaretLeft weight="bold" />
+              <ArrowLeft weight="bold" />
+              <span>Previous</span>
             </button>
-            <button aria-label="View next products">
-              <CaretRight weight="bold" />
+            <button className="v-slider-arrow v-slider-arrow-next" aria-label="View next products">
+              <span>Next</span>
+              <ArrowRight weight="bold" />
             </button>
             <button
               className="v-slider-pause"
@@ -643,16 +672,18 @@ export default function Home() {
            aria-label="Sudarshan AI Labs product plans"
           aria-live="off"
         >
-          {products.map((product, index) => (
+          {products.map((product, index) => {
+            const ProductIcon = productIcons[index % productIcons.length];
+            return (
             <article
               className={`v-product-card ${index === productPage ? "is-current" : ""}`}
               key={product.name}
+              data-reveal
             >
-              <div className="v-product-number">
-                {String(index + 1).padStart(2, "0")}
+              <div className="v-product-icon" aria-hidden="true">
+                <ProductIcon weight="duotone" />
               </div>
-              <div className="glossy-icon" aria-hidden="true"><Sparkle weight="duotone" /></div>
-              <span>{product.tag}</span>
+              <span>{String(index + 1).padStart(2, "0")} · {product.tag}</span>
               <h3>{product.name}</h3>
               <p>{product.text}</p>
               <div className="v-product-price">
@@ -665,7 +696,8 @@ export default function Home() {
                 Discuss {product.name} <ArrowUpRight weight="bold" />
               </a>
             </article>
-          ))}
+            );
+          })}
         </div>
         <div className="v-product-dots" aria-label="Choose a product">
           {products.map((product, index) => (
@@ -744,7 +776,7 @@ export default function Home() {
           </p>
         </div>
         <div className="method-cards">
-          <article>
+          <article data-reveal>
             <span className="glossy-icon" aria-hidden="true"><CheckCircle weight="duotone" /></span>
             <span className="card-number">01</span>
             <span>BUILD</span>
@@ -754,7 +786,7 @@ export default function Home() {
               connected customer channels.
             </p>
           </article>
-          <article>
+          <article data-reveal>
             <span className="glossy-icon" aria-hidden="true"><ChartLineUp weight="duotone" /></span>
             <span className="card-number">02</span>
             <span>AUTOMATE</span>
@@ -764,7 +796,7 @@ export default function Home() {
               and recurring activity.
             </p>
           </article>
-          <article>
+          <article data-reveal>
             <span className="glossy-icon" aria-hidden="true"><MagnifyingGlass weight="duotone" /></span>
             <span className="card-number">03</span>
             <span>TRANSFER</span>

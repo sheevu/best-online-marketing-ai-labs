@@ -139,11 +139,10 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.equal(sitemap.headers.get("x-robots-tag"), "all");
   const sitemapXml = await sitemap.text();
   assert.match(sitemapXml, /https:\/\/sudarshan-ai\.com\/digital-marketing-services(?:<|&lt;)/i);
-  assert.match(sitemapXml, /<lastmod>2026-09-11/i);
   const locCount = (sitemapXml.match(/<loc>/g) ?? []).length;
   const lastmodCount = (sitemapXml.match(/<lastmod>/g) ?? []).length;
   assert.ok(locCount > 0, "sitemap must contain URLs");
-  assert.equal(locCount, lastmodCount, "every loc must have a corresponding lastmod tag");
+  assert.equal(lastmodCount, 0, "sitemap must not publish a fabricated shared last-modified date");
   assert.doesNotMatch(sitemapXml, /best-digital-marketing-agency-lucknow/i);
   assert.doesNotMatch(sitemapXml, /local-seo-services/i);
   assert.doesNotMatch(sitemapXml, /seo-services-search-optimization/i);
@@ -154,6 +153,7 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.doesNotMatch(sitemapXml, /youtube-shorts-short-video-marketing/i);
   assert.doesNotMatch(sitemapXml, /video-content-repurposing/i);
   assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow/i);
+  assert.doesNotMatch(sitemapXml, /google-ads-services\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /https:\/\/www\.sudarshan-ai\.com/i);
 
   // Consolidated SEO redirects
