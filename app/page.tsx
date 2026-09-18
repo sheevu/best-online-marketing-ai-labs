@@ -429,7 +429,7 @@ export default function Home() {
                 </a>
                 <div className="v-city-menu-grid" aria-label="Top 20 Uttar Pradesh city pages">
                   {cities.map((city, index) => (
-                    <a href={`/digital-marketing-services/uttar-pradesh/${city.slug}`} key={city.slug}>
+                    <a href={city.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${city.slug}`} key={city.slug}>
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       {city.name}
                       <ArrowUpRight aria-hidden="true" />

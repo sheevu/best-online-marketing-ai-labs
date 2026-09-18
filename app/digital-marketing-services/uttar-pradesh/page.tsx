@@ -19,7 +19,7 @@ export default function UttarPradeshCities() {
   ] };
   return (
     <main className="areas-index city-index">
-      <StructuredData data={{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${absoluteUrl("/digital-marketing-services/uttar-pradesh")}#page`, url: absoluteUrl("/digital-marketing-services/uttar-pradesh"), name: "Digital Marketing Services Across Uttar Pradesh", about: { "@id": ORGANIZATION_ID }, hasPart: cities.map((city) => ({ "@type": "WebPage", name: city.h1, url: absoluteUrl(`/digital-marketing-services/uttar-pradesh/${city.slug}`) })) }} />
+      <StructuredData data={{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${absoluteUrl("/digital-marketing-services/uttar-pradesh")}#page`, url: absoluteUrl("/digital-marketing-services/uttar-pradesh"), name: "Digital Marketing Services Across Uttar Pradesh", about: { "@id": ORGANIZATION_ID }, hasPart: cities.map((city) => ({ "@type": "WebPage", name: city.h1, url: absoluteUrl(city.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${city.slug}`) })) }} />
       <StructuredData data={breadcrumbSchema} />
       <nav className="area-nav">
         <a className="brand" href="/">
@@ -53,7 +53,7 @@ export default function UttarPradeshCities() {
         <nav className="up-city-grid" aria-label="Top Uttar Pradesh cities">
           {cities.map((city, index) => {
             const Icon = cityIcons[index % cityIcons.length];
-            return <a href={`/digital-marketing-services/uttar-pradesh/${city.slug}`} key={city.slug}>
+            return <a href={city.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${city.slug}`} key={city.slug}>
               <span className="up-city-icon" aria-hidden="true"><Icon weight="duotone" /></span>
               <small>{String(index + 1).padStart(2, "0")} · Uttar Pradesh</small>
               <h2>{city.name}</h2>

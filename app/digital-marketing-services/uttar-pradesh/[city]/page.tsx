@@ -65,7 +65,7 @@ export async function generateMetadata({
   if (!c) return {};
   const title = fittedTitle(c.title, c.name),
     description = fittedMeta(c.meta),
-    url = `/digital-marketing-services/uttar-pradesh/${c.slug}`;
+    url = c.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${c.slug}`;
   return {
     title,
     description,
@@ -91,7 +91,7 @@ export default async function CityPage({
   const { city } = await params;
   const c = cityBySlug(city);
   if (!c) notFound();
-  const url = absoluteUrl(`/digital-marketing-services/uttar-pradesh/${c.slug}`);
+  const url = absoluteUrl(c.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${c.slug}`);
   const cityIndex = Math.max(
     0,
     cities.findIndex((x) => x.slug === c.slug),

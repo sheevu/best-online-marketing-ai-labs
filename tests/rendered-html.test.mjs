@@ -153,6 +153,8 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.doesNotMatch(sitemapXml, /youtube-shorts-short-video-marketing/i);
   assert.doesNotMatch(sitemapXml, /video-content-repurposing/i);
   assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow/i);
+  assert.match(sitemapXml, /digital-marketing-services\/kanpur/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/uttar-pradesh\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /google-ads-services\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /https:\/\/www\.sudarshan-ai\.com/i);
 

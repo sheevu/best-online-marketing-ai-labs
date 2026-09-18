@@ -60,6 +60,7 @@ export const metadata: Metadata = {
     google: "oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E",
     other: {
       "yandex-verification": "796e217f3b74c89f",
+      "p:domain_verify": "2b2673b8fc2813fbe71cd06db26c491a",
     },
   },
   other: { "geo.region": "IN-UP", "geo.placename": "Lucknow" },

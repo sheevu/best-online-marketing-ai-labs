@@ -34,7 +34,9 @@ const catalogServicePaths = serviceCatalog
   .map((service) => "/" + service.slug);
 
 const localityPaths = areas.map((area) => `/digital-marketing-services/${area.slug}`);
-const cityPaths = cities.map((city) => `/digital-marketing-services/uttar-pradesh/${city.slug}`);
+const cityPaths = cities
+  .filter((city) => city.slug !== "lucknow")
+  .map((city) => `/digital-marketing-services/${city.slug}`);
 
 const trustPaths = [
   "/contact",
