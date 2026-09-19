@@ -1,4 +1,5 @@
  
+import type { Metadata } from "next";
 import Image from "./_components/ResponsiveImage";
 import {
   ArrowRight,
@@ -34,6 +35,8 @@ import {
 } from "./lib/site";
 import { serviceCatalog } from "./lib/service-catalog";
 import { cities } from "./lib/cities";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const wa = WHATSAPP_URL;
 const productIcons = [Target, Sparkle, WhatsappLogo, ChartLineUp, Lightning, Robot, Browsers, MapPin];
