@@ -101,14 +101,16 @@ const worker = {
       if (!env.ASSETS || !env.IMAGES) {
         return new Response("Image optimization unavailable", { status: 503 });
       }
+      const imageBinding = env.IMAGES;
+      const assetBinding = env.ASSETS;
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(
         request,
         {
           fetchAsset: (path) =>
-            env.ASSETS.fetch(new Request(new URL(path, request.url))),
+            assetBinding.fetch(new Request(new URL(path, request.url))),
           transformImage: async (body, { width, format, quality }) => {
-            const result = await env.IMAGES.input(body)
+            const result = await imageBinding.input(body)
               .transform(width > 0 ? { width } : {})
               .output({ format, quality });
             return result.response();
