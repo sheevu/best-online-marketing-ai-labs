@@ -153,9 +153,10 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.doesNotMatch(sitemapXml, /youtube-shorts-short-video-marketing/i);
   assert.doesNotMatch(sitemapXml, /video-content-repurposing/i);
   assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow/i);
-  assert.match(sitemapXml, /digital-marketing-services\/kanpur/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /digital-marketing-services\/uttar-pradesh\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /google-ads-services\/kanpur/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/hazratganj/i);
   assert.doesNotMatch(sitemapXml, /https:\/\/www\.sudarshan-ai\.com/i);
 
   // Consolidated SEO redirects
@@ -307,4 +308,25 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
     nestedCity.headers.get("location"),
     "https://sudarshan-ai.com/digital-marketing-services/kanpur",
   );
+});
+
+test("sitemap only includes final indexable self-canonical routes", async () => {
+  const { default: worker } = await import("../dist/server/index.js");
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const ctx = { waitUntil() {}, passThroughOnException() {} };
+  const sitemap = await worker.fetch(new Request("https://sudarshan-ai.com/sitemap.xml"), env, ctx);
+  assert.equal(sitemap.status, 200);
+  const xml = await sitemap.text();
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  assert.ok(urls.length > 0);
+  for (const url of urls) {
+    const response = await worker.fetch(new Request(url, { headers: { accept: "text/html" } }), env, ctx);
+    assert.equal(response.status, 200, `sitemap destination must not redirect: ${url}`);
+    const html = await response.text();
+    assert.doesNotMatch(html, /<meta[^>]+name="robots"[^>]+content="[^"]*noindex/i, `noindex in sitemap: ${url}`);
+    const expected = url.endsWith("/") ? url : url + "/";
+    const canonicals = [...html.matchAll(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(canonicals.length, 1, `one canonical required: ${url}`);
+    assert.equal(new URL(canonicals[0]).pathname.replace(/\/$/, "") || "/", new URL(expected).pathname.replace(/\/$/, "") || "/", `canonical mismatch: ${url}`);
+  }
 });
