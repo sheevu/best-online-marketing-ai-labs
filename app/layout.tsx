@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "hindi crm",
     "AI agents development",
   ],
-  alternates: { canonical: "/" },
   openGraph: {
     title: "Sudarshan AI Labs | AI & Digital Growth for Lucknow MSMEs",
     description:
