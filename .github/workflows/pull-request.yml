@@ -1,0 +1,38 @@
+name: Pull request quality checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install exact dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Production build
+        run: npm run build
+      - name: SEO, redirect and rendered HTML regression tests
+        run: node --test tests/rendered-html.test.mjs
+      - name: Upload inspectable build artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-production-dist
+          path: dist
+          retention-days: 3
+          if-no-files-found: ignore
