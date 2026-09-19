@@ -9,7 +9,7 @@ import handler from "vinext/server/app-router-entry";
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
-  IMAGES: {
+  IMAGES?: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
         output(options: {
@@ -98,6 +98,9 @@ const worker = {
     }
 
     if (url.pathname === "/_vinext/image") {
+      if (!env.ASSETS || !env.IMAGES) {
+        return new Response("Image optimization unavailable", { status: 503 });
+      }
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(
         request,
