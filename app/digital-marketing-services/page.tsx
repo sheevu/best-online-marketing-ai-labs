@@ -2,9 +2,9 @@
 import type { Metadata } from "next";
 import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import { serviceCatalog } from "../lib/service-catalog";
-import { DUNS_NUMBER, LEGAL_NAME, ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, STARTING_PRICE_INR, WHATSAPP_URL } from "../lib/site";
+import { PRIMARY_ADDRESS, WHATSAPP_URL } from "../lib/site";
+import { SITE, buildServicePageSchema } from "../lib/schema";
 
-const base = SITE_URL;
 const wa = WHATSAPP_URL;
 
 export const metadata: Metadata = {
@@ -101,63 +101,15 @@ const faqs = [
   ],
 ] as const;
 
-const businessSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": ORGANIZATION_ID,
-  name: "Sudarshan AI Labs",
-  legalName: LEGAL_NAME,
-  duns: DUNS_NUMBER,
-  url: `${base}/digital-marketing-services`,
-  telephone: "+91-9336299912",
-  email: "sudarshanailabs@gmail.com",
+const digitalMarketingSchema = buildServicePageSchema({
+  url: `${SITE}/digital-marketing-services`,
+  name: "Digital Marketing Services in Lucknow",
   description:
-    "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "C-469/C, Indira Nagar, Near HAL",
-    addressLocality: "Lucknow",
-    addressRegion: "Uttar Pradesh",
-    postalCode: "226016",
-    addressCountry: "IN",
-  },
-  areaServed: { "@type": "City", name: "Lucknow" },
-  priceRange: "Services from ₹89",
-  founder: {
-    "@type": "Person",
-    name: "Sheevum Goel",
-    url: `${base}/about-sheevum-goel`,
-  },
-  knowsAbout: services.map((service) => service.title),
-  makesOffer: services.map((service) => ({
-    "@type": "Offer",
-    price: STARTING_PRICE_INR,
-    priceCurrency: "INR",
-    itemOffered: { "@type": "Service", name: service.title },
-  })),
-};
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map(([question, answer]) => ({
-    "@type": "Question",
-    name: question,
-    acceptedAnswer: { "@type": "Answer", text: answer },
-  })),
-};
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: base },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Digital Marketing Services in Lucknow",
-      item: `${base}/digital-marketing-services`,
-    },
-  ],
-};
+    "Local SEO, Google Maps, websites, social media, paid ads and automation for Lucknow businesses.",
+  parents: [],
+  startingPrice: 89,
+  faqs,
+});
 
 export default function LucknowServices() {
   return (
@@ -165,7 +117,7 @@ export default function LucknowServices() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([businessSchema, faqSchema, breadcrumbSchema]),
+          __html: JSON.stringify(digitalMarketingSchema),
         }}
       />
       <nav className="area-nav" aria-label="Primary navigation">

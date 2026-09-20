@@ -12,13 +12,11 @@ import {
 import {
   absoluteUrl,
   CONTACT_EMAIL,
-  CONTACT_PHONE,
   coreServiceLinks,
-  ORGANIZATION_ID,
   PRIMARY_ADDRESS,
-  STARTING_PRICE_INR,
   WHATSAPP_URL,
 } from "../lib/site";
+import { SITE, buildServicePageSchema } from "../lib/schema";
 
 type Item = { title: string; text: string };
 const outcomeIcons = [Target, MagnifyingGlass, ChartLineUp, Sparkle];
@@ -92,52 +90,26 @@ export function serviceMetadata(data: ServicePageData): Metadata {
 
 export default function ServiceLandingPage({ data }: { data: ServicePageData }) {
   const url = absoluteUrl(`/${data.slug}`);
-  const areaServed = data.areaServed
-    ? [
-        { "@type": "City", name: data.areaServed },
-        { "@type": "State", name: "Uttar Pradesh" },
-        { "@type": "Country", name: "India" },
-      ]
-    : [
-        { "@type": "City", name: "Lucknow" },
-        { "@type": "State", name: "Uttar Pradesh" },
-        { "@type": "Country", name: "India" },
-      ];
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${url}#service`,
-    name: data.h1,
+  const schema = buildServicePageSchema({
     url,
+    name: data.h1,
     description: data.description,
-    provider: { "@id": ORGANIZATION_ID },
-    areaServed,
-    availableChannel: {
-      "@type": "ServiceChannel",
-      servicePhone: CONTACT_PHONE,
-      serviceUrl: url,
-    },
-    offers: {
-      "@type": "Offer",
-      price: STARTING_PRICE_INR,
-      priceCurrency: "INR",
-      description: "Services from ₹89; final pricing depends on agreed scope.",
-    },
-  };
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
-      { "@type": "ListItem", position: 2, name: data.h1, item: url },
+    areaName: data.areaServed || "Lucknow",
+    parents: [
+      {
+        name: "Digital Marketing Services",
+        item: `${SITE}/digital-marketing-services`,
+      },
     ],
-  };
+    startingPrice: 89,
+    faqs: data.faqs,
+  });
 
   return (
     <main className="service-owner">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceSchema, breadcrumbSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <nav className="area-nav" aria-label="Service navigation">
         <Link className="brand" href="/">

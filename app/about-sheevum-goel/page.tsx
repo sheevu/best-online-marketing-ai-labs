@@ -22,7 +22,8 @@ import {
   Target,
   XLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import { ORGANIZATION_ID, SITE_URL } from "../lib/site";
+import { SITE_URL } from "../lib/site";
+import { sharedWebsite, sharedOrganization, sharedFounder, IDS, SITE } from "../lib/schema";
 
 const profileUrl = `${SITE_URL}/about-sheevum-goel`;
 const links = {
@@ -98,35 +99,43 @@ export const metadata: Metadata = {
 
 const profileSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "@id": profileUrl,
-  url: profileUrl,
-  name: "About Sheevum Goel - Entrepreneur and Founder of Sudarshan AI Labs",
-  dateModified: "2026-08-20",
-  mainEntity: {
-    "@type": "Person",
-    "@id": `${profileUrl}#sheevum-goel`,
-    name: "Sheevum Goel",
-    alternateName: "@sheevum",
-    url: links.portfolio,
-    jobTitle: "Entrepreneur, AI Consultant and Founder of Sudarshan AI Labs",
-    description:
-      "Lucknow-based entrepreneur building practical AI, digital marketing, web development and business automation solutions for Indian MSMEs and startups.",
-    homeLocation: { "@type": "Place", name: "Lucknow, Uttar Pradesh, India" },
-    knowsAbout: [
-      "Artificial intelligence",
-      "Generative AI",
-      "AI automation",
-      "Digital marketing",
-      "Local SEO",
-      "Web development",
-      "No-code technology",
-      "FMCG growth",
-      "MSME digitisation",
-    ],
-    worksFor: { "@id": ORGANIZATION_ID },
-    sameAs: Object.values(links),
-  },
+  "@graph": [
+    sharedWebsite(),
+    sharedOrganization(),
+    {
+      "@type": "ProfilePage",
+      "@id": `${profileUrl}#webpage`,
+      url: profileUrl,
+      name: "Sheevum Goel | Sudarshan AI Labs Founder",
+      description:
+        "Founder profile of Sheevum Goel, entrepreneur and AI consultant based in Lucknow.",
+      inLanguage: "en-IN",
+      isPartOf: { "@id": IDS.website },
+      publisher: { "@id": IDS.organization },
+      breadcrumb: { "@id": `${profileUrl}#breadcrumb` },
+      mainEntity: { "@id": IDS.founder },
+      dateModified: "2026-08-20T00:00:00+00:00",
+    },
+    sharedFounder(),
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${profileUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${SITE}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Sheevum Goel",
+          item: profileUrl,
+        },
+      ],
+    },
+  ],
 };
 
 const expertise = [

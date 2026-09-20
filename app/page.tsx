@@ -25,14 +25,18 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import {
   DUNS_NUMBER,
-  LEGAL_NAME,
   MAP_URL,
-  ORGANIZATION_ID,
   PRIMARY_ADDRESS,
   SITE_URL,
-  STARTING_PRICE_INR,
   WHATSAPP_URL,
 } from "./lib/site";
+import {
+  sharedWebsite,
+  sharedOrganization,
+  STARTER_OFFERS,
+  starterService,
+  IDS,
+} from "./lib/schema";
 import { serviceCatalog } from "./lib/service-catalog";
 import { cities } from "./lib/cities";
 
@@ -296,155 +300,96 @@ const faqs = [
     "AI enhances and accelerates marketing execution—content creation, campaign optimization, customer communication—but still requires human strategy, creative direction, local market context, and business alignment to achieve optimal results.",
   ],
 ];
-const schema = {
+const homeSchema = {
   "@context": "https://schema.org",
-  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
-  "@id": ORGANIZATION_ID,
-  name: "Sudarshan AI Labs",
-  legalName: LEGAL_NAME,
-  alternateName: "NAVA NETRA NEURAL SUDARSHAN AI LABS PVT. LTD.",
-  duns: DUNS_NUMBER,
-  url: SITE_URL,
-  logo: `${SITE_URL}/favicon.svg`,
-  image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
-  telephone: "+91-9336299912",
-  email: "sudarshanailabs@gmail.com",
-  description:
-    "Lucknow-based AI agents and digital marketing agency helping MSMEs improve local visibility, conversion, Hindi CRM and business automation.",
-  priceRange: "Services from ₹89",
-  currenciesAccepted: "INR",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "C-469/C, Indira Nagar, Near HAL",
-    addressLocality: "Lucknow",
-    addressRegion: "Uttar Pradesh",
-    postalCode: "226016",
-    addressCountry: "IN",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 26.8824,
-    longitude: 80.9916,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
-    opens: "09:00",
-    closes: "19:00",
-  },
-  areaServed: [
-    { "@type": "City", name: "Lucknow" },
-    { "@type": "State", name: "Uttar Pradesh" },
-    { "@type": "Country", name: "India" },
-  ],
-  serviceType: [
-    "AI Agents Development",
-    "Digital Marketing Services",
-    "Local SEO Optimization",
-    "Hindi CRM Software",
-  ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Digital Marketing & AI Growth Services",
-    itemListElement: products.map((product) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: product.name,
-        description: product.text,
+  "@graph": [
+    {
+      ...sharedWebsite(),
+      description:
+        "AI agents, digital marketing, local SEO and business automation for Lucknow MSMEs.",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
       },
-      price: product.price.replace(/[^0-9]/g, "") || STARTING_PRICE_INR,
-      priceCurrency: "INR",
-    })),
-  },
-  founder: {
-    "@type": "Person",
-    "@id": `${SITE_URL}/about-sheevum-goel#sheevum-goel`,
-    name: "Sheevum Goel",
-    url: `${SITE_URL}/about-sheevum-goel`,
-    jobTitle: "Founder & AI Consultant",
-    sameAs: [
-      "https://www.linkedin.com/in/sheevumgoel",
-      "https://github.com/sheevu",
-      "https://x.com/sheevum",
-      "https://sheevumgoel.medium.com/",
-    ],
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+91-9336299912",
-    email: "sudarshanailabs@gmail.com",
-    contactType: "sales",
-    areaServed: "IN",
-    availableLanguage: ["English", "Hindi"],
-  },
-  sameAs: [
-    "https://in.linkedin.com/company/sudarshan-ai-labs",
-    "https://www.facebook.com/sudarshanlabsinc/",
-    "https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==",
-    "https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited",
-    "https://www.falconebiz.com/company/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
-    "https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
-    "https://github.com/sheevu/NETRA-CRM-1",
-    "https://github.com/sheevu",
-    "https://www.instagram.com/surdarshanlabs",
-    "https://www.youtube.com/@sheevumgoel",
-    "https://pinterest.com/ailabslucknow",
-    "https://medium.com/@sheevumgoel",
+    },
+    {
+      ...sharedOrganization(),
+      alternateName: "NAVA NETRA NEURAL SUDARSHAN AI LABS PVT. LTD.",
+      duns: DUNS_NUMBER,
+      logo: `${SITE_URL}/favicon.svg`,
+      image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
+      priceRange: "Services from ₹89",
+      currenciesAccepted: "INR",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 26.8824,
+        longitude: 80.9916,
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "19:00",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+91-9336299912",
+        email: "sudarshanailabs@gmail.com",
+        contactType: "sales",
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi"],
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: `${SITE_URL}/`,
+      name: "Sudarshan AI Labs | AI & Digital Marketing Services in Lucknow",
+      description:
+        "Local SEO, websites, digital marketing, and AI automation for MSMEs in Lucknow.",
+      inLanguage: "en-IN",
+      isPartOf: { "@id": IDS.website },
+      publisher: { "@id": IDS.organization },
+      breadcrumb: { "@id": `${SITE_URL}/#breadcrumb` },
+      mainEntity: { "@id": IDS.organization },
+      mentions: STARTER_OFFERS.map((p) => ({
+        "@id": `${SITE_URL}/#service-${p.key}`,
+      })),
+    },
+    ...STARTER_OFFERS.map(starterService),
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: `${SITE_URL}/`,
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: faqs.map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    },
   ],
-};
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-  ],
-};
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map(([question, answer]) => ({
-    "@type": "Question",
-    name: question,
-    acceptedAnswer: { "@type": "Answer", text: answer },
-  })),
-};
-const serviceSchemas = services.map((service) => ({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: service.title,
-  description: service.text,
-  url: `${SITE_URL}${service.href}`,
-  provider: { "@id": ORGANIZATION_ID },
-  areaServed: { "@type": "City", name: "Lucknow" },
-  offers: {
-    "@type": "Offer",
-    price: STARTING_PRICE_INR,
-    priceCurrency: "INR",
-    description: "Services from ₹89; final pricing depends on agreed scope.",
-  },
-}));
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${SITE_URL}#website`,
-  url: SITE_URL,
-  name: "Sudarshan AI Labs",
-  description: "AI agents, digital marketing, local SEO and business automation for Lucknow MSMEs.",
-  publisher: { "@id": ORGANIZATION_ID },
-  inLanguage: "en-IN",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/?q={search_term_string}` },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default function Home() {
@@ -454,7 +399,7 @@ export default function Home() {
     <main id="top" className="v-home">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, websiteSchema, faqSchema, breadcrumbSchema, ...serviceSchemas]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
       <header className="v-site-header">
         <div className="v-topline">

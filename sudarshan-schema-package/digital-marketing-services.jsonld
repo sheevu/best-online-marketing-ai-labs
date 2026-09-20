@@ -1,0 +1,102 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://sudarshan-ai.com/#website",
+      "url": "https://sudarshan-ai.com/",
+      "name": "Sudarshan AI Labs",
+      "publisher": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sudarshan-ai.com/#organization",
+      "name": "Sudarshan AI Labs",
+      "legalName": "NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED",
+      "url": "https://sudarshan-ai.com/",
+      "description": "Lucknow-based digital marketing, web development and practical AI automation for MSMEs.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C-469/C, Indira Nagar, Near HAL",
+        "addressLocality": "Lucknow",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "226016",
+        "addressCountry": "IN"
+      },
+      "telephone": "+919336299912",
+      "email": "sudarshanailabs@gmail.com",
+      "founder": {
+        "@id": "https://sudarshan-ai.com/about-sheevum-goel#person"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Lucknow"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Uttar Pradesh"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sudarshan-ai.com/digital-marketing-services#webpage",
+      "url": "https://sudarshan-ai.com/digital-marketing-services",
+      "name": "Digital Marketing Services in Lucknow",
+      "description": "Local SEO, Google Maps, websites, social media, paid ads and automation for Lucknow businesses.",
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://sudarshan-ai.com/#website"
+      },
+      "publisher": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://sudarshan-ai.com/digital-marketing-services#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://sudarshan-ai.com/digital-marketing-services#service"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/digital-marketing-services#service",
+      "name": "Digital Marketing Services in Lucknow",
+      "description": "Local SEO, Google Maps, websites, social media, paid ads and automation for Lucknow businesses.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "url": "https://sudarshan-ai.com/digital-marketing-services",
+      "areaServed": {
+        "@type": "City",
+        "name": "Lucknow"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sudarshan-ai.com/digital-marketing-services#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sudarshan-ai.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Digital Marketing Services in Lucknow",
+          "item": "https://sudarshan-ai.com/digital-marketing-services"
+        }
+      ]
+    }
+  ]
+}

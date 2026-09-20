@@ -1,0 +1,369 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://sudarshan-ai.com/#website",
+      "url": "https://sudarshan-ai.com/",
+      "name": "Sudarshan AI Labs",
+      "publisher": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sudarshan-ai.com/#organization",
+      "name": "Sudarshan AI Labs",
+      "legalName": "NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED",
+      "url": "https://sudarshan-ai.com/",
+      "description": "Lucknow-based digital marketing, web development and practical AI automation for MSMEs.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C-469/C, Indira Nagar, Near HAL",
+        "addressLocality": "Lucknow",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "226016",
+        "addressCountry": "IN"
+      },
+      "telephone": "+919336299912",
+      "email": "sudarshanailabs@gmail.com",
+      "founder": {
+        "@id": "https://sudarshan-ai.com/about-sheevum-goel#person"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Lucknow"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Uttar Pradesh"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://sudarshan-ai.com/#webpage",
+      "url": "https://sudarshan-ai.com/",
+      "name": "Sudarshan AI Labs | AI & Digital Marketing Services in Lucknow",
+      "description": "Local SEO, websites, digital marketing, and AI automation for MSMEs in Lucknow.",
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@id": "https://sudarshan-ai.com/#website"
+      },
+      "publisher": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://sudarshan-ai.com/#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "mentions": [
+        {
+          "@id": "https://sudarshan-ai.com/#service-micro-growth-audit"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-swaraj-tech-pack"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-prarambh-kick-start-pack"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-udaan-vyapari-pack"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-raftaar-booster-pack"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-ai-chatbot-assistant"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-seo-content-boost"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-landing-page-lead-gen"
+        },
+        {
+          "@id": "https://sudarshan-ai.com/#service-website-launch-pack"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-micro-growth-audit",
+      "name": "Micro Growth Audit",
+      "description": "Digital visibility check and prioritized action plan for micro-businesses.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-micro-growth-audit-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 89; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 89,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-micro-growth-audit"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-swaraj-tech-pack",
+      "name": "Swaraj Tech Pack",
+      "description": "Digital launch pack for micro-businesses.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-swaraj-tech-pack-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 4900; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 4900,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-swaraj-tech-pack"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-prarambh-kick-start-pack",
+      "name": "Prarambh Kick-Start Pack",
+      "description": "WhatsApp Business, catalogue and digital onboarding essentials.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-prarambh-kick-start-pack-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 9500; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 9500,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-prarambh-kick-start-pack"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-udaan-vyapari-pack",
+      "name": "Udaan Vyapari Pack",
+      "description": "Digital marketing and lead organization for local merchants.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-udaan-vyapari-pack-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 14500; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 14500,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-udaan-vyapari-pack"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-raftaar-booster-pack",
+      "name": "Raftar Booster Pack",
+      "description": "Campaign support and lead generation workflows.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-raftaar-booster-pack-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 18500; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 18500,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-raftaar-booster-pack"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-ai-chatbot-assistant",
+      "name": "AI Chatbot & Assistant",
+      "description": "Customer-facing assistance and lead capture.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-ai-chatbot-assistant-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 24000; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 24000,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-ai-chatbot-assistant"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-seo-content-boost",
+      "name": "SEO & Content Boost",
+      "description": "SEO audit with content optimization.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-seo-content-boost-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 12500; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 12500,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-seo-content-boost"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-landing-page-lead-gen",
+      "name": "Landing Page Lead Gen",
+      "description": "Focused landing page for lead capture.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-landing-page-lead-gen-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 15000; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 15000,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-landing-page-lead-gen"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sudarshan-ai.com/#service-website-launch-pack",
+      "name": "Website Launch Pack",
+      "description": "Five-page website foundation with local SEO and branding essentials.",
+      "provider": {
+        "@id": "https://sudarshan-ai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "offers": {
+        "@type": "Offer",
+        "@id": "https://sudarshan-ai.com/#service-website-launch-pack-offer",
+        "url": "https://sudarshan-ai.com/",
+        "description": "Indicative starting price of INR 39000; final scope and payment terms agreed after review.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 39000,
+          "priceCurrency": "INR"
+        },
+        "offeredBy": {
+          "@id": "https://sudarshan-ai.com/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://sudarshan-ai.com/#service-website-launch-pack"
+        }
+      }
+    }
+  ]
+}
