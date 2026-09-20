@@ -127,8 +127,9 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
     ctx,
   );
   assert.equal(robots.status, 200);
-  assert.equal(robots.headers.get("x-robots-tag"), "all");
-  assert.match(await robots.text(), /Allow: \//i);
+  const robotsText = await robots.text();
+  assert.match(robotsText, /Allow: \//i);
+  assert.doesNotMatch(robotsText, /^Host:/im, "robots.txt must not contain deprecated Host directive ignored by Googlebot");
 
   const sitemap = await worker.fetch(
     new Request("http://localhost/sitemap.xml"),
