@@ -143,16 +143,41 @@
     setInterval(() => { if(visible && !paused && !hovering && !focused && !drag && !document.hidden) go(current + 1); }, 4300);
   }
 
-  // Founder content remains visible without JavaScript; reveal only below the fold.
+  // Founder content remains visible without JavaScript; reveal only below the fold with staggered entry.
   if (!reducedMotion.matches) {
     const items = [...document.querySelectorAll('[data-reveal]')];
     const below = items.filter(item => item.getBoundingClientRect().top >= innerHeight);
     document.documentElement.classList.add('sg-js');
     items.forEach(item => { if (!below.includes(item)) item.classList.add('is-revealed'); });
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if(entry.isIntersecting) { entry.target.classList.add('is-revealed'); observer.unobserve(entry.target); }
+      if(entry.isIntersecting) {
+        const el = entry.target;
+        const parent = el.parentElement;
+        if (parent) {
+          const siblings = [...parent.querySelectorAll('[data-reveal]')];
+          const idx = siblings.indexOf(el);
+          if (idx > 0) el.style.transitionDelay = `${Math.min(idx * 75, 450)}ms`;
+        }
+        el.classList.add('is-revealed');
+        observer.unobserve(el);
+      }
     }), {threshold:0.05});
     below.forEach(item => observer.observe(item));
+  }
+
+  // Scroll-linked navigation elevation
+  const nav = document.querySelector('.v-nav') || document.querySelector('.area-nav');
+  if (nav) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          nav.classList.toggle('is-scrolled', window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive: true});
   }
 
   // Load the third-party assistant only after a visitor asks to open it.
@@ -160,7 +185,7 @@
   chat.type = 'button';
   chat.textContent = 'Ask AI';
   chat.setAttribute('aria-label', 'Ask AI — open the business assistant');
-  chat.style.cssText = 'position:fixed;right:20px;bottom:20px;z-index:9999;border:1px solid #bba5ef;border-radius:24px;padding:14px 24px;background:#fff3fb;color:#332047;font:600 16px system-ui;box-shadow:0 4px 18px #33204722;cursor:pointer';
+  chat.style.cssText = 'position:fixed;right:20px;bottom:20px;z-index:9999;border:1px solid #bba5ef;border-radius:24px;padding:14px 24px;background:#fff3fb;color:#332047;font:600 16px system-ui;box-shadow:0 4px 18px #33204722;cursor:pointer;touch-action:manipulation';
   document.body.appendChild(chat);
   chat.addEventListener('click', () => {
     chat.disabled = true;

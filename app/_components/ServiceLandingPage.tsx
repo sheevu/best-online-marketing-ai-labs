@@ -54,6 +54,17 @@ export function serviceMetadata(data: ServicePageData): Metadata {
     title: data.title,
     description: data.description,
     alternates: { canonical: url },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title: data.title,
       description: data.description,
@@ -138,7 +149,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
           <Link href="/about-sheevum-goel">Founder</Link>
           <Link href="/contact">Contact</Link>
         </div>
-        <a className="button button-small" href={WHATSAPP_URL}>Free Audit ↗</a>
+        <a className="button button-small" href={WHATSAPP_URL} title="Request a free digital audit on WhatsApp" rel="noopener noreferrer">Free Audit ↗</a>
       </nav>
 
       <header className="service-hero">
@@ -148,7 +159,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <h1>{data.h1}</h1>
         <p>{data.intro}</p>
         <div className="hero-actions">
-          <a className="button" href={WHATSAPP_URL}>Request a Free Audit ↗</a>
+          <a className="button" href={WHATSAPP_URL} title="Request a free digital marketing audit on WhatsApp" rel="noopener noreferrer">Request a Free Audit ↗</a>
           <a className="text-link" href="#deliverables">See what is included ↓</a>
         </div>
         </div>
@@ -240,7 +251,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <p>FREE 20-MINUTE DIGITAL GROWTH AUDIT</p>
         <h2>Start with the highest-impact gap, not the longest agency checklist.</h2>
         <span>Share your website, Google listing or current process. We will identify the first three priorities and explain the realistic next step.</span>
-        <div><a className="button" href={WHATSAPP_URL}>Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></div>
+        <div><a className="button" href={WHATSAPP_URL} title="Start your free audit on WhatsApp" rel="noopener noreferrer">Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`} title={`Email ${CONTACT_EMAIL} for enquiries`}>Email {CONTACT_EMAIL}</a></div>
       </section>
 
       <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>

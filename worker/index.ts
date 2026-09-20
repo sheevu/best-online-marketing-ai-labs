@@ -26,12 +26,6 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
-// Image security config. SVG sources with .svg extension auto-skip the
-// optimization endpoint on the client side (served directly, no proxy).
-// To route SVGs through the optimizer (with security headers), set
-// dangerouslyAllowSVG: true in next.config.js and uncomment below:
-// const imageConfig: ImageConfig = { dangerouslyAllowSVG: true };
-
 const worker = {
   async fetch(
     request: Request,
@@ -44,6 +38,8 @@ const worker = {
       "www.sudarshan-ai.com",
       "sudarshan-ai-labs.com",
       "www.sudarshan-ai-labs.com",
+      "sudarshanailabs.com",
+      "www.sudarshanailabs.com",
       "sudarshan-ai-labs-lucknow.sheevumgoel.chatgpt.site",
     ]);
     const needsPreferredHost = redirectHosts.has(url.hostname);
@@ -65,6 +61,26 @@ const worker = {
       "/best-digital-marketing-agency-lucknow/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/uttar-pradesh/lucknow": "/digital-marketing-services",
+      "/digital-marketing-services/hazratganj": "/digital-marketing-services/hazratganj-lucknow",
+      "/digital-marketing-services/indira-nagar": "/digital-marketing-services/indira-nagar-lucknow",
+      "/digital-marketing-services/mahanagar": "/digital-marketing-services/mahanagar-lucknow",
+      "/digital-marketing-services/gomti-nagar": "/digital-marketing-services/gomti-nagar-lucknow",
+      "/digital-marketing-services/gomti-nagar-extension": "/digital-marketing-services/gomti-nagar-extension-lucknow",
+      "/digital-marketing-services/aliganj": "/digital-marketing-services/aliganj-lucknow",
+      "/digital-marketing-services/jankipuram": "/digital-marketing-services/jankipuram-lucknow",
+      "/digital-marketing-services/vikas-nagar": "/digital-marketing-services/vikas-nagar-lucknow",
+      "/digital-marketing-services/ashiyana": "/digital-marketing-services/ashiyana-lucknow",
+      "/digital-marketing-services/alambagh": "/digital-marketing-services/alambagh-lucknow",
+      "/digital-marketing-services/rajajipuram": "/digital-marketing-services/rajajipuram-lucknow",
+      "/digital-marketing-services/aminabad": "/digital-marketing-services/aminabad-lucknow",
+      "/digital-marketing-services/chowk": "/digital-marketing-services/chowk-lucknow",
+      "/digital-marketing-services/kaiserbagh": "/digital-marketing-services/kaiserbagh-lucknow",
+      "/digital-marketing-services/charbagh": "/digital-marketing-services/charbagh-lucknow",
+      "/digital-marketing-services/nishatganj": "/digital-marketing-services/nishatganj-lucknow",
+      "/digital-marketing-services/kapoorthala": "/digital-marketing-services/kapoorthala-lucknow",
+      "/digital-marketing-services/faizabad-road": "/digital-marketing-services/faizabad-road-lucknow",
+      "/digital-marketing-services/munshipulia": "/digital-marketing-services/munshipulia-lucknow",
+      "/digital-marketing-services/sushant-golf-city": "/digital-marketing-services/sushant-golf-city-lucknow",
     };
     const normalizedPath =
       url.pathname.length > 1 && url.pathname.endsWith("/")
@@ -140,6 +156,13 @@ const worker = {
     if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") {
       headers.set("X-Robots-Tag", "all");
       headers.set("Cache-Control", "public, max-age=300, s-maxage=3600");
+    } else if (url.pathname.startsWith("/images/") || url.pathname.startsWith("/assets/")) {
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    } else {
+      headers.set("X-Robots-Tag", "all, index, follow");
+      if (response.status === 200 && (!url.pathname.includes(".") || url.pathname.endsWith(".html"))) {
+        headers.set("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+      }
     }
     return new Response(response.body, {
       status: response.status,

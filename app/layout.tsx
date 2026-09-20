@@ -5,25 +5,28 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sudarshan AI Labs | AI & Digital Growth for Lucknow MSMEs",
-    template: "%s",
+    default: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP",
+    template: "%s | Sudarshan AI Labs",
   },
   description:
-    "Sudarshan AI Labs helps Lucknow MSMEs improve local search visibility, websites, paid campaigns, lead generation and practical AI automation.",
+    "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh. Get a free audit today!",
   keywords: [
     "Sudarshan AI Labs",
     "digital marketing agency in lucknow",
-    "AI consulting Lucknow",
+    "AI consulting in lucknow",
     "SEO services Lucknow",
-    "AI automation Lucknow",
-    "digital marketing Lucknow",
+    "local SEO Lucknow",
+    "Google Maps marketing Lucknow",
     "hindi crm",
     "AI agents development",
+    "digital marketing services Uttar Pradesh",
+    "web development Lucknow",
+    "lead generation Lucknow",
   ],
   openGraph: {
-    title: "Sudarshan AI Labs | AI & Digital Growth for Lucknow MSMEs",
+    title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow",
     description:
-      "Local search, websites, campaigns, lead generation and practical AI systems for Lucknow businesses.",
+      "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.",
     url: "/",
     siteName: "Sudarshan AI Labs",
     locale: "en_IN",
@@ -39,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sudarshan AI Labs | AI & Digital Growth",
+    title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow",
     description:
-      "Digital visibility, conversion and practical AI systems for Lucknow businesses.",
+      "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.",
     images: ["/sudarshan-lucknow-hero.webp"],
   },
   robots: {
@@ -79,15 +82,20 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <head>
+        <meta name="theme-color" content="#f8fbff" />
+        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="" />
+        <link rel="preconnect" href="https://cdn.jotfor.ms" crossOrigin="" />
+        <link rel="preload" as="image" type="image/webp" href="/images/sudarshan-lucknow-hero-v1-960.webp" fetchPriority="high" />
         <script
           type="text/javascript"
           data-clarity-script="true"
           dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){
+            __html: `(function(){var h=function(){(function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "yihvqld983");`,
+            })(window, document, "clarity", "script", "yihvqld983")};
+            if(typeof requestIdleCallback==="function"){requestIdleCallback(h)}else{setTimeout(h,2500)}})();`,
           }}
         />
       </head>

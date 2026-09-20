@@ -7429,3 +7429,227 @@ button, a {
     padding: 8px;
   }
 }
+
+/* ==========================================================================
+   ENHANCED MOTION, INTERACTIVE CLICK STATES & RESPONSIVE POLISH
+   ========================================================================== */
+
+/* Universal tactile button & interactive states */
+.button,
+.button-small,
+.v-pill,
+.cta-call,
+.hero-actions .button,
+.area-cta .button,
+.pillar-cta .button,
+.orbit-core a,
+.v-slider-arrow,
+.v-slider-pause,
+.goal-tabs button,
+.v-menu,
+.v-mobile-audit {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1),
+              box-shadow 0.22s ease,
+              background 0.22s ease,
+              border-color 0.22s ease,
+              filter 0.22s ease;
+}
+
+.button:hover,
+.hero-actions .button:hover,
+.area-cta .button:hover,
+.pillar-cta .button:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 16px 32px rgba(255, 138, 0, 0.36), 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.button:active,
+.hero-actions .button:active,
+.area-cta .button:active,
+.pillar-cta .button:active,
+.v-pill:active,
+.cta-call:active,
+.goal-tabs button:active,
+.orbit-core a:active,
+.v-slider-arrow:active {
+  transform: translateY(1px) scale(0.975);
+  box-shadow: 0 4px 12px rgba(255, 138, 0, 0.25);
+  filter: brightness(0.96);
+}
+
+/* Keyboard accessibility focus outlines */
+.button:focus-visible,
+.v-pill:focus-visible,
+.cta-call:focus-visible,
+.goal-tabs button:focus-visible,
+.v-menu:focus-visible,
+.text-link:focus-visible,
+.v-nav a:focus-visible,
+.area-nav a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #ff8a00;
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+
+/* Marquee pause on hover/focus */
+.v-marquee:hover > div,
+.v-marquee:focus-within > div,
+.sg-marquee:hover > div,
+.sg-marquee:focus-within > div {
+  animation-play-state: paused;
+}
+
+/* Enhanced FAQ Accordions Animation */
+.faq-list details summary span,
+.v-faq details summary span,
+.area-faq details summary b,
+.pillar-faq details summary span {
+  display: inline-block;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center;
+}
+
+.faq-list details[open] summary span,
+.v-faq details[open] summary span,
+.area-faq details[open] summary b,
+.pillar-faq details[open] summary span {
+  transform: rotate(45deg);
+}
+
+@keyframes faqFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-list details[open] p,
+.v-faq details[open] p,
+.area-faq details[open] p,
+.pillar-faq details[open] p,
+.sg-faq details[open] p {
+  animation: faqFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Staggered Scroll Reveal */
+.sg-js [data-reveal] {
+  will-change: opacity, transform;
+}
+.sg-js [data-reveal].is-revealed {
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Micro-animations for orbit and floating elements */
+@keyframes sparkPulse {
+  0% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 6px #fff, 0 0 14px #44e6ff; }
+  100% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 10px #fff, 0 0 24px #44e6ff; }
+}
+.orbit-spark {
+  animation: sparkPulse 2.2s ease-in-out infinite alternate;
+}
+
+/* Sticky Header on scroll */
+.v-nav.is-scrolled {
+  background: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 32px rgba(32, 20, 48, 0.08);
+}
+
+/* Responsive improvements for all screen sizes */
+@media (max-width: 820px) {
+  .service-hero-copy {
+    text-align: left;
+  }
+  .service-facts {
+    grid-template-columns: 1fr;
+  }
+  .service-facts article {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    min-height: auto;
+    padding: 20px;
+  }
+  .service-facts article:first-child {
+    border-top: 0;
+  }
+  .service-deliverables .service-card-grid,
+  .service-process > div:last-child {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Touch target assurance */
+  .button,
+  .v-pill,
+  .cta-call,
+  .v-menu,
+  .hero-actions .button,
+  .area-cta .button,
+  .pillar-cta .button {
+    min-height: 48px;
+    padding-inline: 18px;
+  }
+  
+  /* Prevent horizontal overflow on ultra-compact mobile */
+  .v-home,
+  .service-owner,
+  .area-page,
+  .areas-index {
+    overflow-x: hidden;
+  }
+  
+  .service-hero h1 {
+    font-size: clamp(34px, 10.5vw, 46px);
+    line-height: 1.04;
+  }
+  
+  .v-product-track {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .v-topline {
+    padding-inline: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button-small,
+  .v-pill,
+  .cta-call,
+  .hero-actions .button,
+  .area-cta .button,
+  .pillar-cta .button {
+    transition: none !important;
+    transform: none !important;
+  }
+  .faq-list details[open] p,
+  .v-faq details[open] p,
+  .area-faq details[open] p,
+  .pillar-faq details[open] p,
+  .sg-faq details[open] p {
+    animation: none !important;
+  }
+  .faq-list details summary span,
+  .v-faq details summary span,
+  .area-faq details summary b,
+  .pillar-faq details summary span {
+    transition: none !important;
+  }
+  .orbit-spark {
+    animation: none !important;
+  }
+}

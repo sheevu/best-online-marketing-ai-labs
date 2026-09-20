@@ -70,7 +70,17 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: url },
-    robots: { index: false, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: { title, description, type: "website", locale: "en_IN", url },
     twitter: { card: "summary_large_image", title, description },
     keywords: [
@@ -102,7 +112,7 @@ export default async function CityPage({
   );
   const businessSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": ["Service", "LocalBusiness"],
     "@id": `${url}#service`,
     name: c.h1,
     url,
@@ -114,6 +124,8 @@ export default async function CityPage({
       containedInPlace: { "@type": "State", name: "Uttar Pradesh" },
     },
     serviceType: "Digital marketing services",
+    currenciesAccepted: "INR",
+    priceRange: "Services from ₹89",
     offers: {
       "@type": "Offer",
       price: STARTING_PRICE_INR,

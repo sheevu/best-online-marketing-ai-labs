@@ -75,7 +75,17 @@ export async function generateMetadata({
     title,
     description: a.meta,
     alternates: { canonical: `/digital-marketing-services/${a.slug}-lucknow` },
-    robots: { index: false, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
       title,
       description: a.meta,
@@ -100,7 +110,7 @@ export default async function AreaPage({
   const url = absoluteUrl(`/digital-marketing-services/${a.slug}-lucknow`);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": ["Service", "LocalBusiness"],
     "@id": `${url}#service`,
     name: a.title,
     url,
@@ -108,6 +118,8 @@ export default async function AreaPage({
     provider: { "@id": ORGANIZATION_ID },
     areaServed: { "@type": "Place", name: `${a.name}, Lucknow` },
     serviceType: "Digital marketing services",
+    currenciesAccepted: "INR",
+    priceRange: "Services from ₹89",
     offers: {
       "@type": "Offer",
       price: STARTING_PRICE_INR,
@@ -124,6 +136,30 @@ export default async function AreaPage({
       acceptedAnswer: { "@type": "Answer", text: ans },
     })),
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Digital Marketing Services",
+        item: absoluteUrl("/digital-marketing-services"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: a.name,
+        item: url,
+      },
+    ],
+  };
   return (
     <main className="area-page">
       <script
@@ -133,6 +169,10 @@ export default async function AreaPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">
@@ -146,7 +186,7 @@ export default async function AreaPage({
           <a href="/seo-services-lucknow">SEO</a>
           <a href="/contact">Contact</a>
         </div>
-        <a className="button button-small" href={wa}>
+        <a className="button button-small" href={wa} title="Request a free local digital audit on WhatsApp" rel="noopener noreferrer">
           Free Audit ↗
         </a>
       </nav>
@@ -164,7 +204,7 @@ export default async function AreaPage({
         <h1>{a.title}</h1>
         <p className="area-lead">{a.opening}</p>
         <div className="hero-actions">
-          <a className="button" href={wa}>
+          <a className="button" href={wa} title="Request a free local digital marketing audit on WhatsApp" rel="noopener noreferrer">
             Request a Free Local Audit ↗
           </a>
           <a className="text-link" href="#services">
@@ -315,10 +355,10 @@ export default async function AreaPage({
         <h2>{a.cta}</h2>
         <span>{a.ctaText}</span>
         <div>
-          <a className="button" href={wa}>
+          <a className="button" href={wa} title="Start your free audit on WhatsApp" rel="noopener noreferrer">
             Start on WhatsApp ↗
           </a>
-          <a className="cta-call" href="tel:+919336299912">
+          <a className="cta-call" href="tel:+919336299912" title="Call Sudarshan AI Labs at +91 93362 99912">
             Call +91 93362 99912
           </a>
         </div>

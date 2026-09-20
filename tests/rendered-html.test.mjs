@@ -60,7 +60,7 @@ test("renders production metadata and product catalogue", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Sudarshan AI Labs \| AI &amp; Digital Growth for Lucknow MSMEs<\/title>/i,
+    /<title>Sudarshan AI Labs \| AI Agents &amp; Digital Marketing Services in Lucknow, UP<\/title>/i,
   );
   assert.match(html, /<html lang="en-IN">/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);

@@ -4,6 +4,7 @@ import { SITE_URL } from "./lib/site";
 
 const servicePaths = [
   "/digital-marketing-services",
+  "/digital-marketing-services/uttar-pradesh",
   "/seo-services-lucknow",
   "/social-media-marketing-lucknow",
   "/lead-generation-lucknow",

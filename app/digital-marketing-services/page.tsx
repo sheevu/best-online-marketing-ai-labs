@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   description:
     "Digital marketing services in Lucknow for MSMEs: local SEO, Google Maps, websites, social media, ads and WhatsApp automation. Request a free audit.",
   alternates: { canonical: "/digital-marketing-services" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
     description:
@@ -166,7 +177,7 @@ export default function LucknowServices() {
         </a>
         <div>
           <a href="/about-sheevum-goel">Founder</a>
-          <a className="button button-small" href={wa}>
+          <a className="button button-small" href={wa} title="Request a free digital audit on WhatsApp" rel="noopener noreferrer">
             Free Audit ↗
           </a>
         </div>
@@ -184,7 +195,7 @@ export default function LucknowServices() {
             follow-up automation.
           </p>
           <div className="hero-actions">
-            <a className="button" href={wa}>
+            <a className="button" href={wa} title="Request a free digital marketing audit on WhatsApp" rel="noopener noreferrer">
               Request a Free Digital Audit ↗
             </a>
             <a className="text-link" href="#services">
@@ -379,7 +390,7 @@ export default function LucknowServices() {
           customer journey and identify practical priorities before suggesting a
           scope.
         </p>
-        <a className="button" href={wa}>
+        <a className="button" href={wa} title="Request your free digital audit on WhatsApp" rel="noopener noreferrer">
           Request Your Free Audit ↗
         </a>
       </section>
