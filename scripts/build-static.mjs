@@ -60,7 +60,7 @@ while(queue.length) {
   html = html.replace(/<link\b[^>]*>/gi, all => /rel="modulepreload"/.test(all) || (/rel="preload"/.test(all)&&/as="script"/.test(all)) ? '' : all);
   const cssLinks = [...html.matchAll(/<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="([^"]+)")[^>]*>/g)];
   const css = (await Promise.all(cssLinks.map(match => fs.readFile(path.join(client,new URL(match[1],origin).pathname),'utf8')))).join('\n');
-  const result = await new PurgeCSS().purge({content:[{raw:html,extension:'html'}],css:[{raw:css}],safelist:['open','active','is-current','is-revealed','sg-js'],keyframes:true});
+  const result = await new PurgeCSS().purge({content:[{raw:html,extension:'html'}],css:[{raw:css}],safelist:['open','active','is-current','is-revealed','sg-js','menu-is-open'],keyframes:true});
   for (const link of cssLinks) html = html.replace(link[0],'');
   const pageCss = result.map(item=>item.css).join('');
   html = html.replace('</head>',`<style>${pageCss}</style></head>`).replace('</body>',`<script src="/assets/${scriptName}" defer></script>${ga}</body>`);
