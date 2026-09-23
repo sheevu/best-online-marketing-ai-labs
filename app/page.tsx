@@ -37,12 +37,64 @@ import {
   starterService,
   IDS,
 } from "./lib/schema";
-import { serviceCatalog } from "./lib/service-catalog";
 import { cities } from "./lib/cities";
+import { areas } from "./lib/areas";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const wa = WHATSAPP_URL;
+const primaryServiceLinks = [
+  {
+    href: "/digital-marketing-services",
+    label: "Digital marketing hub",
+    desc: "All core services, process and starter offers",
+    Icon: ChartLineUp,
+  },
+  {
+    href: "/seo-services-lucknow",
+    label: "SEO services in Lucknow",
+    desc: "Local SEO, technical SEO and useful content",
+    Icon: MagnifyingGlass,
+  },
+  {
+    href: "/google-ads-services",
+    label: "Google Ads services",
+    desc: "Search campaigns, landing pages and lead quality",
+    Icon: Target,
+  },
+  {
+    href: "/website-design",
+    label: "Website design",
+    desc: "Fast mobile pages built for enquiries",
+    Icon: Browsers,
+  },
+  {
+    href: "/social-media-marketing-lucknow",
+    label: "Social media marketing",
+    desc: "Recognisable creative and local campaigns",
+    Icon: InstagramLogo,
+  },
+  {
+    href: "/lead-generation-lucknow",
+    label: "Lead generation",
+    desc: "Forms, WhatsApp flows and follow-up systems",
+    Icon: Lightning,
+  },
+  {
+    href: "/ai-automation-lucknow",
+    label: "AI automation",
+    desc: "Practical agents for small business operations",
+    Icon: Robot,
+  },
+  {
+    href: "/digital-marketing-services/uttar-pradesh",
+    label: "Services by city",
+    desc: "Browse Uttar Pradesh service-area guidance",
+    Icon: GlobeHemisphereWest,
+  },
+];
+const popularLucknowAreas = areas.slice(0, 8);
+const priorityCities = cities.filter((city) => city.slug !== "lucknow").slice(0, 12);
 const productIcons = [Target, Sparkle, WhatsappLogo, ChartLineUp, Lightning, Robot, Browsers, MapPin];
 const services = [
   {
@@ -438,27 +490,17 @@ export default function Home() {
               >
                 Services <CaretDown weight="bold" />
               </button>
-              <div className="v-services-panel">
-                <a
-                  href="/digital-marketing-services"
-                >
-                  <ChartLineUp weight="duotone" />
-                  <span>
-                    <span className="menu-label">All services</span>
-                    <small>Explore {serviceCatalog.length} core service pages</small>
-                  </span>
-                  <ArrowUpRight />
-                </a>
-                <a
-                  href="/digital-marketing-services/uttar-pradesh"
-                >
-                  <GlobeHemisphereWest weight="duotone" />
-                  <span>
-                    <span className="menu-label">Services by city</span>
-                    <small>Browse service-area guidance</small>
-                  </span>
-                  <ArrowUpRight />
-                </a>
+              <div className="v-services-panel" aria-label="Core service links">
+                {primaryServiceLinks.map(({ href, label, desc, Icon }) => (
+                  <a href={href} key={href}>
+                    <Icon weight="duotone" />
+                    <span>
+                      <span className="menu-label">{label}</span>
+                      <small>{desc}</small>
+                    </span>
+                    <ArrowUpRight />
+                  </a>
+                ))}
               </div>
             </div>
             <a href="#products">
@@ -494,14 +536,29 @@ export default function Home() {
                   </span>
                   <ArrowUpRight />
                 </a>
-                <div className="v-city-menu-grid" aria-label="Top 20 Uttar Pradesh city pages">
-                  {cities.map((city, index) => (
-                    <a href={city.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${city.slug}`} key={city.slug}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {city.name}
-                      <ArrowUpRight aria-hidden="true" />
-                    </a>
-                  ))}
+                <div className="v-menu-section" aria-label="Popular Lucknow locality pages">
+                  <span className="menu-group-label">Popular Lucknow localities</span>
+                  <div className="v-locality-menu-grid">
+                    {popularLucknowAreas.map((area, index) => (
+                      <a href={`/digital-marketing-services/${area.slug}-lucknow`} key={area.slug}>
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                        {area.name}
+                        <ArrowUpRight aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className="v-menu-section" aria-label="Priority Uttar Pradesh city pages">
+                  <span className="menu-group-label">Uttar Pradesh city pages</span>
+                  <div className="v-city-menu-grid">
+                    {priorityCities.map((city, index) => (
+                      <a href={`/digital-marketing-services/${city.slug}`} key={city.slug}>
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                        {city.name}
+                        <ArrowUpRight aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

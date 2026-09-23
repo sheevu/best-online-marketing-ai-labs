@@ -7653,3 +7653,207 @@ summary:focus-visible {
     animation: none !important;
   }
 }
+
+/* Final mobile navigation organisation: keep Services and Locations readable on phones and portrait tablets. */
+.v-services-panel {
+  width: min(700px, calc(100vw - 36px));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.v-services-panel > a,
+.v-location-panel > a,
+.v-locality-menu-grid a,
+.v-city-menu-grid a {
+  text-decoration: none;
+}
+
+.v-menu-section {
+  grid-column: 1 / -1;
+  padding-top: 9px;
+  border-top: 1px solid #ebe3f2;
+}
+
+.menu-group-label {
+  display: block;
+  margin: 0 0 7px 4px;
+  color: #6d5fd5;
+  font: 850 10px/1.2 var(--font-geist-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.v-locality-menu-grid,
+.v-city-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.v-locality-menu-grid a,
+.v-city-menu-grid a {
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border-radius: 12px;
+  color: #312743;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.v-locality-menu-grid a:hover,
+.v-city-menu-grid a:hover {
+  background: linear-gradient(120deg, #f0eaff, #fff0f7);
+  transform: translateY(-1px);
+}
+
+.v-locality-menu-grid span,
+.v-city-menu-grid span {
+  color: #7a64df;
+  font: 800 9px var(--font-geist-mono);
+}
+
+.v-locality-menu-grid svg,
+.v-city-menu-grid svg {
+  width: 13px;
+  color: #866de6;
+}
+
+@media (max-width: 920px) {
+  html.menu-is-open {
+    overflow: hidden;
+  }
+
+  .v-nav {
+    position: relative;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .v-menu {
+    display: flex;
+  }
+
+  .v-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 12px;
+    right: 12px;
+    display: flex;
+    max-height: calc(100dvh - 118px);
+    margin: 0;
+    padding: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    border: 1px solid #eee1d7;
+    border-radius: 24px;
+    background: #fffdf9;
+    box-shadow: 0 25px 65px #25172f38;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(.985);
+    z-index: 40;
+  }
+
+  .v-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .v-links > a,
+  .v-location-menu > button,
+  .v-services-menu > button {
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .v-location-menu,
+  .v-services-menu {
+    position: static;
+  }
+
+  .v-location-panel,
+  .v-services-panel {
+    position: static;
+    display: none;
+    width: auto;
+    max-height: none;
+    margin: 4px 0 8px;
+    padding: 7px;
+    overflow: visible;
+    border: 0;
+    border-radius: 18px;
+    background: #f7f2ff;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .v-location-menu.active .v-location-panel,
+  .v-services-menu.active .v-services-panel {
+    display: grid;
+    transform: none;
+  }
+
+  .v-services-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .v-location-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .v-location-panel > a,
+  .v-services-panel > a {
+    grid-template-columns: 38px minmax(0, 1fr) 16px;
+    padding: 11px;
+    background: #fffdfb;
+  }
+
+  .v-locality-menu-grid,
+  .v-city-menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .v-mobile-audit {
+    display: flex !important;
+    margin-top: 5px;
+    background: #171527 !important;
+    color: #fff !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .v-services-panel,
+  .v-locality-menu-grid,
+  .v-city-menu-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .v-location-panel > a,
+  .v-services-panel > a,
+  .v-locality-menu-grid a,
+  .v-city-menu-grid a {
+    min-height: 44px;
+  }
+}

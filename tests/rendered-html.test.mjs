@@ -80,6 +80,12 @@ test("renders production metadata and product catalogue", async () => {
   assert.match(html, /utm_source=website(?:&amp;|&)utm_medium=planner(?:&amp;|&)utm_campaign=local_visibility/i);
   assert.match(html, /href="\/digital-marketing-services"/i);
   assert.match(html, /href="\/digital-marketing-services\/uttar-pradesh"/i);
+  assert.match(html, /href="\/seo-services-lucknow"/i);
+  assert.match(html, /href="\/google-ads-services"/i);
+  assert.match(html, /href="\/website-design"/i);
+  assert.match(html, /href="\/ai-automation-lucknow"/i);
+  assert.match(html, /href="\/digital-marketing-services\/hazratganj-lucknow"/i);
+  assert.doesNotMatch(html, /href="\/digital-marketing-services\/hazratganj"/i);
   assert.match(html, /"@type":"FAQPage"/i);
   assert.match(html, /"price":"89"/i);
   assert.doesNotMatch(html, /"@type":"AggregateRating"/i);
@@ -334,6 +340,31 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.equal(
     nestedCity.headers.get("location"),
     "https://sudarshan-ai.com/digital-marketing-services/kanpur",
+  );
+
+  const shortArea = await worker.fetch(
+    new Request("https://sudarshan-ai.com/digital-marketing-services/hazratganj"),
+    env,
+    ctx,
+  );
+  assert.equal(shortArea.status, 301);
+  assert.equal(
+    shortArea.headers.get("location"),
+    "https://sudarshan-ai.com/digital-marketing-services/hazratganj-lucknow",
+  );
+
+  const canonicalArea = await worker.fetch(
+    new Request("https://sudarshan-ai.com/digital-marketing-services/hazratganj-lucknow", {
+      headers: { accept: "text/html" },
+    }),
+    env,
+    ctx,
+  );
+  assert.equal(canonicalArea.status, 200);
+  const canonicalAreaHtml = await canonicalArea.text();
+  assert.match(
+    canonicalAreaHtml,
+    /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/digital-marketing-services\/hazratganj-lucknow"\s*\/>/i,
   );
 });
 
