@@ -85,7 +85,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#f8fbff" />
         <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="" />
         <link rel="preconnect" href="https://cdn.jotfor.ms" crossOrigin="" />
-        <link rel="preload" as="image" type="image/webp" href="/images/sudarshan-lucknow-hero-v1-960.webp" fetchPriority="high" />
         <script
           type="text/javascript"
           data-clarity-script="true"

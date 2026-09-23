@@ -12,6 +12,11 @@ test("production HTML ships native interactions and no React hydration", async (
   assert.match(html, /https:\/\/www\.clarity\.ms\/tag\//);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /loading="eager"[^>]*fetchPriority="high"/i);
+  assert.doesNotMatch(html, /sudarshan-lucknow-hero-v1-960\.webp/);
+  assert.match(
+    html,
+    /<link[^>]+rel="preload"[^>]+as="image"[^>]+imageSrcSet="[^"]*sudarshan-lucknow-hero-[a-f0-9]+-640\.webp[^"]*"[^>]+fetchPriority="high"/i,
+  );
   const llms = await readFile(new URL("../public/llms.txt", import.meta.url), "utf8");
   assert.match(llms, /^# Sudarshan AI Labs/m);
   assert.ok([...llms.matchAll(/\[[^\]]+\]\(https:\/\/sudarshan-ai\.com[^)]*\)/g)].length >= 9);
