@@ -12,12 +12,12 @@
   },
   "routes": [
     {
-      "pattern": "sudarshan-ai.com",
-      "custom_domain": true
+      "pattern": "sudarshan-ai.com/*",
+      "zone_name": "sudarshan-ai.com"
     },
     {
-      "pattern": "www.sudarshan-ai.com",
-      "custom_domain": true
+      "pattern": "www.sudarshan-ai.com/*",
+      "zone_name": "sudarshan-ai.com"
     }
   ],
   "observability": {
