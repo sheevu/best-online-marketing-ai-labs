@@ -6,21 +6,16 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "install:ci": "bash scripts/install-ci.sh",
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
     "build": "node scripts/generate-images.mjs && vinext build && node scripts/build-static.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "validate:artifact": "bash scripts/validate-artifact.sh",
     "lint": "eslint app worker tests",
-    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
     "deploy": "npm run build && wrangler deploy --config wrangler.jsonc"
   },
   "dependencies": {
-    "@microsoft/clarity": "^1.0.2",
     "@next/third-parties": "^16.3.3",
     "@phosphor-icons/react": "^2.1.10",
-    "drizzle-orm": "0.45.2",
     "next": "16.3.5",
     "react": "19.2.6",
     "react-dom": "19.2.6"
@@ -33,7 +28,6 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
-    "drizzle-kit": "0.31.10",
     "esbuild": "^0.28.2",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
