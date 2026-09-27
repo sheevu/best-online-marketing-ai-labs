@@ -10346,3 +10346,40 @@ summary:focus-visible {
     border-radius: 18px;
   }
 }
+
+/* Founder page specific overrides for YouTube shorts section */
+.sg-page .v-shorts-section {
+  padding: 110px 6vw;
+  background: linear-gradient(135deg, #1b1730, #100d1e);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.sg-page .v-shorts-section:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.sg-page .v-shorts-section .v-section-head h2 {
+  color: #ffffff;
+  font-size: clamp(38px, 4.5vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 14px 0 0;
+}
+.sg-page .v-shorts-section .v-section-head h2 em {
+  color: #a78bfa;
+  font-style: italic;
+}
+.sg-page .v-shorts-section .v-section-head p {
+  color: #c4b5fd;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.sg-page .v-shorts-section .v-kicker {
+  color: #a78bfa;
+}

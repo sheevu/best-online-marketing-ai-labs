@@ -21,6 +21,7 @@ import {
   Sparkle,
   Target,
   XLogo,
+  YoutubeLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { SITE_URL } from "../lib/site";
 import { sharedWebsite, sharedOrganization, sharedFounder, IDS, SITE } from "../lib/schema";
@@ -775,6 +776,159 @@ export default function AboutSheevumGoel() {
               Applied sessions on prompt design, business automation,
               responsible adoption and no-code execution.
             </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="v-section v-shorts-section" id="founder-shorts" aria-labelledby="founder-shorts-heading" data-reveal>
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">FEATURED VIDEO SHORTS</span>
+            <h2 id="founder-shorts-heading">
+              Practical growth insights.
+              <br />
+              <em>In 60 seconds.</em>
+            </h2>
+          </div>
+          <p>
+            Actionable strategies on Local SEO, Google Business Profiles, AI lead routing, and MSME systems. Watch directly below or open on YouTube.
+          </p>
+        </div>
+
+        <div className="v-shorts-grid" role="region" aria-label="Founder Video Shorts Series">
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/2o_oGkAj3IM?rel=0"
+                title="Lucknow Businesses Digital Wake-Up Call - Sheevum Goel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">LOCAL SEO</span>
+              <h3>Lucknow Businesses: Digital Wake-Up Call</h3>
+              <p>Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.</p>
+              <a
+                href="https://youtube.com/shorts/2o_oGkAj3IM"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/0EC1SWvNxnE?rel=0"
+                title="Connected Presence: SEO, Websites & Growth Systems - Sheevum Goel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">GROWTH STACK</span>
+              <h3>How Sudarshan AI Labs Powers Business Online</h3>
+              <p>Combining search visibility, high-converting websites, and structured follow-up for UP enterprises.</p>
+              <a
+                href="https://youtube.com/shorts/0EC1SWvNxnE"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/IO3RLr5rNqo?rel=0"
+                title="Your Google Business Profile: Your #1 Sales Asset - Sheevum Goel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">GOOGLE MAPS</span>
+              <h3>Your Most Valuable Local Sales Asset 📍</h3>
+              <p>Transforming your Google Business Profile from a passive pin into an active local sales generator.</p>
+              <a
+                href="https://youtube.com/shorts/IO3RLr5rNqo"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/iWNKPxbTXpY?rel=0"
+                title="Stop Losing Customers: AI Automation for Small Business - Sheevum Goel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">AI AUTOMATION</span>
+              <h3>Stop Losing Customers to Slow Response</h3>
+              <p>Practical WhatsApp automation and intelligent routing that responds to qualified buyers in seconds.</p>
+              <a
+                href="https://youtube.com/shorts/iWNKPxbTXpY"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/L4Rcx3M9zSI?rel=0"
+                title="Courses vs Real Portfolios: Building Practical Proof - Sheevum Goel"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">PRACTICAL SKILLS</span>
+              <h3>Courses are Useful. Portfolios are Powerful.</h3>
+              <p>Why real systems, working code, and verified case studies beat generic certifications every time.</p>
+              <a
+                href="https://youtube.com/shorts/L4Rcx3M9zSI"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
           </article>
         </div>
       </section>
