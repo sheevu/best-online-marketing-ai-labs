@@ -67,14 +67,12 @@ export async function generateMetadata({
     return generateCityMetadata({ params: Promise.resolve({ city: area }) });
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) return {};
-  const preferredTitle = `Digital Marketing in ${a.name} | Sudarshan AI Labs`;
-  const title = preferredTitle.length <= 60
-    ? preferredTitle
-    : `Digital Marketing | ${a.name}, Lucknow`;
+  const title = `Digital Marketing in ${a.name}`;
+  const canonicalPath = `/digital-marketing-services/${a.slug}-lucknow`;
   return {
     title,
     description: a.meta,
-    alternates: { canonical: `/digital-marketing-services/${a.slug}-lucknow` },
+    alternates: { canonical: canonicalPath },
     robots: {
       index: true,
       follow: true,
@@ -87,10 +85,25 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title,
+      title: `${title} | Sudarshan AI Labs`,
       description: a.meta,
+      url: canonicalPath,
       type: "website",
       locale: "en_IN",
+      images: [
+        {
+          url: "/sudarshan-lucknow-hero.webp",
+          width: 1672,
+          height: 941,
+          alt: `Digital Marketing in ${a.name}, Lucknow`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Sudarshan AI Labs`,
+      description: a.meta,
+      images: ["/sudarshan-lucknow-hero.webp"],
     },
   };
 }
@@ -375,6 +388,22 @@ export default async function AreaPage({
             <a href="/social-media-marketing-lucknow">Social Media Marketing</a>
             <a href="/lead-generation-lucknow">Lead Generation</a>
             <a href="/ai-automation-lucknow">AI Automation</a>
+          </nav>
+        </div>
+        <div>
+          <h2>Nearby Lucknow localities</h2>
+          <nav>
+            {areas
+              .filter((other) => other.slug !== a.slug)
+              .slice(0, 6)
+              .map((other) => (
+                <a
+                  key={other.slug}
+                  href={`/digital-marketing-services/${other.slug}-lucknow`}
+                >
+                  {other.name}
+                </a>
+              ))}
           </nav>
         </div>
         <div>

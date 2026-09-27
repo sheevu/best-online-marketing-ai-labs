@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { areas } from "./lib/areas";
+import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
 import { SITE_URL } from "./lib/site";
 
@@ -31,11 +33,13 @@ const redirectedCatalogSlugs = new Set([
 const catalogServicePaths = serviceCatalog
   .filter((service) => !redirectedCatalogSlugs.has(service.slug))
   .map((service) => "/" + service.slug);
-
-// Only indexable canonical URLs belong in the XML sitemap.
-// Locality and city hub templates currently opt out of indexing.
-const localityPaths: string[] = [];
-const cityPaths: string[] = [];
+// All active, indexable canonical locality and city hub pages
+const localityPaths = areas.map(
+  (area) => `/digital-marketing-services/${area.slug}-lucknow`,
+);
+const cityPaths = cities
+  .filter((city) => city.slug !== "lucknow")
+  .map((city) => `/digital-marketing-services/${city.slug}`);
 
 const trustPaths = [
   "/contact",

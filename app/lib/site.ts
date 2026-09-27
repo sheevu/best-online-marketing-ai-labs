@@ -7,7 +7,7 @@ export const PRIMARY_ADDRESS =
 export const MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=C-469%2FC%2C+Indira+Nagar%2C+Near+HAL%2C+Lucknow%2C+Uttar+Pradesh+226016";
 export const WHATSAPP_URL =
-  "https://wa.me/919336299912?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.&utm_source=website&utm_medium=planner&utm_campaign=local_visibility";
+  "https://api.whatsapp.com/send/?phone=919336299912&text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20want%20a%20free%20digital%20growth%20audit.&utm_source=website&utm_medium=planner&utm_campaign=local_visibility";
 
 export const STARTING_PRICE_INR = "89";
 export const DUNS_NUMBER = "77-160-6356";

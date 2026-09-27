@@ -32,8 +32,7 @@ const links = {
   linkedin: "https://www.linkedin.com/in/sheevumgoel",
   card: "https://app.wavecnct.com/sheevum.goel.v94x",
   medium: "https://sheevumgoel.medium.com/",
-  command:
-    "https://about-sheevum-goel.notion.site/Sudarshan-AI-Labs-Founder-Command-Center-37922c918f0f818babd4f91b7c941ee7?pvs=149",
+  command: "https://sheevum-goel-about.netlify.app/",
   startinup: "https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==",
   finanvo: "https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited",
   falconebiz: "https://www.falconebiz.com/company/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
@@ -43,7 +42,7 @@ const links = {
 };
 
 export const metadata: Metadata = {
-  title: "Sheevum Goel | Sudarshan AI Labs Founder",
+  title: "Sheevum Goel - Founder Profile",
   description:
     "Meet Sheevum Goel, a Lucknow entrepreneur, AI startup founder and growth strategist building AI, digital marketing and web development solutions for India.",
   keywords: [
@@ -878,13 +877,13 @@ export default function AboutSheevumGoel() {
           from Lucknow for India.
         </p>
         <nav>
-          <a href={links.portfolio} target="_blank" rel="noreferrer">
+          <a href={links.portfolio} target="_blank" rel="nofollow noopener noreferrer">
             Portfolio
           </a>
-          <a href={links.linkedin} target="_blank" rel="noreferrer">
+          <a href={links.linkedin} target="_blank" rel="nofollow noopener noreferrer">
             LinkedIn
           </a>
-          <a href={links.medium} target="_blank" rel="noreferrer">
+          <a href={links.medium} target="_blank" rel="nofollow noopener noreferrer">
             Medium
           </a>
           <a href="/">Sudarshan AI Labs</a>

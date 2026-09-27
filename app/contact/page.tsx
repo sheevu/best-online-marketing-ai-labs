@@ -6,9 +6,26 @@ import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, CONTACT_EMAIL, CONTACT_PHONE, ORGANIZATION_ID, PRIMARY_ADDRESS, WHATSAPP_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Sudarshan AI Labs | Lucknow",
-  description: "Contact Sudarshan AI Labs in Lucknow for a digital marketing, SEO, lead generation, website or AI automation audit.",
+  title: "Contact Our Lucknow Team",
+  description:
+    "Contact Sudarshan AI Labs in Lucknow for a digital marketing, SEO, lead generation, website or AI automation audit. Call, email or message on WhatsApp.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Our Lucknow Team | Sudarshan AI Labs",
+    description:
+      "Contact Sudarshan AI Labs in Lucknow for a digital marketing, SEO, lead generation, website or AI automation audit.",
+    url: "/contact",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Contact Sudarshan AI Labs Lucknow",
+      },
+    ],
+  },
 };
 
 export default function Page() {

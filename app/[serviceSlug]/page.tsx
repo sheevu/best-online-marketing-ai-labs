@@ -30,13 +30,18 @@ export default async function ServicePage({
   const entry = serviceBySlug(serviceSlug);
   if (!entry) notFound();
 
-  const related = activeServiceCatalog
-    .filter(
-      (service) =>
-        service.slug !== entry.slug && service.category === entry.category,
-    )
-    .slice(0, 4)
-    .map((service) => [service.name, "/" + service.slug] as [string, string]);
+  const sameCategory = activeServiceCatalog.filter(
+    (service) =>
+      service.slug !== entry.slug && service.category === entry.category,
+  );
+  const otherCategory = activeServiceCatalog.filter(
+    (service) =>
+      service.slug !== entry.slug && service.category !== entry.category,
+  );
+  const combined = [...sameCategory, ...otherCategory].slice(0, 4);
+  const related = combined.map(
+    (service) => [service.name, "/" + service.slug] as [string, string],
+  );
 
   return <ServiceLandingPage data={servicePageFromCatalog(entry, related)} />;
 }

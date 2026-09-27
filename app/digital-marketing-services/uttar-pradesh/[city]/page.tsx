@@ -39,11 +39,8 @@ const cityIcons = [Buildings, MapPin, Target, ChartLineUp, Sparkle];
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
 }
-const fittedTitle = (title: string, city: string) => {
-  const branded = `${title.replace(/\s+\|\s+Sudarshan AI Labs$/, "")} | Sudarshan AI Labs`;
-  return branded.length <= 60
-    ? branded
-    : `Digital Marketing in ${city} | Sudarshan AI Labs`;
+const fittedTitle = (_title: string, city: string) => {
+  return `Digital Marketing in ${city}`;
 };
 const fittedMeta = (meta: string) => {
   if (meta.length > 155) {
@@ -81,8 +78,27 @@ export async function generateMetadata({
         "max-video-preview": -1,
       },
     },
-    openGraph: { title, description, type: "website", locale: "en_IN", url },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: {
+      title: `${title} | Sudarshan AI Labs`,
+      description,
+      type: "website",
+      locale: "en_IN",
+      url,
+      images: [
+        {
+          url: "/sudarshan-lucknow-hero.webp",
+          width: 1672,
+          height: 941,
+          alt: `Digital Marketing in ${c.name}, Uttar Pradesh`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Sudarshan AI Labs`,
+      description,
+      images: ["/sudarshan-lucknow-hero.webp"],
+    },
     keywords: [
       c.primaryKeyword,
       `SEO services in ${c.name}`,
@@ -369,7 +385,7 @@ export default async function CityPage({
         </div>
         <div>
           {featured.map(([label, href]) => (
-            <a key={href} href={href} target="_blank" rel="noreferrer">
+            <a key={href} href={href} target="_blank" rel="nofollow noopener noreferrer">
               <span>{label}</span>
               <b>↗</b>
             </a>
@@ -401,6 +417,22 @@ export default async function CityPage({
             <a href="/social-media-marketing-lucknow">Social Media Marketing</a>
             <a href="/lead-generation-lucknow">Lead Generation</a>
             <a href="/ai-automation-lucknow">AI Automation</a>
+          </nav>
+        </div>
+        <div>
+          <h2>Nearby Uttar Pradesh cities</h2>
+          <nav>
+            {cities
+              .filter((other) => other.slug !== c.slug && other.slug !== "lucknow")
+              .slice(0, 6)
+              .map((other) => (
+                <a
+                  key={other.slug}
+                  href={`/digital-marketing-services/${other.slug}`}
+                >
+                  {other.name}
+                </a>
+              ))}
           </nav>
         </div>
         <div>

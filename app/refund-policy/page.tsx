@@ -5,7 +5,28 @@ import StructuredData from "../_components/StructuredData";
 import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, ORGANIZATION_ID } from "../lib/site";
 
-export const metadata: Metadata = { title: "Refund Policy | Sudarshan AI Labs", description: "Refund and cancellation information for Sudarshan AI Labs engagements.", alternates: { canonical: "/refund-policy" } };
+export const metadata: Metadata = {
+  title: "Refund Policy",
+  description:
+    "Read the official refund and cancellation policy for Sudarshan AI Labs digital marketing, SEO, AI automation and consulting engagements in Lucknow.",
+  alternates: { canonical: "/refund-policy" },
+  openGraph: {
+    title: "Refund Policy | Sudarshan AI Labs",
+    description:
+      "Read the official refund and cancellation policy for Sudarshan AI Labs digital marketing, SEO, AI automation and consulting engagements in Lucknow.",
+    url: "/refund-policy",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Sudarshan AI Labs Refund Policy",
+      },
+    ],
+  },
+};
 
 export default function RefundPolicy() {
   return (

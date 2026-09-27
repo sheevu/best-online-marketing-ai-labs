@@ -36,7 +36,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Google Business Profile Setup & Optimization",
     "primaryKeyword": "google business profile",
     "slug": "google-business-profile-optimization",
-    "seoTitle": "Google Business Profile Setup & Optimization Services",
+    "seoTitle": "Google Business Profile Optimization",
     "metaDescription": "Improve your Google Business Profile for stronger visibility across Google Search and Maps with optimized categories, services, content and business details.",
     "longDescription": "Complete Google Business Profile setup and optimization for businesses that want to improve local discovery, strengthen profile relevance and generate more calls, visits and enquiries from Google Search and Maps.",
     "platforms": [
@@ -69,7 +69,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Google Maps SEO & Local Ranking Optimization",
     "primaryKeyword": "google maps seo",
     "slug": "google-maps-seo-local-ranking",
-    "seoTitle": "Google Maps SEO & Local Ranking Optimization Services",
+    "seoTitle": "Google Maps SEO & Local Ranking",
     "metaDescription": "Improve your Google Maps visibility with local SEO, profile optimization, location signals, citations and search-focused business information.",
     "longDescription": "A focused local ranking service designed to improve visibility in Google Maps and local search results through profile optimization, local keyword alignment, citation consistency, location relevance and conversion-focused business information.",
     "platforms": [
@@ -101,7 +101,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Multi-Platform Business Listing & Maps Setup",
     "primaryKeyword": "business listing services",
     "slug": "business-listing-maps-setup",
-    "seoTitle": "Business Listing & Maps Setup for Google, Bing, Apple & Yandex",
+    "seoTitle": "Business Listing & Maps Setup",
     "metaDescription": "Create and optimize business listings across major map and discovery platforms to improve local visibility, consistency and customer trust.",
     "longDescription": "Build a consistent local presence across major search and mapping ecosystems. This service consolidates business information, categories, descriptions and location details to reduce listing inconsistencies and expand discovery beyond Google.",
     "platforms": [
@@ -133,7 +133,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Bing Places Setup & Bing Local SEO",
     "primaryKeyword": "bing places for business",
     "slug": "bing-places-local-seo",
-    "seoTitle": "Bing Places Setup & Bing Local SEO Services",
+    "seoTitle": "Bing Places & Local SEO Setup",
     "metaDescription": "Improve business visibility on Bing Search and Maps with optimized Bing Places information, categories and local search signals.",
     "longDescription": "Setup and optimize a business presence within the Microsoft/Bing ecosystem, including business information, local categories, descriptions and search relevance for customers using Bing-powered discovery.",
     "platforms": [
@@ -164,7 +164,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Online Reputation & Google Review Management",
     "primaryKeyword": "review management services",
     "slug": "online-reputation-google-review-management",
-    "seoTitle": "Online Reputation & Google Review Management Services",
+    "seoTitle": "Online Reputation & Reviews",
     "metaDescription": "Strengthen customer trust with structured review generation, response workflows, reputation monitoring and Google Business Profile review optimization.",
     "longDescription": "A reputation-management service focused on helping businesses build a stronger public trust layer through ethical review acquisition workflows, professional response templates, issue escalation and profile reputation improvements.",
     "platforms": [
@@ -194,7 +194,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "local seo services",
     "slug": "local-seo-services",
     "canonicalUrl": "/seo-services-lucknow",
-    "seoTitle": "Local SEO Services for Google Search & Maps Visibility",
+    "seoTitle": "Local SEO Services",
     "metaDescription": "Grow local visibility with SEO for Google Search and Maps, including local keywords, business profiles, citations and location-focused pages.",
     "longDescription": "Local SEO services designed to help nearby customers discover your business through search engines and maps. The service combines local keyword research, profile optimization, website improvements, citations and location relevance.",
     "platforms": [
@@ -226,7 +226,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "seo services near me",
     "slug": "seo-services-search-optimization",
     "canonicalUrl": "/seo-services-lucknow",
-    "seoTitle": "SEO Services for Better Rankings, Visibility & Organic Growth",
+    "seoTitle": "SEO Services & Search Growth",
     "metaDescription": "Improve search visibility with on-page SEO, technical optimization, keyword targeting, content improvements and search-focused site structure.",
     "longDescription": "A comprehensive SEO service covering website structure, content relevance, metadata, internal links and technical foundations. It is designed to improve organic visibility while aligning pages with real customer search intent.",
     "platforms": [
@@ -257,7 +257,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "SEO Content Optimization & Content Writing",
     "primaryKeyword": "seo content writing",
     "slug": "seo-content-writing-optimization",
-    "seoTitle": "SEO Content Writing & Website Content Optimization Services",
+    "seoTitle": "SEO Content Writing & Optimization",
     "metaDescription": "Create and improve search-focused website copy, blogs and service content aligned with keywords, user intent and conversion goals.",
     "longDescription": "Research-led content creation and optimization for service pages, landing pages, articles and blogs. The focus is on useful, readable content that supports organic visibility and guides users toward action.",
     "platforms": [
@@ -290,7 +290,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "website development services",
     "slug": "website-development-company",
     "canonicalUrl": "/website-design",
-    "seoTitle": "Website Development Services for Modern, SEO-Ready Business Websites",
+    "seoTitle": "Website Development Services",
     "metaDescription": "Website development services for responsive, professional and SEO-ready business websites built for performance, trust, enquiries and long-term growth.",
     "longDescription": "Professional website development services for businesses that need a modern digital presence. Websites are structured for mobile usability, clear service communication, search visibility, speed and conversion-focused customer journeys.",
     "platforms": [
@@ -323,7 +323,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "web development company",
     "slug": "custom-web-development-company",
     "canonicalUrl": "/website-design",
-    "seoTitle": "Custom Web Development Company for Scalable Business Solutions",
+    "seoTitle": "Custom Web Development",
     "metaDescription": "Build custom, responsive and scalable web solutions with modern design, business workflows, integrations and performance-focused development.",
     "longDescription": "Custom web development for companies requiring more flexibility than a standard business website, including advanced workflows, integrations, dynamic sections and scalable digital experiences.",
     "platforms": [
@@ -354,7 +354,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Ecommerce Website Development",
     "primaryKeyword": "ecommerce website development",
     "slug": "ecommerce-website-development",
-    "seoTitle": "Ecommerce Website Development Services for Growing Businesses",
+    "seoTitle": "Ecommerce Website Development",
     "metaDescription": "Launch a professional ecommerce website with product pages, responsive design, customer journeys and scalable online-selling functionality.",
     "longDescription": "End-to-end ecommerce website development for businesses that want to sell products online. The service focuses on product presentation, navigation, mobile experience, customer journeys, essential integrations and SEO-ready store architecture.",
     "platforms": [
@@ -385,7 +385,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "build ecommerce website",
     "slug": "build-ecommerce-website",
     "canonicalUrl": "/ecommerce-website-development",
-    "seoTitle": "Build an Ecommerce Website & Launch Your Online Store",
+    "seoTitle": "Build an Ecommerce Website",
     "metaDescription": "Build a responsive ecommerce website with product listings, conversion-focused pages and the essential structure needed to start selling online.",
     "longDescription": "A practical online-store launch service for businesses that need to move from offline or social selling into a structured ecommerce experience with products, categories, customer journeys and mobile-ready pages.",
     "platforms": [
@@ -414,7 +414,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Web Application Development",
     "primaryKeyword": "web application development",
     "slug": "web-application-development",
-    "seoTitle": "Web Application Development Services for Businesses",
+    "seoTitle": "Web Application Development",
     "metaDescription": "Build scalable web applications, dashboards, portals and business tools with modern interfaces, workflows and integrations.",
     "longDescription": "Custom web application development for businesses requiring interactive portals, dashboards, internal systems, customer tools or workflow automation. Solutions are planned around usability, maintainability and business processes.",
     "platforms": [
@@ -446,7 +446,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "AI SaaS & MVP Development",
     "primaryKeyword": "saas development",
     "slug": "ai-saas-mvp-development",
-    "seoTitle": "AI SaaS & MVP Development for Startups and Businesses",
+    "seoTitle": "AI SaaS & MVP Development",
     "metaDescription": "Turn an idea into a functional AI-enabled SaaS or MVP with user flows, integrations, dashboards and scalable web application architecture.",
     "longDescription": "Rapid development of AI-enabled SaaS products and MVPs for validation, demonstrations and early customers. The service combines product scoping, interface design, core workflows and integrations.",
     "platforms": [
@@ -479,7 +479,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "social media marketing services",
     "slug": "social-media-marketing-services",
     "canonicalUrl": "/social-media-marketing-lucknow",
-    "seoTitle": "Social Media Marketing Services for Business Growth",
+    "seoTitle": "Social Media Marketing",
     "metaDescription": "Grow brand visibility with social media strategy, creative content, profile optimization, campaigns and audience engagement across major platforms.",
     "longDescription": "Multi-platform social media marketing designed to create a consistent brand presence, improve audience engagement and support business growth through planned content, campaigns and profile optimization.",
     "platforms": [
@@ -512,7 +512,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Meta Marketing & Social Media Management",
     "primaryKeyword": "meta marketing services",
     "slug": "meta-marketing-social-media-management",
-    "seoTitle": "Meta Marketing Services for Facebook, Instagram & Messenger",
+    "seoTitle": "Meta Marketing & Management",
     "metaDescription": "Manage and grow your presence across Meta platforms with Facebook and Instagram content, campaigns, profile optimization and customer engagement.",
     "longDescription": "A consolidated Meta ecosystem service covering Facebook, Instagram and Messenger for businesses that want coordinated content, branding, engagement and campaign execution from one strategy.",
     "platforms": [
@@ -544,7 +544,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Instagram Reels & Short-Form Video Marketing",
     "primaryKeyword": "instagram reels marketing",
     "slug": "instagram-reels-short-form-video-marketing",
-    "seoTitle": "Instagram Reels & Short-Form Video Marketing Services",
+    "seoTitle": "Instagram Reels Video Marketing",
     "metaDescription": "Increase social engagement with Reels and short-form video strategy, creative concepts, repurposing and platform-ready content.",
     "longDescription": "Short-form video marketing focused on high-attention formats such as Reels and vertical video. It helps businesses turn offers, expertise and existing content into repeatable, platform-native creative assets.",
     "platforms": [
@@ -574,7 +574,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "YouTube Marketing, SEO & Channel Growth",
     "primaryKeyword": "youtube marketing services",
     "slug": "youtube-marketing-seo-channel-growth",
-    "seoTitle": "YouTube Marketing, SEO, Shorts & Video Repurposing Services",
+    "seoTitle": "YouTube Marketing & Video SEO",
     "metaDescription": "Grow your audience with comprehensive YouTube SEO, high-retention Shorts, custom thumbnails, channel architecture and cross-platform video repurposing.",
     "longDescription": "An end-to-end YouTube growth and video content system designed to build authority, capture search traffic and scale vertical video reach. We combine search-first video optimization, retention-focused scripting, YouTube Shorts production and cross-platform repurposing for Reels and LinkedIn.",
     "customOutcomes": [
@@ -656,7 +656,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "youtube shorts marketing",
     "slug": "youtube-shorts-short-video-marketing",
     "canonicalUrl": "/youtube-marketing-seo-channel-growth",
-    "seoTitle": "YouTube Shorts, Reels & Short Video Marketing Services",
+    "seoTitle": "YouTube Shorts Marketing",
     "metaDescription": "Create a repeatable short-video strategy for YouTube Shorts, Instagram Reels and Facebook Reels to expand reach and engagement.",
     "longDescription": "A cross-platform short-video service that transforms business ideas, long videos and offers into concise vertical content optimized for discovery across Shorts and Reels ecosystems.",
     "platforms": [
@@ -688,7 +688,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "content repurposing services",
     "slug": "video-content-repurposing",
     "canonicalUrl": "/youtube-marketing-seo-channel-growth",
-    "seoTitle": "Video Content Repurposing for Reels, Shorts & Social Media",
+    "seoTitle": "Video Content Repurposing",
     "metaDescription": "Turn long videos, webinars and recordings into reusable Reels, Shorts, clips, posts and social content for multiple channels.",
     "longDescription": "Content repurposing helps businesses extract more value from every recording by converting long-form videos into short vertical clips, social posts, caption ideas and channel-specific content assets.",
     "platforms": [
@@ -720,7 +720,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Facebook & Instagram Ads Management",
     "primaryKeyword": "facebook advertising management",
     "slug": "facebook-instagram-ads-management",
-    "seoTitle": "Facebook & Instagram Advertising Management Services",
+    "seoTitle": "Facebook & Instagram Ads Setup",
     "metaDescription": "Run structured Meta advertising campaigns with audience targeting, creative strategy, lead generation, optimization and performance tracking.",
     "longDescription": "Paid advertising management across Facebook and Instagram, focused on campaign structure, audience selection, creative testing, lead generation and ongoing performance improvements.",
     "platforms": [
@@ -751,7 +751,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Google, YouTube & Meta Remarketing Campaigns",
     "primaryKeyword": "remarketing services",
     "slug": "google-youtube-meta-remarketing",
-    "seoTitle": "Google, YouTube & Meta Remarketing Campaign Management",
+    "seoTitle": "Multi-Platform Remarketing Ads",
     "metaDescription": "Reconnect with previous visitors and prospects through structured remarketing campaigns across Google, YouTube, Facebook and Instagram.",
     "longDescription": "Cross-platform remarketing designed to re-engage users who have already interacted with your website, videos, pages or campaigns, helping businesses stay visible across multiple stages of the buying journey.",
     "platforms": [
@@ -783,7 +783,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Lead Generation Landing Page Design & Development",
     "primaryKeyword": "lead generation",
     "slug": "lead-generation-landing-page",
-    "seoTitle": "Lead Generation Landing Page Design & Development",
+    "seoTitle": "Lead Generation Landing Pages",
     "metaDescription": "Convert campaign traffic into enquiries with focused landing pages, clear offers, responsive design, forms and conversion-driven calls to action.",
     "longDescription": "Conversion-focused landing pages designed around one primary offer or campaign. The service combines persuasive page structure, mobile-first design, forms and clear calls to action for lead generation.",
     "platforms": [
@@ -814,7 +814,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "WhatsApp Business & Meta Automation",
     "primaryKeyword": "whatsapp business automation",
     "slug": "whatsapp-business-meta-automation",
-    "seoTitle": "WhatsApp Business & Meta Automation Services",
+    "seoTitle": "WhatsApp & Meta Automation",
     "metaDescription": "Improve lead handling with WhatsApp Business setup, automated responses, catalog workflows and Meta-integrated customer communication.",
     "longDescription": "Business messaging and automation services designed to reduce manual follow-up and organize customer conversations using WhatsApp Business and connected Meta tools.",
     "platforms": [
@@ -848,7 +848,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "Facebook & Instagram Shop / Social Commerce Setup",
     "primaryKeyword": "facebook shop setup",
     "slug": "facebook-instagram-shop-social-commerce",
-    "seoTitle": "Facebook & Instagram Shop Setup & Social Commerce Services",
+    "seoTitle": "Facebook & Instagram Shop Setup",
     "metaDescription": "Showcase products across Facebook and Instagram with catalog setup, social commerce structure and product-focused customer journeys.",
     "longDescription": "A social commerce setup service for product businesses that want customers to discover products directly through Meta platforms and move smoothly from social content to enquiry or purchase.",
     "platforms": [
@@ -877,7 +877,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "name": "LinkedIn Marketing & B2B Lead Generation",
     "primaryKeyword": "linkedin marketing services",
     "slug": "linkedin-marketing-b2b-lead-generation",
-    "seoTitle": "LinkedIn Marketing & B2B Lead Generation Services",
+    "seoTitle": "LinkedIn B2B Lead Generation",
     "metaDescription": "Strengthen your professional brand and generate B2B opportunities with LinkedIn content, company-page optimization and outreach strategy.",
     "longDescription": "LinkedIn marketing for businesses targeting professionals, founders and decision-makers. The service combines company-page improvement, content positioning and structured B2B lead-generation workflows.",
     "platforms": [
@@ -906,7 +906,7 @@ export const serviceCatalog: ServiceCatalogEntry[] = [
     "primaryKeyword": "best digital marketing agency in lucknow",
     "slug": "best-digital-marketing-agency-lucknow",
     "canonicalUrl": "/digital-marketing-services",
-    "seoTitle": "Best Digital Marketing Agency in Lucknow for Business Growth",
+    "seoTitle": "Digital Marketing Agency in Lucknow",
     "metaDescription": "Grow your Lucknow business with SEO, social media, websites, Google Maps, Meta marketing, content and digital lead generation under one strategy.",
     "longDescription": "An integrated digital marketing service for Lucknow businesses combining search visibility, local discovery, websites, social media, video content, paid campaigns and conversion-focused growth activities.",
     "platforms": [

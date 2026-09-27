@@ -48,8 +48,9 @@ export type ServicePageData = {
 
 export function serviceMetadata(data: ServicePageData): Metadata {
   const url = data.canonicalUrl ?? `/${data.slug}`;
+  const cleanTitle = data.title.replace(/\s*\|\s*Sudarshan AI Labs.*$/i, "").trim();
   return {
-    title: data.title,
+    title: cleanTitle,
     description: data.description,
     alternates: { canonical: url },
     robots: {
@@ -64,7 +65,7 @@ export function serviceMetadata(data: ServicePageData): Metadata {
       },
     },
     openGraph: {
-      title: data.title,
+      title: `${cleanTitle} | Sudarshan AI Labs`,
       description: data.description,
       url,
       type: "website",
@@ -81,7 +82,7 @@ export function serviceMetadata(data: ServicePageData): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: data.title,
+      title: `${cleanTitle} | Sudarshan AI Labs`,
       description: data.description,
       images: ["/sudarshan-lucknow-hero.webp"],
     },
@@ -210,7 +211,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
 
       <section className="service-links">
         <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
-        <nav>{(data.related ?? coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={100} height={120} sizes="100px" /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
+        <nav>{((data.related && data.related.length > 0) ? data.related : coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={100} height={120} sizes="100px" /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
         <nav className="site-hub-links" aria-label="Explore Sudarshan AI Labs">
           <Link href="/digital-marketing-services">All Lucknow services</Link>
           <Link href="/digital-marketing-services/uttar-pradesh">Uttar Pradesh city directory</Link>

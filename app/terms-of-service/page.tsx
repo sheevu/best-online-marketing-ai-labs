@@ -5,7 +5,28 @@ import StructuredData from "../_components/StructuredData";
 import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, ORGANIZATION_ID } from "../lib/site";
 
-export const metadata: Metadata = { title: "Terms of Service | Sudarshan AI Labs", description: "Terms for using Sudarshan AI Labs services and website.", alternates: { canonical: "/terms-of-service" } };
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "Review the terms and conditions for using the Sudarshan AI Labs website and engaging our digital marketing, web design and AI services in India.",
+  alternates: { canonical: "/terms-of-service" },
+  openGraph: {
+    title: "Terms of Service | Sudarshan AI Labs",
+    description:
+      "Review the terms and conditions for using the Sudarshan AI Labs website and engaging our digital marketing, web design and AI services in India.",
+    url: "/terms-of-service",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Sudarshan AI Labs Terms of Service",
+      },
+    ],
+  },
+};
 
 export default function TermsOfService() {
   return (

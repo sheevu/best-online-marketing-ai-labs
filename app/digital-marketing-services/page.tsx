@@ -1,14 +1,16 @@
  
 import type { Metadata } from "next";
 import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
-import { serviceCatalog } from "../lib/service-catalog";
+import { activeServiceCatalog } from "../lib/service-catalog";
+import { areas } from "../lib/areas";
+import { cities } from "../lib/cities";
 import { PRIMARY_ADDRESS, WHATSAPP_URL } from "../lib/site";
 import { SITE, buildServicePageSchema } from "../lib/schema";
 
 const wa = WHATSAPP_URL;
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+  title: "Digital Marketing Services in Lucknow",
   description:
     "Digital marketing services in Lucknow for MSMEs: local SEO, Google Maps, websites, social media, ads and WhatsApp automation. Request a free audit.",
   alternates: { canonical: "/digital-marketing-services" },
@@ -30,6 +32,21 @@ export const metadata: Metadata = {
     url: "/digital-marketing-services",
     type: "website",
     locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Digital Marketing Services in Lucknow - Sudarshan AI Labs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+    description:
+      "A connected local growth system for Lucknow businesses: SEO, Maps, websites, social media, ads and practical AI automation.",
+    images: ["/sudarshan-lucknow-hero.webp"],
   },
   keywords: [
     "best digital marketing services in Lucknow",
@@ -236,7 +253,7 @@ export default function LucknowServices() {
           <p>Browse the search intent, channels and scope behind each service in the current Sudarshan AI Labs menu.</p>
         </div>
         <div className="catalog-service-grid">
-          {serviceCatalog.map((service, index) => (
+          {activeServiceCatalog.map((service, index) => (
             <a href={"/" + service.slug} key={service.slug}>
               <span>{String(index + 1).padStart(2, "0")} • {service.category}</span>
               <h3>{service.name}</h3>
@@ -295,19 +312,35 @@ export default function LucknowServices() {
           <h2>Useful guidance for businesses across Lucknow</h2>
           <p>
             We serve Lucknow from our primary location and can support suitable
-            businesses across Uttar Pradesh. Service-area advice is included
-            when it reflects a real customer need, not to create a page for
-            every locality.
+            businesses across Uttar Pradesh. Explore dedicated guidance for
+            your Lucknow locality and major regional commercial hubs.
           </p>
         </div>
         <div className="pillar-area-links">
-          <a href="/contact">
-            <span>Lucknow growth audit</span>
-            <b>Discuss your service area ↗</b>
-          </a>
-          <a href="/about-sheevum-goel">
-            <span>Founder and local context</span>
-            <b>Review our background ↗</b>
+          {areas.map((a) => (
+            <a
+              key={a.slug}
+              href={`/digital-marketing-services/${a.slug}-lucknow`}
+            >
+              <span>{a.name}, Lucknow</span>
+              <b>Local Marketing Hub ↗</b>
+            </a>
+          ))}
+          {cities
+            .filter((c) => c.slug !== "lucknow")
+            .slice(0, 6)
+            .map((c) => (
+              <a
+                key={c.slug}
+                href={`/digital-marketing-services/${c.slug}`}
+              >
+                <span>{c.name}, UP</span>
+                <b>City Marketing Hub ↗</b>
+              </a>
+            ))}
+          <a href="/digital-marketing-services/uttar-pradesh">
+            <span>Regional Growth</span>
+            <b>All Uttar Pradesh City Hubs ↗</b>
           </a>
         </div>
       </section>

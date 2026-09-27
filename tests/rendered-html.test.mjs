@@ -10,6 +10,8 @@ test("production HTML ships native interactions and no React hydration", async (
   assert.match(html, /<meta name="yandex-verification" content="796e217f3b74c89f"/);
   assert.match(html, /data-clarity-script="true"/);
   assert.match(html, /https:\/\/www\.clarity\.ms\/tag\//);
+  assert.match(html, /https:\/\/analytics\.ahrefs\.com\/analytics\.js/);
+  assert.match(html, /data-key="Nq8A5lfKCZ3ODQmPOotLqQ"/);
   assert.match(html, /role="tabpanel"/);
   assert.match(html, /loading="eager"[^>]*fetchPriority="high"/i);
   assert.doesNotMatch(html, /sudarshan-lucknow-hero-v1-960\.webp/);
@@ -65,7 +67,7 @@ test("renders production metadata and product catalogue", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Sudarshan AI Labs \| AI Agents &amp; Digital Marketing Services in Lucknow, UP<\/title>/i,
+    /<title>Sudarshan AI Labs \| AI &amp; Digital Marketing in Lucknow<\/title>/i,
   );
   assert.match(html, /<html lang="en-IN">/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
@@ -185,11 +187,12 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.doesNotMatch(sitemapXml, /social-media-marketing-services/i);
   assert.doesNotMatch(sitemapXml, /youtube-shorts-short-video-marketing/i);
   assert.doesNotMatch(sitemapXml, /video-content-repurposing/i);
-  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow/i);
-  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/kanpur/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/lucknow<\/loc>/i);
+  assert.match(sitemapXml, /digital-marketing-services\/kanpur<\/loc>/i);
+  assert.match(sitemapXml, /digital-marketing-services\/hazratganj-lucknow<\/loc>/i);
   assert.doesNotMatch(sitemapXml, /digital-marketing-services\/uttar-pradesh\/kanpur/i);
   assert.doesNotMatch(sitemapXml, /google-ads-services\/kanpur/i);
-  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/hazratganj/i);
+  assert.doesNotMatch(sitemapXml, /digital-marketing-services\/hazratganj<\/loc>/i);
   assert.doesNotMatch(sitemapXml, /https:\/\/www\.sudarshan-ai\.com/i);
 
   // Consolidated SEO redirects
@@ -365,6 +368,40 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.match(
     canonicalAreaHtml,
     /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/digital-marketing-services\/hazratganj-lucknow"\s*\/>/i,
+  );
+
+  // Consolidated theemagers.com domain redirects
+  const theemagersApex = await worker.fetch(
+    new Request("https://theemagers.com/"),
+    env,
+    ctx,
+  );
+  assert.equal(theemagersApex.status, 301);
+  assert.equal(
+    theemagersApex.headers.get("location"),
+    "https://sudarshan-ai.com/",
+  );
+
+  const theemagersWww = await worker.fetch(
+    new Request("https://www.theemagers.com/"),
+    env,
+    ctx,
+  );
+  assert.equal(theemagersWww.status, 301);
+  assert.equal(
+    theemagersWww.headers.get("location"),
+    "https://sudarshan-ai.com/",
+  );
+
+  const theemagersSubpath = await worker.fetch(
+    new Request("https://theemagers.com/old-page?ref=test"),
+    env,
+    ctx,
+  );
+  assert.equal(theemagersSubpath.status, 301);
+  assert.equal(
+    theemagersSubpath.headers.get("location"),
+    "https://sudarshan-ai.com/?ref=test",
   );
 });
 

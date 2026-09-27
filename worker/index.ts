@@ -33,6 +33,16 @@ const worker = {
     ctx: ExecutionContext,
   ): Promise<Response> {
     const url = new URL(request.url);
+    const oldDomainRedirectHosts = new Set([
+      "theemagers.com",
+      "www.theemagers.com",
+    ]);
+    if (oldDomainRedirectHosts.has(url.hostname)) {
+      const destination = new URL("https://sudarshan-ai.com/");
+      destination.search = url.search;
+      return Response.redirect(destination.toString(), 301);
+    }
+
     const preferredHost = "sudarshan-ai.com";
     const redirectHosts = new Set([
       "www.sudarshan-ai.com",

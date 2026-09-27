@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP",
+    default: "Sudarshan AI Labs | AI & Digital Marketing in Lucknow",
     template: "%s | Sudarshan AI Labs",
   },
   description:
@@ -96,6 +96,11 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "yihvqld983")};
             if(typeof requestIdleCallback==="function"){requestIdleCallback(h)}else{setTimeout(h,2500)}})();`,
           }}
+        />
+              <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="Nq8A5lfKCZ3ODQmPOotLqQ"
+          async
         />
       </head>
       <body>

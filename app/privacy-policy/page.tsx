@@ -6,9 +6,26 @@ import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, CONTACT_EMAIL, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Sudarshan AI Labs",
-  description: "Privacy information for Sudarshan AI Labs website visitors and enquiries.",
+  title: "Privacy Policy",
+  description:
+    "Learn how Sudarshan AI Labs collects, protects and handles enquiry details and client data across our website and digital marketing services.",
   alternates: { canonical: "/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy | Sudarshan AI Labs",
+    description:
+      "Learn how Sudarshan AI Labs collects, protects and handles enquiry details and client data across our website and digital marketing services.",
+    url: "/privacy-policy",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Sudarshan AI Labs Privacy Policy",
+      },
+    ],
+  },
 };
 
 export default function PrivacyPolicy() {

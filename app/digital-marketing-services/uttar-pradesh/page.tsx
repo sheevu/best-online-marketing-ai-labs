@@ -5,11 +5,27 @@ import StructuredData from "../../_components/StructuredData";
 import { cities } from "../../lib/cities";
 import { absoluteUrl, ORGANIZATION_ID, WHATSAPP_URL } from "../../lib/site";
 export const metadata: Metadata = {
-  title: "Digital Marketing Across Uttar Pradesh | Sudarshan AI Labs",
+  title: "Digital Marketing Across Uttar Pradesh",
   description:
     "Explore regional digital marketing, SEO, website and lead-generation support across Uttar Pradesh, grounded in genuine service areas and customer demand.",
   alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: "Digital Marketing Across Uttar Pradesh | Sudarshan AI Labs",
+    description:
+      "Explore regional digital marketing, SEO, website and lead-generation support across Uttar Pradesh, grounded in genuine service areas and customer demand.",
+    url: "/digital-marketing-services/uttar-pradesh",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/sudarshan-lucknow-hero.webp",
+        width: 1672,
+        height: 941,
+        alt: "Digital Marketing Across Uttar Pradesh",
+      },
+    ],
+  },
 };
 const cityIcons = [Buildings, Factory, GraduationCap, Heartbeat, Storefront, MapPin];
 export default function UttarPradeshCities() {
