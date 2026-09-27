@@ -216,6 +216,82 @@
     below.forEach(item => observer.observe(item));
   }
 
+  
+  // Proof cards 10-second automated text rotation
+  const proofGrid = document.querySelector(".v-proof-grid");
+  if (proofGrid) {
+    const proofCards = [
+      proofGrid.querySelector('[data-proof-card="0"]'),
+      proofGrid.querySelector('[data-proof-card="1"]'),
+      proofGrid.querySelector('[data-proof-card="2"]')
+    ];
+    const dots = [...document.querySelectorAll("[data-proof-dot]")];
+    const slides = [
+      [
+        { h3: "Clear ownership", p: "Websites, content and agreed systems are documented for handover.", aText: "Meet the founder ↗", aHref: "/about-sheevum-goel" },
+        { h3: "Useful depth", p: "Service and locality pages explain the customer problem, scope and limits.", aText: "Review the services ↗", aHref: "/digital-marketing-services" },
+        { h3: "Honest proof", p: "Client case studies are added only with permission and enough context to verify them.", aText: "Request relevant examples ↗", aHref: "/contact#contact-options" }
+      ],
+      [
+        { h3: "Zero agency lock-in", p: "Complete transfer of domain DNS, source code, ad accounts and automation pipelines.", aText: "Explore our model ↗", aHref: "/about-sheevum-goel#story" },
+        { h3: "Local SEO dominance", p: "Rankings built on authentic Google Business Profiles and localized topical cluster content.", aText: "View local rankings ↗", aHref: "/seo-services-lucknow" },
+        { h3: "Predictable leads", p: "Tailored WhatsApp auto-responders and Hindi-first CRM integrations converting traffic into sales.", aText: "See automation tools ↗", aHref: "/ai-automation-lucknow" }
+      ],
+      [
+        { h3: "Direct engineering", p: "Work directly with senior AI & growth practitioners, not outsourced junior account reps.", aText: "Read founder profile ↗", aHref: "/about-sheevum-goel" },
+        { h3: "Actionable telemetry", p: "Transparent Google Analytics & Search Console dashboards tracking genuine customer footfall.", aText: "Request an audit ↗", aHref: "/digital-marketing-services" },
+        { h3: "Custom playbooks", p: "Tailored step-by-step SOPs and recorded documentation so your internal team operates independently.", aText: "Get in touch ↗", aHref: "/contact" }
+      ]
+    ];
+    let activeIndex = 0;
+    let timer = null;
+
+    const setSlide = (idx) => {
+      activeIndex = (idx + slides.length) % slides.length;
+      proofGrid.classList.add("is-fading");
+      setTimeout(() => {
+        const currentData = slides[activeIndex];
+        proofCards.forEach((card, i) => {
+          if (!card || !currentData[i]) return;
+          const h3 = card.querySelector("[data-proof-h3]");
+          const p = card.querySelector("[data-proof-p]");
+          const a = card.querySelector("[data-proof-a]");
+          if (h3) h3.textContent = currentData[i].h3;
+          if (p) p.textContent = currentData[i].p;
+          if (a) {
+            a.textContent = currentData[i].aText;
+            a.href = currentData[i].aHref;
+          }
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("is-active", i === activeIndex);
+          dot.setAttribute("aria-current", String(i === activeIndex));
+        });
+        proofGrid.classList.remove("is-fading");
+      }, 300);
+    };
+
+    const restartTimer = () => {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        if (!document.hidden && !proofGrid.matches(":hover")) {
+          setSlide(activeIndex + 1);
+        }
+      }, 10000);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        setSlide(i);
+        restartTimer();
+      });
+    });
+
+    proofGrid.addEventListener("mouseenter", () => clearInterval(timer));
+    proofGrid.addEventListener("mouseleave", restartTimer);
+    restartTimer();
+  }
+
   // Scroll-linked navigation elevation
   const nav = document.querySelector('.v-nav') || document.querySelector('.area-nav');
   if (nav) {

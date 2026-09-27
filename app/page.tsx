@@ -921,24 +921,32 @@ export default function Home() {
           founder profile and relevant work before choosing a scope. <a href={MAP_URL}>View the Google Maps presence.</a>
         </p>
         <div className="v-proof-grid">
-          <article>
+          <article data-proof-card="0">
             <span className="card-number">01</span>
-            <h3>Clear ownership</h3>
-            <p>Websites, content and agreed systems are documented for handover.</p>
-            <a href="/about-sheevum-goel">Meet the founder <ArrowUpRight /></a>
+            <h3 data-proof-h3>Clear ownership</h3>
+            <p data-proof-p>Websites, content and agreed systems are documented for handover.</p>
+            <a data-proof-a href="/about-sheevum-goel">Meet the founder <ArrowUpRight /></a>
           </article>
-          <article>
+          <article data-proof-card="1">
             <span className="card-number">02</span>
-            <h3>Useful depth</h3>
-            <p>Service and locality pages explain the customer problem, scope and limits.</p>
-            <a href="/digital-marketing-services">Review the services <ArrowUpRight /></a>
+            <h3 data-proof-h3>Useful depth</h3>
+            <p data-proof-p>Service and locality pages explain the customer problem, scope and limits.</p>
+            <a data-proof-a href="/digital-marketing-services">Review the services <ArrowUpRight /></a>
           </article>
-          <article>
+          <article data-proof-card="2">
             <span className="card-number">03</span>
-            <h3>Honest proof</h3>
-            <p>Client case studies are added only with permission and enough context to verify them.</p>
-            <a href="/contact#contact-options">Request relevant examples <ArrowUpRight /></a>
+            <h3 data-proof-h3>Honest proof</h3>
+            <p data-proof-p>Client case studies are added only with permission and enough context to verify them.</p>
+            <a data-proof-a href="/contact#contact-options">Request relevant examples <ArrowUpRight /></a>
           </article>
+        </div>
+        <div className="v-proof-controls">
+          <div className="v-proof-dots">
+            <button type="button" className="v-proof-dot is-active" data-proof-dot="0" aria-label="Perspective 1: Foundation and Handover"><span className="v-proof-bar" /></button>
+            <button type="button" className="v-proof-dot" data-proof-dot="1" aria-label="Perspective 2: Operations and Systems"><span className="v-proof-bar" /></button>
+            <button type="button" className="v-proof-dot" data-proof-dot="2" aria-label="Perspective 3: Engineering and Playbooks"><span className="v-proof-bar" /></button>
+          </div>
+          <span className="v-proof-timer">Auto-rotates every 10s • Click to cycle insights</span>
         </div>
       </section>
 
