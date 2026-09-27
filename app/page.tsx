@@ -28,7 +28,6 @@ import {
 import {
   DUNS_NUMBER,
   MAP_URL,
-  PRIMARY_ADDRESS,
   SITE_URL,
   WHATSAPP_URL,
 } from "./lib/site";
@@ -1256,21 +1255,29 @@ export default function Home() {
       </section>
 
       <section className="v-final">
-        <div className="v-final-orb">
-          <Sparkle weight="fill" />
+        <div className="v-final-orb-wrapper">
+          <div className="v-final-orb-halo" aria-hidden="true" />
+          <div className="v-final-orb" aria-hidden="true">
+            <Sparkle weight="fill" className="v-final-orb-icon" />
+          </div>
         </div>
-        <span>FREE 20-MINUTE DIGITAL GROWTH AUDIT</span>
+        <div className="v-final-audit-chip">
+          <span className="v-final-chip-dot" aria-hidden="true" />
+          <span>FREE 20-MINUTE DIGITAL GROWTH AUDIT</span>
+        </div>
         <h2>Ready to become easier to find—and easier to choose?</h2>
         <p>
           Share your business name and website or Google listing. We will
           identify the three most useful actions to take next.
         </p>
-        <a className="v-pill v-pill-light" href={wa}>
-          Start on WhatsApp <WhatsappLogo weight="fill" />
-        </a>
-        <a className="v-final-secondary" href="/contact">
-          Prefer phone or email? See contact options <ArrowUpRight />
-        </a>
+        <div className="v-final-cta-group">
+          <a className="v-pill v-pill-light" href={wa} target="_blank" rel="noreferrer">
+            Start on WhatsApp <WhatsappLogo weight="fill" />
+          </a>
+          <a className="v-final-secondary" href="/contact">
+            Prefer phone or email? See contact options <ArrowUpRight />
+          </a>
+        </div>
       </section>
 
       <section className="v-orbit-growth" aria-labelledby="orbit-title">
@@ -1397,35 +1404,35 @@ export default function Home() {
         </nav>
         <nav aria-label="Lucknow Localities">
           <span className="v-footer-head">Lucknow Localities</span>
-          <a href="/digital-marketing-services/hazratganj-lucknow">Hazratganj</a>
-          <a href="/digital-marketing-services/gomti-nagar-lucknow">Gomti Nagar</a>
-          <a href="/digital-marketing-services/gomti-nagar-extension-lucknow">Gomti Nagar Ext.</a>
-          <a href="/digital-marketing-services/aliganj-lucknow">Aliganj</a>
-          <a href="/digital-marketing-services/indira-nagar-lucknow">Indira Nagar</a>
-          <a href="/digital-marketing-services/mahanagar-lucknow">Mahanagar</a>
-          <a href="/digital-marketing-services/jankipuram-lucknow">Jankipuram</a>
-          <a href="/digital-marketing-services/vikas-nagar-lucknow">Vikas Nagar</a>
-          <a href="/digital-marketing-services/ashiyana-lucknow">Ashiyana</a>
-          <a href="/digital-marketing-services">All Lucknow Areas <ArrowUpRight /></a>
+          <a href="/digital-marketing-services/hazratganj-lucknow">Digital Marketing in Hazratganj</a>
+          <a href="/digital-marketing-services/gomti-nagar-lucknow">Digital Marketing in Gomti Nagar</a>
+          <a href="/digital-marketing-services/gomti-nagar-extension-lucknow">Digital Marketing in Gomti Nagar Ext.</a>
+          <a href="/digital-marketing-services/aliganj-lucknow">Digital Marketing in Aliganj</a>
+          <a href="/digital-marketing-services/indira-nagar-lucknow">Digital Marketing in Indira Nagar</a>
+          <a href="/digital-marketing-services/mahanagar-lucknow">Digital Marketing in Mahanagar</a>
+          <a href="/digital-marketing-services/jankipuram-lucknow">Digital Marketing in Jankipuram</a>
+          <a href="/digital-marketing-services/vikas-nagar-lucknow">Digital Marketing in Vikas Nagar</a>
+          <a href="/digital-marketing-services/ashiyana-lucknow">Digital Marketing in Ashiyana</a>
+          <a href="/digital-marketing-services">All Lucknow Localities <ArrowUpRight /></a>
         </nav>
         <nav aria-label="Uttar Pradesh Regional Hubs">
           <span className="v-footer-head">UP Regional Hubs</span>
-          <a href="/digital-marketing-services/kanpur">Kanpur</a>
-          <a href="/digital-marketing-services/varanasi">Varanasi</a>
-          <a href="/digital-marketing-services/prayagraj">Prayagraj</a>
-          <a href="/digital-marketing-services/agra">Agra</a>
-          <a href="/digital-marketing-services/meerut">Meerut</a>
-          <a href="/digital-marketing-services/bareilly">Bareilly</a>
-          <a href="/digital-marketing-services/gorakhpur">Gorakhpur</a>
-          <a href="/digital-marketing-services/noida">Noida</a>
-          <a href="/digital-marketing-services/jhansi">Jhansi</a>
-          <a href="/digital-marketing-services/muzaffarnagar">Muzaffarnagar</a>
-          <a href="/digital-marketing-services/mathura">Mathura</a>
-          <a href="/digital-marketing-services/rampur">Rampur</a>
-          <a href="/digital-marketing-services/shahjahanpur">Shahjahanpur</a>
-          <a href="/digital-marketing-services/jaunpur">Jaunpur</a>
-          <a href="/digital-marketing-services/firozabad">Firozabad</a>
-          <a href="/digital-marketing-services/uttar-pradesh">All UP Cities <ArrowUpRight /></a>
+          <a href="/digital-marketing-services/kanpur">Digital Marketing in Kanpur</a>
+          <a href="/digital-marketing-services/varanasi">Digital Marketing in Varanasi</a>
+          <a href="/digital-marketing-services/prayagraj">Digital Marketing in Prayagraj</a>
+          <a href="/digital-marketing-services/agra">Digital Marketing in Agra</a>
+          <a href="/digital-marketing-services/meerut">Digital Marketing in Meerut</a>
+          <a href="/digital-marketing-services/bareilly">Digital Marketing in Bareilly</a>
+          <a href="/digital-marketing-services/gorakhpur">Digital Marketing in Gorakhpur</a>
+          <a href="/digital-marketing-services/noida">Digital Marketing in Noida</a>
+          <a href="/digital-marketing-services/jhansi">Digital Marketing in Jhansi</a>
+          <a href="/digital-marketing-services/muzaffarnagar">Digital Marketing in Muzaffarnagar</a>
+          <a href="/digital-marketing-services/mathura">Digital Marketing in Mathura</a>
+          <a href="/digital-marketing-services/rampur">Digital Marketing in Rampur</a>
+          <a href="/digital-marketing-services/shahjahanpur">Digital Marketing in Shahjahanpur</a>
+          <a href="/digital-marketing-services/jaunpur">Digital Marketing in Jaunpur</a>
+          <a href="/digital-marketing-services/firozabad">Digital Marketing in Firozabad</a>
+          <a href="/digital-marketing-services/uttar-pradesh">All UP Regional Hubs <ArrowUpRight /></a>
         </nav>
         <nav aria-label="Products and Trust">
           <span className="v-footer-head">Products & Legal</span>
@@ -1442,7 +1449,40 @@ export default function Home() {
             Founder LinkedIn <ArrowUpRight />
           </a>
         </nav>
-        <small>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</small>
+        <div className="v-footer-bottom-bar">
+          <div className="v-footer-bottom-left">
+            <div className="v-footer-motion-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/motion-graphics-sudarshan-ai-labs.gif"
+                alt="Sudarshan AI Labs Motion Graphics"
+                width={160}
+                height={160}
+                className="v-footer-motion-gif"
+                loading="lazy"
+              />
+            </div>
+            <div className="v-footer-motion-text">
+              <span className="v-footer-motion-title">SUDARSHAN AI LABS</span>
+              <p className="v-footer-motion-desc">
+                AI-Driven Digital Marketing, Local SEO & Automated Growth Infrastructure
+              </p>
+            </div>
+          </div>
+          <div className="v-footer-map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.732226993712!2d80.97939351103724!3d26.880247361387667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa85af66eb2a64e3d%3A0xa133613d3bd012a5!2sNava%20Netra%20Neural%20Sudarshan%20AI%20Labs%20Private%20Limited!5e0!3m2!1sen!2sin!4v1790522435070!5m2!1sen!2sin"
+              width="600"
+              height="200"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Sudarshan AI Labs Location Map"
+            />
+          </div>
+        </div>
+        <small>© 2026 Sudarshan AI Labs</small>
       </footer>
       <div className="v-mobile-dock" aria-label="Quick mobile contact actions">
         <div className="v-mobile-dock-inner">
