@@ -449,7 +449,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <a href="#products">
+            <a href="/product-page">
               Products
             </a>
             <a href="#approach">
