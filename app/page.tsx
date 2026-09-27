@@ -21,6 +21,8 @@ import {
   Sparkle,
   Target,
   WhatsappLogo,
+  YoutubeLogo,
+  BookOpen,
   X,
 } from "@phosphor-icons/react/dist/ssr";
 import {
@@ -990,6 +992,243 @@ export default function Home() {
         </div>
       </section>
 
+            <section className="v-section v-shorts-section" id="growth-shorts" aria-labelledby="shorts-heading">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">FEATURED VIDEO SHORTS</span>
+            <h2 id="shorts-heading">
+              Practical growth insights.
+              <br />
+              <em>In 60 seconds.</em>
+            </h2>
+          </div>
+          <p>
+            Actionable strategies on Local SEO, Google Business Profiles, AI lead routing, and MSME systems. Watch directly below or open on YouTube.
+          </p>
+        </div>
+
+        <div className="v-shorts-grid" role="region" aria-label="YouTube Shorts Growth Series">
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/2o_oGkAj3IM?rel=0"
+                title="Lucknow Businesses Digital Wake-Up Call - Sudarshan AI Labs"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">LOCAL SEO</span>
+              <h3>Lucknow Businesses: Digital Wake-Up Call</h3>
+              <p>Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.</p>
+              <a
+                href="https://youtube.com/shorts/2o_oGkAj3IM"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/0EC1SWvNxnE?rel=0"
+                title="Connected Presence: SEO, Websites & Growth Systems"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">GROWTH STACK</span>
+              <h3>How Sudarshan AI Labs Powers Business Online</h3>
+              <p>Combining search visibility, high-converting websites, and structured follow-up for UP enterprises.</p>
+              <a
+                href="https://youtube.com/shorts/0EC1SWvNxnE"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/IO3RLr5rNqo?rel=0"
+                title="Your Google Business Profile: Your #1 Sales Asset"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">GOOGLE MAPS</span>
+              <h3>Your Most Valuable Local Sales Asset 📍</h3>
+              <p>Transforming your Google Business Profile from a passive pin into an active local sales generator.</p>
+              <a
+                href="https://youtube.com/shorts/IO3RLr5rNqo"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/iWNKPxbTXpY?rel=0"
+                title="Stop Losing Customers: AI Automation for Small Business"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">AI AUTOMATION</span>
+              <h3>Stop Losing Customers to Slow Response</h3>
+              <p>Practical WhatsApp automation and intelligent routing that responds to qualified buyers in seconds.</p>
+              <a
+                href="https://youtube.com/shorts/iWNKPxbTXpY"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+
+          <article className="v-short-card">
+            <div className="v-short-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/L4Rcx3M9zSI?rel=0"
+                title="Courses vs Real Portfolios: Building Practical Proof"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="v-short-meta">
+              <span className="v-short-tag">PRACTICAL SKILLS</span>
+              <h3>Courses are Useful. Portfolios are Powerful.</h3>
+              <p>Why real systems, working code, and verified case studies beat generic certifications every time.</p>
+              <a
+                href="https://youtube.com/shorts/L4Rcx3M9zSI"
+                target="_blank"
+                rel="noreferrer"
+                className="v-short-link"
+              >
+                <YoutubeLogo weight="fill" className="yt-icon" />
+                <span>Watch on YouTube</span>
+                <ArrowUpRight weight="bold" />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="v-section v-blogs-section" id="storybook-blogs" aria-labelledby="blogs-heading">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">LUCKNOW AI STORYBOOK &amp; FIELD NOTES</span>
+            <h2 id="blogs-heading">
+              Evidence-based insights.
+              <br />
+              <em>From search signals to smarter MSMEs.</em>
+            </h2>
+          </div>
+          <p>
+            Authored by founder Sheevum Goel on <a href="https://www.blogs.vyapai.in/" target="_blank" rel="noreferrer" className="v-link-glow">blogs.vyapai.in</a>. Decoding real Google search intent, responsible AI automation, and local growth realities.
+          </p>
+        </div>
+
+        <div className="v-blog-embed-container">
+          <div className="v-blog-embed-header">
+            <div className="v-blog-header-info">
+              <span className="v-blog-status-dot" />
+              <span className="v-blog-domain">blogs.vyapai.in</span>
+              <span className="v-blog-subtitle">• Official AI Growth Field Guide</span>
+            </div>
+            <a
+              href="https://www.blogs.vyapai.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="v-pill v-pill-dark v-blog-open-btn"
+            >
+              <BookOpen weight="bold" />
+              <span>Open Full Storybook</span>
+              <ArrowUpRight weight="bold" />
+            </a>
+          </div>
+
+          <div className="v-blog-frame-wrap">
+            <iframe
+              src="https://www.blogs.vyapai.in/"
+              title="Lucknow AI Growth Storybook by Sheevum Goel"
+              loading="lazy"
+              className="v-blog-iframe"
+              sandbox="allow-scripts allow-same-origin allow-popups"
+            />
+          </div>
+        </div>
+
+        <div className="v-blog-cards-grid">
+          <article className="v-blog-card">
+            <span className="v-blog-badge">CHAPTER 01 • CONTEXT</span>
+            <h3>The City is Changing: Lucknow’s AI Ambition</h3>
+            <p>Decoding the official UP AI City developments and distinguishing state proposals from practical business utility for local MSMEs.</p>
+            <a href="https://www.blogs.vyapai.in/#city" target="_blank" rel="noreferrer">
+              <span>Read Context Chapter</span> <ArrowUpRight />
+            </a>
+          </article>
+
+          <article className="v-blog-card">
+            <span className="v-blog-badge">CHAPTER 02 • SIGNALS</span>
+            <h3>Specific Intent Beats Generic Traffic</h3>
+            <p>Analyzing Google Trends patterns in Lucknow: Why explanatory content, comparison pages, and direct conversion funnels must be separated.</p>
+            <a href="https://www.blogs.vyapai.in/#signals" target="_blank" rel="noreferrer">
+              <span>Read Signals Analysis</span> <ArrowUpRight />
+            </a>
+          </article>
+
+          <article className="v-blog-card">
+            <span className="v-blog-badge">CHAPTER 03 • PLAYBOOK</span>
+            <h3>From AI Hype to AI Utility: 90-Day Roadmap</h3>
+            <p>The structured 3-phase journey: Foundation (Audit &amp; Mobile), Demand (Deep Guides &amp; Proof), and System (Lead Routing &amp; Triage).</p>
+            <a href="https://www.blogs.vyapai.in/#playbook" target="_blank" rel="noreferrer">
+              <span>Explore Playbook</span> <ArrowUpRight />
+            </a>
+          </article>
+
+          <article className="v-blog-card">
+            <span className="v-blog-badge">CHAPTER 04 • TRUST</span>
+            <h3>E-E-A-T and Transparent Grounding</h3>
+            <p>Why true digital authority requires verified sources, transparent boundaries, and clear human accountability rather than inflated claims.</p>
+            <a href="https://www.blogs.vyapai.in/#trust" target="_blank" rel="noreferrer">
+              <span>Verify Evidence</span> <ArrowUpRight />
+            </a>
+          </article>
+        </div>
+      </section>
+
       <section className="v-section v-faq" id="faq">
         <div>
           <span className="v-kicker">QUESTIONS, ANSWERED</span>
@@ -1205,6 +1444,27 @@ export default function Home() {
         </nav>
         <small>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</small>
       </footer>
+      <div className="v-mobile-dock" aria-label="Quick mobile contact actions">
+        <div className="v-mobile-dock-inner">
+          <a
+            href={wa}
+            target="_blank"
+            rel="noreferrer"
+            className="v-dock-wa"
+            aria-label="Direct WhatsApp Consultation"
+          >
+            <WhatsappLogo weight="fill" />
+            <span>WhatsApp</span>
+          </a>
+          <a
+            href="/contact#contact-options"
+            className="v-dock-cta"
+          >
+            <span>Book Strategic Audit</span>
+            <ArrowRight weight="bold" />
+          </a>
+        </div>
+      </div>
     </main>
   );
 }
