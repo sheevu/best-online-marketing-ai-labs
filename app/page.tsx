@@ -398,6 +398,9 @@ export default function Home() {
             complimentary digital visibility audit
           </span>
           <div>
+            <a href="/offer-lucknow-marketing-services" data-open-offer="true" className="v-topline-offer">
+              ⚡ Beat Any Agency Quote
+            </a>
             <a href="tel:+919336299912">
               <PhoneCall weight="bold" /> +91 93362 99912
             </a>
@@ -1503,6 +1506,80 @@ export default function Home() {
             <span>Book Strategic Audit</span>
             <ArrowRight weight="bold" />
           </a>
+        </div>
+      </div>
+
+      {/* Floating Challenge Offer Badge */}
+      <aside className="v-floating-offer-badge" aria-label="Special challenge offer">
+        <a
+          href="/offer-lucknow-marketing-services"
+          className="v-floating-offer-link"
+          data-open-offer="true"
+          title="Bring Any Agency Quote. We'll Beat It."
+        >
+          <span className="v-floating-offer-icon">⚡</span>
+          <div className="v-floating-offer-text">
+            <span className="v-floating-offer-title">Beat Any Quote</span>
+            <span className="v-floating-offer-sub">Challenge Sudarshan</span>
+          </div>
+        </a>
+      </aside>
+
+      {/* Challenge Sudarshan Offer Lightbox / Modal */}
+      <div
+        id="offer-lightbox"
+        className="v-offer-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="v-offer-modal-title"
+        hidden
+      >
+        <div className="v-offer-backdrop" data-close-offer="true" />
+        <div className="v-offer-modal">
+          <button
+            type="button"
+            className="v-offer-close"
+            aria-label="Close offer popup"
+            data-close-offer="true"
+          >
+            ×
+          </button>
+          <div className="v-offer-modal-graphic">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/offer-lucknow-marketing-services.webp"
+              alt="Got an Agency Quote? We'll Beat It — Challenge Sudarshan"
+              width={1024}
+              height={576}
+              className="v-offer-modal-img"
+              loading="lazy"
+            />
+          </div>
+          <div className="v-offer-modal-content">
+            <span className="v-offer-tag">EXCLUSIVE LUCKNOW MARKETING OFFER</span>
+            <h3 id="v-offer-modal-title" className="v-offer-title">
+              “Bring Any Agency Quote. We’ll Beat It.”
+            </h3>
+            <p className="v-offer-subtitle">
+              Same scope or better, at a sharper price.
+            </p>
+            <div className="v-offer-modal-btns">
+              <a
+                href="https://wa.me/917887222247?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20have%20an%20agency%20quote%20and%20want%20to%20take%20the%20Challenge%20Sudarshan%20offer."
+                target="_blank"
+                rel="noreferrer"
+                className="v-offer-btn-action"
+              >
+                Challenge Sudarshan ↗
+              </a>
+              <a
+                href="/offer-lucknow-marketing-services"
+                className="v-offer-btn-learn"
+              >
+                View Offer Details →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </main>

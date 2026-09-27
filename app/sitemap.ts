@@ -51,6 +51,7 @@ const trustPaths = [
 
 const productPaths = [
   "/product-page",
+  "/offer-lucknow-marketing-services",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

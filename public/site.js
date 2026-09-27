@@ -324,4 +324,58 @@
     jf.onerror = () => { chat.disabled = false; chat.textContent = 'Retry AI assistant'; };
     document.body.appendChild(jf);
   });
+
+  // Offer Lightbox / Modal progressive enhancement
+  const offerLightbox = document.getElementById('offer-lightbox');
+  if (offerLightbox) {
+    const isDismissed = sessionStorage.getItem('sudarshan_offer_dismissed');
+    const openOffer = () => {
+      offerLightbox.hidden = false;
+      requestAnimationFrame(() => {
+        offerLightbox.classList.add('is-active');
+        document.documentElement.classList.add('modal-is-open');
+      });
+    };
+    const closeOffer = () => {
+      offerLightbox.classList.remove('is-active');
+      document.documentElement.classList.remove('modal-is-open');
+      sessionStorage.setItem('sudarshan_offer_dismissed', '1');
+      setTimeout(() => {
+        if (!offerLightbox.classList.contains('is-active')) {
+          offerLightbox.hidden = true;
+        }
+      }, 300);
+    };
+
+    if (!isDismissed) {
+      // Auto-trigger offer lightbox after 6 seconds of engagement
+      const timer = setTimeout(openOffer, 6000);
+      const onMouseLeave = (e) => {
+        if (e.clientY <= 10 && !sessionStorage.getItem('sudarshan_offer_dismissed')) {
+          clearTimeout(timer);
+          openOffer();
+          document.removeEventListener('mouseleave', onMouseLeave);
+        }
+      };
+      document.addEventListener('mouseleave', onMouseLeave);
+    }
+
+    offerLightbox.querySelectorAll('[data-close-offer]').forEach(btn => {
+      btn.addEventListener('click', closeOffer);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !offerLightbox.hidden) {
+        closeOffer();
+      }
+    });
+
+    document.querySelectorAll('[data-open-offer]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        openOffer();
+      });
+    });
+  }
+
 })();
