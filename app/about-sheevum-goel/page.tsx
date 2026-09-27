@@ -300,9 +300,7 @@ export default function AboutSheevumGoel() {
 
       <header className="sg-header">
         <a className="v-brand" href="/" aria-label="Sudarshan AI Labs home">
-          <span className="v-logo">
-            <Sparkle weight="fill" />
-          </span>
+          <span className="v-logo" aria-hidden="true" />
           <span>
             SUDARSHAN <b>AI LABS</b>
             <small>FOUNDER PROFILE</small>

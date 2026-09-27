@@ -411,9 +411,7 @@ export default function Home() {
             href="#top"
             aria-label="Sudarshan AI Labs Lucknow Digital Growth home"
           >
-            <span className="v-logo">
-              <Sparkle weight="fill" />
-            </span>
+            <span className="v-logo" aria-hidden="true" />
             <span>
               SUDARSHAN <b>AI LABS</b>
               <small>LUCKNOW DIGITAL GROWTH</small>
@@ -1098,7 +1096,7 @@ export default function Home() {
       <footer className="v-footer">
         <div>
           <a className="v-brand" href="#top">
-            <span className="v-logo">S</span>
+            <span className="v-logo" aria-hidden="true" />
             <span>
               SUDARSHAN <b>AI LABS</b>
             </span>
