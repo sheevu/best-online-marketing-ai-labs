@@ -300,7 +300,17 @@ export default function AboutSheevumGoel() {
 
       <header className="sg-header">
         <a className="v-brand" href="/" aria-label="Sudarshan AI Labs home">
-          <span className="v-logo" aria-hidden="true" />
+          <span className="v-logo" aria-label="Sudarshan AI Labs">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand-icon.png"
+              alt="Sudarshan AI Labs Logo"
+              width={28}
+              height={28}
+              className="v-logo-img"
+              loading="eager"
+            />
+          </span>
           <span>
             SUDARSHAN <b>AI LABS</b>
             <small>FOUNDER PROFILE</small>
@@ -863,8 +873,16 @@ export default function AboutSheevumGoel() {
 
       <footer className="sg-footer">
         <a className="v-brand" href="/">
-          <span className="v-logo">
-            <Sparkle weight="fill" />
+          <span className="v-logo" aria-label="Sudarshan AI Labs">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand-icon.png"
+              alt="Sudarshan AI Labs Logo"
+              width={28}
+              height={28}
+              className="v-logo-img"
+              loading="lazy"
+            />
           </span>
           <span>
             SUDARSHAN <b>AI LABS</b>

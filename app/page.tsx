@@ -411,7 +411,17 @@ export default function Home() {
             href="#top"
             aria-label="Sudarshan AI Labs Lucknow Digital Growth home"
           >
-            <span className="v-logo" aria-hidden="true" />
+            <span className="v-logo" aria-label="Sudarshan AI Labs">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand-icon.png"
+                alt="Sudarshan AI Labs Logo"
+                width={28}
+                height={28}
+                className="v-logo-img"
+                loading="eager"
+              />
+            </span>
             <span>
               SUDARSHAN <b>AI LABS</b>
               <small>LUCKNOW DIGITAL GROWTH</small>
@@ -851,30 +861,36 @@ export default function Home() {
           </p>
         </div>
         <div className="method-cards">
-          <article data-reveal>
-            <span className="glossy-icon" aria-hidden="true"><CheckCircle weight="duotone" /></span>
-            <span className="card-number">01</span>
-            <span>BUILD</span>
+          <article data-reveal className="method-card-build">
+            <div className="method-card-header">
+              <span className="glossy-icon" aria-hidden="true"><CheckCircle weight="duotone" /></span>
+              <span className="card-number">01</span>
+            </div>
+            <span className="method-tag">BUILD</span>
             <h3>Create the foundation</h3>
             <p>
               Clear positioning, searchable content, conversion pages and
               connected customer channels.
             </p>
           </article>
-          <article data-reveal>
-            <span className="glossy-icon" aria-hidden="true"><ChartLineUp weight="duotone" /></span>
-            <span className="card-number">02</span>
-            <span>AUTOMATE</span>
+          <article data-reveal className="method-card-automate">
+            <div className="method-card-header">
+              <span className="glossy-icon" aria-hidden="true"><ChartLineUp weight="duotone" /></span>
+              <span className="card-number">02</span>
+            </div>
+            <span className="method-tag">AUTOMATE</span>
             <h3>Reduce repetitive work</h3>
             <p>
               Practical workflows for responses, lead organisation, reporting
               and recurring activity.
             </p>
           </article>
-          <article data-reveal>
-            <span className="glossy-icon" aria-hidden="true"><MagnifyingGlass weight="duotone" /></span>
-            <span className="card-number">03</span>
-            <span>TRANSFER</span>
+          <article data-reveal className="method-card-transfer">
+            <div className="method-card-header">
+              <span className="glossy-icon" aria-hidden="true"><MagnifyingGlass weight="duotone" /></span>
+              <span className="card-number">03</span>
+            </div>
+            <span className="method-tag">TRANSFER</span>
             <h3>Hand over with clarity</h3>
             <p>
               Your team receives the assets, documentation and confidence to
@@ -1096,7 +1112,17 @@ export default function Home() {
       <footer className="v-footer">
         <div>
           <a className="v-brand" href="#top">
-            <span className="v-logo" aria-hidden="true" />
+            <span className="v-logo" aria-label="Sudarshan AI Labs">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand-icon.png"
+                alt="Sudarshan AI Labs Logo"
+                width={28}
+                height={28}
+                className="v-logo-img"
+                loading="lazy"
+              />
+            </span>
             <span>
               SUDARSHAN <b>AI LABS</b>
             </span>
