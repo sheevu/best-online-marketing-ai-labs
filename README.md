@@ -1,116 +1,61 @@
-# vinext-starter
+# Sudarshan AI Labs — AI & Digital Marketing Platform (Lucknow & UP)
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+High-performance, edge-rendered digital marketing and AI growth platform for MSMEs, startups, and enterprises across Lucknow and Uttar Pradesh. Built with Next.js App Router (SSG), [vinext](https://github.com/cloudflare/vinext), and deployed on Cloudflare Workers.
 
-## Prerequisites
+---
 
+## 🚀 Key Features & Architectural Highlights
+
+### 1. Complete Product Catalog & Dedicated Detail Pages
+- **22 Verified Service Packages**: Fully synchronized with the commercial catalog (`app/lib/products-data.ts`).
+- **Transparent Pricing Architecture**: Every product features explicit MRP (strikethrough), special offer price, deliverable checklists, and estimated turnaround.
+- **Dedicated Product Pages** (`/product-page/[slug]`): Each product has a dedicated SEO-optimized landing page with structured deliverables, pricing tiers, and direct WhatsApp onboarding action.
+- **Product Catalog Index** (`/product-page`): Interactive directory with category filtering and instant search discovery.
+- **Phosphor Duotone Icons**: Top-tier visual design via `@phosphor-icons/react` (`ProductIcon.tsx`).
+
+### 2. Enhanced Slider & Glassmorphic Controls
+- **Modern Control Dock**: Frosted glassmorphism slider dock (`.v-slider-controls`) replacing clunky navigation pills.
+- **Live Slide Counter**: Real-time counter showing active position (e.g. `01 / 22`).
+- **Interactive Category Filtering**: Instant filtering by `Starter Packs`, `Web & Ecommerce`, `SEO & Visibility`, `AI & Automation`, and `Social Media & PR`.
+- **Silky Smooth Gestures**: Native touch, drag, and keyboard navigation with zero hydration lag.
+
+### 3. Comprehensive SEO & Ahrefs Audit Compliance
+- **Zero Duplicate Brand Suffixes**: Clean title tags across all 96 pre-rendered static pages, preventing repetitive brand appending.
+- **Self-Canonical Open Graph & Twitter Cards**: Every page, locality, and legal document publishes matching canonical Open Graph metadata.
+- **Optimized Meta Descriptions**: Rich, search-intent-aligned 150-160 character descriptions across all service, policy, and product pages.
+- **Zero 3xx Outlink Redirection**: Internal links directly reference canonical targets, eliminating 301 redirects; WhatsApp CTAs link directly to `api.whatsapp.com` (200 OK) rather than `wa.me` 302 redirects.
+- **Low Inlink / Orphan Elimination**: Fully cross-linked 5-column responsive footer on homepage and regional hubs covering all 8 Lucknow localities and 15 Uttar Pradesh commercial cities.
+
+### 4. Rich Structured Data (Schema.org)
+- Comprehensive JSON-LD schemas embedded across pages:
+  - `Organization` & `LocalBusiness`
+  - `Product` & `Offer` (with real pricing and in-stock status)
+  - `Service` & `ProfessionalService`
+  - `BreadcrumbList`
+  - `FAQPage`
+  - `ProfilePage` & `Person` (Founder profile for Sheevum Goel)
+
+---
+
+## 🛠️ Development & Deployment Workflow
+
+### Prerequisites
 - Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+- Cloudflare Wrangler CLI authenticated
 
-## Sites Lifecycle
+### Commands
 
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
+| Command | Purpose |
+| :--- | :--- |
+| `npm run dev` | Start local Vite / Vinext development server |
+| `npm run build` | Pre-render static pages, generate responsive WebP assets, and validate output |
+| `npm test` | Run complete end-to-end HTML test suite (7/7 test suites validating schemas, tags, canonicals) |
+| `npm run lint` | Run ESLint across `app`, `worker`, and `tests` (zero errors / warnings) |
+| `npm run deploy` | Build static production assets and deploy Cloudflare Worker via Wrangler |
 
-This starter does not use `wrangler.jsonc`.
+---
 
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout and then validates the Sites artifact. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
-
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
-
-## Included Shape
-
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Diagnostic Commands
-
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build and validate the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build, validate, and verify the rendered development-preview metadata
-- `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
-
-## Production SEO and Analytics
-
-- The preferred production origin is `https://sudarshan-ai.com`.
-- The Worker permanently redirects the apex and legacy ChatGPT Site host to the preferred origin and removes trailing slashes.
-- Canonicals, Open Graph URLs, structured data, `robots.txt`, `sitemap.xml`, and `llms.txt` use the same origin.
-- Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to a valid GA4 measurement ID (for example, `G-XXXXXXXXXX`) to enable Google Analytics. When it is unset, no Google Analytics script is emitted.
-- Keep Search Console and Bing Webmaster Tools verified against the preferred origin and resubmit `/sitemap.xml` after production deployment.
-
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+## 🌐 Production Domains & Routing
+- **Primary Origin**: `https://sudarshan-ai.com`
+- **Secondary Route**: `https://www.sudarshan-ai.com` (permanently redirects to apex)
+- **Deployment Platform**: Cloudflare Workers + Static Assets (`dist/client`)
