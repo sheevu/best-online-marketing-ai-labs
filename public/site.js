@@ -83,9 +83,13 @@
     const counterTotal = document.querySelector('.v-slider-total');
     if (counterTotal) counterTotal.textContent = String(cards.length).padStart(2, '0');
     let current = 0, offsets = [], paused = reducedMotion.matches, visible = false, hovering = false, focused = false, frame = 0, drag = null, dragged = false;
-    // Read geometry together on resize; scrolling only reads scrollLeft.
+    // Read geometry together on resize & load; scrolling only reads scrollLeft.
     const measure = () => { offsets = cards.map(card => card.offsetLeft - track.offsetLeft); };
+    measure();
+    window.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
     new ResizeObserver(measure).observe(track);
+
     const update = index => {
       if (current === index) return;
       current = index;
@@ -106,10 +110,13 @@
         });
       }
     };
+
     const go = index => {
+      if (!offsets.length || offsets.length !== cards.length) measure();
       const safe = (index + cards.length) % cards.length;
       track.scrollTo({left: offsets[safe] ?? 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
     };
+
     track.addEventListener('scroll', () => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
@@ -119,6 +126,7 @@
         update(nearest);
       });
     }, {passive:true});
+
     document.querySelector('[aria-label="View previous products"]')?.addEventListener('click', () => go(current - 1));
     document.querySelector('[aria-label="View next products"]')?.addEventListener('click', () => go(current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
@@ -175,8 +183,15 @@
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
     track.addEventListener('click', event => { if(dragged) { event.preventDefault(); dragged = false; } }, true);
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(track);
-    setInterval(() => { if(visible && !paused && !hovering && !focused && !drag && !document.hidden) go(current + 1); }, 4300);
+
+    const checkVis = () => {
+      const rect = track.getBoundingClientRect();
+      visible = rect.top < window.innerHeight && rect.bottom > 0;
+    };
+    checkVis();
+    window.addEventListener('scroll', checkVis, { passive: true });
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.05 }).observe(track);
+    setInterval(() => { if(visible && !paused && !hovering && !focused && !drag && !document.hidden) go(current + 1); }, 3800);
   }
 
   // Founder content remains visible without JavaScript; reveal only below the fold with staggered entry.
