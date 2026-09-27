@@ -14,7 +14,7 @@ import {
   IdentificationCard,
   LightbulbFilament,
   LinkedinLogo,
-  MediumLogo,
+  GithubLogo,
   Notebook,
   Robot,
   RocketLaunch,
@@ -202,12 +202,12 @@ const connectCards = [
     theme: "mint",
   },
   {
-    Icon: MediumLogo,
-    kicker: "Thought leadership",
-    title: "Read the long-form ideas",
-    text: "Explore writing on cultural marketing, AI, MSME digitisation, retail and India's digital future.",
-    cta: "Read articles on Medium",
-    href: links.medium,
+    Icon: GithubLogo,
+    kicker: "Open source & AI systems",
+    title: "Explore code & AI repositories",
+    text: "Review open-source AI tools, Hindi CRM architectures, and production growth systems on GitHub.",
+    cta: "Explore GitHub repositories",
+    href: links.github,
     theme: "yellow",
   },
   {
@@ -883,8 +883,8 @@ export default function AboutSheevumGoel() {
           <a href={links.linkedin} target="_blank" rel="nofollow noopener noreferrer">
             LinkedIn
           </a>
-          <a href={links.medium} target="_blank" rel="nofollow noopener noreferrer">
-            Medium
+          <a href={links.github} target="_blank" rel="noopener noreferrer">
+            GitHub
           </a>
           <a href="/">Sudarshan AI Labs</a>
         </nav>

@@ -79,6 +79,9 @@
     const cards = [...track.children];
     const dots = [...document.querySelectorAll('[data-product-index]')];
     const pause = document.querySelector('.v-slider-pause');
+    const counterCurrent = document.querySelector('.v-slider-current');
+    const counterTotal = document.querySelector('.v-slider-total');
+    if (counterTotal) counterTotal.textContent = String(cards.length).padStart(2, '0');
     let current = 0, offsets = [], paused = reducedMotion.matches, visible = false, hovering = false, focused = false, frame = 0, drag = null, dragged = false;
     // Read geometry together on resize; scrolling only reads scrollLeft.
     const measure = () => { offsets = cards.map(card => card.offsetLeft - track.offsetLeft); };
@@ -92,6 +95,16 @@
         if (i === index) dot.setAttribute('aria-current', 'true');
         else dot.removeAttribute('aria-current');
       });
+      if (counterCurrent) counterCurrent.textContent = String(index + 1).padStart(2, '0');
+      // Highlight category pill if all items of a category are active
+      const activeCard = cards[index];
+      if (activeCard) {
+        const cat = activeCard.getAttribute('data-category');
+        document.querySelectorAll('[data-category-filter]').forEach(btn => {
+          const match = btn.getAttribute('data-category-filter') === cat;
+          btn.classList.toggle('is-matching', match);
+        });
+      }
     };
     const go = index => {
       const safe = (index + cards.length) % cards.length;
@@ -109,12 +122,35 @@
     document.querySelector('[aria-label="View previous products"]')?.addEventListener('click', () => go(current - 1));
     document.querySelector('[aria-label="View next products"]')?.addEventListener('click', () => go(current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
+    
+    document.querySelectorAll('[data-category-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[data-category-filter]').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        const cat = button.getAttribute('data-category-filter');
+        if (!cat || cat === 'All Plans') {
+          go(0);
+        } else {
+          const targetIndex = cards.findIndex(c => c.getAttribute('data-category') === cat);
+          if (targetIndex >= 0) go(targetIndex);
+        }
+      });
+    });
+
     const updatePause = () => {
-      pause.textContent = paused ? 'Play' : 'Pause';
+      if (!pause) return;
+      const textSpan = pause.querySelector('.v-pause-text');
+      if (textSpan) textSpan.textContent = paused ? 'Play' : 'Pause';
+      else pause.textContent = paused ? 'Play' : 'Pause';
       pause.setAttribute('aria-label', paused ? 'Play product carousel' : 'Pause product carousel');
       pause.setAttribute('aria-pressed', String(paused));
+      pause.classList.toggle('is-paused', paused);
     };
-    pause.addEventListener('click', () => { paused = !paused; updatePause(); });
+    pause?.addEventListener('click', () => { paused = !paused; updatePause(); });
     updatePause();
     reducedMotion.addEventListener('change', () => { if(reducedMotion.matches) { paused = true; updatePause(); } });
     track.addEventListener('mouseenter', () => { hovering = true; });

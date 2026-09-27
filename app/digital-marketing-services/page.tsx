@@ -328,7 +328,6 @@ export default function LucknowServices() {
           ))}
           {cities
             .filter((c) => c.slug !== "lucknow")
-            .slice(0, 6)
             .map((c) => (
               <a
                 key={c.slug}

@@ -39,6 +39,8 @@ import {
 } from "./lib/schema";
 import { cities } from "./lib/cities";
 import { areas } from "./lib/areas";
+import { PRODUCTS, PRODUCT_CATEGORIES } from "./lib/products-data";
+import ProductIcon from "./_components/ProductIcon";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -95,7 +97,6 @@ const primaryServiceLinks = [
 ];
 const popularLucknowAreas = areas.slice(0, 8);
 const priorityCities = cities.filter((city) => city.slug !== "lucknow").slice(0, 12);
-const productIcons = [Target, Sparkle, WhatsappLogo, ChartLineUp, Lightning, Robot, Browsers, MapPin];
 const services = [
   {
     title: "Own local search",
@@ -146,71 +147,8 @@ const services = [
     theme: "peach",
   },
 ];
-const products = [
-  {
-    name: "Micro Growth Audit",
-    price: "₹89",
-    tag: "Entry starter",
-    text: "Instant digital visibility check, local search signal review and prioritized action plan for micro-businesses.",
-    href: "/seo-services-lucknow",
-  },
-  {
-    name: "Swaraj Tech Pack",
-    price: "₹4,900",
-    tag: "Starter bundle",
-    text: "A lightweight digital launch pack for micro-businesses taking their first step online.",
-    href: "/digital-marketing-services",
-  },
-  {
-    name: "Prarambh Kick-Start Pack",
-    price: "₹9,500",
-    tag: "WhatsApp setup",
-    text: "WhatsApp Business, catalogue and digital onboarding essentials for growing MSMEs.",
-    href: "/lead-generation-lucknow",
-  },
-  {
-    name: "Udaan Vyapari Pack",
-    price: "₹14,500",
-    tag: "Merchant growth",
-    text: "Smart digital marketing and lead organisation designed for local merchants.",
-    href: "/digital-marketing-services",
-  },
-  {
-    name: "Raftar Booster Pack",
-    price: "₹18,500",
-    tag: "Lead generation",
-    text: "Campaign support and lead-generation workflows to accelerate monthly outreach.",
-    href: "/google-ads-services",
-  },
-  {
-    name: "AI Chatbot & Assistant",
-    price: "₹24,000",
-    tag: "AI automation",
-    text: "A customer-facing assistant for common questions, support and lead capture.",
-    href: "/ai-automation-lucknow",
-  },
-  {
-    name: "SEO & Content Boost",
-    price: "₹12,500",
-    tag: "Search visibility",
-    text: "An SEO audit with content optimisation to strengthen your local online presence.",
-    href: "/seo-services-lucknow",
-  },
-  {
-    name: "Landing Page Lead Gen",
-    price: "₹15,000",
-    tag: "Conversion",
-    text: "A focused campaign page built to turn visits and advertising clicks into enquiries.",
-    href: "/website-design",
-  },
-  {
-    name: "Website Launch Pack",
-    price: "₹39,000",
-    tag: "Web presence",
-    text: "A modern five-page website foundation with local SEO and brand essentials.",
-    href: "/website-design",
-  },
-];
+// Products are loaded from PRODUCTS in ./lib/products-data
+
 const goals = {
   visibility: {
     label: "Get found locally",
@@ -445,7 +383,6 @@ const homeSchema = {
 };
 
 export default function Home() {
-  const productPage = 0;
   const autoPlay = true;
   return (
     <main id="top" className="v-home">
@@ -768,17 +705,28 @@ export default function Home() {
               <br />
               <em>Clear starting prices.</em>
             </h2>
+            <p className="v-product-lead">
+              22 transparent growth tools, starter packages, and AI automations. All starter bundles include a complimentary Micro Growth Audit & prioritized action plan.
+            </p>
           </div>
           <div className="v-slider-controls">
+            <div className="v-slider-counter" aria-live="polite">
+              <span className="v-slider-current">01</span>
+              <span className="v-slider-sep">/</span>
+              <span className="v-slider-total">{String(PRODUCTS.length).padStart(2, "0")}</span>
+            </div>
             <button
               className="v-slider-arrow v-slider-arrow-prev"
               aria-label="View previous products"
+              title="Previous product"
             >
               <ArrowLeft weight="bold" />
-              <span>Previous</span>
             </button>
-            <button className="v-slider-arrow v-slider-arrow-next" aria-label="View next products">
-              <span>Next</span>
+            <button
+              className="v-slider-arrow v-slider-arrow-next"
+              aria-label="View next products"
+              title="Next product"
+            >
               <ArrowRight weight="bold" />
             </button>
             <button
@@ -786,56 +734,107 @@ export default function Home() {
               aria-pressed={!autoPlay}
               aria-label={autoPlay ? "Pause product carousel" : "Play product carousel"}
             >
-              {autoPlay ? "Pause" : "Play"}
+              <span className="v-pause-pulse" />
+              <span className="v-pause-text">{autoPlay ? "Pause" : "Play"}</span>
             </button>
           </div>
         </div>
+
+        <div className="v-product-cat-filters" role="tablist" aria-label="Filter products by category">
+          {PRODUCT_CATEGORIES.map((cat, idx) => (
+            <button
+              key={cat}
+              type="button"
+              className={`v-cat-filter-btn ${idx === 0 ? "active" : ""}`}
+              data-category-filter={cat}
+              role="tab"
+              aria-selected={idx === 0}
+            >
+              {cat}
+            </button>
+          ))}
+          <a href="/product-page" className="v-view-all-link">
+            View All 22 Plans ↗
+          </a>
+        </div>
+
         <div
           className="v-product-track"
           tabIndex={0}
-           aria-label="Sudarshan AI Labs product plans"
+          aria-label="Sudarshan AI Labs product plans"
           aria-live="off"
         >
-          {products.map((product, index) => {
-            const ProductIcon = productIcons[index % productIcons.length];
-            return (
+          {PRODUCTS.map((product, index) => (
             <article
-              className={`v-product-card ${index === productPage ? "is-current" : ""}`}
-              key={product.name}
+              className={`v-product-card ${index === 0 ? "is-current" : ""}`}
+              key={product.id}
               data-reveal
+              data-category={product.category}
             >
-              <div className="v-product-icon" aria-hidden="true">
-                <ProductIcon weight="duotone" />
+              <div className="v-product-card-top">
+                <div className="v-product-icon" aria-hidden="true">
+                  <ProductIcon name={product.iconName} weight="duotone" />
+                </div>
+                <div className="v-product-badge-group">
+                  <span className="v-product-discount-pill">{product.badge}</span>
+                  <span className="v-product-cat-pill">{product.category}</span>
+                </div>
               </div>
-              <span>{String(index + 1).padStart(2, "0")} · {product.tag}</span>
-              <h3>{product.name}</h3>
-              <p>{product.text}</p>
+
+              <span className="v-product-meta">{String(index + 1).padStart(2, "0")} · {product.primaryKeyword}</span>
+              <h3>{product.shortName}</h3>
+              <p className="v-product-brand-subtitle">{product.newTitle}</p>
+              <p className="v-product-desc">{product.metaDescription}</p>
+
+              <div className="v-product-features">
+                <ul>
+                  {product.deliverables.slice(0, 3).map((item) => (
+                    <li key={item}>
+                      <CheckCircle weight="fill" className="v-prod-feat-icon" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               <div className="v-product-price">
-                <small>Starting at</small>
-                <span className="price-value">{product.price}</span>
+                <div className="v-product-price-info">
+                  <div className="v-price-mrp">
+                    <span className="mrp-label">MRP</span>
+                    <span className="mrp-value">{product.mrp}</span>
+                  </div>
+                  <div className="v-price-offer">
+                    <small>Offer Price</small>
+                    <span className="price-value">{product.offerPrice}</span>
+                  </div>
+                </div>
+                <span className="v-savings-badge">{product.savings}</span>
               </div>
-              <a
-                href={product.href}
-              >
-                Explore {product.name} <ArrowUpRight weight="bold" />
-              </a>
+
+              <div className="v-product-card-bottom">
+                <a href={product.href} className="v-product-action-btn">
+                  <span>Explore Plan & Inclusions</span>
+                  <ArrowUpRight weight="bold" />
+                </a>
+              </div>
             </article>
-            );
-          })}
+          ))}
         </div>
+
         <div className="v-product-dots" aria-label="Choose a product">
-          {products.map((product, index) => (
+          {PRODUCTS.map((product, index) => (
             <button
-              key={product.name}
-              className={index === productPage ? "active" : ""}
-              data-product-index={index} aria-label={`Show ${product.name}`}
-              aria-current={index === productPage ? "true" : undefined}
+              key={product.id}
+              className={index === 0 ? "active" : ""}
+              data-product-index={index}
+              aria-label={`Show ${product.shortName}`}
+              aria-current={index === 0 ? "true" : undefined}
             />
           ))}
         </div>
+
         <p className="v-price-note">
-          Starting prices are planning-level guides. Final scope, inclusions
-          and payment terms are confirmed in writing after a short review.
+          Starting prices are planning-level guides grounded in our verified product catalog. Final scope, inclusions and payment terms are confirmed in writing after a short review.
         </p>
       </section>
 
@@ -1151,36 +1150,71 @@ export default function Home() {
             </span>
           </a>
           <p>
-            AI-powered digital marketing, Local SEO, websites and automation for
-            Lucknow and India.
+            AI-powered digital marketing, Local SEO, high-conversion websites, and custom Hindi CRM automation for MSMEs across Lucknow and Uttar Pradesh.
+          </p>
+          <p style={{ marginTop: "14px" }}>
+            <a href="tel:+919336299912" style={{ color: "#a99aff", fontWeight: 600 }}>+91 93362 99912</a> • <a href="mailto:sudarshanailabs@gmail.com" style={{ color: "#c5bfd6" }}>Email</a>
           </p>
         </div>
-        <nav>
-          <b>Explore</b>
-          <a href="#services">Services</a>
-          <a href="#products">Products & plans</a>
-          <a href="#approach">Approach</a>
-          <a href="/about-sheevum-goel">About the Founder</a>
-          <a href="/seo-services-lucknow">SEO Services</a>
-          <a href="/social-media-marketing-lucknow">Social Media</a>
+        <nav aria-label="Services and Solutions">
+          <span className="v-footer-head">Solutions & Services</span>
+          <a href="/seo-services-lucknow">Local SEO Services</a>
+          <a href="/social-media-marketing-lucknow">Social Media Marketing</a>
           <a href="/lead-generation-lucknow">Lead Generation</a>
           <a href="/ai-automation-lucknow">AI Automation</a>
-          <a href="/digital-marketing-services">Lucknow Areas</a>
-          <a href="/digital-marketing-services/uttar-pradesh">UP Cities</a>
+          <a href="/ecommerce-website-development">Ecommerce Development</a>
+          <a href="/youtube-marketing-seo-channel-growth">YouTube & Video Growth</a>
+          <a href="/whatsapp-business-meta-automation">WhatsApp Meta Automation</a>
+          <a href="/linkedin-marketing-b2b-lead-generation">LinkedIn B2B Leads</a>
+          <a href="/lead-generation-landing-page">Landing Page Design</a>
+          <a href="/seo-content-writing-optimization">SEO Content Strategy</a>
+          <a href="/facebook-instagram-shop-social-commerce">Social Commerce & Shops</a>
         </nav>
-        <nav>
-          <b>Connect</b>
-          <a href="tel:+919336299912">+91 93362 99912</a>
-          <a href="mailto:sudarshanailabs@gmail.com">Email us</a>
-          <a href="/contact">Contact page <ArrowUpRight /></a>
+        <nav aria-label="Lucknow Localities">
+          <span className="v-footer-head">Lucknow Localities</span>
+          <a href="/digital-marketing-services/hazratganj-lucknow">Hazratganj</a>
+          <a href="/digital-marketing-services/gomti-nagar-lucknow">Gomti Nagar</a>
+          <a href="/digital-marketing-services/gomti-nagar-extension-lucknow">Gomti Nagar Ext.</a>
+          <a href="/digital-marketing-services/aliganj-lucknow">Aliganj</a>
+          <a href="/digital-marketing-services/indira-nagar-lucknow">Indira Nagar</a>
+          <a href="/digital-marketing-services/mahanagar-lucknow">Mahanagar</a>
+          <a href="/digital-marketing-services/jankipuram-lucknow">Jankipuram</a>
+          <a href="/digital-marketing-services/vikas-nagar-lucknow">Vikas Nagar</a>
+          <a href="/digital-marketing-services/ashiyana-lucknow">Ashiyana</a>
+          <a href="/digital-marketing-services">All Lucknow Areas <ArrowUpRight /></a>
+        </nav>
+        <nav aria-label="Uttar Pradesh Regional Hubs">
+          <span className="v-footer-head">UP Regional Hubs</span>
+          <a href="/digital-marketing-services/kanpur">Kanpur</a>
+          <a href="/digital-marketing-services/varanasi">Varanasi</a>
+          <a href="/digital-marketing-services/prayagraj">Prayagraj</a>
+          <a href="/digital-marketing-services/agra">Agra</a>
+          <a href="/digital-marketing-services/meerut">Meerut</a>
+          <a href="/digital-marketing-services/bareilly">Bareilly</a>
+          <a href="/digital-marketing-services/gorakhpur">Gorakhpur</a>
+          <a href="/digital-marketing-services/noida">Noida</a>
+          <a href="/digital-marketing-services/jhansi">Jhansi</a>
+          <a href="/digital-marketing-services/muzaffarnagar">Muzaffarnagar</a>
+          <a href="/digital-marketing-services/mathura">Mathura</a>
+          <a href="/digital-marketing-services/rampur">Rampur</a>
+          <a href="/digital-marketing-services/shahjahanpur">Shahjahanpur</a>
+          <a href="/digital-marketing-services/jaunpur">Jaunpur</a>
+          <a href="/digital-marketing-services/firozabad">Firozabad</a>
+          <a href="/digital-marketing-services/uttar-pradesh">All UP Cities <ArrowUpRight /></a>
+        </nav>
+        <nav aria-label="Products and Trust">
+          <span className="v-footer-head">Products & Legal</span>
+          <a href="/product-page">All 22 Product Packages <ArrowUpRight /></a>
+          <a href="/about-sheevum-goel">About the Founder</a>
+          <a href="/contact">Contact Page <ArrowUpRight /></a>
           <a href="/privacy-policy">Privacy Policy</a>
           <a href="/terms-of-service">Terms of Service</a>
           <a href="/refund-policy">Refund Policy</a>
           <a href={MAP_URL} target="_blank" rel="noreferrer">
-            {PRIMARY_ADDRESS} <ArrowUpRight />
+            Google Maps Office <ArrowUpRight />
           </a>
-          <a href="https://www.linkedin.com/in/sheevumgoel">
-            LinkedIn <ArrowUpRight />
+          <a href="https://www.linkedin.com/in/sheevumgoel" target="_blank" rel="noreferrer">
+            Founder LinkedIn <ArrowUpRight />
           </a>
         </nav>
         <small>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</small>

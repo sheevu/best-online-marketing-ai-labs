@@ -49,6 +49,10 @@ const trustPaths = [
   "/refund-policy",
 ];
 
+const productPaths = [
+  "/product-page",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -56,6 +60,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...productPaths.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
     ...servicePaths.map((path) => ({
       url: `${SITE_URL}${path}`,
       changeFrequency: "weekly" as const,

@@ -14,7 +14,7 @@ export default function CtaTracking() {
       const link = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
       if (!link) return;
       const href = link.href;
-      const method = href.includes("wa.me/") ? "whatsapp" : href.startsWith("tel:") ? "phone" : null;
+      const method = href.includes("wa.me/") || href.includes("whatsapp.com") ? "whatsapp" : href.startsWith("tel:") ? "phone" : null;
       if (!method) return;
       window.gtag?.("event", "generate_lead", {
         method,
