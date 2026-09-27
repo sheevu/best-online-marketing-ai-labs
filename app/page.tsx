@@ -40,7 +40,7 @@ import {
 import { cities } from "./lib/cities";
 import { areas } from "./lib/areas";
 import { PRODUCTS, PRODUCT_CATEGORIES } from "./lib/products-data";
-import ProductIcon from "./_components/ProductIcon";
+import ProductCard from "./_components/ProductCard";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -765,59 +765,13 @@ export default function Home() {
           aria-live="off"
         >
           {PRODUCTS.map((product, index) => (
-            <article
-              className={`v-product-card ${index === 0 ? "is-current" : ""}`}
+            <ProductCard
               key={product.id}
-              data-reveal
-              data-category={product.category}
-            >
-              <div className="v-product-card-top">
-                <div className="v-product-icon" aria-hidden="true">
-                  <ProductIcon name={product.iconName} weight="duotone" />
-                </div>
-                <div className="v-product-badge-group">
-                  <span className="v-product-discount-pill">{product.badge}</span>
-                  <span className="v-product-cat-pill">{product.category}</span>
-                </div>
-              </div>
-
-              <span className="v-product-meta">{String(index + 1).padStart(2, "0")} · {product.primaryKeyword}</span>
-              <h3>{product.shortName}</h3>
-              <p className="v-product-brand-subtitle">{product.newTitle}</p>
-              <p className="v-product-desc">{product.metaDescription}</p>
-
-              <div className="v-product-features">
-                <ul>
-                  {product.deliverables.slice(0, 3).map((item) => (
-                    <li key={item}>
-                      <CheckCircle weight="fill" className="v-prod-feat-icon" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="v-product-price">
-                <div className="v-product-price-info">
-                  <div className="v-price-mrp">
-                    <span className="mrp-label">MRP</span>
-                    <span className="mrp-value">{product.mrp}</span>
-                  </div>
-                  <div className="v-price-offer">
-                    <small>Offer Price</small>
-                    <span className="price-value">{product.offerPrice}</span>
-                  </div>
-                </div>
-                <span className="v-savings-badge">{product.savings}</span>
-              </div>
-
-              <div className="v-product-card-bottom">
-                <a href={product.href} className="v-product-action-btn">
-                  <span>Explore Plan & Inclusions</span>
-                  <ArrowUpRight weight="bold" />
-                </a>
-              </div>
-            </article>
+              product={product}
+              index={index}
+              isCurrent={index === 0}
+              variant="slider"
+            />
           ))}
         </div>
 

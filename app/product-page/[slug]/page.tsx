@@ -400,7 +400,7 @@ export default async function ProductDetailPage({
                 <p>{rel.metaDescription}</p>
                 <div className="prod-rel-price">
                   <small>Offer Price</small>
-                  <strong>{rel.offerPrice}</strong>
+                  <span className="price-bold">{rel.offerPrice}</span>
                   <span className="prod-rel-mrp">{rel.mrp}</span>
                 </div>
                 <Link href={rel.href} className="button button-small prod-rel-link">

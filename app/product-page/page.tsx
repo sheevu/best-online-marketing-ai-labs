@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  CheckCircle,
-} from "@phosphor-icons/react/dist/ssr";
-import ProductIcon from "../_components/ProductIcon";
+import ProductCard from "../_components/ProductCard";
 import { PRODUCTS } from "../lib/products-data";
 import {
   CONTACT_EMAIL,
@@ -134,48 +130,13 @@ export default function ProductCatalogPage() {
       <section className="prod-section prod-catalogue-section">
         <div className="prod-catalog-grid">
           {PRODUCTS.map((product, index) => (
-            <article key={product.id} className="prod-catalog-card">
-              <div className="prod-card-top">
-                <div className="prod-card-icon-wrap">
-                  <ProductIcon name={product.iconName} weight="duotone" />
-                </div>
-                <div className="prod-card-meta">
-                  <span className="prod-index-badge">{String(index + 1).padStart(2, "0")} · {product.category}</span>
-                  <span className="prod-discount-badge">{product.badge}</span>
-                </div>
-              </div>
-
-              <h2 className="prod-card-title">{product.shortName}</h2>
-              <p className="prod-card-subtitle">{product.newTitle}</p>
-              <p className="prod-card-desc">{product.metaDescription}</p>
-
-              <div className="prod-card-features">
-                <ul>
-                  {product.deliverables.slice(0, 3).map((item) => (
-                    <li key={item}>
-                      <CheckCircle weight="fill" className="prod-check-icon" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="prod-card-price-row">
-                <div>
-                  <small className="prod-card-mrp">MRP {product.mrp}</small>
-                  <div className="prod-card-offer">
-                    <span className="prod-card-price">{product.offerPrice}</span>
-                    <span className="prod-savings-tag">{product.savings}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="prod-card-actions">
-                <Link href={product.href} className="button prod-details-btn">
-                  View Plan & Scope <ArrowUpRight weight="bold" />
-                </Link>
-              </div>
-            </article>
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={index}
+              variant="grid"
+              className="prod-catalog-card"
+            />
           ))}
         </div>
       </section>
