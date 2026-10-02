@@ -111,6 +111,51 @@ const worker = {
       }
     }
 
+    // Handle legacy /{serviceSlug}/{city} combinations from Google Search Console
+    if (redirectPath === normalizedPath) {
+      const segments = normalizedPath.split("/").filter(Boolean);
+      if (segments.length === 2) {
+        const [service, city] = segments;
+        const knownCities = new Set([
+          "lucknow", "kanpur", "varanasi", "prayagraj", "agra", "meerut", "bareilly",
+          "aligarh", "moradabad", "saharanpur", "gorakhpur", "noida", "firozabad",
+          "jhansi", "muzaffarnagar", "mathura", "budaun", "rampur", "shahjahanpur",
+          "farrukhabad", "ayodhya", "ghaziabad"
+        ]);
+        if (knownCities.has(city)) {
+          if (city === "lucknow") {
+            const seoServices = new Set([
+              "seo-services", "local-seo", "local-seo-services", "seo-services-search-optimization",
+              "google-maps-seo-local-ranking", "business-listing-maps-setup", "google-business-profile-optimization",
+              "online-reputation-google-review-management", "seo-content-writing-optimization"
+            ]);
+            const socialServices = new Set([
+              "social-media-marketing", "social-media-marketing-services", "meta-marketing-social-media-management",
+              "youtube-shorts-short-video-marketing", "video-content-repurposing", "instagram-reels-short-form-video-marketing",
+              "facebook-instagram-ads-management", "youtube-marketing-seo-channel-growth", "google-youtube-meta-remarketing"
+            ]);
+            const leadServices = new Set([
+              "lead-generation", "lead-generation-landing-page", "linkedin-marketing-b2b-lead-generation",
+              "whatsapp-business-meta-automation"
+            ]);
+            const techServices = new Set([
+              "website-development", "website-development-company", "custom-web-development-company",
+              "build-ecommerce-website", "ecommerce-website-development", "website-design"
+            ]);
+
+            if (seoServices.has(service)) redirectPath = "/seo-services-lucknow";
+            else if (socialServices.has(service)) redirectPath = "/social-media-marketing-lucknow";
+            else if (leadServices.has(service)) redirectPath = "/lead-generation-lucknow";
+            else if (techServices.has(service)) redirectPath = "/website-design";
+            else if (service === "ai-saas-mvp-development") redirectPath = "/ai-automation-lucknow";
+            else redirectPath = "/digital-marketing-services";
+          } else {
+            redirectPath = `/digital-marketing-services/${city}`;
+          }
+        }
+      }
+    }
+
     const needsPathNormalization = redirectPath !== url.pathname;
 
     if (needsPreferredHost || needsHttps || needsPathNormalization) {

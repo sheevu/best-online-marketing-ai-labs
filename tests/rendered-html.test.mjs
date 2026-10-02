@@ -425,3 +425,26 @@ test("sitemap only includes final indexable self-canonical routes", async () => 
     assert.equal(new URL(canonicals[0]).pathname.replace(/\/$/, "") || "/", new URL(expected).pathname.replace(/\/$/, "") || "/", `canonical mismatch: ${url}`);
   }
 });
+
+
+test("legacy service+city routes redirect to indexable canonical destinations", async () => {
+  const { default: worker } = await import("../dist/server/index.js");
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const ctx = { waitUntil() {}, passThroughOnException() {} };
+
+  const testCases = [
+    ["/youtube-shorts-short-video-marketing/gorakhpur", "https://sudarshan-ai.com/digital-marketing-services/gorakhpur"],
+    ["/business-listing-maps-setup/lucknow", "https://sudarshan-ai.com/seo-services-lucknow"],
+    ["/seo-services-search-optimization/lucknow", "https://sudarshan-ai.com/seo-services-lucknow"],
+    ["/meta-marketing-social-media-management/lucknow", "https://sudarshan-ai.com/social-media-marketing-lucknow"],
+    ["/ai-saas-mvp-development/lucknow", "https://sudarshan-ai.com/ai-automation-lucknow"],
+    ["/local-seo-services/bareilly", "https://sudarshan-ai.com/digital-marketing-services/bareilly"],
+    ["/google-maps-seo-local-ranking/mathura", "https://sudarshan-ai.com/digital-marketing-services/mathura"],
+  ];
+
+  for (const [source, expectedLocation] of testCases) {
+    const res = await worker.fetch(new Request(`https://sudarshan-ai.com${source}`), env, ctx);
+    assert.equal(res.status, 301, `${source} must 301 redirect`);
+    assert.equal(res.headers.get("location"), expectedLocation, `${source} redirect target mismatch`);
+  }
+});
