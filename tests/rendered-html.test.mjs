@@ -11,6 +11,7 @@ test("production HTML ships native interactions and no React hydration", async (
   assert.match(html, /<meta name="yandex-verification" content="796e217f3b74c89f"/);
   assert.match(html, /data-clarity-script="true"/);
   assert.match(html, /https:\/\/www\.clarity\.ms\/tag\//);
+  assert.match(html, /clarity", "script", "ytqls05jqi"/);
   assert.match(html, /https:\/\/analytics\.ahrefs\.com\/analytics\.js/);
   assert.match(html, /data-key="Nq8A5lfKCZ3ODQmPOotLqQ"/);
   assert.match(html, /role="tabpanel"/);
