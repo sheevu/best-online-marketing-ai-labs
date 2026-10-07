@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
+import { PRODUCTS } from "../app/lib/products-data.ts";
 
 test("production HTML ships native interactions and no React hydration", async () => {
   const html = await readFile(new URL("../dist/client/__static/index.html", import.meta.url), "utf8");
@@ -67,7 +68,7 @@ test("renders production metadata and product catalogue", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Sudarshan AI Labs \| AI &amp; Digital Marketing in Lucknow<\/title>/i,
+    /<title>Sudarshan AI Labs \| Digital Marketing in Lucknow<\/title>/i,
   );
   assert.match(html, /<html lang="en-IN">/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
@@ -82,6 +83,8 @@ test("renders production metadata and product catalogue", async () => {
   assert.match(html, /utm_source=website(?:&amp;|&)utm_medium=planner(?:&amp;|&)utm_campaign=local_visibility/i);
   assert.match(html, /href="\/digital-marketing-services"/i);
   assert.match(html, /href="\/digital-marketing-services\/uttar-pradesh"/i);
+  assert.match(html, /href="https:\/\/blogs\.vyapai\.in\/"/i);
+  assert.doesNotMatch(html, /https:\/\/www\.blogs\.vyapai\.in/i);
   assert.match(html, /href="\/seo-services-lucknow"/i);
   assert.match(html, /href="\/google-ads-services"/i);
   assert.match(html, /href="\/website-design"/i);
@@ -179,11 +182,11 @@ test("keeps crawler endpoints public and canonicalizes legacy service routes", a
   assert.ok(locCount > 0, "sitemap must contain URLs");
   assert.equal(lastmodCount, 0, "sitemap must not publish a fabricated shared last-modified date");
   assert.doesNotMatch(sitemapXml, /best-digital-marketing-agency-lucknow/i);
-  assert.doesNotMatch(sitemapXml, /local-seo-services/i);
+  assert.doesNotMatch(sitemapXml, /<loc>https:\/\/sudarshan-ai\.com\/local-seo-services<\/loc>/i);
   assert.doesNotMatch(sitemapXml, /seo-services-search-optimization/i);
   assert.doesNotMatch(sitemapXml, /website-development-company/i);
   assert.doesNotMatch(sitemapXml, /custom-web-development-company/i);
-  assert.doesNotMatch(sitemapXml, /build-ecommerce-website/i);
+  assert.doesNotMatch(sitemapXml, /<loc>https:\/\/sudarshan-ai\.com\/build-ecommerce-website<\/loc>/i);
   assert.doesNotMatch(sitemapXml, /social-media-marketing-services/i);
   assert.doesNotMatch(sitemapXml, /youtube-shorts-short-video-marketing/i);
   assert.doesNotMatch(sitemapXml, /video-content-repurposing/i);
@@ -414,6 +417,9 @@ test("sitemap only includes final indexable self-canonical routes", async () => 
   const xml = await sitemap.text();
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
   assert.ok(urls.length > 0);
+  for (const product of PRODUCTS) {
+    assert.ok(urls.includes(`https://sudarshan-ai.com/${product.urlSlug}`), `product route missing from sitemap: ${product.urlSlug}`);
+  }
   for (const url of urls) {
     const response = await worker.fetch(new Request(url, { headers: { accept: "text/html" } }), env, ctx);
     assert.equal(response.status, 200, `sitemap destination must not redirect: ${url}`);

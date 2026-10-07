@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { areas } from "./lib/areas";
 import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
+import { PRODUCTS } from "./lib/products-data";
 import { SITE_URL } from "./lib/site";
 
 const servicePaths = [
@@ -52,6 +53,7 @@ const trustPaths = [
 const productPaths = [
   "/product-page",
   "/offer-lucknow-marketing-services",
+  ...PRODUCTS.map((product) => `/${product.urlSlug}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -11,7 +11,7 @@ import {
 import { IDS, ref, SITE } from "../lib/schema";
 
 export const metadata: Metadata = {
-  title: "Products & Starter Plans for Business Growth",
+  title: { absolute: "Business Growth Packages & Starter Plans | Sudarshan AI Labs" },
   description:
     "Explore 22 verified digital marketing products, starter packs, website packages, and AI automations with transparent MRP and special offer prices for MSMEs.",
   alternates: { canonical: `${SITE_URL}/product-page` },

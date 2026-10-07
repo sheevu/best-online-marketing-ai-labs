@@ -49,8 +49,11 @@ export type ServicePageData = {
 export function serviceMetadata(data: ServicePageData): Metadata {
   const url = data.canonicalUrl ?? `/${data.slug}`;
   const cleanTitle = data.title.replace(/\s*\|\s*Sudarshan AI Labs.*$/i, "").trim();
+  const conciseTitle = `${cleanTitle} | Sudarshan AI Labs`.length > 60
+    ? `${(data.locationLabel ?? data.slug.replaceAll("-", " ")).replace(/\b\w/g, (letter) => letter.toUpperCase())} Marketing`
+    : cleanTitle;
   return {
-    title: cleanTitle,
+    title: conciseTitle,
     description: data.description,
     alternates: { canonical: url },
     robots: {

@@ -39,11 +39,18 @@ export async function generateMetadata({
   if (!product) return {};
 
   const cleanTitle = product.seoTitle.replace(/\s*\|\s*Sudarshan AI Labs.*$/i, "").trim();
+  const brandedTitle = `${cleanTitle} | Sudarshan AI Labs`;
+  const conciseTitle = brandedTitle.length > 60
+    ? product.shortName
+    : cleanTitle;
+  const conciseDescription = product.metaDescription.length > 155
+    ? `${product.metaDescription.slice(0, 152).replace(/[\s,;:.-]+$/, "")}...`
+    : product.metaDescription;
   const canonicalUrl = `${SITE_URL}/${product.urlSlug}`;
 
   return {
-    title: cleanTitle,
-    description: product.metaDescription,
+    title: { absolute: `${conciseTitle} | Sudarshan AI Labs` },
+    description: conciseDescription,
     alternates: { canonical: canonicalUrl },
     robots: {
       index: true,
@@ -57,8 +64,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: `${cleanTitle} | Sudarshan AI Labs`,
-      description: product.metaDescription,
+      title: `${conciseTitle} | Sudarshan AI Labs`,
+      description: conciseDescription,
       url: canonicalUrl,
       type: "website",
       locale: "en_IN",
@@ -74,8 +81,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${cleanTitle} | Sudarshan AI Labs`,
-      description: product.metaDescription,
+      title: `${conciseTitle} | Sudarshan AI Labs`,
+      description: conciseDescription,
       images: ["/sudarshan-lucknow-hero.webp"],
     },
   };

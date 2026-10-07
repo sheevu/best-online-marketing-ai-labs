@@ -43,7 +43,12 @@ import { areas } from "./lib/areas";
 import { PRODUCTS, PRODUCT_CATEGORIES } from "./lib/products-data";
 import ProductCard from "./_components/ProductCard";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  title: { absolute: "Sudarshan AI Labs | Digital Marketing in Lucknow" },
+  description:
+    "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
+  alternates: { canonical: "/" },
+};
 
 const wa = WHATSAPP_URL;
 const primaryServiceLinks = [
@@ -1158,7 +1163,7 @@ export default function Home() {
             </h2>
           </div>
           <p>
-            Authored by founder Sheevum Goel on <a href="https://www.blogs.vyapai.in/" target="_blank" rel="noreferrer" className="v-link-glow">blogs.vyapai.in</a>. Decoding real Google search intent, responsible AI automation, and local growth realities.
+            Authored by founder Sheevum Goel on <a href="https://blogs.vyapai.in/" target="_blank" rel="noreferrer" className="v-link-glow">blogs.vyapai.in</a>. Decoding real Google search intent, responsible AI automation, and local growth realities.
           </p>
         </div>
 
@@ -1170,7 +1175,7 @@ export default function Home() {
               <span className="v-blog-subtitle">• Official AI Growth Field Guide</span>
             </div>
             <a
-              href="https://www.blogs.vyapai.in/"
+              href="https://blogs.vyapai.in/"
               target="_blank"
               rel="noreferrer"
               className="v-pill v-pill-dark v-blog-open-btn"
@@ -1183,7 +1188,7 @@ export default function Home() {
 
           <div className="v-blog-frame-wrap">
             <iframe
-              src="https://www.blogs.vyapai.in/"
+              src="https://blogs.vyapai.in/"
               title="Lucknow AI Growth Storybook by Sheevum Goel"
               loading="lazy"
               className="v-blog-iframe"
@@ -1197,7 +1202,7 @@ export default function Home() {
             <span className="v-blog-badge">CHAPTER 01 • CONTEXT</span>
             <h3>The City is Changing: Lucknow’s AI Ambition</h3>
             <p>Decoding the official UP AI City developments and distinguishing state proposals from practical business utility for local MSMEs.</p>
-            <a href="https://www.blogs.vyapai.in/#city" target="_blank" rel="noreferrer">
+            <a href="https://blogs.vyapai.in/#city" target="_blank" rel="noreferrer">
               <span>Read Context Chapter</span> <ArrowUpRight />
             </a>
           </article>
@@ -1206,7 +1211,7 @@ export default function Home() {
             <span className="v-blog-badge">CHAPTER 02 • SIGNALS</span>
             <h3>Specific Intent Beats Generic Traffic</h3>
             <p>Analyzing Google Trends patterns in Lucknow: Why explanatory content, comparison pages, and direct conversion funnels must be separated.</p>
-            <a href="https://www.blogs.vyapai.in/#signals" target="_blank" rel="noreferrer">
+            <a href="https://blogs.vyapai.in/#signals" target="_blank" rel="noreferrer">
               <span>Read Signals Analysis</span> <ArrowUpRight />
             </a>
           </article>
@@ -1215,7 +1220,7 @@ export default function Home() {
             <span className="v-blog-badge">CHAPTER 03 • PLAYBOOK</span>
             <h3>From AI Hype to AI Utility: 90-Day Roadmap</h3>
             <p>The structured 3-phase journey: Foundation (Audit &amp; Mobile), Demand (Deep Guides &amp; Proof), and System (Lead Routing &amp; Triage).</p>
-            <a href="https://www.blogs.vyapai.in/#playbook" target="_blank" rel="noreferrer">
+            <a href="https://blogs.vyapai.in/#playbook" target="_blank" rel="noreferrer">
               <span>Explore Playbook</span> <ArrowUpRight />
             </a>
           </article>
@@ -1224,7 +1229,7 @@ export default function Home() {
             <span className="v-blog-badge">CHAPTER 04 • TRUST</span>
             <h3>E-E-A-T and Transparent Grounding</h3>
             <p>Why true digital authority requires verified sources, transparent boundaries, and clear human accountability rather than inflated claims.</p>
-            <a href="https://www.blogs.vyapai.in/#trust" target="_blank" rel="noreferrer">
+            <a href="https://blogs.vyapai.in/#trust" target="_blank" rel="noreferrer">
               <span>Verify Evidence</span> <ArrowUpRight />
             </a>
           </article>

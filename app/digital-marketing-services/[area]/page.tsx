@@ -68,9 +68,12 @@ export async function generateMetadata({
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) return {};
   const title = `Digital Marketing in ${a.name}`;
+  const conciseTitle = `${title} | Sudarshan AI Labs`.length > 60
+    ? `${a.name} Marketing`
+    : title;
   const canonicalPath = `/digital-marketing-services/${a.slug}-lucknow`;
   return {
-    title,
+    title: conciseTitle,
     description: a.meta,
     alternates: { canonical: canonicalPath },
     robots: {

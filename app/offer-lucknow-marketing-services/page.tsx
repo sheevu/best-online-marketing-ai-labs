@@ -13,9 +13,9 @@ const CHALLENGE_WHATSAPP =
   "https://wa.me/917887222247?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20have%20an%20agency%20quote%20and%20want%20to%20take%20the%20Challenge%20Sudarshan%20offer.";
 
 export const metadata: Metadata = {
-  title: "“Bring Any Agency Quote. We’ll Beat It.” | Sudarshan AI Labs",
+  title: { absolute: "Beat Any Agency Quote | Sudarshan AI Labs" },
   description:
-    "Got an agency quote for digital marketing in Lucknow or Uttar Pradesh? Bring it to Sudarshan AI Labs. Same scope or better, at a sharper price. Challenge Sudarshan today.",
+    "Got a digital marketing quote in Lucknow? Share the scope with Sudarshan AI Labs for a clear, sharper counterproposal. No obligation.",
   alternates: { canonical: OFFER_URL },
   robots: {
     index: true,

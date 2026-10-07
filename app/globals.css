@@ -2605,7 +2605,9 @@ footer {
   gap: 7px;
   font-size: 11px;
   font-weight: 900;
-  margin-top: 24px;
+  margin: 16px 0 -10px;
+  min-height: 44px;
+  padding: 10px;
 }
 .v-service a svg {
   width: 15px;
@@ -8322,9 +8324,9 @@ summary:focus-visible {
 }
 
 .v-slider-arrow {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -8358,7 +8360,7 @@ summary:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  height: 38px;
+  min-height: 44px;
   padding: 0 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.09);
@@ -8423,7 +8425,8 @@ summary:focus-visible {
 }
 
 .v-cat-filter-btn {
-  padding: 7px 15px;
+  min-height: 44px;
+  padding: 10px 15px;
   border-radius: 999px;
   background: #fff;
   border: 1px solid #dfd5f0;
@@ -8452,6 +8455,9 @@ summary:focus-visible {
 
 .v-view-all-link {
   margin-left: auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-size: 11.5px;
   font-weight: 850;
   color: #705eef;
@@ -9911,13 +9917,13 @@ summary:focus-visible {
     padding-right: 2px;
   }
   .v-slider-arrow {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
   }
   .v-slider-pause {
-    height: 36px;
-    padding: 0 11px;
+    height: 44px;
+    padding: 0 14px;
     font-size: 10.5px;
   }
   .v-product-track {
@@ -9929,11 +9935,13 @@ summary:focus-visible {
     margin-top: 20px;
   }
   .v-cat-filter-btn {
-    padding: 6px 12px;
+    min-height: 44px;
+    padding: 10px 12px;
     font-size: 11px;
   }
   .v-view-all-link {
-    padding: 6px 12px;
+    min-height: 44px;
+    padding: 10px 12px;
     font-size: 11px;
   }
 }
@@ -10590,8 +10598,7 @@ summary:focus-visible {
 
 @media (max-width: 768px) {
   .v-floating-offer-badge {
-    bottom: 84px;
-    left: 14px;
+    display: none;
   }
 }
 

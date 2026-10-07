@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Sudarshan AI Labs",
   },
   description:
-    "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh. Get a free audit today!",
+    "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries with Sudarshan AI Labs.",
   keywords: [
     "Sudarshan AI Labs",
     "digital marketing agency in lucknow",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     "lead generation Lucknow",
   ],
   openGraph: {
-    title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow",
+    title: "Sudarshan AI Labs | Digital Marketing in Lucknow",
     description:
-      "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.",
+      "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
     url: "/",
     siteName: "Sudarshan AI Labs",
     locale: "en_IN",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow",
+    title: "Sudarshan AI Labs | Digital Marketing in Lucknow",
     description:
-      "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.",
+      "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
     images: ["/sudarshan-lucknow-hero.webp"],
   },
   robots: {
