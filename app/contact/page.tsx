@@ -41,7 +41,7 @@ export default function Page() {
     <main className="service-owner contact-page">
       <StructuredData data={schema} />
       <nav className="area-nav" aria-label="Contact navigation">
-        <Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link>
+        <Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link>
         <div><Link href="/digital-marketing-services">Services</Link><Link href="/about-sheevum-goel">Founder</Link></div>
         <a className="button button-small" href={WHATSAPP_URL}>WhatsApp ↗</a>
       </nav>
@@ -57,7 +57,7 @@ export default function Page() {
         <a href={`mailto:${CONTACT_EMAIL}`}><span className="glossy-icon" aria-hidden="true"><EnvelopeSimple weight="duotone" /></span><span>EMAIL</span><h2>{CONTACT_EMAIL}</h2><p>Email a detailed brief, existing audit or collaboration proposal.</p><b>Compose email ↗</b></a>
       </section>
       <section className="area-cta"><p>WHAT TO INCLUDE</p><h2>Business, goal, current challenge and preferred next action.</h2><span>We do not require passwords or sensitive customer data for an introductory audit. Never send credentials through a contact message.</span></section>
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><TrustLinks /><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><TrustLinks /><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }

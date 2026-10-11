@@ -330,7 +330,7 @@ export default function UttarPradeshCities() {
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <b>AI LABS</b>
+            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
           </span>
         </a>
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>

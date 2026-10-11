@@ -32,7 +32,7 @@ export default function TermsOfService() {
   return (
     <main className="service-owner legal-page">
       <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${absoluteUrl("/terms-of-service")}#page`, url: absoluteUrl("/terms-of-service"), name: "Terms of Service", about: { "@id": ORGANIZATION_ID } }} />
-      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
+      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
       <article className="legal-copy">
         <span className="glossy-icon" aria-hidden="true"><FileText weight="duotone" /></span><p className="eyebrow">LEGAL & TRUST</p><h1>Terms of Service</h1><p>Website information is general guidance. A service engagement begins only after both parties agree the scope, deliverables, timeline, fees, ownership and responsibilities in writing.</p>
         <h2>Scope and outcomes</h2><p>Marketing results vary with competition, budget, offer, operations and customer demand. We do not guarantee rankings, review scores, lead volume, sales or a fixed return on ad spend.</p>

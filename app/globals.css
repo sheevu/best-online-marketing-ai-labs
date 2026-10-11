@@ -2053,9 +2053,13 @@ footer {
   font: 800 12px/1.05 var(--font-geist-sans);
   letter-spacing: 0.09em;
 }
-.v-brand b {
+.v-brand b,
+.v-brand .v-brand-bold,
+.brand b,
+.brand .v-brand-bold {
   display: block;
   color: #6254ec;
+  font-weight: 800;
 }
 .v-logo {
   width: 40px;
@@ -2424,10 +2428,12 @@ footer {
 .v-feature-row article > svg:last-child {
   width: 18px;
 }
-.v-feature-row h2 {
+.v-feature-row h2,
+.v-feature-row .vf-title {
   font-size: 22px;
   line-height: 1.05;
   margin: 3px 0 9px;
+  font-weight: 700;
 }
 .v-feature-row p {
   font-size: 11px;
@@ -2771,7 +2777,8 @@ footer {
   transform: scale(1.08) translateY(-2px);
   opacity: 0.65;
 }
-.method-cards h3 {
+.method-cards h3,
+.method-cards .v-step-title {
   font-size: 26px;
   font-weight: 700;
   line-height: 1.25;
@@ -7323,7 +7330,8 @@ footer {
 .v-feature-row p { color: #4e475f; }
 .v-kicker { color: #6250d2; }
 .v-kicker.light { color: #c8baff; }
-.v-footer .v-brand b { color: #afa1ff; }
+.v-footer .v-brand b,
+.v-footer .v-brand .v-brand-bold { color: #afa1ff; }
 .v-footer > small { color: #aaa2ba; }
 .v-product-dots button, .v-product-dots button.active {
   width: 28px;
@@ -9985,15 +9993,19 @@ summary:focus-visible {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  background: #000;
+  background: radial-gradient(circle at 50% 30%, #172439 0%, #080d1a 100%);
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .v-short-player iframe {
   width: 100%;
   height: 100%;
   border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: block;
+  transform: translateZ(0);
 }
 
 .v-short-meta {
@@ -10018,7 +10030,8 @@ summary:focus-visible {
   margin-bottom: 10px;
 }
 
-.v-short-meta h3 {
+.v-short-meta h3,
+.v-short-meta .v-short-title {
   font-size: 15px;
   font-weight: 700;
   line-height: 1.35;
@@ -10186,7 +10199,8 @@ summary:focus-visible {
   align-self: flex-start;
 }
 
-.v-blog-card h3 {
+.v-blog-card h3,
+.v-blog-card .v-blog-card-title {
   font-size: 16px;
   font-weight: 700;
   line-height: 1.35;
@@ -10945,5 +10959,131 @@ summary:focus-visible {
 @media (max-width: 640px) {
   .v-topline-offer {
     display: none !important;
+  }
+}
+
+/* ==========================================================================
+   VERIFIED ENTITY CITATIONS & BACKLINK DIRECTORY
+   ========================================================================== */
+.v-citations-section {
+  padding-block: 70px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.v-citations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.v-citation-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.v-citation-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 16px 36px -10px rgba(99, 102, 241, 0.2);
+}
+.v-citation-type {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 3px 8px;
+  border-radius: 6px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+.v-citation-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+.v-citation-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0 0 16px;
+  flex: 1;
+}
+.v-citation-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #38bdf8;
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+  align-self: flex-start;
+}
+.v-citation-card a:hover {
+  color: #7dd3fc;
+  gap: 9px;
+}
+.v-cite-snippet-box {
+  margin-top: 36px;
+  background: rgba(13, 22, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.v-cite-snippet-info {
+  flex: 1;
+  min-width: 280px;
+}
+.v-cite-snippet-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 4px 0 6px;
+}
+.v-cite-snippet-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+.v-cite-code-wrap {
+  background: #050811;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: #34d399;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .v-citations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .v-citations-grid {
+    grid-template-columns: 1fr;
+  }
+  .v-cite-snippet-box {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

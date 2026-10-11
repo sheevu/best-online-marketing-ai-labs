@@ -126,7 +126,7 @@ export default function ProductCard({
         <span className="v-meta-kw">{product.primaryKeyword}</span>
       </span>
 
-      <h3 className="v-product-title">{product.shortName}</h3>
+      <p className="v-product-title">{product.shortName}</p>
       <p className="v-product-brand-subtitle">{product.newTitle}</p>
       <p className="v-product-desc">{product.metaDescription}</p>
 

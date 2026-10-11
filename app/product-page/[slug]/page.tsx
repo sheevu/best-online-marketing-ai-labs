@@ -188,7 +188,7 @@ export default async function ProductDetailPage({
       <nav className="area-nav" aria-label="Product navigation">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <b>AI LABS</b></span>
+          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
         </Link>
         <div>
           <Link href="/product-page">All Products</Link>
@@ -443,7 +443,7 @@ export default async function ProductDetailPage({
       <footer className="area-footer">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <b>AI LABS</b></span>
+          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
         </Link>
         <p>Digital visibility, conversion and practical growth tools for Lucknow MSMEs.</p>
         <nav aria-label="Legal">

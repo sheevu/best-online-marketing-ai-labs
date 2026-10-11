@@ -210,6 +210,20 @@ const worker = {
     const headers = new Headers(response.headers);
     headers.set("X-Content-Type-Options", "nosniff");
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+
+    const currentContentType = headers.get("content-type") || "";
+    if (currentContentType.startsWith("text/html") && !currentContentType.toLowerCase().includes("charset")) {
+      headers.set("Content-Type", "text/html; charset=UTF-8");
+    } else if (currentContentType.startsWith("text/plain") && !currentContentType.toLowerCase().includes("charset")) {
+      headers.set("Content-Type", "text/plain; charset=UTF-8");
+    } else if (
+      (currentContentType.startsWith("application/xml") || currentContentType.startsWith("text/xml")) &&
+      !currentContentType.toLowerCase().includes("charset")
+    ) {
+      headers.set("Content-Type", "application/xml; charset=UTF-8");
+    } else if (currentContentType.startsWith("application/json") && !currentContentType.toLowerCase().includes("charset")) {
+      headers.set("Content-Type", "application/json; charset=UTF-8");
+    }
     if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") {
       headers.set("X-Robots-Tag", "all");
       headers.set("Cache-Control", "public, max-age=300, s-maxage=3600");

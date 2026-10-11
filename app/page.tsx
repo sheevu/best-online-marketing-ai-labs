@@ -37,6 +37,8 @@ import {
   STARTER_OFFERS,
   starterService,
   IDS,
+  ALL_VIDEO_SHORTS,
+  allVideoShortSchemas,
 } from "./lib/schema";
 import { cities } from "./lib/cities";
 import { areas } from "./lib/areas";
@@ -385,18 +387,7 @@ const homeSchema = {
         acceptedAnswer: { "@type": "Answer", text: answer },
       })),
     },
-    {
-      "@type": "VideoObject",
-      "@id": `${SITE_URL}/#growth-video-short`,
-      name: "Lucknow Businesses: Digital Wake-Up Call - Sudarshan AI Labs",
-      description:
-        "Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.",
-      thumbnailUrl: [`${SITE_URL}/sudarshan-lucknow-hero.webp`],
-      uploadDate: "2026-09-01T00:00:00+05:30",
-      embedUrl: "https://www.youtube-nocookie.com/embed/2o_oGkAj3IM",
-      contentUrl: "https://youtube.com/shorts/2o_oGkAj3IM",
-      publisher: { "@id": IDS.organization },
-    },
+    ...allVideoShortSchemas(),
   ],
 };
 
@@ -444,7 +435,7 @@ export default function Home() {
               />
             </span>
             <span>
-              SUDARSHAN <b>AI LABS</b>
+              SUDARSHAN <span className="v-brand-bold">AI LABS</span>
               <small>LUCKNOW DIGITAL GROWTH</small>
             </span>
           </a>
@@ -578,9 +569,9 @@ export default function Home() {
               <em>for Local SEO, Google Maps &amp; MSME Growth</em>
             </h1>
             <p>
-              Get found, build trust and turn attention into enquiries with
-              local visibility, high-converting websites, performance campaigns
-              and practical AI automation.
+              Get found, build trust and turn attention into revenue with
+              proven <strong>Digital Marketing</strong>, high-ranking <strong>SEO</strong>,
+              conversion websites and practical <strong>AI Automation</strong> built for <strong>Small Business Growth</strong>.
             </p>
             <div className="v-hero-actions">
               <a className="v-pill v-pill-dark" href={wa}>
@@ -649,7 +640,7 @@ export default function Home() {
           <article className="vf-coral">
             <MapPin weight="duotone" />
             <div>
-              <h2>Local SEO &amp; Google Maps</h2>
+              <p className="vf-title">Local SEO &amp; Google Maps</p>
               <p>Own high-intent searches across Lucknow.</p>
             </div>
             <ArrowUpRight />
@@ -657,7 +648,7 @@ export default function Home() {
           <article className="vf-sky">
             <Browsers weight="duotone" />
             <div>
-              <h2>Conversion Websites</h2>
+              <p className="vf-title">Conversion Websites</p>
               <p>Turn visits into useful conversations.</p>
             </div>
             <ArrowUpRight />
@@ -665,7 +656,7 @@ export default function Home() {
           <article className="vf-lemon">
             <Robot weight="duotone" />
             <div>
-              <h2>AI &amp; WhatsApp Automation</h2>
+              <p className="vf-title">AI &amp; WhatsApp Automation</p>
               <p>Automate repetitive work, keep the human touch.</p>
             </div>
             <ArrowUpRight />
@@ -695,10 +686,9 @@ export default function Home() {
             </h2>
           </div>
           <p>
-            Every service has a clear role—from being discovered to earning
-            trust, capturing an enquiry and following up well. As a digital
-            marketing company in Lucknow, we combine SEO, website development
-            and campaigns around the same customer journey.
+            Every channel has a clear commercial role—from targeted <strong>Lead Generation</strong> to
+            effective <strong>Social Media Marketing in Lucknow</strong> and grounded <strong>Content Marketing</strong>.
+            We align all digital assets to work together for measurable revenue impact.
           </p>
         </div>
         <div className="v-service-grid">
@@ -888,7 +878,7 @@ export default function Home() {
               <span className="card-number">01</span>
             </div>
             <span className="method-tag">BUILD</span>
-            <h3>Create the foundation</h3>
+            <p className="v-step-title">Create the foundation</p>
             <p>
               Clear positioning, searchable content, conversion pages and
               connected customer channels.
@@ -900,10 +890,10 @@ export default function Home() {
               <span className="card-number">02</span>
             </div>
             <span className="method-tag">AUTOMATE</span>
-            <h3>Reduce repetitive work</h3>
+            <p className="v-step-title">Reduce repetitive work</p>
             <p>
-              Practical workflows for responses, lead organisation, reporting
-              and recurring activity.
+              Practical workflows for <strong>AI for Business</strong>, lead routing,
+              syncing with CRM and <strong>Accounting Software</strong>, and automated client follow-ups.
             </p>
           </article>
           <article data-reveal className="method-card-transfer">
@@ -912,10 +902,10 @@ export default function Home() {
               <span className="card-number">03</span>
             </div>
             <span className="method-tag">TRANSFER</span>
-            <h3>Hand over with clarity</h3>
+            <p className="v-step-title">Hand over with clarity</p>
             <p>
-              Your team receives the assets, documentation and confidence to
-              operate independently.
+              Your team receives full control over your <strong>Artificial Intelligence</strong> tools,
+              analytics pipelines, and creator or <strong>Affiliate Marketing</strong> partner funnels.
             </p>
           </article>
         </div>
@@ -1027,140 +1017,36 @@ export default function Home() {
         </div>
 
         <div className="v-shorts-grid" role="region" aria-label="YouTube Shorts Growth Series">
-          <article className="v-short-card">
-            <div className="v-short-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/2o_oGkAj3IM?rel=0"
-                title="Lucknow Businesses Digital Wake-Up Call - Sudarshan AI Labs"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="v-short-meta">
-              <span className="v-short-tag">LOCAL SEO</span>
-              <h3>Lucknow Businesses: Digital Wake-Up Call</h3>
-              <p>Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.</p>
-              <a
-                href="https://youtube.com/shorts/2o_oGkAj3IM"
-                target="_blank"
-                rel="noreferrer"
-                className="v-short-link"
-              >
-                <YoutubeLogo weight="fill" className="yt-icon" />
-                <span>Watch on YouTube</span>
-                <ArrowUpRight weight="bold" />
-              </a>
-            </div>
-          </article>
-
-          <article className="v-short-card">
-            <div className="v-short-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/0EC1SWvNxnE?rel=0"
-                title="Connected Presence: SEO, Websites & Growth Systems"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="v-short-meta">
-              <span className="v-short-tag">GROWTH STACK</span>
-              <h3>How Sudarshan AI Labs Powers Business Online</h3>
-              <p>Combining search visibility, high-converting websites, and structured follow-up for UP enterprises.</p>
-              <a
-                href="https://youtube.com/shorts/0EC1SWvNxnE"
-                target="_blank"
-                rel="noreferrer"
-                className="v-short-link"
-              >
-                <YoutubeLogo weight="fill" className="yt-icon" />
-                <span>Watch on YouTube</span>
-                <ArrowUpRight weight="bold" />
-              </a>
-            </div>
-          </article>
-
-          <article className="v-short-card">
-            <div className="v-short-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/IO3RLr5rNqo?rel=0"
-                title="Your Google Business Profile: Your #1 Sales Asset"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="v-short-meta">
-              <span className="v-short-tag">GOOGLE MAPS</span>
-              <h3>Your Most Valuable Local Sales Asset 📍</h3>
-              <p>Transforming your Google Business Profile from a passive pin into an active local sales generator.</p>
-              <a
-                href="https://youtube.com/shorts/IO3RLr5rNqo"
-                target="_blank"
-                rel="noreferrer"
-                className="v-short-link"
-              >
-                <YoutubeLogo weight="fill" className="yt-icon" />
-                <span>Watch on YouTube</span>
-                <ArrowUpRight weight="bold" />
-              </a>
-            </div>
-          </article>
-
-          <article className="v-short-card">
-            <div className="v-short-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/iWNKPxbTXpY?rel=0"
-                title="Stop Losing Customers: AI Automation for Small Business"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="v-short-meta">
-              <span className="v-short-tag">AI AUTOMATION</span>
-              <h3>Stop Losing Customers to Slow Response</h3>
-              <p>Practical WhatsApp automation and intelligent routing that responds to qualified buyers in seconds.</p>
-              <a
-                href="https://youtube.com/shorts/iWNKPxbTXpY"
-                target="_blank"
-                rel="noreferrer"
-                className="v-short-link"
-              >
-                <YoutubeLogo weight="fill" className="yt-icon" />
-                <span>Watch on YouTube</span>
-                <ArrowUpRight weight="bold" />
-              </a>
-            </div>
-          </article>
-
-          <article className="v-short-card">
-            <div className="v-short-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/L4Rcx3M9zSI?rel=0"
-                title="Courses vs Real Portfolios: Building Practical Proof"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="v-short-meta">
-              <span className="v-short-tag">PRACTICAL SKILLS</span>
-              <h3>Courses are Useful. Portfolios are Powerful.</h3>
-              <p>Why real systems, working code, and verified case studies beat generic certifications every time.</p>
-              <a
-                href="https://youtube.com/shorts/L4Rcx3M9zSI"
-                target="_blank"
-                rel="noreferrer"
-                className="v-short-link"
-              >
-                <YoutubeLogo weight="fill" className="yt-icon" />
-                <span>Watch on YouTube</span>
-                <ArrowUpRight weight="bold" />
-              </a>
-            </div>
-          </article>
+          {ALL_VIDEO_SHORTS.map((video) => (
+            <article className="v-short-card" key={video.id}>
+              <div className="v-short-player">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+                  title={video.name}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  tabIndex={0}
+                />
+              </div>
+              <div className="v-short-meta">
+                <span className="v-short-tag">60S INSIGHT</span>
+                <p className="v-short-title font-bold">{video.name.split(" - ")[0]}</p>
+                <p>{video.description}</p>
+                <a
+                  href={video.contentUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="v-short-link"
+                >
+                  <YoutubeLogo weight="fill" className="yt-icon" />
+                  <span>Watch on YouTube</span>
+                  <ArrowUpRight weight="bold" />
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -1212,7 +1098,7 @@ export default function Home() {
         <div className="v-blog-cards-grid">
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 01 • CONTEXT</span>
-            <h3>The City is Changing: Lucknow’s AI Ambition</h3>
+            <p className="v-blog-card-title font-semibold">The City is Changing: Lucknow’s AI Ambition</p>
             <p>Decoding the official UP AI City developments and distinguishing state proposals from practical business utility for local MSMEs.</p>
             <a href="https://blogs.vyapai.in/#city" target="_blank" rel="noreferrer">
               <span>Read Context Chapter</span> <ArrowUpRight />
@@ -1221,7 +1107,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 02 • SIGNALS</span>
-            <h3>Specific Intent Beats Generic Traffic</h3>
+            <p className="v-blog-card-title font-semibold">Specific Intent Beats Generic Traffic</p>
             <p>Analyzing Google Trends patterns in Lucknow: Why explanatory content, comparison pages, and direct conversion funnels must be separated.</p>
             <a href="https://blogs.vyapai.in/#signals" target="_blank" rel="noreferrer">
               <span>Read Signals Analysis</span> <ArrowUpRight />
@@ -1230,7 +1116,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 03 • PLAYBOOK</span>
-            <h3>From AI Hype to AI Utility: 90-Day Roadmap</h3>
+            <p className="v-blog-card-title font-semibold">From AI Hype to AI Utility: 90-Day Roadmap</p>
             <p>The structured 3-phase journey: Foundation (Audit &amp; Mobile), Demand (Deep Guides &amp; Proof), and System (Lead Routing &amp; Triage).</p>
             <a href="https://blogs.vyapai.in/#playbook" target="_blank" rel="noreferrer">
               <span>Explore Playbook</span> <ArrowUpRight />
@@ -1239,7 +1125,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 04 • TRUST</span>
-            <h3>E-E-A-T and Transparent Grounding</h3>
+            <p className="v-blog-card-title font-semibold">E-E-A-T and Transparent Grounding</p>
             <p>Why true digital authority requires verified sources, transparent boundaries, and clear human accountability rather than inflated claims.</p>
             <a href="https://blogs.vyapai.in/#trust" target="_blank" rel="noreferrer">
               <span>Verify Evidence</span> <ArrowUpRight />
@@ -1383,6 +1269,91 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="v-section v-citations-section" id="authority-citations" aria-label="Verified Profiles and Authority Directory">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">VERIFIED ENTITY &amp; BACKLINK ECOSYSTEM</span>
+            <h2>
+              Verified across government registries
+              <br />
+              <em>and authoritative platforms.</em>
+            </h2>
+          </div>
+          <p>
+            Sudarshan AI Labs is legally incorporated under NAVA-NETRA NEURAL SUDARSHAN AI LABS PVT. LTD. Explore our public filings, directory listings, verified profiles, and citation resources across referring networks.
+          </p>
+        </div>
+
+        <div className="v-citations-grid">
+          <div className="v-citation-card">
+            <span className="v-citation-type">GOVERNMENT &amp; REGULATORY</span>
+            <p className="v-citation-title">StartInUP • UP Government Portal</p>
+            <p className="v-citation-desc">DPIIT-recognized state startup profile (ID: NDkyMw==) registered in Lucknow, Uttar Pradesh.</p>
+            <a href="https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==" target="_blank" rel="noopener noreferrer">
+              View StartInUP Registry <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="v-citation-card">
+            <span className="v-citation-type">CORPORATE REGISTRY</span>
+            <p className="v-citation-title">MCA &amp; ZaubaCorp Verified</p>
+            <p className="v-citation-desc">Official Ministry of Corporate Affairs filing (CIN: U62099UP2025OPC223943) with verified corporate data.</p>
+            <a href="https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943" target="_blank" rel="noopener noreferrer">
+              View ZaubaCorp Profile <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="v-citation-card">
+            <span className="v-citation-type">FINANCIAL &amp; DIRECTORY</span>
+            <p className="v-citation-title">Finanvo &amp; FalconeBiz Profiles</p>
+            <p className="v-citation-desc">Corporate financials, registration indices, and compliance records verified on leading business directories.</p>
+            <a href="https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited" target="_blank" rel="noopener noreferrer">
+              View Finanvo Listing <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="v-citation-card">
+            <span className="v-citation-type">OPEN SOURCE &amp; CODE</span>
+            <p className="v-citation-title">GitHub Engineering Hub</p>
+            <p className="v-citation-desc">Open-source NETRA CRM, AI agent templates, and growth architecture repository on GitHub.</p>
+            <a href="https://github.com/sheevu/NETRA-CRM-1" target="_blank" rel="noopener noreferrer">
+              Explore GitHub Repository <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="v-citation-card">
+            <span className="v-citation-type">LOCAL MAPS &amp; REPUTATION</span>
+            <p className="v-citation-title">Google Business Profile</p>
+            <p className="v-citation-desc">Verified physical office location at Indira Nagar, Lucknow with real client reviews and local directions.</p>
+            <a href={MAP_URL} target="_blank" rel="noopener noreferrer">
+              Open Google Business Profile <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="v-citation-card">
+            <span className="v-citation-type">EDITORIAL &amp; CITATION</span>
+            <p className="v-citation-title">Medium &amp; Tech Articles</p>
+            <p className="v-citation-desc">In-depth analyses of Lucknow AI growth, MSME digital transformation, and local search engineering.</p>
+            <a href="https://medium.com/@sheevumgoel" target="_blank" rel="noopener noreferrer">
+              Read Medium Column <ArrowUpRight />
+            </a>
+          </div>
+        </div>
+
+        <div className="v-cite-snippet-box">
+          <div className="v-cite-snippet-info">
+            <span className="v-kicker">CITE THIS RESOURCE / LINK TO US</span>
+            <p className="v-cite-snippet-title">Link to the Sudarshan Digital Marketing &amp; AI Framework</p>
+            <p className="v-cite-snippet-desc">
+              Writing about digital marketing, Lucknow startups, or MSME AI automation? Reference our verified framework with standard HTML or Markdown:
+            </p>
+          </div>
+          <div className="v-cite-code-wrap">
+            <code>&lt;a href=&quot;https://sudarshan-ai.com/&quot; title=&quot;Sudarshan AI Labs - AI Digital Marketing Agency Lucknow&quot;&gt;Sudarshan AI Labs&lt;/a&gt;</code>
+          </div>
+        </div>
+      </section>
+
       <footer className="v-footer">
         <div>
           <a className="v-brand" href="#top">
@@ -1398,7 +1369,7 @@ export default function Home() {
               />
             </span>
             <span>
-              SUDARSHAN <b>AI LABS</b>
+              SUDARSHAN <span className="v-brand-bold">AI LABS</span>
             </span>
           </a>
           <p>
@@ -1574,9 +1545,9 @@ export default function Home() {
           </div>
           <div className="v-offer-modal-content">
             <span className="v-offer-tag">EXCLUSIVE LUCKNOW MARKETING OFFER</span>
-            <h3 id="v-offer-modal-title" className="v-offer-title">
+            <p id="v-offer-modal-title" className="v-offer-title">
               “Bring Any Agency Quote. We’ll Beat It.”
-            </h3>
+            </p>
             <p className="v-offer-subtitle">
               Same scope or better, at a sharper price.
             </p>

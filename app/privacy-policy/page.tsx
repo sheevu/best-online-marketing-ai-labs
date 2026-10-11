@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
   return (
     <main className="service-owner legal-page">
       <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${absoluteUrl("/privacy-policy")}#page`, url: absoluteUrl("/privacy-policy"), name: "Privacy Policy", about: { "@id": ORGANIZATION_ID } }} />
-      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
+      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
       <article className="legal-copy">
         <span className="glossy-icon" aria-hidden="true"><ShieldCheck weight="duotone" /></span><p className="eyebrow">LEGAL & TRUST</p><h1>Privacy Policy</h1><p>We collect only the information you choose to share when you contact Sudarshan AI Labs, such as your name, business details, website, Google listing or preferred contact method.</p>
         <h2>How we use information</h2><p>We use enquiry details to respond, prepare an agreed audit or proposal, provide services and communicate about the requested work. We do not sell enquiry data.</p>

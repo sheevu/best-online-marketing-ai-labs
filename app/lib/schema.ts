@@ -79,8 +79,83 @@ export const sharedOrganization = () => ({
     "https://www.youtube.com/@sheevumgoel",
     "https://pinterest.com/ailabslucknow",
     "https://medium.com/@sheevumgoel",
+    "https://x.com/sheevum",
+    "https://maps.app.goo.gl/g6zXUuBf8tGq5p2H7",
+    "https://sheevum-goel-about.netlify.app/",
   ],
 });
+
+export const ALL_VIDEO_SHORTS = [
+  {
+    id: "2o_oGkAj3IM",
+    name: "Lucknow Businesses: Digital Wake-Up Call - Sudarshan AI Labs",
+    description:
+      "Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.",
+    thumbnailUrl: `${SITE}/sudarshan-lucknow-hero.webp`,
+    uploadDate: "2026-09-01T00:00:00+05:30",
+    embedUrl: "https://www.youtube-nocookie.com/embed/2o_oGkAj3IM",
+    contentUrl: "https://youtube.com/shorts/2o_oGkAj3IM",
+    duration: "PT1M",
+  },
+  {
+    id: "0EC1SWvNxnE",
+    name: "Connected Presence: SEO, Websites & Growth Systems - Sudarshan AI Labs",
+    description:
+      "Connect your local SEO, conversion-focused websites, and automated WhatsApp systems to turn searches into sales.",
+    thumbnailUrl: `${SITE}/sudarshan-lucknow-hero.webp`,
+    uploadDate: "2026-09-05T00:00:00+05:30",
+    embedUrl: "https://www.youtube-nocookie.com/embed/0EC1SWvNxnE",
+    contentUrl: "https://youtube.com/shorts/0EC1SWvNxnE",
+    duration: "PT1M",
+  },
+  {
+    id: "IO3RLr5rNqo",
+    name: "Your Google Business Profile: Your #1 Sales Asset - Sudarshan AI Labs",
+    description:
+      "How Lucknow shops and service businesses turn Google Maps 3-Pack placement into consistent daily phone calls and footfall.",
+    thumbnailUrl: `${SITE}/sudarshan-lucknow-hero.webp`,
+    uploadDate: "2026-09-10T00:00:00+05:30",
+    embedUrl: "https://www.youtube-nocookie.com/embed/IO3RLr5rNqo",
+    contentUrl: "https://youtube.com/shorts/IO3RLr5rNqo",
+    duration: "PT1M",
+  },
+  {
+    id: "iWNKPxbTXpY",
+    name: "Stop Losing Customers: AI Automation for Small Business - Sudarshan AI Labs",
+    description:
+      "Instant WhatsApp replies, automated lead qualification, and 24/7 client booking without hiring large call teams.",
+    thumbnailUrl: `${SITE}/sudarshan-lucknow-hero.webp`,
+    uploadDate: "2026-09-15T00:00:00+05:30",
+    embedUrl: "https://www.youtube-nocookie.com/embed/iWNKPxbTXpY",
+    contentUrl: "https://youtube.com/shorts/iWNKPxbTXpY",
+    duration: "PT1M",
+  },
+  {
+    id: "L4Rcx3M9zSI",
+    name: "Courses vs Real Portfolios: Building Practical Proof - Sudarshan AI Labs",
+    description:
+      "Why hands-on execution and real commercial assets matter more than theoretical certificates in the AI era.",
+    thumbnailUrl: `${SITE}/sudarshan-lucknow-hero.webp`,
+    uploadDate: "2026-09-20T00:00:00+05:30",
+    embedUrl: "https://www.youtube-nocookie.com/embed/L4Rcx3M9zSI",
+    contentUrl: "https://youtube.com/shorts/L4Rcx3M9zSI",
+    duration: "PT1M",
+  },
+];
+
+export const allVideoShortSchemas = () =>
+  ALL_VIDEO_SHORTS.map((video) => ({
+    "@type": "VideoObject",
+    "@id": `${SITE}/#video-${video.id}`,
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: [video.thumbnailUrl],
+    uploadDate: video.uploadDate,
+    embedUrl: video.embedUrl,
+    contentUrl: video.contentUrl,
+    duration: video.duration,
+    publisher: ref(IDS.organization),
+  }));
 
 export const growthVideoShortSchema = () => ({
   "@context": "https://schema.org",

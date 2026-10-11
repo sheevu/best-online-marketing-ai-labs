@@ -87,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <head>
+        <meta charSet="utf-8" />
         <meta name="theme-color" content="#f8fbff" />
         <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="" />
         <link rel="preconnect" href="https://cdn.jotfor.ms" crossOrigin="" />

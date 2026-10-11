@@ -32,7 +32,7 @@ export default function RefundPolicy() {
   return (
     <main className="service-owner legal-page">
       <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${absoluteUrl("/refund-policy")}#page`, url: absoluteUrl("/refund-policy"), name: "Refund Policy", about: { "@id": ORGANIZATION_ID } }} />
-      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
+      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
       <article className="legal-copy">
         <span className="glossy-icon" aria-hidden="true"><ArrowCounterClockwise weight="duotone" /></span><p className="eyebrow">LEGAL & TRUST</p><h1>Refund Policy</h1><p>Refund and cancellation terms are confirmed with the written scope before paid work begins. If a project has not started, contact us promptly so the agreed cancellation terms can be reviewed.</p>
         <h2>Started work</h2><p>Once research, strategy, design, development, content production or setup has started, fees for work completed and approved third-party costs are non-refundable unless the written engagement says otherwise.</p>

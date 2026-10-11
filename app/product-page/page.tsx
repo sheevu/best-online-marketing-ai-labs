@@ -91,7 +91,7 @@ export default function ProductCatalogPage() {
       <nav className="area-nav" aria-label="Product catalogue navigation">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <b>AI LABS</b></span>
+          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
         </Link>
         <div>
           <Link href="/product-page">Products</Link>
@@ -160,7 +160,7 @@ export default function ProductCatalogPage() {
       <footer className="area-footer">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <b>AI LABS</b></span>
+          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
         </Link>
         <p>Digital visibility, conversion and practical growth tools for Lucknow MSMEs.</p>
         <nav aria-label="Legal">

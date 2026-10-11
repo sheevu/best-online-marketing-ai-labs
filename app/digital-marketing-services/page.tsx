@@ -141,7 +141,7 @@ export default function LucknowServices() {
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <b>AI LABS</b>
+            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
           </span>
         </a>
         <div>

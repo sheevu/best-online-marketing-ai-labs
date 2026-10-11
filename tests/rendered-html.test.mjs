@@ -64,7 +64,7 @@ test("renders production metadata and product catalogue", async () => {
   assert.equal(response.status, 200);
   assert.match(
     response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
+    /^text\/html;\s*charset=utf-8\b/i,
   );
   const html = await response.text();
   assert.match(

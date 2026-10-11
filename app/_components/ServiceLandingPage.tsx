@@ -118,7 +118,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       <nav className="area-nav" aria-label="Service navigation">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <b>AI LABS</b></span>
+          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
         </Link>
         <div>
           <Link href="/digital-marketing-services">Services</Link>
@@ -230,7 +230,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <div><a className="button" href={WHATSAPP_URL} title="Start your free audit on WhatsApp" rel="noopener noreferrer">Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`} title={`Email ${CONTACT_EMAIL} for enquiries`}>Email {CONTACT_EMAIL}</a></div>
       </section>
 
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }
