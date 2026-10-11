@@ -99,6 +99,11 @@ const nextConfig: NextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://cdn.jotfor.ms https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' https: data:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://form.jotform.com https://www.google.com; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://api.whatsapp.com https://form.jotform.com; object-src 'none'; base-uri 'self';",
+          },
         ],
       },
       {

@@ -67,7 +67,9 @@ const worker = {
       "/youtube-shorts-short-video-marketing": "/youtube-marketing-seo-channel-growth",
       "/video-content-repurposing": "/youtube-marketing-seo-channel-growth",
       "/best-digital-marketing-agency-lucknow": "/digital-marketing-services",
+      "/best-digital-marketing-agency-in-lucknow": "/digital-marketing-services",
       "/best-digital-marketing-agency-lucknow/lucknow": "/digital-marketing-services",
+      "/best-digital-marketing-agency-in-lucknow/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/uttar-pradesh/lucknow": "/digital-marketing-services",
       "/digital-marketing-services/hazratganj": "/digital-marketing-services/hazratganj-lucknow",
@@ -120,19 +122,20 @@ const worker = {
           "lucknow", "kanpur", "varanasi", "prayagraj", "agra", "meerut", "bareilly",
           "aligarh", "moradabad", "saharanpur", "gorakhpur", "noida", "firozabad",
           "jhansi", "muzaffarnagar", "mathura", "budaun", "rampur", "shahjahanpur",
-          "farrukhabad", "ayodhya", "ghaziabad"
+          "farrukhabad", "ayodhya", "ghaziabad", "jaunpur"
         ]);
         if (knownCities.has(city)) {
           if (city === "lucknow") {
             const seoServices = new Set([
               "seo-services", "local-seo", "local-seo-services", "seo-services-search-optimization",
               "google-maps-seo-local-ranking", "business-listing-maps-setup", "google-business-profile-optimization",
-              "online-reputation-google-review-management", "seo-content-writing-optimization"
+              "online-reputation-google-review-management", "seo-content-writing-optimization", "bing-places-local-seo"
             ]);
             const socialServices = new Set([
               "social-media-marketing", "social-media-marketing-services", "meta-marketing-social-media-management",
               "youtube-shorts-short-video-marketing", "video-content-repurposing", "instagram-reels-short-form-video-marketing",
-              "facebook-instagram-ads-management", "youtube-marketing-seo-channel-growth", "google-youtube-meta-remarketing"
+              "facebook-instagram-ads-management", "youtube-marketing-seo-channel-growth", "google-youtube-meta-remarketing",
+              "facebook-instagram-shop-social-commerce"
             ]);
             const leadServices = new Set([
               "lead-generation", "lead-generation-landing-page", "linkedin-marketing-b2b-lead-generation",
@@ -140,7 +143,7 @@ const worker = {
             ]);
             const techServices = new Set([
               "website-development", "website-development-company", "custom-web-development-company",
-              "build-ecommerce-website", "ecommerce-website-development", "website-design"
+              "build-ecommerce-website", "ecommerce-website-development", "website-design", "web-application-development"
             ]);
 
             if (seoServices.has(service)) redirectPath = "/seo-services-lucknow";

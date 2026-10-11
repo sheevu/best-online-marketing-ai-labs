@@ -385,6 +385,18 @@ const homeSchema = {
         acceptedAnswer: { "@type": "Answer", text: answer },
       })),
     },
+    {
+      "@type": "VideoObject",
+      "@id": `${SITE_URL}/#growth-video-short`,
+      name: "Lucknow Businesses: Digital Wake-Up Call - Sudarshan AI Labs",
+      description:
+        "Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.",
+      thumbnailUrl: [`${SITE_URL}/sudarshan-lucknow-hero.webp`],
+      uploadDate: "2026-09-01T00:00:00+05:30",
+      embedUrl: "https://www.youtube-nocookie.com/embed/2o_oGkAj3IM",
+      contentUrl: "https://youtube.com/shorts/2o_oGkAj3IM",
+      publisher: { "@id": IDS.organization },
+    },
   ],
 };
 
@@ -561,7 +573,7 @@ export default function Home() {
               </span>
             </div>
             <h1>
-              AI Digital Marketing Agency in Lucknow
+              AI Digital Marketing Agency in Lucknow{" "}
               <br />
               <em>for Local SEO, Google Maps &amp; MSME Growth</em>
             </h1>

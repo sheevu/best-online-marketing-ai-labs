@@ -30,6 +30,31 @@ export const sharedOrganization = () => ({
   name: "Sudarshan AI Labs",
   legalName: LEGAL_NAME,
   url: `${SITE}/`,
+  logo: `${SITE}/apple-touch-icon.png`,
+  image: `${SITE}/sudarshan-lucknow-hero.webp`,
+  priceRange: "₹₹",
+  currenciesAccepted: "INR",
+  paymentAccepted: "Cash, UPI, Credit Card, Net Banking",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "09:30",
+      closes: "19:00",
+    },
+  ],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 26.8837,
+    longitude: 80.9934,
+  },
   description:
     "Lucknow-based digital marketing, web development and practical AI automation for MSMEs.",
   address,
@@ -55,6 +80,19 @@ export const sharedOrganization = () => ({
     "https://pinterest.com/ailabslucknow",
     "https://medium.com/@sheevumgoel",
   ],
+});
+
+export const growthVideoShortSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Lucknow Businesses: Digital Wake-Up Call - Sudarshan AI Labs",
+  description:
+    "Why local visibility, Google Maps trust, and genuine proof beat outdated agency retainers in Lucknow.",
+  thumbnailUrl: [`${SITE}/sudarshan-lucknow-hero.webp`],
+  uploadDate: "2026-09-01T00:00:00+05:30",
+  embedUrl: "https://www.youtube-nocookie.com/embed/2o_oGkAj3IM",
+  contentUrl: "https://youtube.com/shorts/2o_oGkAj3IM",
+  publisher: ref(IDS.organization),
 });
 
 export const sharedWebsite = () => ({

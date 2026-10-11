@@ -447,6 +447,12 @@ test("legacy service+city routes redirect to indexable canonical destinations", 
     ["/ai-saas-mvp-development/lucknow", "https://sudarshan-ai.com/ai-automation-lucknow"],
     ["/local-seo-services/bareilly", "https://sudarshan-ai.com/digital-marketing-services/bareilly"],
     ["/google-maps-seo-local-ranking/mathura", "https://sudarshan-ai.com/digital-marketing-services/mathura"],
+    ["/best-digital-marketing-agency-in-lucknow", "https://sudarshan-ai.com/digital-marketing-services"],
+    ["/best-digital-marketing-agency-lucknow/jaunpur", "https://sudarshan-ai.com/digital-marketing-services/jaunpur"],
+    ["/seo-content-writing-optimization/jaunpur", "https://sudarshan-ai.com/digital-marketing-services/jaunpur"],
+    ["/bing-places-local-seo/lucknow", "https://sudarshan-ai.com/seo-services-lucknow"],
+    ["/facebook-instagram-shop-social-commerce/lucknow", "https://sudarshan-ai.com/social-media-marketing-lucknow"],
+    ["/web-application-development/lucknow", "https://sudarshan-ai.com/website-design"],
   ];
 
   for (const [source, expectedLocation] of testCases) {
