@@ -801,7 +801,7 @@ export default function AboutSheevumGoel() {
               <div className="v-short-player">
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
-                  title={`${video.title} - Sheevum Goel`}
+                  title={`${video.name} - Sheevum Goel`}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -811,7 +811,7 @@ export default function AboutSheevumGoel() {
               </div>
               <div className="v-short-meta">
                 <span className="v-short-tag">60S INSIGHT</span>
-                <p className="v-short-title font-bold">{video.title}</p>
+                <p className="v-short-title font-bold">{video.name}</p>
                 <p>{video.description}</p>
                 <a
                   href={video.contentUrl}
