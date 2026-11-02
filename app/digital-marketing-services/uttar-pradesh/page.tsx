@@ -21,7 +21,7 @@ import { cities } from "../../lib/cities";
 import { absoluteUrl, ORGANIZATION_ID, WHATSAPP_URL, CONTACT_PHONE, PRIMARY_ADDRESS } from "../../lib/site";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Services Across Uttar Pradesh | Sudarshan AI Labs",
+  title: "Digital Marketing Services Across Uttar Pradesh",
   description:
     "Accelerate regional business growth across Uttar Pradesh with Sudarshan AI Labs. Scalable SEO, Google Maps dominance, vernacular marketing & AI-driven lead automation for 20 UP city hubs.",
   alternates: { canonical: "/digital-marketing-services/uttar-pradesh" },

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Sudarshan AI Labs",
   },
   description:
-    "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries with Sudarshan AI Labs.",
+    "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation. Review our approach, scope and pricing.",
   keywords: [
     "Sudarshan AI Labs",
     "digital marketing agency in lucknow",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     "lead generation Lucknow",
   ],
   openGraph: {
-    title: "Sudarshan AI Labs | Digital Marketing in Lucknow",
+    title: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow",
     description:
-      "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
+      "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation.",
     url: "/",
     siteName: "Sudarshan AI Labs",
     locale: "en_IN",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sudarshan AI Labs | Digital Marketing in Lucknow",
+    title: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow",
     description:
       "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
     images: ["/sudarshan-lucknow-hero.webp"],
@@ -90,7 +90,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#f8fbff" />
         <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="" />
-        <link rel="preconnect" href="https://cdn.jotfor.ms" crossOrigin="" />
+        
         <script
           type="text/javascript"
           data-clarity-script="true"
@@ -102,11 +102,6 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "ytqls05jqi")};
             if(typeof requestIdleCallback==="function"){requestIdleCallback(h)}else{setTimeout(h,2500)}})();`,
           }}
-        />
-              <script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="Nq8A5lfKCZ3ODQmPOotLqQ"
-          async
         />
       </head>
       <body>

@@ -46,9 +46,9 @@ import { PRODUCTS, PRODUCT_CATEGORIES } from "./lib/products-data";
 import ProductCard from "./_components/ProductCard";
 
 export const metadata: Metadata = {
-  title: { absolute: "Sudarshan AI Labs | Digital Marketing in Lucknow" },
+  title: { absolute: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow" },
   description:
-    "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
+    "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation. Review our approach, scope and pricing.",
   alternates: { canonical: "/" },
 };
 
@@ -193,110 +193,14 @@ const goals = {
   },
 };
 const faqs = [
-  [
-    "Which is the best digital marketing agency in Lucknow for small businesses?",
-    "The best digital marketing agency for small businesses in Lucknow is one that understands local search intent, offers transparent scope and pricing, focuses on qualified leads rather than vanity metrics, and ensures complete client ownership of websites, ad accounts, and data. Sudarshan AI Labs is built specifically for Lucknow MSMEs, combining Local SEO, Google Maps optimization, high-converting web design, and AI automation.",
-  ],
-  [
-    "What should you look for before hiring a digital marketing agency in Lucknow?",
-    "Before hiring an agency in Lucknow, verify their physical presence, legal entity registration (such as DPIIT Startup India recognition), portfolio of real local clients, pricing transparency without hidden retainers, and technical capability in local SEO, mobile speed, and lead tracking. Ask for specific case studies in your industry.",
-  ],
-  [
-    "How is Sudarshan AI Labs different from other Lucknow digital marketing agencies?",
-    "Unlike traditional agencies that lock clients into perpetual retainers for generic social posts, Sudarshan AI Labs follows a 'Build, Automate, Transfer' framework. We build high-performing digital assets, automate lead follow-up using AI and WhatsApp, and transfer full ownership and training to your internal team.",
-  ],
-  [
-    "Is a local Lucknow agency better than a national digital marketing company?",
-    "Yes. A local Lucknow agency understands neighborhood-specific buying habits (e.g., Gomti Nagar vs. Hazratganj vs. Alambagh), local vernacular and search terminology, seasonal commercial cycles, and regional competition nuances that distant national agencies typically overlook.",
-  ],
-  [
-    "How much do digital marketing services cost in Lucknow?",
-    "Digital marketing costs in Lucknow generally range from ₹4,900 to ₹39,000+ per month depending on scope, ad budget, content volume, and technical requirements. Sudarshan AI Labs offers starter audit packs from ₹89 and transparent growth packages without hidden fees.",
-  ],
-  [
-    "What is included in an affordable digital marketing package for MSMEs?",
-    "A comprehensive MSME package includes Google Business Profile optimization, local citation cleanup, on-page SEO for high-intent queries, conversion landing page setup, bilingual Meta/Google ad campaign management, and automated WhatsApp lead capture.",
-  ],
-  [
-    "Why do digital marketing prices vary so much between Lucknow agencies?",
-    "Pricing varies based on agency overhead, whether work is outsourced or performed in-house, depth of technical optimization (e.g., custom development vs. slow templates), and whether performance tracking and conversion rate optimization are included.",
-  ],
-  [
-    "Are there hidden charges in digital marketing packages in Lucknow?",
-    "Some agencies quote low initial management fees but add unexpected costs for ad spend management, creative revisions, landing page hosting, or reporting. Sudarshan AI Labs provides 100% upfront pricing with written scope of deliverables.",
-  ],
-  [
-    "What is included in local SEO services in Lucknow?",
-    "Local SEO in Lucknow includes Google Business Profile audit and verification, category and service attribute optimization, local keyword research, local citation building across Indian directories, customer review acquisition systems, and geo-targeted landing pages.",
-  ],
-  [
-    "How to grow a small business on Instagram in Lucknow?",
-    "To grow on Instagram in Lucknow, focus on localized short-form video (Reels) showcasing behind-the-scenes processes, customer testimonials, Lucknow landmarks, and clear calls-to-action that direct viewers to WhatsApp or local store visits.",
-  ],
-  [
-    "What is the best social media marketing strategy for MSMEs in 2026?",
-    "The most effective 2026 strategy combines educational video content, hyper-local community engagement, conversational AI response automation on DMs/WhatsApp, and targeted retargeting ads to re-engage past visitors.",
-  ],
-  [
-    "How much does social media marketing cost per month in India?",
-    "Social media marketing in India typically ranges from ₹8,000 to ₹35,000 per month for organic content creation, graphic design, and community management, with ad spend managed separately based on business goals.",
-  ],
-  [
-    "How can businesses in Hazratganj rank higher on Google Maps?",
-    "Hazratganj businesses can improve Google Maps rankings by ensuring exact NAP (Name, Address, Phone) consistency, adding geotagged photos, selecting relevant primary/secondary categories, collecting genuine reviews mentioning Hazratganj services, and linking to a fast, mobile-friendly landing page.",
-  ],
-  [
-    "What is the best way to attract customers in Gomti Nagar through digital marketing?",
-    "Gomti Nagar is a competitive commercial and residential hub. Businesses should combine Google Maps 3-Pack optimization, hyper-local Instagram ads targeted within a 5km radius, and conversion-optimized mobile pages with instant WhatsApp booking.",
-  ],
-  [
-    "How does local SEO work for shops in Aliganj and Charbagh?",
-    "For high-footfall areas like Aliganj and Charbagh, local SEO focuses on 'near me' search queries, clear transit/landmark directions, accurate store opening hours, product catalogs on Google Business Profile, and tap-to-call mobile buttons.",
-  ],
-  [
-    "Why does hyperlocal targeting matter for Lucknow businesses?",
-    "Lucknow consumers prefer buying from accessible, trusted providers within their neighborhood. Hyperlocal targeting prevents wasted ad spend on audiences across town who are unlikely to travel for everyday services.",
-  ],
-  [
-    "How do Lucknow customers search differently than customers in metro cities?",
-    "Lucknow searchers frequently use bilingual queries (mixing Hindi and English), rely heavily on Google Maps directions and reviews before calling, and prefer direct WhatsApp communication over filling out lengthy contact forms.",
-  ],
-  [
-    "What digital marketing services work best for kirana stores in Lucknow?",
-    "Kirana stores benefit most from Google Business Profile setup, local WhatsApp order catalogs, Google Pay/UPI merchant integration, and radius-targeted Meta promotions for home delivery.",
-  ],
-  [
-    "How can doctors and clinics in Lucknow get more patients through digital marketing?",
-    "Clinics and healthcare providers should focus on compliant Google Maps optimization, patient education blogs, verified Google reviews, and seamless appointment booking systems that answer common patient queries clearly.",
-  ],
-  [
-    "What is the best digital marketing strategy for coaching institutes in Lucknow?",
-    "Coaching centers in hubs like Hazratganj and Kapoorthala need seasonal Google Search Ads during admission cycles, student testimonial videos on YouTube/Instagram, localized SEO for competitive exams (NEET, JEE, UPSC), and fast WhatsApp inquiry handling.",
-  ],
-  [
-    "How can restaurants and retail shops in Lucknow grow online?",
-    "Restaurants and retail outlets should maintain mouth-watering visual content on Instagram, active Google Business Profiles with updated menus/offers, influencer collaborations, and local food blogger engagement.",
-  ],
-  [
-    "What does DPIIT Startup India registration mean for a digital marketing partner?",
-    "DPIIT Startup India registration confirms that the company is a government-recognized entity (under NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED), providing higher accountability, compliance, and technological innovation.",
-  ],
-  [
-    "Is Sudarshan AI Labs a verified digital marketing agency?",
-    "Yes. Sudarshan AI Labs is registered under NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED with corporate filings on MCA/ZaubaCorp, StartInUp UP Government portal, and D-U-N-S registration (77-160-6356).",
-  ],
-  [
-    "How do you know if a digital marketing agency in Lucknow will actually deliver results?",
-    "Look for transparent analytics dashboards, direct access to ad accounts, clear definitions of qualified leads vs. impressions, and a refusal to make unrealistic 'overnight ranking' guarantees.",
-  ],
-  [
-    "How does AI automation improve digital marketing results for small businesses?",
-    "AI automation enables instant 24/7 lead responses, automatic qualification and tagging, personalized WhatsApp follow-ups, and automated performance reporting, ensuring zero missed inquiries while saving hours of manual work.",
-  ],
-  [
-    "Can AI-powered marketing replace a traditional digital marketing agency?",
-    "AI enhances and accelerates marketing execution—content creation, campaign optimization, customer communication—but still requires human strategy, creative direction, local market context, and business alignment to achieve optimal results.",
-  ],
+  ["How should I evaluate a digital marketing agency in Lucknow?", "Compare the written scope, relevant experience, delivery ownership, reporting, account access, asset ownership, handover, measurement and dependencies. Ask how the work will be reviewed and what evidence will be available."],
+  ["What services does Sudarshan AI Labs provide?", "Sudarshan AI Labs provides local SEO and Google Maps support, websites, search content, social media, Google and Meta campaigns, lead generation, and AI or WhatsApp workflows. The right mix depends on your business goal, budget and team capacity."],
+  ["How much do digital marketing services cost?", "The website lists selected starter offers from ₹89; that price applies only to the offer and inclusions shown. Other work is scoped in writing. Advertising spend and third-party costs are separate when applicable."],
+  ["What happens during a digital growth review?", "We review the website or business listing you share, discuss your goal and customer path, and identify possible priorities. You do not need to share passwords or customer records for an initial review."],
+  ["What does Build, Automate, Transfer mean?", "It describes a delivery approach: agree the scope, build selected assets or workflows, then document the agreed work and plan a handover. Deliverables, access and training are set out in the written scope."],
+  ["Can a digital marketing agency guarantee rankings or a fixed number of leads?", "No. Search visibility and lead volume depend on competition, demand, budget, the offer, the website and follow-up. An agency can report on agreed work and observed changes, but cannot guarantee those outcomes."],
+  ["How does Sudarshan AI Labs use AI in business workflows?", "AI workflows should have defined tasks, permitted data, human review, escalation paths and a manual fallback. The specific controls depend on the workflow and the information it handles."],
+  ["How can I verify a company or its founder?", "Review the founder profile, contact details and written proposal, and request relevant documents or references. Company registrations can help establish identity, but they do not guarantee service quality or results."]
 ];
 const homeSchema = {
   "@context": "https://schema.org",
@@ -353,9 +257,9 @@ const homeSchema = {
       "@type": "WebPage",
       "@id": `${SITE_URL}/#webpage`,
       url: `${SITE_URL}/`,
-      name: "Sudarshan AI Labs | AI & Digital Marketing Services in Lucknow",
+      name: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow",
       description:
-        "Local SEO, websites, digital marketing, and AI automation for MSMEs in Lucknow.",
+        "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation.",
       inLanguage: "en-IN",
       isPartOf: { "@id": IDS.website },
       publisher: { "@id": IDS.organization },
@@ -395,6 +299,7 @@ export default function Home() {
   const autoPlay = true;
   return (
     <main id="top" className="v-home">
+      <link rel="preload" as="image" href="/images/sudarshan-lucknow-hero-0cd64a027e74-640.webp" imageSrcSet="/images/sudarshan-lucknow-hero-0cd64a027e74-160.webp 160w, /images/sudarshan-lucknow-hero-0cd64a027e74-320.webp 320w, /images/sudarshan-lucknow-hero-0cd64a027e74-480.webp 480w, /images/sudarshan-lucknow-hero-0cd64a027e74-640.webp 640w, /images/sudarshan-lucknow-hero-0cd64a027e74-960.webp 960w, /images/sudarshan-lucknow-hero-0cd64a027e74-1280.webp 1280w" imageSizes="(max-width: 900px) 100vw, 48vw" fetchPriority="high" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
@@ -563,15 +468,12 @@ export default function Home() {
                 <GlobeHemisphereWest weight="fill" /> Built for Bharat
               </span>
             </div>
-            <h1>
-              AI Digital Marketing Agency in Lucknow{" "}
-              <br />
-              <em>for Local SEO, Google Maps &amp; MSME Growth</em>
-            </h1>
+            <h1>Digital marketing in Lucknow, built around real business goals</h1>
             <p>
-              Get found, build trust and turn attention into revenue with
-              proven <strong>Digital Marketing</strong>, high-ranking <strong>SEO</strong>,
-              conversion websites and practical <strong>AI Automation</strong> built for <strong>Small Business Growth</strong>.
+              Sudarshan AI Labs helps Lucknow MSMEs improve local visibility,
+              build clear websites, run measurable campaigns and streamline
+              follow-up with practical AI. Start with a focused review,
+              transparent scope and a plan your team can own.
             </p>
             <div className="v-hero-actions">
               <a className="v-pill v-pill-dark" href={wa}>
@@ -878,7 +780,7 @@ export default function Home() {
               <span className="card-number">01</span>
             </div>
             <span className="method-tag">BUILD</span>
-            <p className="v-step-title">Create the foundation</p>
+            <h3 className="v-step-title">Create the foundation</h3>
             <p>
               Clear positioning, searchable content, conversion pages and
               connected customer channels.
@@ -890,7 +792,7 @@ export default function Home() {
               <span className="card-number">02</span>
             </div>
             <span className="method-tag">AUTOMATE</span>
-            <p className="v-step-title">Reduce repetitive work</p>
+            <h3 className="v-step-title">Reduce repetitive work</h3>
             <p>
               Practical workflows for <strong>AI for Business</strong>, lead routing,
               syncing with CRM and <strong>Accounting Software</strong>, and automated client follow-ups.
@@ -902,7 +804,7 @@ export default function Home() {
               <span className="card-number">03</span>
             </div>
             <span className="method-tag">TRANSFER</span>
-            <p className="v-step-title">Hand over with clarity</p>
+            <h3 className="v-step-title">Hand over with clarity</h3>
             <p>
               Your team receives full control over your <strong>Artificial Intelligence</strong> tools,
               analytics pipelines, and creator or <strong>Affiliate Marketing</strong> partner funnels.
@@ -1006,9 +908,9 @@ export default function Home() {
           <div>
             <span className="v-kicker">FEATURED VIDEO SHORTS</span>
             <h2 id="shorts-heading">
-              Practical growth insights.
+              Practical digital growth advice.
               <br />
-              <em>In 60 seconds.</em>
+              <em>For MSMEs.</em>
             </h2>
           </div>
           <p>
@@ -1032,7 +934,7 @@ export default function Home() {
               </div>
               <div className="v-short-meta">
                 <span className="v-short-tag">60S INSIGHT</span>
-                <p className="v-short-title font-bold">{video.name.split(" - ")[0]}</p>
+                <h3 className="v-short-title font-bold">{video.name.split(" - ")[0]}</h3>
                 <p>{video.description}</p>
                 <a
                   href={video.contentUrl}
@@ -1055,9 +957,9 @@ export default function Home() {
           <div>
             <span className="v-kicker">LUCKNOW AI STORYBOOK &amp; FIELD NOTES</span>
             <h2 id="blogs-heading">
-              Evidence-based insights.
+              Founder field notes on AI,
               <br />
-              <em>From search signals to smarter MSMEs.</em>
+              <em>local search and MSME growth.</em>
             </h2>
           </div>
           <p>
@@ -1098,7 +1000,7 @@ export default function Home() {
         <div className="v-blog-cards-grid">
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 01 • CONTEXT</span>
-            <p className="v-blog-card-title font-semibold">The City is Changing: Lucknow’s AI Ambition</p>
+            <h3 className="v-blog-card-title font-semibold">The City is Changing: Lucknow’s AI Ambition</h3>
             <p>Decoding the official UP AI City developments and distinguishing state proposals from practical business utility for local MSMEs.</p>
             <a href="https://blogs.vyapai.in/#city" target="_blank" rel="noreferrer">
               <span>Read Context Chapter</span> <ArrowUpRight />
@@ -1107,7 +1009,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 02 • SIGNALS</span>
-            <p className="v-blog-card-title font-semibold">Specific Intent Beats Generic Traffic</p>
+            <h3 className="v-blog-card-title font-semibold">Specific Intent Beats Generic Traffic</h3>
             <p>Analyzing Google Trends patterns in Lucknow: Why explanatory content, comparison pages, and direct conversion funnels must be separated.</p>
             <a href="https://blogs.vyapai.in/#signals" target="_blank" rel="noreferrer">
               <span>Read Signals Analysis</span> <ArrowUpRight />
@@ -1116,7 +1018,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 03 • PLAYBOOK</span>
-            <p className="v-blog-card-title font-semibold">From AI Hype to AI Utility: 90-Day Roadmap</p>
+            <h3 className="v-blog-card-title font-semibold">From AI Hype to AI Utility: 90-Day Roadmap</h3>
             <p>The structured 3-phase journey: Foundation (Audit &amp; Mobile), Demand (Deep Guides &amp; Proof), and System (Lead Routing &amp; Triage).</p>
             <a href="https://blogs.vyapai.in/#playbook" target="_blank" rel="noreferrer">
               <span>Explore Playbook</span> <ArrowUpRight />
@@ -1125,7 +1027,7 @@ export default function Home() {
 
           <article className="v-blog-card">
             <span className="v-blog-badge">CHAPTER 04 • TRUST</span>
-            <p className="v-blog-card-title font-semibold">E-E-A-T and Transparent Grounding</p>
+            <h3 className="v-blog-card-title font-semibold">E-E-A-T and Transparent Grounding</h3>
             <p>Why true digital authority requires verified sources, transparent boundaries, and clear human accountability rather than inflated claims.</p>
             <a href="https://blogs.vyapai.in/#trust" target="_blank" rel="noreferrer">
               <span>Verify Evidence</span> <ArrowUpRight />

@@ -12,5 +12,5 @@ export default function ResponsiveImage({ src, alt, priority, sizes = "(max-widt
   const srcSet = widths.map(width => `/images/${stem}-${version}-${width}.webp ${width}w`).join(", ");
   return <img {...props} alt={alt} src={`/images/${stem}-${version}-640.webp`} srcSet={srcSet} sizes={sizes}
     width={width} height={height}
-    loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding={priority ? "sync" : "async"} />;
+    loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />;
 }

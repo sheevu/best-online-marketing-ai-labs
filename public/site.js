@@ -5,6 +5,20 @@
   const referral = new URLSearchParams(location.search).get('rwg_token');
   if (referral) document.cookie = `_rwg_token=${encodeURIComponent(referral)}; Max-Age=2592000; Path=/; SameSite=Lax; Secure`;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const loadAhrefs = () => {
+    if (document.querySelector('script[data-ahrefs-analytics]')) return;
+    const script = document.createElement('script');
+    script.src = 'https://analytics.ahrefs.com/analytics.js';
+    script.dataset.key = 'Nq8A5lfKCZ3ODQmPOotLqQ';
+    script.dataset.ahrefsAnalytics = 'true';
+    script.async = true;
+    document.head.appendChild(script);
+  };
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(loadAhrefs, { timeout: 2500 });
+  } else {
+    setTimeout(loadAhrefs, 1800);
+  }
   const menu = document.querySelector('.v-links');
   const menuButton = document.querySelector('.v-menu');
   const setMenuState = open => {
