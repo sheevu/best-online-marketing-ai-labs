@@ -10,7 +10,7 @@ import { IDS, ref, SITE } from "../lib/schema";
 
 const OFFER_URL = `${SITE_URL}/offer-lucknow-marketing-services`;
 const CHALLENGE_WHATSAPP =
-  "https://wa.me/917887222247?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20have%20an%20agency%20quote%20and%20want%20to%20take%20the%20Challenge%20Sudarshan%20offer.";
+  "https://wa.me/919336299912?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20have%20an%20agency%20quote%20and%20want%20to%20take%20the%20Challenge%20Sudarshan%20offer.";
 
 export const metadata: Metadata = {
   title: { absolute: "Beat Any Agency Quote | Sudarshan AI Labs" },

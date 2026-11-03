@@ -1206,11 +1206,11 @@ export default function Home() {
           </div>
 
           <div className="v-citation-card">
-            <span className="v-citation-type">FINANCIAL &amp; DIRECTORY</span>
-            <p className="v-citation-title">Finanvo &amp; FalconeBiz Profiles</p>
-            <p className="v-citation-desc">Corporate financials, registration indices, and compliance records verified on leading business directories.</p>
-            <a href="https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited" target="_blank" rel="noopener noreferrer">
-              View Finanvo Listing <ArrowUpRight />
+            <span className="v-citation-type">OFFICIAL COMPANY RECORDS</span>
+            <p className="v-citation-title">Company identity &amp; CIN</p>
+            <p className="v-citation-desc">Use the Ministry of Corporate Affairs company master-data portal to look up the legal entity and CIN.</p>
+            <a href="https://www.mcacdm.nic.in/company-master-details" target="_blank" rel="noopener noreferrer">
+              Search MCA company records <ArrowUpRight />
             </a>
           </div>
 
