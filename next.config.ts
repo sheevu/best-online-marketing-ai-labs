@@ -75,6 +75,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/best-digitalmarketing-agency-lucknow/lucknow",
+        destination: "/digital-marketing-services",
+        permanent: true,
+      },
+      {
         source: "/digital-marketing-services/lucknow",
         destination: "/digital-marketing-services",
         permanent: true,
