@@ -124,9 +124,14 @@ export default async function AreaPage({
   if (!area.endsWith("-lucknow"))
     permanentRedirect(`/digital-marketing-services/${a.slug}-lucknow`);
   const url = absoluteUrl(`/digital-marketing-services/${a.slug}-lucknow`);
+  const areaIndex = Math.max(0, areas.findIndex((item) => item.slug === a.slug));
+  const relatedAreas = areas.filter((item) => item.slug !== a.slug);
+  const linkedAreas = relatedAreas.length
+    ? Array.from({ length: Math.min(6, relatedAreas.length) }, (_, i) => relatedAreas[(areaIndex * 6 + i) % relatedAreas.length])
+    : [];
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["Service", "LocalBusiness"],
+    "@type": "Service",
     "@id": `${url}#service`,
     name: a.title,
     url,
@@ -134,8 +139,6 @@ export default async function AreaPage({
     provider: { "@id": ORGANIZATION_ID },
     areaServed: { "@type": "Place", name: `${a.name}, Lucknow` },
     serviceType: "Digital marketing services",
-    currenciesAccepted: "INR",
-    priceRange: "Services from ₹89",
     offers: {
       "@type": "Offer",
       price: STARTING_PRICE_INR,
@@ -394,17 +397,14 @@ export default async function AreaPage({
           </nav>
         </div>
         <div>
-          <h2>Nearby Lucknow localities</h2>
+          <h2>More Lucknow service areas</h2>
           <nav>
-            {areas
-              .filter((other) => other.slug !== a.slug)
-              .slice(0, 6)
-              .map((other) => (
+            {linkedAreas.map((other) => (
                 <a
                   key={other.slug}
                   href={`/digital-marketing-services/${other.slug}-lucknow`}
                 >
-                  {other.name}
+                  Digital marketing in {other.name}
                 </a>
               ))}
           </nav>

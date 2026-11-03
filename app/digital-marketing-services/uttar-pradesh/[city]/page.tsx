@@ -126,9 +126,13 @@ export default async function CityPage({
     { length: 4 },
     (_, i) => ecosystem[(cityIndex * 3 + i) % ecosystem.length],
   );
+  const relatedCities = cities.filter((item) => item.slug !== c.slug && item.slug !== "lucknow");
+  const linkedCities = relatedCities.length
+    ? Array.from({ length: Math.min(6, relatedCities.length) }, (_, i) => relatedCities[(cityIndex * 6 + i) % relatedCities.length])
+    : [];
   const businessSchema = {
     "@context": "https://schema.org",
-    "@type": ["Service", "LocalBusiness"],
+    "@type": "Service",
     "@id": `${url}#service`,
     name: c.h1,
     url,
@@ -140,8 +144,6 @@ export default async function CityPage({
       containedInPlace: { "@type": "State", name: "Uttar Pradesh" },
     },
     serviceType: "Digital marketing services",
-    currenciesAccepted: "INR",
-    priceRange: "Services from ₹89",
     offers: {
       "@type": "Offer",
       price: STARTING_PRICE_INR,
@@ -420,17 +422,14 @@ export default async function CityPage({
           </nav>
         </div>
         <div>
-          <h2>Nearby Uttar Pradesh cities</h2>
+          <h2>More Uttar Pradesh city guides</h2>
           <nav>
-            {cities
-              .filter((other) => other.slug !== c.slug && other.slug !== "lucknow")
-              .slice(0, 6)
-              .map((other) => (
+            {linkedCities.map((other) => (
                 <a
                   key={other.slug}
                   href={`/digital-marketing-services/${other.slug}`}
                 >
-                  {other.name}
+                  Digital marketing in {other.name}
                 </a>
               ))}
           </nav>
