@@ -8368,3 +8368,29 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
   .site-assistant-trigger { min-height: 48px; padding: 10px 14px; font-size: 13px; }
   .v-quick-dock { max-width: min(270px, 70vw); left: 12px; right: auto; }
 }
+
+
+/* Shared branded site chrome on every page, including service and city routes. */
+.global-site-header { position:relative; z-index:100; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:15px clamp(16px,4vw,54px); background:#131128; color:#fff; border-bottom:1px solid #ffffff20; }
+.global-site-brand { display:inline-flex; align-items:center; gap:11px; color:#fff; text-decoration:none; font-weight:800; letter-spacing:.02em; white-space:nowrap; }
+.global-site-brand img { display:block; border-radius:9px; object-fit:contain; }
+.global-site-nav { display:flex; align-items:center; gap:clamp(10px,1.5vw,24px); }
+.global-site-nav a { color:#f4f0ff; text-decoration:none; font-size:14px; font-weight:600; }
+.global-site-nav .global-site-cta { padding:11px 18px; border-radius:999px; background:linear-gradient(110deg,#6742cc,#2476ed); color:#fff; }
+.global-mobile-menu { display:none; position:relative; }
+.global-site-footer { background:#151127; color:#f3efff; padding:48px clamp(20px,5vw,70px) 25px; display:grid; gap:25px; }
+.global-site-footer p { color:#c8c2d6; max-width:50ch; margin:16px 0 0; }
+.global-site-footer nav { display:flex; flex-wrap:wrap; gap:14px 24px; }
+.global-site-footer nav a { color:#e2d9ff; text-decoration:none; }
+.global-site-footer small { color:#a7a1b5; border-top:1px solid #ffffff26; padding-top:18px; }
+.v-site-header, .v-footer, .area-footer, .sg-header { display:none !important; }
+@media(max-width:850px) {
+ .global-site-header { min-height:70px; }
+ .global-site-brand { font-size:14px; }
+ .global-site-nav { display:none; }
+ .global-mobile-menu { display:block; }
+ .global-mobile-menu summary { color:#fff; cursor:pointer; list-style:none; border:1px solid #ffffff4a; padding:9px 13px; border-radius:10px; }
+ .global-mobile-menu nav { position:absolute; right:0; top:calc(100% + 12px); width:min(290px,85vw); padding:12px; display:grid; gap:4px; background:#201b39; border:1px solid #ffffff30; border-radius:14px; box-shadow:0 18px 40px #0005; }
+ .global-mobile-menu nav a { color:#fff; padding:12px; text-decoration:none; border-radius:7px; }
+ .global-mobile-menu nav a:hover { background:#ffffff1a; }
+}
