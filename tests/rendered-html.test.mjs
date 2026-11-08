@@ -25,6 +25,9 @@ test("homepage has self-canonical metadata, pricing and the Jotform widget", asy
   assert.match(html, /Swaraj Tech Pack/i);
   assert.match(html, /id="JFWebsiteWidget-01a1b8324a50700087916735dd7644c43a53"/i);
   assert.match(html, /src="https:\/\/www\.jotform\.com\/website-widgets\/embed\/01a1b8324a50700087916735dd7644c43a53"/i);
+  assert.match(html, /id="location"/i);
+  assert.match(html, /title="Google Map centered on Gomti Nagar, Lucknow"/i);
+  assert.match(html, /maps\.google\.com\/maps\?q=26\.8686946/i);
   assert.doesNotMatch(html, /www\.sudarshan-ai\.com|sheevumgoel\.chatgpt\.site|\/workspace\/sites\//i);
 });
 

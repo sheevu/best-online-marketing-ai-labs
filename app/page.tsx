@@ -1088,6 +1088,25 @@ export default function Home() {
           {assistantOpen ? <X weight="bold" /> : <ChatCircle weight="fill" />}<span>{assistantOpen ? "Close assistant" : "Ask Leeila AI"}</span>
         </button>
       </aside>
+      <section className="v-map-section" id="location" aria-labelledby="map-section-title">
+        <div className="v-map-copy">
+          <span className="v-kicker">OUR LUCKNOW SERVICE AREA</span>
+          <h2 id="map-section-title">Local support, <em>rooted in Lucknow.</em></h2>
+          <p>Explore the Gomti Nagar area and nearby neighbourhoods. We work with businesses across Lucknow and Uttar Pradesh.</p>
+          <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="v-map-directions">
+            <MapPin weight="fill" /> Open directions in Google Maps <ArrowUpRight />
+          </a>
+        </div>
+        <div className="v-map-frame">
+          <iframe
+            title="Google Map centered on Gomti Nagar, Lucknow"
+            src="https://maps.google.com/maps?q=26.8686946%2C80.9911573&z=14&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+      </section>
       <footer className="v-footer">
         <div>
           <a className="v-brand" href="#top">
