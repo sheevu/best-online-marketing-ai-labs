@@ -16,7 +16,7 @@ export default function JotformWebsiteWidget() {
       <div className="jotform-widget-frame">
         <div id={widgetId} aria-label="Sudarshan AI Labs blogs and articles" />
       </div>
-      <Script src={widgetScript} strategy="afterInteractive" defer />
+      <Script src={widgetScript} strategy="beforeInteractive" defer />
     </section>
   );
 }

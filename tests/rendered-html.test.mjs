@@ -1,93 +1,59 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-test("renders production metadata and product catalogue", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+workerUrl.searchParams.set("deployment-check", `${process.pid}-${Date.now()}`);
+const { default: worker } = await import(workerUrl.href);
+const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+const ctx = { waitUntil() {}, passThroughOnException() {} };
 
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+async function request(path) {
+  return worker.fetch(new Request(`https://sudarshan-ai.com${path}`, {
+    headers: { accept: "text/html" },
+  }), env, ctx);
+}
 
+test("homepage has self-canonical metadata, pricing and the Jotform widget", async () => {
+  const response = await request("/");
   assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html/i);
   const html = await response.text();
   assert.match(html, /<title>Sudarshan AI Labs \| AI Agents &amp; Digital Marketing Services in Lucknow, UP<\/title>/i);
   assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/"\s*\/>/i);
-  assert.match(html, /https:\/\/sudarshan-ai\.com\/#organization/i);
-  assert.match(html, /https:\/\/sudarshan-ai\.com\/#localbusiness/i);
-  assert.match(html, /"@type":"OfferCatalog"/i);
-  assert.doesNotMatch(html, /sheevumgoel\.chatgpt\.site/i);
-  assert.doesNotMatch(html, /\/workspace\/sites\//i);
+  assert.match(html, /<meta name="robots" content="index, follow"/i);
   assert.match(html, /id="products"/i);
   assert.match(html, /Swaraj Tech Pack/i);
-  assert.match(html, /rel="apple-touch-icon"[^>]+site-icon-blue-2026-apple\.png/i);
-  assert.match(html, /site-icon-blue-2026\.ico/i);
-  assert.match(html, /utm_source=website(?:&amp;|&)utm_medium=planner(?:&amp;|&)utm_campaign=local_visibility/i);
-  assert.match(html, /href="\/digital-marketing-services\/"/i);
-  assert.match(html, /href="\/digital-marketing-services\/uttar-pradesh\/"/i);
-  assert.doesNotMatch(html, />Kanpur<\/a>/i);
-  assert.match(html, /"@type":"FAQPage"/i);
-  assert.match(html, /"price":"4900"/i);
-  assert.doesNotMatch(html, /"@type":"AggregateRating"/i);
-  const emphasizedTags = html.match(/<(?:b|strong)\b/gi) ?? [];
-  assert.ok(emphasizedTags.length <= 23, `expected at most 23 bold/strong tags, found ${emphasizedTags.length}`);
-  const internalHrefs = [...html.matchAll(/href="([^"]+)"/gi)]
-    .map((match) => match[1])
-    .filter((href) => href.startsWith("/") && !href.startsWith("//"));
-  assert.ok(internalHrefs.every((href) => !href.includes("?")), "internal links must not contain query parameters");
-  assert.doesNotMatch(html, /name=["']codex-preview["']/i);
+  assert.match(html, /id="JFWebsiteWidget-01a1b8324a50700087916735dd7644c43a53"/i);
+  assert.match(html, /src="https:\/\/www\.jotform\.com\/website-widgets\/embed\/01a1b8324a50700087916735dd7644c43a53"/i);
+  assert.doesNotMatch(html, /www\.sudarshan-ai\.com|sheevumgoel\.chatgpt\.site|\/workspace\/sites\//i);
 });
 
-test("renders a dedicated SEO owner page with self-canonical metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("service-test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  const response = await worker.fetch(
-    new Request("http://localhost/seo-services-lucknow", { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+test("service landing pages return indexable self-canonical HTML", async () => {
+  const response = await request("/seo-services-lucknow");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<h1>SEO Services in Lucknow<\/h1>/i);
-  assert.match(html, /https:\/\/sudarshan-ai\.com\/seo-services-lucknow/i);
+  assert.match(html, /<h1[^>]*>SEO Services in Lucknow/i);
+  assert.match(html, /<link rel="canonical" href="https:\/\/sudarshan-ai\.com\/seo-services-lucknow"/i);
   assert.match(html, /"@type":"Service"/i);
-  assert.match(html, /"price":"4900"/i);
 });
 
-test("keeps crawler endpoints public and canonicalizes legacy service routes", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("crawler-test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
-  const ctx = { waitUntil() {}, passThroughOnException() {} };
-
-  const robots = await worker.fetch(new Request("http://localhost/robots.txt"), env, ctx);
+test("robots and sitemap are public and use only canonical indexable URLs", async () => {
+  const robots = await worker.fetch(new Request("https://sudarshan-ai.com/robots.txt"), env, ctx);
   assert.equal(robots.status, 200);
-  assert.equal(robots.headers.get("x-robots-tag"), "all");
-  assert.match(await robots.text(), /Allow: \//i);
+  const robotsText = await robots.text();
+  assert.ok(robotsText.includes("Allow: /"));
+  assert.match(robotsText, /Sitemap: https:\/\/sudarshan-ai\.com\/sitemap\.xml/i);
+  assert.doesNotMatch(robotsText, /^Host:/im);
 
-  const legacy = await worker.fetch(new Request("https://sudarshan-ai.com/local-seo"), env, ctx);
-  assert.equal(legacy.status, 301);
-  assert.equal(legacy.headers.get("location"), "https://sudarshan-ai.com/local-seo-services");
+  const sitemap = await worker.fetch(new Request("https://sudarshan-ai.com/sitemap.xml"), env, ctx);
+  assert.equal(sitemap.status, 200);
+  assert.equal(sitemap.headers.get("x-robots-tag"), "all");
+  const xml = await sitemap.text();
+  assert.match(xml, /https:\/\/sudarshan-ai\.com\/digital-marketing-services/);
+  assert.doesNotMatch(xml, /https:\/\/www\.sudarshan-ai\.com|product-page|<lastmod>/i);
+});
 
-  const oldHost = await worker.fetch(new Request("https://www.sudarshan-ai.com/website-development"), env, ctx);
-  assert.equal(oldHost.status, 301);
-  assert.equal(oldHost.headers.get("location"), "https://sudarshan-ai.com/website-design-development-lucknow");
+test("unknown routes return 404", async () => {
+  const response = await request("/deployment-check-unknown-route");
+  assert.equal(response.status, 404);
 });

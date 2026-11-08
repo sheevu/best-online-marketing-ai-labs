@@ -6,7 +6,7 @@ import { absoluteUrl } from "../../lib/site";
 
 const page: ServicePageData = {
   slug: "best-digital-marketing-agency-lucknow/lucknow",
-  title: "Digital Marketing in Lucknow | Sudarshan AI Labs",
+  title: "Best Digital Marketing Agency in Lucknow | Sudarshan AI Labs",
   description:
     "Digital marketing in Lucknow: compare agencies and plan practical SEO, websites, ads, lead generation and AI automation for your business.",
   eyebrow: "DIGITAL MARKETING IN LUCKNOW • MSME GROWTH",
