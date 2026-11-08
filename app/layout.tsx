@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Analytics from "./_components/Analytics";
+import SiteChrome from "./_components/SiteChrome";
 import CtaTracking from "./_components/CtaTracking";
 import { SITE_URL } from "./lib/site";
 import "./globals.css";
@@ -29,15 +30,12 @@ export const metadata: Metadata = {
   other: { "geo.region": "IN-UP", "geo.placename": "Lucknow", monetag: "546c0ee0ef6eacd8f2ec917fd880b4b2" },
   manifest: "/site.webmanifest",
   icons: {
-    icon: [
-      { url: "/sudarshan-site-icon-512.png", type: "image/png", sizes: "512x512" },
-      { url: "/sudarshan-site-icon.png", type: "image/png", sizes: "2000x2000" },
-    ],
-    shortcut: "/sudarshan-site-icon-512.png",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
     apple: [{ url: "/sudarshan-site-icon-180.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}<Script src="https://news.google.com/swg/js/v1/publisher.js" strategy="afterInteractive" /><Analytics /><CtaTracking /></body></html>;
+  return <html lang="en"><body><SiteChrome position="header" />{children}<SiteChrome position="footer" /><Script src="https://news.google.com/swg/js/v1/publisher.js" strategy="afterInteractive" /><Analytics /><CtaTracking /></body></html>;
 }

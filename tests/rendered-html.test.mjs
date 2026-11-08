@@ -14,7 +14,7 @@ async function request(path) {
   }), env, ctx);
 }
 
-test("homepage has self-canonical metadata, pricing and the Jotform widget", async () => {
+test("homepage has self-canonical metadata, pricing and a usable blog link", async () => {
   const response = await request("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html/i);
@@ -24,11 +24,11 @@ test("homepage has self-canonical metadata, pricing and the Jotform widget", asy
   assert.match(html, /<meta name="robots" content="index, follow"/i);
   assert.match(html, /id="products"/i);
   assert.match(html, /Swaraj Tech Pack/i);
-  assert.match(html, /id="JFWebsiteWidget-01a1b8324a50700087916735dd7644c43a53"/i);
-  assert.match(html, /src="https:\/\/www\.jotform\.com\/website-widgets\/embed\/01a1b8324a50700087916735dd7644c43a53"/i);
+  assert.match(html, /Explore our blog and guides/i);
+  assert.doesNotMatch(html, /id="JFWebsiteWidget-01a1b8324a50700087916735dd7644c43a53"/i);
   assert.match(html, /id="location"/i);
-  assert.match(html, /title="Google Map centered on Gomti Nagar, Lucknow"/i);
-  assert.match(html, /src="\/lucknow-neighborhood-map\.html"/i);
+  assert.match(html, /Find us in Lucknow/i);
+  assert.doesNotMatch(html, /src="\/lucknow-neighborhood-map\.html"/i);
   assert.doesNotMatch(html, /www\.sudarshan-ai\.com|sheevumgoel\.chatgpt\.site|\/workspace\/sites\//i);
   const map = await readFile(new URL("../public/lucknow-neighborhood-map.html", import.meta.url), "utf8");
   assert.match(map, /new NeighborhoodDiscovery\(CONFIGURATION\)/);

@@ -619,6 +619,7 @@ export default function Home() {
               width={1672}
               height={941}
               priority
+              unoptimized
               sizes="(max-width: 900px) 100vw, 48vw"
               alt="Sheevum Goel of Sudarshan AI Labs building growth systems for Lucknow MSMEs"
             />
@@ -1084,9 +1085,9 @@ export default function Home() {
             <a className="assistant-full-link" href="https://agent.jotform.com/019aa7fd4aaa7cccb0ce1b2c0748666c3478" target="_blank" rel="noreferrer">Open Leeila AI in a new tab <ArrowUpRight /></a>
           </section>
         )}
-        <button className="site-assistant-trigger" type="button" aria-expanded={assistantOpen} aria-controls="site-assistant-panel" onClick={() => setAssistantOpen((open) => !open)}>
-          {assistantOpen ? <X weight="bold" /> : <ChatCircle weight="fill" />}<span>{assistantOpen ? "Close assistant" : "Ask Leeila AI"}</span>
-        </button>
+        <a className="site-assistant-trigger" href="https://agent.jotform.com/019aa7fd4aaa7cccb0ce1b2c0748666c3478" target="_blank" rel="noopener noreferrer" aria-label="Chat with Leeila AI in a new tab">
+          <ChatCircle weight="fill" /><span>Ask Leeila AI</span>
+        </a>
       </aside>
       <section className="v-map-section" id="location" aria-labelledby="map-section-title">
         <div className="v-map-copy">
@@ -1097,14 +1098,11 @@ export default function Home() {
             <MapPin weight="fill" /> Open directions in Google Maps <ArrowUpRight />
           </a>
         </div>
-        <div className="v-map-frame">
-          <iframe
-            title="Google Map centered on Gomti Nagar, Lucknow"
-            src="/lucknow-neighborhood-map.html"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
+        <div className="v-map-frame v-map-fallback">
+          <MapPin weight="duotone" aria-hidden="true" />
+          <strong>Find us in Lucknow</strong>
+          <p>Open Google Maps for directions and local business information.</p>
+          <a href={MAP_URL} target="_blank" rel="noopener noreferrer">View on Google Maps <ArrowUpRight /></a>
         </div>
       </section>
       <footer className="v-footer">
