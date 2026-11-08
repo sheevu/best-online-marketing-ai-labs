@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Analytics from "./_components/Analytics";
 import CtaTracking from "./_components/CtaTracking";
 import { SITE_URL } from "./lib/site";
@@ -38,5 +39,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}<Analytics /><CtaTracking /></body></html>;
+  return <html lang="en"><body>{children}<Script src="https://news.google.com/swg/js/v1/publisher.js" strategy="afterInteractive" /><Analytics /><CtaTracking /></body></html>;
 }
