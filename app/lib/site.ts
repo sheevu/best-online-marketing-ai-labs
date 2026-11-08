@@ -26,3 +26,5 @@ export const coreServiceLinks = [
 ] as const;
 
 export const BLOG_PLAYBOOK_URL = "https://www.blogs.vyapai.in/blogs#all-articles-title";
+
+export const LEGAL_NAME = "NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED";
