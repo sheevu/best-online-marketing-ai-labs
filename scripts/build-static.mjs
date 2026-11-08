@@ -57,12 +57,23 @@ while(queue.length) {
   html = html.replace(/<script\b([^>]*)>[\s\S]*?<\/script>/gi, (all,attrs)=>
     /type="application\/ld\+json"/.test(attrs) || /data-clarity-script="true"/.test(attrs) || /analytics\.ahrefs\.com/.test(attrs) || /jotform\.com\/website-widgets\/embed\//.test(attrs) ? all : ''
   );
+  // Next.js Script tags are removed from this static delivery mode. Preserve
+  // Google's official preferred-source widget as a real browser-loadable script.
+  // Only include it where the widget container appears (the homepage footer).
+  if (html.includes('google-add-preferred-source-btn')) {
+    html = html.replace('</head>', '<script async src="https://news.google.com/swg/js/v1/publisher.js"></script></head>');
+  }
   html = html.replace(/<link\b[^>]*>/gi, all => /rel="modulepreload"/.test(all) || (/rel="preload"/.test(all)&&/as="script"/.test(all)) ? '' : all);
   const cssLinks = [...html.matchAll(/<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="([^"]+)")[^>]*>/g)];
   const css = (await Promise.all(cssLinks.map(match => fs.readFile(path.join(client,new URL(match[1],origin).pathname),'utf8')))).join('\n');
   const result = await new PurgeCSS().purge({content:[{raw:html,extension:'html'}],css:[{raw:css}],safelist:['open','active','is-current','is-revealed','sg-js','menu-is-open',"is-active","is-fading","v-proof-bar","v-proof-dot"],keyframes:true});
   for (const link of cssLinks) html = html.replace(link[0],'');
   const pageCss = result.map(item=>item.css).join('');
+  // A missing critical stylesheet must fail the deploy, rather than publish
+  // a bare, unstyled marketing page.
+  if (pathname === '/' && (!cssLinks.length || pageCss.trim().length < 500)) {
+    throw new Error('Homepage CSS missing from static build; refusing deployment');
+  }
   html = html.replace('</head>',`<style>${pageCss}</style></head>`).replace('</body>',`<script src="/assets/${scriptName}" defer></script>${ga}</body>`);
   html = html.replace(/href="(\/[^"?#]+)\/"/g,'href="$1"');
   pages.set(pathname,html);

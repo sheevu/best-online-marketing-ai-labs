@@ -1,3 +1,8 @@
+# Avoid caching the homepage HTML across deployments: old HTML can
+# reference fingerprinted CSS/JS files that no longer exist.
+/
+  Cache-Control: no-store, max-age=0
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 /images/*
@@ -10,4 +15,4 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://cdn.jotfor.ms https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' https: data:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://form.jotform.com https://www.google.com; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://api.whatsapp.com https://form.jotform.com; object-src 'none'; base-uri 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://cdn.jotfor.ms https://www.googletagmanager.com https://news.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' https: data:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://form.jotform.com https://www.google.com; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://api.whatsapp.com https://form.jotform.com; object-src 'none'; base-uri 'self';
