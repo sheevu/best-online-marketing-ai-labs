@@ -4,7 +4,7 @@
   "account_id": "292a9fa6027f8da2cb79fe1b6959f93c",
   "main": "dist/server/index.js",
   "compatibility_date": "2026-05-15",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [],
   "placement": {
     "mode": "smart"
   },
