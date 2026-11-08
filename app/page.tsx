@@ -1165,6 +1165,16 @@ export default function Home() {
             style={{ width: "min(200px, 100%)", height: "auto" }}
           />
         </a>
+        <div className="v-preferred-source" aria-label="Follow Sudarshan AI Labs on Google">
+          <div>
+            <strong>Stay connected on Google</strong>
+            <p>Make Sudarshan AI Labs a preferred source for our latest updates.</p>
+          </div>
+          <div google-add-preferred-source-btn="" data-theme="light" />
+          <a href="https://www.google.com/preferences/source?q=sudarshan-ai.com" target="_blank" rel="noopener noreferrer">
+            Add us as a preferred source on Google <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
         <small>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</small>
       </footer>
     </main>
