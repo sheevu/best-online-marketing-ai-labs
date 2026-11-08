@@ -27,7 +27,7 @@ test("homepage has self-canonical metadata, pricing and a usable blog link", asy
   assert.match(html, /Explore our blog and guides/i);
   assert.doesNotMatch(html, /id="JFWebsiteWidget-01a1b8324a50700087916735dd7644c43a53"/i);
   assert.match(html, /id="location"/i);
-  assert.match(html, /Find us in Lucknow/i);
+  assert.match(html, /Serving Lucknow &amp; Uttar Pradesh|Serving Lucknow & Uttar Pradesh/i);
   assert.doesNotMatch(html, /src="\/lucknow-neighborhood-map\.html"/i);
   assert.doesNotMatch(html, /www\.sudarshan-ai\.com|sheevumgoel\.chatgpt\.site|\/workspace\/sites\//i);
   const map = await readFile(new URL("../public/lucknow-neighborhood-map.html", import.meta.url), "utf8");
