@@ -8349,3 +8349,22 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
 @media (max-width: 640px) {
   .v-preferred-source { align-items: flex-start; flex-direction: column; padding: 20px; }
 }
+
+
+/* Mobile restoration: avoid blank third-party frames and overlapping contact CTAs. */
+.v-jotform-widget { min-height: 0; }
+.v-jotform-widget .jotform-widget-copy { max-width: 850px; }
+.v-jotform-widget .v-pill { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; }
+.v-map-fallback { min-height: 260px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 14px; padding: 28px; color: #231d3a; background: linear-gradient(135deg,#f1edff,#e8f2ff); }
+.v-map-fallback > svg { width: 48px; height: 48px; color: #6143c4; }
+.v-map-fallback strong { font-size: 23px; }
+.v-map-fallback p { max-width: 34ch; margin: 0; }
+.v-map-fallback a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; background: #4732a8; color: #fff; font-weight: 700; }
+@media (max-width: 780px) {
+  .v-jotform-widget { padding-top: 44px; padding-bottom: 44px; }
+  .v-jotform-widget .jotform-widget-copy { width: 100%; }
+  .v-map-fallback { min-height: 240px; }
+  .site-assistant { bottom: 100px !important; right: 14px !important; }
+  .site-assistant-trigger { min-height: 48px; padding: 10px 14px; font-size: 13px; }
+  .v-quick-dock { max-width: min(270px, 70vw); left: 12px; right: auto; }
+}
