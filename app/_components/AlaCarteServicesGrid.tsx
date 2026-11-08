@@ -1,5 +1,3 @@
-"use client";
-
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { aLaCarteOffers, offerWhatsAppUrl, type PricingOffer } from "../lib/pricing-catalog";
 
