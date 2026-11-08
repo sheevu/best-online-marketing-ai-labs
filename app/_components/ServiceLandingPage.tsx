@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { cities } from "../lib/cities";
 import Link from "next/link";
-import Image from "./ResponsiveImage";
+import Image from "next/image";
 import {
   ChartLineUp,
   Compass,
@@ -10,13 +11,16 @@ import {
   Target,
 } from "@phosphor-icons/react/dist/ssr";
 import {
+  BLOG_PLAYBOOK_URL,
   absoluteUrl,
   CONTACT_EMAIL,
+  CONTACT_PHONE,
   coreServiceLinks,
+  ORGANIZATION_ID,
   PRIMARY_ADDRESS,
   WHATSAPP_URL,
 } from "../lib/site";
-import { SITE, buildServicePageSchema } from "../lib/schema";
+import { serializeJsonLd } from "./StructuredData";
 
 type Item = { title: string; text: string };
 const outcomeIcons = [Target, MagnifyingGlass, ChartLineUp, Sparkle];
@@ -35,7 +39,6 @@ export type ServicePageData = {
   coreDeliverables?: string[];
   relatedKeywords?: string[];
   bestFor?: string;
-  canonicalUrl?: string;
   areaServed?: string;
   locationLabel?: string;
   locationHref?: string;
@@ -47,28 +50,13 @@ export type ServicePageData = {
 };
 
 export function serviceMetadata(data: ServicePageData): Metadata {
-  const url = data.canonicalUrl ?? `/${data.slug}`;
-  const cleanTitle = data.title.replace(/\s*\|\s*Sudarshan AI Labs.*$/i, "").trim();
-  const conciseTitle = `${cleanTitle} | Sudarshan AI Labs`.length > 60
-    ? `${(data.locationLabel ?? data.slug.replaceAll("-", " ")).replace(/\b\w/g, (letter) => letter.toUpperCase())} Marketing`
-    : cleanTitle;
+  const url = `/${data.slug}`;
   return {
-    title: conciseTitle,
+    title: data.title,
     description: data.description,
     alternates: { canonical: url },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
     openGraph: {
-      title: `${cleanTitle} | Sudarshan AI Labs`,
+      title: data.title,
       description: data.description,
       url,
       type: "website",
@@ -85,7 +73,7 @@ export function serviceMetadata(data: ServicePageData): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${cleanTitle} | Sudarshan AI Labs`,
+      title: data.title,
       description: data.description,
       images: ["/sudarshan-lucknow-hero.webp"],
     },
@@ -94,38 +82,61 @@ export function serviceMetadata(data: ServicePageData): Metadata {
 
 export default function ServiceLandingPage({ data }: { data: ServicePageData }) {
   const url = absoluteUrl(`/${data.slug}`);
-  const schema = buildServicePageSchema({
-    url,
+  const areaServed = data.areaServed
+    ? [
+        { "@type": "City", name: data.areaServed },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "Country", name: "India" },
+      ]
+    : [
+        { "@type": "City", name: "Lucknow" },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "Country", name: "India" },
+      ];
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${url}#service`,
     name: data.h1,
+    url,
     description: data.description,
-    areaName: data.areaServed || "Lucknow",
-    parents: [
-      {
-        name: "Digital Marketing Services",
-        item: `${SITE}/digital-marketing-services`,
-      },
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed,
+    availableChannel: {
+      "@type": "ServiceChannel",
+      servicePhone: CONTACT_PHONE,
+      serviceUrl: url,
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: "Digital marketing services", item: absoluteUrl("/digital-marketing-services") },
+      ...(data.locationLabel ? [{ "@type": "ListItem", position: 3, name: data.locationLabel, item: absoluteUrl(data.locationHref || "/digital-marketing-services/uttar-pradesh") }] : []),
+      { "@type": "ListItem", position: data.locationLabel ? 4 : 3, name: data.h1, item: url },
     ],
-    startingPrice: 89,
-    faqs: data.faqs,
-  });
+  };
 
   return (
     <main className="service-owner">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([serviceSchema, breadcrumbSchema]) }}
       />
       <nav className="area-nav" aria-label="Service navigation">
         <Link className="brand" href="/">
           <span className="brand-mark">S</span>
-          <span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span>
+          <span>SUDARSHAN <b>AI LABS</b></span>
         </Link>
         <div>
           <Link href="/digital-marketing-services">Services</Link>
           <Link href="/about-sheevum-goel">Founder</Link>
           <Link href="/contact">Contact</Link>
+          <details className="service-resources"><summary>Resources</summary><a href={BLOG_PLAYBOOK_URL}>Blog Playbook ↗</a></details>
         </div>
-        <a className="button button-small" href={WHATSAPP_URL} title="Request a free digital audit on WhatsApp" rel="noopener noreferrer">Free Audit ↗</a>
+        <a className="button button-small" href={WHATSAPP_URL}>Free Audit ↗</a>
       </nav>
 
       <header className="service-hero">
@@ -135,7 +146,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <h1>{data.h1}</h1>
         <p>{data.intro}</p>
         <div className="hero-actions">
-          <a className="button" href={WHATSAPP_URL} title="Request a free digital marketing audit on WhatsApp" rel="noopener noreferrer">Request a Free Audit ↗</a>
+          <a className="button" href={WHATSAPP_URL}>Request a Free Audit ↗</a>
           <a className="text-link" href="#deliverables">See what is included ↓</a>
         </div>
         </div>
@@ -213,11 +224,14 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       </section>
 
       <section className="service-links">
-        <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Choose one clear owner page for each need.</h2></div>
-        <nav>{((data.related && data.related.length > 0) ? data.related : coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={100} height={120} sizes="100px" /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
+        <div><p className="section-kicker">CONNECTED SERVICES</p><h2>Explore services that work together.</h2></div>
+        <nav>{(data.related?.length ? data.related : coreServiceLinks).filter(([, href]) => href !== `/${data.slug}`).map(([label, href], index) => <Link key={href} href={href}><span className="service-related-thumb"><Image src="/sheevum-goel-avatar-cutout.webp" alt="" width={100} height={120} sizes="100px" /></span><strong>{label}</strong><span className="service-related-arrow">{String(index + 1).padStart(2, "0")} ↗</span></Link>)}</nav>
+        {data.category && !data.locationLabel && <details className="service-city-links"><summary>Explore {data.h1} by city</summary><nav aria-label="Service by city">{cities.map(city => <Link key={city.slug} href={`/${data.slug}/${city.slug}`}>{city.name} ↗</Link>)}</nav></details>}
+        {data.locationLabel && <p><Link href={`/${data.slug.split("/")[0]}`}>See all cities for {data.h1} ↗</Link></p>}
         <nav className="site-hub-links" aria-label="Explore Sudarshan AI Labs">
           <Link href="/digital-marketing-services">All Lucknow services</Link>
           <Link href="/digital-marketing-services/uttar-pradesh">Uttar Pradesh city directory</Link>
+          <Link href="/#products">Digital marketing packages and pricing</Link>
           <Link href="/about-sheevum-goel">Founder profile</Link>
           <Link href="/contact">Contact Sudarshan AI Labs</Link>
         </nav>
@@ -227,10 +241,10 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
         <p>FREE 20-MINUTE DIGITAL GROWTH AUDIT</p>
         <h2>Start with the highest-impact gap, not the longest agency checklist.</h2>
         <span>Share your website, Google listing or current process. We will identify the first three priorities and explain the realistic next step.</span>
-        <div><a className="button" href={WHATSAPP_URL} title="Start your free audit on WhatsApp" rel="noopener noreferrer">Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`} title={`Email ${CONTACT_EMAIL} for enquiries`}>Email {CONTACT_EMAIL}</a></div>
+        <div><a className="button" href={WHATSAPP_URL}>Start on WhatsApp ↗</a><a className="cta-call" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></div>
       </section>
 
-      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
+      <footer className="area-footer"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><p>Digital visibility, conversion and practical AI systems for Lucknow MSMEs.</p><nav aria-label="Resources and legal"><a href={BLOG_PLAYBOOK_URL}>Blog Playbook ↗</a><Link href="/privacy-policy">Privacy</Link><Link href="/terms-of-service">Terms</Link><Link href="/refund-policy">Refunds</Link><Link href="/contact">Contact</Link></nav><span>© 2026 Sudarshan AI Labs • {PRIMARY_ADDRESS}</span></footer>
     </main>
   );
 }

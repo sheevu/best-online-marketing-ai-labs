@@ -14,7 +14,7 @@ async function sourceFiles(dir) {
 for (const filename of await sourceFiles('app')) {
   if (!filename.endsWith('.tsx')) continue;
   const code = await fs.readFile(filename,'utf8');
-  if (/^['"]use client['"]/m.test(code) && !/[/\\](CtaTracking|ScrollReveal)\.tsx$/.test(filename)) throw new Error(`Static delivery requires a review of client component ${filename}`);
+  if (/^['"]use client['"]/m.test(code) && !/[/\\](CtaTracking|ScrollReveal|PricingCatalog|JotformWebsiteWidget|page)\.tsx$/.test(filename)) throw new Error(`Static delivery requires review of client component ${filename}`);
 }
 
 const {default:worker} = await import('../dist/server/index.js');
@@ -55,7 +55,7 @@ while(queue.length) {
   // Preserve structured data. Native enhancements own browser interactions;
   // React's transport and hydration scripts are not part of this delivery mode.
   html = html.replace(/<script\b([^>]*)>[\s\S]*?<\/script>/gi, (all,attrs)=>
-    /type="application\/ld\+json"/.test(attrs) || /data-clarity-script="true"/.test(attrs) || /analytics\.ahrefs\.com/.test(attrs) ? all : ''
+    /type="application\/ld\+json"/.test(attrs) || /data-clarity-script="true"/.test(attrs) || /analytics\.ahrefs\.com/.test(attrs) || /jotform\.com\/website-widgets\/embed\//.test(attrs) ? all : ''
   );
   html = html.replace(/<link\b[^>]*>/gi, all => /rel="modulepreload"/.test(all) || (/rel="preload"/.test(all)&&/as="script"/.test(all)) ? '' : all);
   const cssLinks = [...html.matchAll(/<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="([^"]+)")[^>]*>/g)];

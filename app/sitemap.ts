@@ -2,46 +2,21 @@ import type { MetadataRoute } from "next";
 import { areas } from "./lib/areas";
 import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
-import { PRODUCTS } from "./lib/products-data";
 import { SITE_URL } from "./lib/site";
 
+const updated = new Date();
 const servicePaths = [
   "/digital-marketing-services",
-  "/digital-marketing-services/uttar-pradesh",
   "/seo-services-lucknow",
   "/social-media-marketing-lucknow",
   "/lead-generation-lucknow",
   "/ai-automation-lucknow",
   "/content-marketing-lucknow",
-  "/ai-for-business",
-  "/google-ads-services",
-  "/website-design",
+  "/ai-business-consulting-lucknow",
+  "/google-ads-management-lucknow",
+  "/website-design-development-lucknow",
 ];
-
-// URLs consolidated / redirected to primary pages to prevent keyword cannibalization and thin content
-const redirectedCatalogSlugs = new Set([
-  "best-digital-marketing-agency-lucknow",
-  "local-seo-services",
-  "seo-services-search-optimization",
-  "website-development-company",
-  "custom-web-development-company",
-  "build-ecommerce-website",
-  "social-media-marketing-services",
-  "youtube-shorts-short-video-marketing",
-  "video-content-repurposing",
-]);
-
-const catalogServicePaths = serviceCatalog
-  .filter((service) => !redirectedCatalogSlugs.has(service.slug))
-  .map((service) => "/" + service.slug);
-// All active, indexable canonical locality and city hub pages
-const localityPaths = areas.map(
-  (area) => `/digital-marketing-services/${area.slug}-lucknow`,
-);
-const cityPaths = cities
-  .filter((city) => city.slug !== "lucknow")
-  .map((city) => `/digital-marketing-services/${city.slug}`);
-
+const catalogServicePaths = serviceCatalog.map((service) => "/" + service.slug);
 const trustPaths = [
   "/contact",
   "/about-sheevum-goel",
@@ -49,49 +24,23 @@ const trustPaths = [
   "/terms-of-service",
   "/refund-policy",
 ];
-
-const productPaths = [
-  "/product-page",
-  "/offer-lucknow-marketing-services",
-  ...PRODUCTS.map((product) => `/${product.urlSlug}`),
-];
+const editorialLandingPaths = ["/best-digital-marketing-agency-lucknow/lucknow"];
+const cityServicePaths = serviceCatalog.flatMap((service) =>
+  cities
+    .filter((city) => !(service.slug === "best-digital-marketing-agency-lucknow" && city.slug === "lucknow"))
+    .map((city) => `/${service.slug}/${city.slug}`),
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    {
-      url: `${SITE_URL}/`,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    ...productPaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.85,
-    })),
-    ...servicePaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    })),
-    ...catalogServicePaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    ...localityPaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.75,
-    })),
-    ...cityPaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.75,
-    })),
-    ...trustPaths.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: "monthly" as const,
-      priority: path === "/about-sheevum-goel" ? 0.7 : 0.5,
-    })),
+    { url: SITE_URL, lastModified: updated, changeFrequency: "weekly", priority: 1 },
+    ...servicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.9 })),
+    ...catalogServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.8 })),
+    ...cityServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.55 })),
+    ...trustPaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "monthly" as const, priority: path === "/about-sheevum-goel" ? 0.7 : 0.5 })),
+    ...editorialLandingPaths.map((path) => ({ url: `${SITE_URL}${path}`, lastModified: new Date("2026-11-03T00:00:00.000Z"), changeFrequency: "monthly" as const, priority: 0.85 })),
+    { url: `${SITE_URL}/digital-marketing-services/uttar-pradesh`, lastModified: updated, changeFrequency: "monthly", priority: 0.6 },
+    ...areas.map((area) => ({ url: `${SITE_URL}/digital-marketing-services/${area.slug}-lucknow`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.65 })),
+    ...cities.map((city) => ({ url: `${SITE_URL}/digital-marketing-services/uttar-pradesh/${city.slug}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.65 })),
   ];
 }

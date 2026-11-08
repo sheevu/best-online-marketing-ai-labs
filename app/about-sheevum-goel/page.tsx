@@ -1,6 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-html-link-for-pages, react/no-unescaped-entities */
 import type { Metadata } from "next";
-import Image from "../_components/ResponsiveImage";
+import { serializeJsonLd } from "../_components/StructuredData";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,17 +15,16 @@ import {
   IdentificationCard,
   LightbulbFilament,
   LinkedinLogo,
-  GithubLogo,
+  MediumLogo,
   Notebook,
   Robot,
   RocketLaunch,
   Sparkle,
   Target,
   XLogo,
-  YoutubeLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import { SITE_URL } from "../lib/site";
-import { sharedWebsite, sharedOrganization, sharedFounder, IDS, SITE, ALL_VIDEO_SHORTS } from "../lib/schema";
+import ScrollReveal from "./ScrollReveal";
+import { ORGANIZATION_ID, SITE_URL } from "../lib/site";
 
 const profileUrl = `${SITE_URL}/about-sheevum-goel`;
 const links = {
@@ -33,17 +33,12 @@ const links = {
   linkedin: "https://www.linkedin.com/in/sheevumgoel",
   card: "https://app.wavecnct.com/sheevum.goel.v94x",
   medium: "https://sheevumgoel.medium.com/",
-  command: "https://sheevum-goel-about.netlify.app/",
-  startinup: "https://www.startinup.up.gov.in/demo/Welcome/startup_user_details/NDkyMw==",
-  finanvo: "https://finanvo.in/company/U62099UP2025OPC223943/nava-netra-neural-sudarshan-labs-opc-private-limited",
-  falconebiz: "https://www.falconebiz.com/company/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
-  zaubacorp: "https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
-  github: "https://github.com/sheevu",
-  githubCrm: "https://github.com/sheevu/NETRA-CRM-1",
+  command:
+    "https://about-sheevum-goel.notion.site/Sudarshan-AI-Labs-Founder-Command-Center-37922c918f0f818babd4f91b7c941ee7?pvs=149",
 };
 
 export const metadata: Metadata = {
-  title: "Sheevum Goel - Founder Profile",
+  title: "Sheevum Goel | Sudarshan AI Labs Founder",
   description:
     "Meet Sheevum Goel, a Lucknow entrepreneur, AI startup founder and growth strategist building AI, digital marketing and web development solutions for India.",
   keywords: [
@@ -99,43 +94,35 @@ export const metadata: Metadata = {
 
 const profileSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    sharedWebsite(),
-    sharedOrganization(),
-    {
-      "@type": "ProfilePage",
-      "@id": `${profileUrl}#webpage`,
-      url: profileUrl,
-      name: "Sheevum Goel | Sudarshan AI Labs Founder",
-      description:
-        "Founder profile of Sheevum Goel, entrepreneur and AI consultant based in Lucknow.",
-      inLanguage: "en-IN",
-      isPartOf: { "@id": IDS.website },
-      publisher: { "@id": IDS.organization },
-      breadcrumb: { "@id": `${profileUrl}#breadcrumb` },
-      mainEntity: { "@id": IDS.founder },
-      dateModified: "2026-08-20T00:00:00+00:00",
-    },
-    sharedFounder(),
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${profileUrl}#breadcrumb`,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: `${SITE}/`,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Sheevum Goel",
-          item: profileUrl,
-        },
-      ],
-    },
-  ],
+  "@type": "ProfilePage",
+  "@id": profileUrl,
+  url: profileUrl,
+  name: "About Sheevum Goel - Entrepreneur and Founder of Sudarshan AI Labs",
+  dateModified: "2026-08-20",
+  mainEntity: {
+    "@type": "Person",
+    "@id": `${profileUrl}#sheevum-goel`,
+    name: "Sheevum Goel",
+    alternateName: "@sheevum",
+    url: links.portfolio,
+    jobTitle: "Entrepreneur, AI Consultant and Founder of Sudarshan AI Labs",
+    description:
+      "Lucknow-based entrepreneur building practical AI, digital marketing, web development and business automation solutions for Indian MSMEs and startups.",
+    homeLocation: { "@type": "Place", name: "Lucknow, Uttar Pradesh, India" },
+    knowsAbout: [
+      "Artificial intelligence",
+      "Generative AI",
+      "AI automation",
+      "Digital marketing",
+      "Local SEO",
+      "Web development",
+      "No-code technology",
+      "FMCG growth",
+      "MSME digitisation",
+    ],
+    worksFor: { "@id": ORGANIZATION_ID },
+    sameAs: Object.values(links),
+  },
 };
 
 const expertise = [
@@ -203,12 +190,12 @@ const connectCards = [
     theme: "mint",
   },
   {
-    Icon: GithubLogo,
-    kicker: "Open source & AI systems",
-    title: "Explore code & AI repositories",
-    text: "Review open-source AI tools, Hindi CRM architectures, and production growth systems on GitHub.",
-    cta: "Explore GitHub repositories",
-    href: links.github,
+    Icon: MediumLogo,
+    kicker: "Thought leadership",
+    title: "Read the long-form ideas",
+    text: "Explore writing on cultural marketing, AI, MSME digitisation, retail and India's digital future.",
+    cta: "Read articles on Medium",
+    href: links.medium,
     theme: "yellow",
   },
   {
@@ -296,24 +283,17 @@ export default function AboutSheevumGoel() {
     <main className="v-home sg-page" id="top">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(profileSchema) }}
       />
+      <ScrollReveal />
 
       <header className="sg-header">
         <a className="v-brand" href="/" aria-label="Sudarshan AI Labs home">
-          <span className="v-logo" aria-label="Sudarshan AI Labs">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand-icon.png"
-              alt="Sudarshan AI Labs Logo"
-              width={28}
-              height={28}
-              className="v-logo-img"
-              loading="eager"
-            />
+          <span className="v-logo">
+            <Sparkle weight="fill" />
           </span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
             <small>FOUNDER PROFILE</small>
           </span>
         </a>
@@ -780,55 +760,6 @@ export default function AboutSheevumGoel() {
         </div>
       </section>
 
-      <section className="v-section v-shorts-section" id="founder-shorts" aria-labelledby="founder-shorts-heading" data-reveal>
-        <div className="v-section-head">
-          <div>
-            <span className="v-kicker">FEATURED VIDEO SHORTS</span>
-            <h2 id="founder-shorts-heading">
-              Practical growth insights.
-              <br />
-              <em>In 60 seconds.</em>
-            </h2>
-          </div>
-          <p>
-            Actionable strategies on Local SEO, Google Business Profiles, AI lead routing, and MSME systems. Watch directly below or open on YouTube.
-          </p>
-        </div>
-
-        <div className="v-shorts-grid" role="region" aria-label="Founder Video Shorts Series">
-          {ALL_VIDEO_SHORTS.map((video) => (
-            <article className="v-short-card" key={video.id}>
-              <div className="v-short-player">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
-                  title={`${video.name} - Sheevum Goel`}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  tabIndex={0}
-                />
-              </div>
-              <div className="v-short-meta">
-                <span className="v-short-tag">60S INSIGHT</span>
-                <p className="v-short-title font-bold">{video.name}</p>
-                <p>{video.description}</p>
-                <a
-                  href={video.contentUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="v-short-link"
-                >
-                  <YoutubeLogo weight="fill" className="yt-icon" />
-                  <span>Watch on YouTube</span>
-                  <ArrowUpRight weight="bold" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="sg-connect" id="connect" data-reveal>
         <div className="sg-connect-title">
           <span className="v-kicker">CHOOSE YOUR NEXT STEP</span>
@@ -923,19 +854,11 @@ export default function AboutSheevumGoel() {
 
       <footer className="sg-footer">
         <a className="v-brand" href="/">
-          <span className="v-logo" aria-label="Sudarshan AI Labs">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand-icon.png"
-              alt="Sudarshan AI Labs Logo"
-              width={28}
-              height={28}
-              className="v-logo-img"
-              loading="lazy"
-            />
+          <span className="v-logo">
+            <Sparkle weight="fill" />
           </span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <p>
@@ -943,15 +866,16 @@ export default function AboutSheevumGoel() {
           from Lucknow for India.
         </p>
         <nav>
-          <a href={links.portfolio} target="_blank" rel="nofollow noopener noreferrer">
+          <a href={links.portfolio} target="_blank" rel="noreferrer">
             Portfolio
           </a>
-          <a href={links.linkedin} target="_blank" rel="nofollow noopener noreferrer">
+          <a href={links.linkedin} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a href={links.github} target="_blank" rel="noopener noreferrer">
-            GitHub
+          <a href={links.medium} target="_blank" rel="noreferrer">
+            Medium
           </a>
+          <a href="https://www.blogs.vyapai.in/blogs#all-articles-title">Blog Playbook ↗</a>
           <a href="/">Sudarshan AI Labs</a>
         </nav>
         <small>

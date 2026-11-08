@@ -1,113 +1,42 @@
 import type { Metadata } from "next";
+import Analytics from "./_components/Analytics";
+import CtaTracking from "./_components/CtaTracking";
 import { SITE_URL } from "./lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sudarshan AI Labs | AI & Digital Marketing in Lucknow",
-    template: "%s | Sudarshan AI Labs",
+    default: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP",
+    template: "%s",
   },
-  description:
-    "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation. Review our approach, scope and pricing.",
-  keywords: [
-    "Sudarshan AI Labs",
-    "digital marketing agency in lucknow",
-    "AI consulting in lucknow",
-    "SEO services Lucknow",
-    "local SEO Lucknow",
-    "Google Maps marketing Lucknow",
-    "hindi crm",
-    "AI agents development",
-    "digital marketing services Uttar Pradesh",
-    "web development Lucknow",
-    "lead generation Lucknow",
-  ],
+  description: "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh. Get a free audit today!",
+  keywords: ["digital marketing agency in Lucknow", "AI consulting in Lucknow", "SEO services in Uttar Pradesh", "Hindi CRM", "AI agents development", "Sudarshan AI Labs"],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow",
-    description:
-      "Lucknow-based digital growth for MSMEs: local SEO, websites, paid campaigns and practical AI automation.",
+    title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow",
+    description: "Boost your business with top-tier AI agents, custom Hindi CRM, and results-driven digital marketing services in Lucknow and across Uttar Pradesh.",
     url: "/",
     siteName: "Sudarshan AI Labs",
     locale: "en_IN",
     type: "website",
-    images: [
-      {
-        url: "/sudarshan-lucknow-hero.webp",
-        width: 1672,
-        height: 941,
-        alt: "Sudarshan AI Labs growth systems for Lucknow MSMEs",
-      },
-    ],
+    images: [{ url: "/sudarshan-lucknow-hero.webp", width: 1672, height: 941, alt: "Sudarshan AI Labs AI agents and digital marketing services in Lucknow" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sudarshan AI Labs | Digital Marketing & AI in Lucknow",
-    description:
-      "Local SEO, websites and digital marketing for Lucknow businesses. Build visibility, earn trust and turn more visits into enquiries.",
-    images: ["/sudarshan-lucknow-hero.webp"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  verification: {
-    google: "oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E",
-    other: {
-      "yandex-verification": "796e217f3b74c89f",
-      "p:domain_verify": "2b2673b8fc2813fbe71cd06db26c491a",
-    },
-  },
-  other: { "geo.region": "IN-UP", "geo.placename": "Lucknow" },
+  twitter: { card: "summary_large_image", title: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow", description: "AI agents, Hindi CRM and results-driven digital marketing services for businesses in Lucknow and Uttar Pradesh.", images: ["/sudarshan-lucknow-hero.webp"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  verification: { google: "oSAjR3J_DzMqUrBv9GhazGlY7IASi0wHLEmNk79vs0E" },
+  other: { "geo.region": "IN-UP", "geo.placename": "Lucknow", monetag: "546c0ee0ef6eacd8f2ec917fd880b4b2" },
   manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon.ico" },
+      { url: "/sudarshan-site-icon-512.png", type: "image/png", sizes: "512x512" },
+      { url: "/sudarshan-site-icon.png", type: "image/png", sizes: "2000x2000" },
     ],
-    shortcut: "/favicon.ico",
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    shortcut: "/sudarshan-site-icon-512.png",
+    apple: [{ url: "/sudarshan-site-icon-180.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en-IN">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="theme-color" content="#f8fbff" />
-        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="" />
-        
-        <script
-          type="text/javascript"
-          data-clarity-script="true"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var h=function(){(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "ytqls05jqi")};
-            if(typeof requestIdleCallback==="function"){requestIdleCallback(h)}else{setTimeout(h,2500)}})();`,
-          }}
-        />
-      </head>
-      <body>
-        {children}
-        <script src="/site.js" defer data-site-script="true" />
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body>{children}<Analytics /><CtaTracking /></body></html>;
 }

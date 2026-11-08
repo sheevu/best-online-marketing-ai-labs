@@ -6,33 +6,16 @@ import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, CONTACT_EMAIL, ORGANIZATION_ID, PRIMARY_ADDRESS } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Learn how Sudarshan AI Labs collects, protects and handles enquiry details and client data across our website and digital marketing services.",
+  title: "Privacy Policy | Sudarshan AI Labs",
+  description: "Privacy information for Sudarshan AI Labs website visitors and enquiries.",
   alternates: { canonical: "/privacy-policy" },
-  openGraph: {
-    title: "Privacy Policy | Sudarshan AI Labs",
-    description:
-      "Learn how Sudarshan AI Labs collects, protects and handles enquiry details and client data across our website and digital marketing services.",
-    url: "/privacy-policy",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/sudarshan-lucknow-hero.webp",
-        width: 1672,
-        height: 941,
-        alt: "Sudarshan AI Labs Privacy Policy",
-      },
-    ],
-  },
 };
 
 export default function PrivacyPolicy() {
   return (
     <main className="service-owner legal-page">
       <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${absoluteUrl("/privacy-policy")}#page`, url: absoluteUrl("/privacy-policy"), name: "Privacy Policy", about: { "@id": ORGANIZATION_ID } }} />
-      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
+      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
       <article className="legal-copy">
         <span className="glossy-icon" aria-hidden="true"><ShieldCheck weight="duotone" /></span><p className="eyebrow">LEGAL & TRUST</p><h1>Privacy Policy</h1><p>We collect only the information you choose to share when you contact Sudarshan AI Labs, such as your name, business details, website, Google listing or preferred contact method.</p>
         <h2>How we use information</h2><p>We use enquiry details to respond, prepare an agreed audit or proposal, provide services and communicate about the requested work. We do not sell enquiry data.</p>

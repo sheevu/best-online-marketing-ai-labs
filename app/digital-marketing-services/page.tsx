@@ -1,30 +1,27 @@
- 
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sparkle } from "@phosphor-icons/react/dist/ssr";
-import { activeServiceCatalog } from "../lib/service-catalog";
 import { areas } from "../lib/areas";
-import { cities } from "../lib/cities";
-import { PRIMARY_ADDRESS, WHATSAPP_URL } from "../lib/site";
-import { SITE, buildServicePageSchema } from "../lib/schema";
+import { serviceCatalog } from "../lib/service-catalog";
+import { serializeJsonLd } from "../_components/StructuredData";
+import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, WHATSAPP_URL } from "../lib/site";
 
+const base = SITE_URL;
 const wa = WHATSAPP_URL;
+const serviceFamilies = [
+  { title: "Local SEO & maps visibility", categories: ["Local Visibility & Maps", "Local SEO"] },
+  { title: "SEO & content", categories: ["SEO"] },
+  { title: "Websites, ecommerce & digital products", categories: ["Website Development", "Ecommerce", "Web Apps & AI"] },
+  { title: "AI, automation & customer journeys", categories: ["Marketing Automation"] },
+  { title: "Social, video & B2B marketing", categories: ["Social Media", "Video Marketing", "B2B Marketing", "Social Commerce"] },
+  { title: "Advertising & lead generation", categories: ["Paid Advertising", "Lead Generation", "Digital Marketing"] },
+].map((family) => ({ ...family, services: serviceCatalog.filter((service) => family.categories.includes(service.category)) }));
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Services in Lucknow",
+  title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
   description:
     "Digital marketing services in Lucknow for MSMEs: local SEO, Google Maps, websites, social media, ads and WhatsApp automation. Request a free audit.",
   alternates: { canonical: "/digital-marketing-services" },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
   openGraph: {
     title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
     description:
@@ -32,21 +29,6 @@ export const metadata: Metadata = {
     url: "/digital-marketing-services",
     type: "website",
     locale: "en_IN",
-    images: [
-      {
-        url: "/sudarshan-lucknow-hero.webp",
-        width: 1672,
-        height: 941,
-        alt: "Digital Marketing Services in Lucknow - Sudarshan AI Labs",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
-    description:
-      "A connected local growth system for Lucknow businesses: SEO, Maps, websites, social media, ads and practical AI automation.",
-    images: ["/sudarshan-lucknow-hero.webp"],
   },
   keywords: [
     "best digital marketing services in Lucknow",
@@ -61,31 +43,37 @@ const services = [
   {
     id: "local-seo",
     title: "Local SEO and Google Maps",
+    href: "/local-seo-services",
     copy: "Improve the signals that help nearby customers discover and trust your business: accurate business information, service relevance, useful location content, review processes and a clear website connection.",
   },
   {
     id: "seo-content",
     title: "SEO and useful content",
+    href: "/seo-services-lucknow",
     copy: "Build pages around real customer questions and commercial intent, supported by sound titles, headings, internal links, structured data and technical foundations that search engines can understand.",
   },
   {
     id: "website-development",
     title: "Websites and landing pages",
+    href: "/website-design-development-lucknow",
     copy: "Create fast, mobile-first pages that explain the offer clearly and make it easy to call, WhatsApp, request a quote, book or visit. Conversion quality matters as much as traffic.",
   },
   {
     id: "social-media",
     title: "Social media marketing",
+    href: "/social-media-marketing-lucknow",
     copy: "Turn expertise, customer questions, products and local relevance into a consistent content system for Instagram, Facebook, LinkedIn and other channels that fit the audience.",
   },
   {
     id: "paid-media",
     title: "Google and Meta advertising",
+    href: "/google-ads-management-lucknow",
     copy: "Capture ready demand and test offers through focused campaigns, relevant landing pages, useful qualification and tracking aligned with the team’s ability to respond.",
   },
   {
     id: "ai-automation",
     title: "AI and WhatsApp automation",
+    href: "/ai-automation-lucknow",
     copy: "Reduce repetitive follow-up with practical greetings, qualification questions, labels, reusable answers, reminders and simple reporting while retaining human handover.",
   },
 ];
@@ -118,15 +106,60 @@ const faqs = [
   ],
 ] as const;
 
-const digitalMarketingSchema = buildServicePageSchema({
-  url: `${SITE}/digital-marketing-services`,
-  name: "Digital Marketing Services in Lucknow",
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": ORGANIZATION_ID,
+  name: "Sudarshan AI Labs",
+  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  url: `${base}/digital-marketing-services`,
+  telephone: "+91-7080842220",
+  email: "sudarshanailabs@gmail.com",
   description:
-    "Local SEO, Google Maps, websites, social media, paid ads and automation for Lucknow businesses.",
-  parents: [],
-  startingPrice: 89,
-  faqs,
-});
+    "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Gomti Nagar",
+    addressLocality: "Lucknow",
+    addressRegion: "Uttar Pradesh",
+    addressCountry: "IN",
+  },
+  areaServed: { "@type": "City", name: "Lucknow" },
+  priceRange: "Offers from ₹89; monthly plans available",
+  founder: {
+    "@type": "Person",
+    name: "Sheevum Goel",
+    url: `${base}/about-sheevum-goel`,
+  },
+  knowsAbout: services.map((service) => service.title),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Sudarshan AI Labs service catalogue",
+    url: `${base}/#products`,
+  },
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: base },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Digital Marketing Services in Lucknow",
+      item: `${base}/digital-marketing-services`,
+    },
+  ],
+};
 
 export default function LucknowServices() {
   return (
@@ -134,19 +167,19 @@ export default function LucknowServices() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(digitalMarketingSchema),
+          __html: serializeJsonLd([businessSchema, faqSchema, breadcrumbSchema]),
         }}
       />
       <nav className="area-nav" aria-label="Primary navigation">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <div>
           <a href="/about-sheevum-goel">Founder</a>
-          <a className="button button-small" href={wa} title="Request a free digital audit on WhatsApp" rel="noopener noreferrer">
+          <a className="button button-small" href={wa}>
             Free Audit ↗
           </a>
         </div>
@@ -164,7 +197,7 @@ export default function LucknowServices() {
             follow-up automation.
           </p>
           <div className="hero-actions">
-            <a className="button" href={wa} title="Request a free digital marketing audit on WhatsApp" rel="noopener noreferrer">
+            <a className="button" href={wa}>
               Request a Free Digital Audit ↗
             </a>
             <a className="text-link" href="#services">
@@ -240,7 +273,7 @@ export default function LucknowServices() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
-              <a href={wa}>Discuss service {String(index + 1).padStart(2, "0")} ↗</a>
+              <a href={service.href}>Explore {service.title} in Lucknow ↗</a>
             </article>;
           })}
         </div>
@@ -252,15 +285,24 @@ export default function LucknowServices() {
           <h2 id="service-menu-title">One clear page for every commercial need</h2>
           <p>Browse the search intent, channels and scope behind each service in the current Sudarshan AI Labs menu.</p>
         </div>
-        <div className="catalog-service-grid">
-          {activeServiceCatalog.map((service, index) => (
-            <a href={"/" + service.slug} key={service.slug}>
-              <span>{String(index + 1).padStart(2, "0")} • {service.category}</span>
-              <h3>{service.name}</h3>
-              <p>{service.metaDescription}</p>
-              <b>Explore service {String(index + 1).padStart(2, "0")} ↗</b>
-            </a>
+        <div className="catalog-service-families">
+          {serviceFamilies.map((family) => (
+            <details className="catalog-service-family" key={family.title}>
+              <summary><span>{family.title}</span><small>{family.services.length} services</small></summary>
+              <div className="catalog-service-grid">
+                {family.services.map((service) => (
+                  <a href={"/" + service.slug} key={service.slug}>
+                    <span>{service.category}</span>
+                    <h3>{service.name}</h3>
+                    <p>{service.metaDescription}</p>
+                    <b>Explore {service.name} ↗</b>
+                  </a>
+                ))}
+              </div>
+            </details>
           ))}
+          <a className="catalog-pricing-link" href="/best-digital-marketing-agency-lucknow/lucknow">Compare digital marketing in Lucknow and choose a practical first step ↗</a>
+          <a className="catalog-pricing-link" href="/#products">See all individual prices and packages ↗</a>
         </div>
       </section>
 
@@ -311,36 +353,21 @@ export default function LucknowServices() {
           <p className="eyebrow">LOCAL RELEVANCE</p>
           <h2>Useful guidance for businesses across Lucknow</h2>
           <p>
-            We serve Lucknow from our primary location and can support suitable
-            businesses across Uttar Pradesh. Explore dedicated guidance for
-            your Lucknow locality and major regional commercial hubs.
+            Explore locality pages built around genuine customer patterns and
+            business categories. These pages describe service areas; they do not
+            claim offices where none exist.
           </p>
         </div>
         <div className="pillar-area-links">
-          {areas.map((a) => (
+          {areas.map((area) => (
             <a
-              key={a.slug}
-              href={`/digital-marketing-services/${a.slug}-lucknow`}
+              href={`/digital-marketing-services/${area.slug}-lucknow`}
+              key={area.slug}
             >
-              <span>{a.name}, Lucknow</span>
-              <b>Local Marketing Hub ↗</b>
+              <span>{area.name}</span>
+              <b>Digital marketing in {area.name} ↗</b>
             </a>
           ))}
-          {cities
-            .filter((c) => c.slug !== "lucknow")
-            .map((c) => (
-              <a
-                key={c.slug}
-                href={`/digital-marketing-services/${c.slug}`}
-              >
-                <span>{c.name}, UP</span>
-                <b>City Marketing Hub ↗</b>
-              </a>
-            ))}
-          <a href="/digital-marketing-services/uttar-pradesh">
-            <span>Regional Growth</span>
-            <b>All Uttar Pradesh City Hubs ↗</b>
-          </a>
         </div>
       </section>
 
@@ -374,14 +401,14 @@ export default function LucknowServices() {
           customer journey and identify practical priorities before suggesting a
           scope.
         </p>
-        <a className="button" href={wa} title="Request your free digital audit on WhatsApp" rel="noopener noreferrer">
+        <a className="button" href={wa}>
           Request Your Free Audit ↗
         </a>
       </section>
       <footer className="area-footer">
         <p>Sudarshan AI Labs • Digital Marketing Services in Lucknow</p>
         <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
-        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN AI LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
+        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );

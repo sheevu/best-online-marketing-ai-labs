@@ -5,34 +5,13 @@ import StructuredData from "../_components/StructuredData";
 import TrustLinks from "../_components/TrustLinks";
 import { absoluteUrl, ORGANIZATION_ID } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "Terms of Service",
-  description:
-    "Review the terms and conditions for using the Sudarshan AI Labs website and engaging our digital marketing, web design and AI services in India.",
-  alternates: { canonical: "/terms-of-service" },
-  openGraph: {
-    title: "Terms of Service | Sudarshan AI Labs",
-    description:
-      "Review the terms and conditions for using the Sudarshan AI Labs website and engaging our digital marketing, web design and AI services in India.",
-    url: "/terms-of-service",
-    type: "website",
-    locale: "en_IN",
-    images: [
-      {
-        url: "/sudarshan-lucknow-hero.webp",
-        width: 1672,
-        height: 941,
-        alt: "Sudarshan AI Labs Terms of Service",
-      },
-    ],
-  },
-};
+export const metadata: Metadata = { title: "Terms of Service | Sudarshan AI Labs", description: "Terms for using Sudarshan AI Labs services and website.", alternates: { canonical: "/terms-of-service" } };
 
 export default function TermsOfService() {
   return (
     <main className="service-owner legal-page">
       <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${absoluteUrl("/terms-of-service")}#page`, url: absoluteUrl("/terms-of-service"), name: "Terms of Service", about: { "@id": ORGANIZATION_ID } }} />
-      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <span className="v-brand-bold">AI LABS</span></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
+      <nav className="area-nav" aria-label="Legal navigation"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SUDARSHAN <b>AI LABS</b></span></Link><Link className="button button-small" href="/contact">Contact</Link></nav>
       <article className="legal-copy">
         <span className="glossy-icon" aria-hidden="true"><FileText weight="duotone" /></span><p className="eyebrow">LEGAL & TRUST</p><h1>Terms of Service</h1><p>Website information is general guidance. A service engagement begins only after both parties agree the scope, deliverables, timeline, fees, ownership and responsibilities in writing.</p>
         <h2>Scope and outcomes</h2><p>Marketing results vary with competition, budget, offer, operations and customer demand. We do not guarantee rankings, review scores, lead volume, sales or a fixed return on ad spend.</p>

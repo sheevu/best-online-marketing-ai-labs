@@ -3,11 +3,10 @@ import type { ServicePageData } from "../_components/ServiceLandingPage";
 export const seoService: ServicePageData = {
   slug: "seo-services-lucknow",
   title: "SEO Services in Lucknow for MSMEs | Sudarshan AI Labs",
-  description: "SEO company in Lucknow for MSMEs: technical, local and content SEO that builds useful service pages, stronger Google visibility and measurable enquiries.",
+  description: "Technical, local and content SEO services in Lucknow for MSMEs. Build useful service pages, stronger Google visibility and measurable enquiries.",
   eyebrow: "SEO SERVICES • LUCKNOW • MSMES",
   h1: "SEO Services in Lucknow",
   intro: "SEO should make a business easier to discover and easier to trust. We connect technical foundations, local visibility, useful service content and conversion tracking around the searches your customers actually make.",
-  relatedKeywords: ["seo company in lucknow", "best seo company in lucknow", "local seo services", "google maps seo", "technical seo"],
   fit: ["Local businesses with incomplete or inconsistent Google visibility", "Service companies whose website receives impressions but few useful enquiries", "MSMEs replacing thin, duplicated or outdated pages", "Teams that want transparent reporting instead of fixed-position promises"],
   outcomes: [
     { title: "Technical search audit", text: "Review crawling, indexing, canonicals, redirects, sitemaps, metadata, structured data, internal links and mobile usability." },
@@ -86,7 +85,6 @@ export const aiAutomationService: ServicePageData = {
   eyebrow: "AI AUTOMATION • LUCKNOW • MSMES",
   h1: "AI Automation Services in Lucknow",
   intro: "Useful AI automation removes repetitive steps while keeping people responsible for important decisions. We begin with a real workflow, define the risk and handover points, then build the smallest reliable system.",
-  relatedKeywords: ["whatsapp automation", "whatsapp notifications", "human in the loop", "whatsapp business automation", "consent-based messaging"],
   fit: ["Teams repeating the same lead, support or reporting tasks every day", "MSMEs with scattered information across WhatsApp, sheets and documents", "Businesses exploring AI but unsure which use case can create measurable value", "Owners who need human approval, auditability and clear operating instructions"],
   outcomes: [
     { title: "Workflow opportunity audit", text: "Identify repetitive, rules-based work and score each opportunity by value, data readiness, risk and implementation effort." },
@@ -101,8 +99,6 @@ export const aiAutomationService: ServicePageData = {
   ],
   faqs: [
     ["What can a small business automate with AI?", "Common starting points include enquiry classification, response drafts, meeting or call summaries, document extraction, follow-up reminders and recurring reports."],
-    ["Can WhatsApp automation send notifications without creating spam?", "Yes, when it uses consent-based messaging, approved templates, sensible frequency limits and a clear opt-out. We keep sensitive or uncertain replies with a human reviewer instead of automating indiscriminately."],
-    ["What does human-in-the-loop mean?", "It means a person reviews or approves important, sensitive or uncertain actions. Automation handles repeatable steps while the team keeps control of customer communication and business decisions."],
     ["Will AI replace our staff?", "Our approach is designed to reduce repetitive work and improve consistency. People remain responsible for sensitive, commercial or high-impact decisions."],
     ["Do we need expensive software?", "Not always. The right solution may combine tools the business already uses with a small number of carefully chosen services. Cost and maintenance are evaluated before building."],
   ],
@@ -135,7 +131,7 @@ export const contentMarketingService: ServicePageData = {
 };
 
 export const aiForBusinessService: ServicePageData = {
-  slug: "ai-for-business",
+  slug: "ai-business-consulting-lucknow",
   title: "AI for Business Consulting in Lucknow | Sudarshan AI Labs",
   description: "AI for business consulting for Lucknow MSMEs: readiness assessment, use-case roadmap, governance, team training and practical pilot implementation.",
   eyebrow: "AI FOR BUSINESS • READINESS • ROADMAP",
@@ -161,7 +157,7 @@ export const aiForBusinessService: ServicePageData = {
 };
 
 export const googleAdsService: ServicePageData = {
-  slug: "google-ads-services",
+  slug: "google-ads-management-lucknow",
   title: "Google Ads Services in Lucknow | Sudarshan AI Labs",
   description: "Google Ads services in Lucknow with intent-led campaigns, landing pages, negative keywords, conversion tracking and qualified-lead feedback.",
   eyebrow: "GOOGLE ADS • LUCKNOW • HIGH-INTENT DEMAND",
@@ -187,13 +183,12 @@ export const googleAdsService: ServicePageData = {
 };
 
 export const websiteDesignService: ServicePageData = {
-  slug: "website-design",
+  slug: "website-design-development-lucknow",
   title: "Website Design Services in Lucknow | Sudarshan AI Labs",
   description: "Website design services in Lucknow for fast, mobile-first, search-ready business websites and landing pages that support useful enquiries.",
   eyebrow: "WEBSITE DESIGN • LUCKNOW • CONVERSION",
   h1: "Website Design Services in Lucknow",
   intro: "A business website should explain the offer quickly, provide credible decision support and make the next action easy on every screen. We connect design, content, technical SEO and conversion measurement from the beginning.",
-  relatedKeywords: ["website development services", "website development agency", "business website development", "conversion landing pages", "seo-ready website"],
   fit: ["Businesses replacing a slow, outdated or difficult-to-edit website", "Startups and MSMEs launching a clear digital foundation", "Campaign teams needing focused landing pages", "Service companies whose current site hides important information on mobile"],
   outcomes: [
     { title: "Message and information architecture", text: "Organise services, proof, FAQs and calls to action around buyer intent and one clear URL owner for each topic." },

@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import ServiceLandingPage, { serviceMetadata } from "../_components/ServiceLandingPage";
 import {
-  activeServiceCatalog,
   serviceBySlug,
+  serviceCatalog,
   servicePageFromCatalog,
 } from "../lib/service-catalog";
 
 export function generateStaticParams() {
-  return activeServiceCatalog.map(({ slug }) => ({ serviceSlug: slug }));
+  return serviceCatalog.map(({ slug }) => ({ serviceSlug: slug }));
 }
 
 export function generateMetadata({
@@ -30,18 +30,17 @@ export default async function ServicePage({
   const entry = serviceBySlug(serviceSlug);
   if (!entry) notFound();
 
-  const sameCategory = activeServiceCatalog.filter(
-    (service) =>
-      service.slug !== entry.slug && service.category === entry.category,
-  );
-  const otherCategory = activeServiceCatalog.filter(
-    (service) =>
-      service.slug !== entry.slug && service.category !== entry.category,
-  );
-  const combined = [...sameCategory, ...otherCategory].slice(0, 4);
-  const related = combined.map(
-    (service) => [service.name, "/" + service.slug] as [string, string],
-  );
+  const related = serviceCatalog
+    .filter(
+      (service) =>
+        service.slug !== entry.slug && service.category === entry.category,
+    )
+    .slice(0, 4)
+    .map((service) => [service.name, "/" + service.slug] as [string, string]);
 
-  return <ServiceLandingPage data={servicePageFromCatalog(entry, related)} />;
+  return (
+    <ServiceLandingPage
+      data={servicePageFromCatalog(entry, related)}
+    />
+  );
 }

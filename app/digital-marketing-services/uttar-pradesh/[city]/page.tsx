@@ -1,9 +1,12 @@
- 
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { Buildings, ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
 import { cities, cityBySlug } from "../../../lib/cities";
-import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, STARTING_PRICE_INR, WHATSAPP_URL } from "../../../lib/site";
+import { cityServicePath } from "../../../lib/city-service-page";
+import { serviceCatalog } from "../../../lib/service-catalog";
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, WHATSAPP_URL } from "../../../lib/site";
+import { serializeJsonLd } from "../../../_components/StructuredData";
 
 const wa = WHATSAPP_URL;
 const ecosystem = [
@@ -27,10 +30,10 @@ const ecosystem = [
 ];
 const serviceHref: Record<string, string> = {
   SEO: "/seo-services-lucknow",
-  "Google Ads": "/google-ads-services",
+  "Google Ads": "/google-ads-management-lucknow",
   "Meta Ads": "/social-media-marketing-lucknow",
   "Social Media Marketing": "/social-media-marketing-lucknow",
-  "Website Design / Landing Pages": "/website-design",
+  "Website Design / Landing Pages": "/website-design-development-lucknow",
   "Local SEO / Google Business Profile": "/seo-services-lucknow",
   "Lead Generation / WhatsApp Funnel": "/lead-generation-lucknow",
 };
@@ -39,8 +42,11 @@ const cityIcons = [Buildings, MapPin, Target, ChartLineUp, Sparkle];
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
 }
-const fittedTitle = (_title: string, city: string) => {
-  return `Digital Marketing in ${city}`;
+const fittedTitle = (title: string, city: string) => {
+  const branded = `${title.replace(/\s+\|\s+Sudarshan AI Labs$/, "")} | Sudarshan AI Labs`;
+  return branded.length <= 60
+    ? branded
+    : `Digital Marketing in ${city} | Sudarshan AI Labs`;
 };
 const fittedMeta = (meta: string) => {
   if (meta.length > 155) {
@@ -62,43 +68,13 @@ export async function generateMetadata({
   if (!c) return {};
   const title = fittedTitle(c.title, c.name),
     description = fittedMeta(c.meta),
-    url = c.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${c.slug}`;
+    url = `/digital-marketing-services/uttar-pradesh/${c.slug}`;
   return {
     title,
     description,
     alternates: { canonical: url },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
-    openGraph: {
-      title: `${title} | Sudarshan AI Labs`,
-      description,
-      type: "website",
-      locale: "en_IN",
-      url,
-      images: [
-        {
-          url: "/sudarshan-lucknow-hero.webp",
-          width: 1672,
-          height: 941,
-          alt: `Digital Marketing in ${c.name}, Uttar Pradesh`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | Sudarshan AI Labs`,
-      description,
-      images: ["/sudarshan-lucknow-hero.webp"],
-    },
+    openGraph: { title, description, type: "website", locale: "en_IN", url },
+    twitter: { card: "summary_large_image", title, description },
     keywords: [
       c.primaryKeyword,
       `SEO services in ${c.name}`,
@@ -117,7 +93,7 @@ export default async function CityPage({
   const { city } = await params;
   const c = cityBySlug(city);
   if (!c) notFound();
-  const url = absoluteUrl(c.slug === "lucknow" ? "/digital-marketing-services" : `/digital-marketing-services/${c.slug}`);
+  const url = absoluteUrl(`/digital-marketing-services/uttar-pradesh/${c.slug}`);
   const cityIndex = Math.max(
     0,
     cities.findIndex((x) => x.slug === c.slug),
@@ -126,10 +102,6 @@ export default async function CityPage({
     { length: 4 },
     (_, i) => ecosystem[(cityIndex * 3 + i) % ecosystem.length],
   );
-  const relatedCities = cities.filter((item) => item.slug !== c.slug && item.slug !== "lucknow");
-  const linkedCities = relatedCities.length
-    ? Array.from({ length: Math.min(6, relatedCities.length) }, (_, i) => relatedCities[(cityIndex * 6 + i) % relatedCities.length])
-    : [];
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -144,12 +116,6 @@ export default async function CityPage({
       containedInPlace: { "@type": "State", name: "Uttar Pradesh" },
     },
     serviceType: "Digital marketing services",
-    offers: {
-      "@type": "Offer",
-      price: STARTING_PRICE_INR,
-      priceCurrency: "INR",
-      description: "Services from ₹89; final pricing depends on agreed scope.",
-    },
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -164,8 +130,8 @@ export default async function CityPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
-      { "@type": "ListItem", position: 2, name: "Uttar Pradesh cities", item: absoluteUrl("/digital-marketing-services/uttar-pradesh") },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Uttar Pradesh Cities", item: absoluteUrl("/digital-marketing-services/uttar-pradesh") },
       { "@type": "ListItem", position: 3, name: c.name, item: url },
     ],
   };
@@ -173,21 +139,21 @@ export default async function CityPage({
     <main className="city-page area-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(businessSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <div>
@@ -300,31 +266,29 @@ export default async function CityPage({
               <h3>{s.name}</h3>
               <p>{s.copy}</p>
               <a href={serviceHref[s.name] || "/contact"}>
-                Explore {s.name} ↗
+                {s.name} in {c.name} ↗
               </a>
             </article>;
           })}
         </div>
       </section>
-      <section className="city-core-services">
+      <section className="city-service-catalogue">
         <div className="area-section-title">
-          <p className="section-kicker">CONNECTED SERVICES FOR {c.name.toUpperCase()}</p>
-          <h2>Choose the service that matches your immediate goal.</h2>
+          <p className="section-kicker">FULL SERVICE CATALOGUE FOR {c.name.toUpperCase()}</p>
+          <h2>Explore every service with a dedicated {c.name} page.</h2>
           <p>
-            These core service guides explain scope and deliverables once. This
-            city hub adds the local business context without duplicating dozens
-            of near-identical service pages.
+            Each service below has its own city-specific page with scope,
+            deliverables, search context and a practical starting point.
           </p>
         </div>
-        <div className="city-core-services-grid">
-          {Object.entries(serviceHref).map(([name, href], i) => {
-            const Icon = cityIcons[i % cityIcons.length];
-            return <a key={name} href={href}>
-              <span className="glossy-icon" aria-hidden="true"><Icon weight="duotone" /></span>
-              <strong>{name}</strong>
-              <b aria-hidden="true">↗</b>
+        <div className="city-service-catalogue-grid">
+          {serviceCatalog.map((service, i) => (
+            <a key={service.slug} href={cityServicePath(service.slug, c.slug)}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              <strong>{service.name} in {c.name}</strong>
+              <b>↗</b>
             </a>
-          })}
+          ))}
         </div>
       </section>
       <section className="area-section choose">
@@ -387,7 +351,7 @@ export default async function CityPage({
         </div>
         <div>
           {featured.map(([label, href]) => (
-            <a key={href} href={href} target="_blank" rel="nofollow noopener noreferrer">
+            <a key={href} href={href} target="_blank" rel="noreferrer">
               <span>{label}</span>
               <b>↗</b>
             </a>
@@ -402,8 +366,8 @@ export default async function CityPage({
           <a className="button" href={wa}>
             Start on WhatsApp ↗
           </a>
-          <a className="cta-call" href="tel:+919336299912">
-            Call +91 93362 99912
+          <a className="cta-call" href="tel:+917080842220">
+            Call +91 70808 42220
           </a>
         </div>
       </section>
@@ -415,23 +379,10 @@ export default async function CityPage({
               Digital Marketing Services
             </a>
             <a href="/seo-services-lucknow">SEO Services</a>
-            <a href="/google-ads-services">Google Ads Services</a>
+            <a href="/google-ads-management-lucknow">Google Ads Services</a>
             <a href="/social-media-marketing-lucknow">Social Media Marketing</a>
             <a href="/lead-generation-lucknow">Lead Generation</a>
             <a href="/ai-automation-lucknow">AI Automation</a>
-          </nav>
-        </div>
-        <div>
-          <h2>More Uttar Pradesh city guides</h2>
-          <nav>
-            {linkedCities.map((other) => (
-                <a
-                  key={other.slug}
-                  href={`/digital-marketing-services/${other.slug}`}
-                >
-                  Digital marketing in {other.name}
-                </a>
-              ))}
           </nav>
         </div>
         <div>
@@ -450,7 +401,7 @@ export default async function CityPage({
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <p>

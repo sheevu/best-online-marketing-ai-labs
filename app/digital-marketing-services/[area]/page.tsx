@@ -1,11 +1,12 @@
- 
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { ChartLineUp, MapPin, Sparkle, Target } from "@phosphor-icons/react/dist/ssr";
 import { notFound, permanentRedirect } from "next/navigation";
 import { areas, areaBySlug } from "../../lib/areas";
 import { cityBySlug, cities } from "../../lib/cities";
-import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, STARTING_PRICE_INR, WHATSAPP_URL } from "../../lib/site";
-import CityPage, {
+import { absoluteUrl, ORGANIZATION_ID, PRIMARY_ADDRESS, WHATSAPP_URL } from "../../lib/site";
+import { serializeJsonLd } from "../../_components/StructuredData";
+import {
   generateMetadata as generateCityMetadata,
 } from "../uttar-pradesh/[city]/page";
 
@@ -18,7 +19,7 @@ const serviceLinks = [
   ],
   [
     "Google Ads",
-    "/google-ads-services",
+    "/google-ads-management-lucknow",
     "We organise keywords, locations, schedules, negative terms and landing pages to reach active demand and reduce avoidable clicks.",
   ],
   [
@@ -33,7 +34,7 @@ const serviceLinks = [
   ],
   [
     "Website Design / Landing Pages",
-    "/website-design",
+    "/website-design-development-lucknow",
     "Fast mobile pages explain the offer, remove hesitation and guide visitors toward a call, form or WhatsApp conversation.",
   ],
   [
@@ -67,46 +68,19 @@ export async function generateMetadata({
     return generateCityMetadata({ params: Promise.resolve({ city: area }) });
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) return {};
-  const title = `Digital Marketing in ${a.name}`;
-  const conciseTitle = `${title} | Sudarshan AI Labs`.length > 60
-    ? `${a.name} Marketing`
-    : title;
-  const canonicalPath = `/digital-marketing-services/${a.slug}-lucknow`;
+  const preferredTitle = `Digital Marketing in ${a.name} | Sudarshan AI Labs`;
+  const title = preferredTitle.length <= 60
+    ? preferredTitle
+    : `Digital Marketing | ${a.name}, Lucknow`;
   return {
-    title: conciseTitle,
+    title,
     description: a.meta,
-    alternates: { canonical: canonicalPath },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
+    alternates: { canonical: `/digital-marketing-services/${a.slug}-lucknow` },
     openGraph: {
-      title: `${title} | Sudarshan AI Labs`,
+      title,
       description: a.meta,
-      url: canonicalPath,
       type: "website",
       locale: "en_IN",
-      images: [
-        {
-          url: "/sudarshan-lucknow-hero.webp",
-          width: 1672,
-          height: 941,
-          alt: `Digital Marketing in ${a.name}, Lucknow`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | Sudarshan AI Labs`,
-      description: a.meta,
-      images: ["/sudarshan-lucknow-hero.webp"],
     },
   };
 }
@@ -118,17 +92,16 @@ export default async function AreaPage({
 }) {
   const { area } = await params;
   if (cityBySlug(area))
-    return CityPage({ params: Promise.resolve({ city: area }) });
+    permanentRedirect(`/digital-marketing-services/uttar-pradesh/${area}`);
   const a = areaBySlug(cleanAreaSlug(area));
   if (!a) notFound();
   if (!area.endsWith("-lucknow"))
     permanentRedirect(`/digital-marketing-services/${a.slug}-lucknow`);
+  const areaIndex = areas.findIndex((item) => item.slug === a.slug);
+  const relatedAreas = Array.from({ length: Math.min(6, areas.length - 1) }, (_, offset) =>
+    areas[(areaIndex + offset + 1) % areas.length],
+  );
   const url = absoluteUrl(`/digital-marketing-services/${a.slug}-lucknow`);
-  const areaIndex = Math.max(0, areas.findIndex((item) => item.slug === a.slug));
-  const relatedAreas = areas.filter((item) => item.slug !== a.slug);
-  const linkedAreas = relatedAreas.length
-    ? Array.from({ length: Math.min(6, relatedAreas.length) }, (_, i) => relatedAreas[(areaIndex * 6 + i) % relatedAreas.length])
-    : [];
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -139,12 +112,6 @@ export default async function AreaPage({
     provider: { "@id": ORGANIZATION_ID },
     areaServed: { "@type": "Place", name: `${a.name}, Lucknow` },
     serviceType: "Digital marketing services",
-    offers: {
-      "@type": "Offer",
-      price: STARTING_PRICE_INR,
-      priceCurrency: "INR",
-      description: "Services from ₹89; final pricing depends on agreed scope.",
-    },
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -159,45 +126,30 @@ export default async function AreaPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: absoluteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Digital Marketing Services",
-        item: absoluteUrl("/digital-marketing-services"),
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: a.name,
-        item: url,
-      },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Lucknow Areas", item: absoluteUrl("/digital-marketing-services") },
+      { "@type": "ListItem", position: 3, name: a.name, item: url },
     ],
   };
   return (
     <main className="area-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <div>
@@ -205,7 +157,7 @@ export default async function AreaPage({
           <a href="/seo-services-lucknow">SEO</a>
           <a href="/contact">Contact</a>
         </div>
-        <a className="button button-small" href={wa} title="Request a free local digital audit on WhatsApp" rel="noopener noreferrer">
+        <a className="button button-small" href={wa}>
           Free Audit ↗
         </a>
       </nav>
@@ -223,7 +175,7 @@ export default async function AreaPage({
         <h1>{a.title}</h1>
         <p className="area-lead">{a.opening}</p>
         <div className="hero-actions">
-          <a className="button" href={wa} title="Request a free local digital marketing audit on WhatsApp" rel="noopener noreferrer">
+          <a className="button" href={wa}>
             Request a Free Local Audit ↗
           </a>
           <a className="text-link" href="#services">
@@ -278,7 +230,7 @@ export default async function AreaPage({
               <span>0{i + 1}</span>
               <h3>{name}</h3>
               <p>{copy}</p>
-              <a href={href}>Explore {name} ↗</a>
+              <a href={href}>{name} services in {a.name} ↗</a>
             </article>;
           })}
         </div>
@@ -374,11 +326,11 @@ export default async function AreaPage({
         <h2>{a.cta}</h2>
         <span>{a.ctaText}</span>
         <div>
-          <a className="button" href={wa} title="Start your free audit on WhatsApp" rel="noopener noreferrer">
+          <a className="button" href={wa}>
             Start on WhatsApp ↗
           </a>
-          <a className="cta-call" href="tel:+919336299912" title="Call Sudarshan AI Labs at +91 93362 99912">
-            Call +91 93362 99912
+          <a className="cta-call" href="tel:+917080842220">
+            Call +91 70808 42220
           </a>
         </div>
       </section>
@@ -390,23 +342,10 @@ export default async function AreaPage({
               Digital Marketing Services
             </a>
             <a href="/seo-services-lucknow">SEO Services</a>
-            <a href="/google-ads-services">Google Ads Services</a>
+            <a href="/google-ads-management-lucknow">Google Ads Services</a>
             <a href="/social-media-marketing-lucknow">Social Media Marketing</a>
             <a href="/lead-generation-lucknow">Lead Generation</a>
             <a href="/ai-automation-lucknow">AI Automation</a>
-          </nav>
-        </div>
-        <div>
-          <h2>More Lucknow service areas</h2>
-          <nav>
-            {linkedAreas.map((other) => (
-                <a
-                  key={other.slug}
-                  href={`/digital-marketing-services/${other.slug}-lucknow`}
-                >
-                  Digital marketing in {other.name}
-                </a>
-              ))}
           </nav>
         </div>
         <div>
@@ -418,11 +357,27 @@ export default async function AreaPage({
           <p>Share a real listing, website or campaign for a focused review before choosing a channel.</p>
         </div>
       </section>
+      <section className="seo-notes" aria-labelledby="more-lucknow-areas">
+        <div>
+          <h2 id="more-lucknow-areas">More Lucknow localities</h2>
+          <nav aria-label="Other Lucknow service areas">
+            {relatedAreas.map((area) => (
+                <a key={area.slug} href={`/digital-marketing-services/${area.slug}-lucknow`}>
+                  Digital marketing in {area.name}
+                </a>
+              ))}
+          </nav>
+        </div>
+        <div>
+          <h2>Lucknow-wide support</h2>
+          <p>Compare these locality-specific recommendations with our <a href="/digital-marketing-services">complete digital marketing services in Lucknow</a>.</p>
+        </div>
+      </section>
       <footer className="area-footer">
         <a className="brand" href="/">
           <span className="brand-mark">S</span>
           <span>
-            SUDARSHAN <span className="v-brand-bold">AI LABS</span>
+            SUDARSHAN <b>AI LABS</b>
           </span>
         </a>
         <p>
