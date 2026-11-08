@@ -321,24 +321,6 @@
     }, {passive: true});
   }
 
-  // Load the third-party assistant only after a visitor asks to open it.
-  const chat = document.createElement('button');
-  chat.type = 'button';
-  chat.textContent = 'Ask AI';
-  chat.setAttribute('aria-label', 'Ask AI — open the business assistant');
-  chat.style.cssText = 'position:fixed;right:20px;bottom:20px;z-index:9999;border:1px solid #bba5ef;border-radius:24px;padding:14px 24px;background:#fff3fb;color:#332047;font:600 16px system-ui;box-shadow:0 4px 18px #33204722;cursor:pointer;touch-action:manipulation';
-  document.body.appendChild(chat);
-  chat.addEventListener('click', () => {
-    chat.disabled = true;
-    chat.textContent = 'Loading assistant…';
-    const jf = document.createElement('script');
-    jf.src = 'https://cdn.jotfor.ms/agent/embedjs/019aa7fd4aaa7cccb0ce1b2c0748666c3478/embed.js';
-    jf.async = true;
-    jf.onload = () => chat.remove();
-    jf.onerror = () => { chat.disabled = false; chat.textContent = 'Retry AI assistant'; };
-    document.body.appendChild(jf);
-  });
-
   // Offer Lightbox / Modal progressive enhancement
   const offerLightbox = document.getElementById('offer-lightbox');
   if (offerLightbox) {
