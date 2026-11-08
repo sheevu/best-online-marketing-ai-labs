@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Check, MagnifyingGlass, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { aLaCarteOffers, offerWhatsAppUrl, subscriptionPlans } from "../lib/pricing-catalog";
+import AlaCarteServicesGrid from "./AlaCarteServicesGrid";
 
 const planScopes = [
   {
@@ -177,29 +178,7 @@ export default function PricingCatalog() {
         ))}
       </div>
 
-      <div className="offer-grid" aria-live="polite">
-        {filteredOffers.map((offer) => (
-          <article className="offer-card" key={offer.id}>
-            <div className="offer-card-top"><span>{offer.category}</span><small>{offer.billingLabel}</small></div>
-            <h4>{offer.offerName}</h4>
-            <p>{offer.description}</p>
-            <div className="offer-price-row">
-              <strong>{formatINR(offer.price)}{offer.billingLabel === "per month" && <small>/month</small>}</strong>
-              <span><s>MRP {formatINR(offer.mrp)}</s><b>Save {savings(offer.mrp, offer.price)}</b></span>
-            </div>
-            <details className="offer-seo-details">
-              <summary>Original SEO listing details</summary>
-              <p><b>{offer.seoTitle}</b></p>
-              <p>{offer.sourceMetaDescription}</p>
-              <p><b>Primary keyword:</b> {offer.primaryKeyword}{offer.secondaryKeywords ? ` · ${offer.secondaryKeywords}` : ""}</p>
-            </details>
-            <a className="offer-cta" href={offerWhatsAppUrl(offer)} target="_blank" rel="noreferrer">
-              <WhatsappLogo weight="fill" /> Ask about {offer.offerName} <ArrowRight weight="bold" />
-            </a>
-          </article>
-        ))}
-        {filteredOffers.length === 0 && <p className="offer-empty">No offers match that search. Try another service name or category.</p>}
-      </div>
+      <AlaCarteServicesGrid offers={filteredOffers} />
 
       <p className="catalog-price-note">Workbook offer prices and MRPs are shown as supplied. Prices without “/month” are listed offer prices; billing basis, scope, taxes and third-party costs are confirmed in writing before work begins.</p>
     </section>
