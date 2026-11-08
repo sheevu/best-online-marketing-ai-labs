@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 workerUrl.searchParams.set("deployment-check", `${process.pid}-${Date.now()}`);
@@ -27,8 +28,12 @@ test("homepage has self-canonical metadata, pricing and the Jotform widget", asy
   assert.match(html, /src="https:\/\/www\.jotform\.com\/website-widgets\/embed\/01a1b8324a50700087916735dd7644c43a53"/i);
   assert.match(html, /id="location"/i);
   assert.match(html, /title="Google Map centered on Gomti Nagar, Lucknow"/i);
-  assert.match(html, /maps\.google\.com\/maps\?q=26\.8686946/i);
+  assert.match(html, /src="\/lucknow-neighborhood-map\.html"/i);
   assert.doesNotMatch(html, /www\.sudarshan-ai\.com|sheevumgoel\.chatgpt\.site|\/workspace\/sites\//i);
+  const map = await readFile(new URL("../public/lucknow-neighborhood-map.html", import.meta.url), "utf8");
+  assert.match(map, /new NeighborhoodDiscovery\(CONFIGURATION\)/);
+  assert.match(map, /maps\.googleapis\.com\/maps\/api\/js/);
+  assert.doesNotMatch(map, /YOUR_API_KEY_HERE|GOCSPX-/);
 });
 
 test("service landing pages return indexable self-canonical HTML", async () => {

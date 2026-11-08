@@ -1100,7 +1100,7 @@ export default function Home() {
         <div className="v-map-frame">
           <iframe
             title="Google Map centered on Gomti Nagar, Lucknow"
-            src="https://maps.google.com/maps?q=26.8686946%2C80.9911573&z=14&output=embed"
+            src="/lucknow-neighborhood-map.html"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
