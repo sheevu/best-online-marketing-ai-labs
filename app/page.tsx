@@ -711,6 +711,7 @@ export default function Home() {
         <div className="v-service-grid" ref={serviceRail} aria-label="Digital growth services">
           {services.map(({ title, text, tag, href, Icon, theme }, i) => (
             <article className={`v-service ${theme}`} key={title}>
+              <div className="v-service-art" aria-hidden="true"><span className="v-service-orb v-service-orb-one" /><span className="v-service-orb v-service-orb-two" /><Icon weight="duotone" /></div>
               <div className="v-service-top">
                 <span>0{i + 1}</span>
                 <Icon weight="duotone" />
@@ -1098,11 +1099,11 @@ export default function Home() {
             <MapPin weight="fill" /> Open directions in Google Maps <ArrowUpRight />
           </a>
         </div>
-        <div className="v-map-frame v-map-fallback">
+        <div className="v-location-details">
           <MapPin weight="duotone" aria-hidden="true" />
-          <strong>Find us in Lucknow</strong>
-          <p>Open Google Maps for directions and local business information.</p>
-          <a href={MAP_URL} target="_blank" rel="noopener noreferrer">View on Google Maps <ArrowUpRight /></a>
+          <span>Serving Lucknow & Uttar Pradesh</span>
+          <p>Local expertise, practical digital growth and AI support for your business.</p>
+          <a href={MAP_URL} target="_blank" rel="noopener noreferrer">Explore our location <ArrowUpRight /></a>
         </div>
       </section>
       <footer className="v-footer">

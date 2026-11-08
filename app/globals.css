@@ -8394,3 +8394,44 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
  .global-mobile-menu nav a { color:#fff; padding:12px; text-decoration:none; border-radius:7px; }
  .global-mobile-menu nav a:hover { background:#ffffff1a; }
 }
+
+
+/* Mobile location: no empty map iframe or large placeholder. */
+.v-location-details { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:14px; padding:clamp(26px,5vw,48px); min-height:230px; border-radius:28px; background:linear-gradient(140deg,#fffef8,#e9e8ff 52%,#d5efff); color:#282042; box-shadow:0 20px 46px #08052030; }
+.v-location-details>svg { width:46px; height:46px; color:#6442c2; }
+.v-location-details>span { font:700 clamp(21px,2.6vw,30px)/1.2 Georgia,serif; }
+.v-location-details p { color:#57516a; margin:0; max-width:36ch; line-height:1.55; }
+.v-location-details a { display:inline-flex; gap:8px; align-items:center; padding:12px 18px; border-radius:999px; background:#4f37ac; color:#fff; text-decoration:none; font-weight:750; }
+/* Reference-inspired pastel abstract cards; all real services and links retained. */
+.v-service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); overflow:visible; gap:18px; scroll-snap-type:none; padding:12px 0 24px; margin:0; }
+.v-service { display:flex; flex-direction:column; gap:14px; min-height:370px; padding:16px 18px 22px; border-radius:26px; background:#fbfafc; overflow:hidden; box-shadow:0 10px 30px #251e4a12; }
+.v-service::before { display:none; }
+.v-service-art { height:155px; position:relative; isolation:isolate; display:grid; place-items:center; overflow:hidden; border-radius:20px; background:radial-gradient(ellipse at 25% 20%,#fff9 0%,transparent 56%),linear-gradient(135deg,#f9b9df,#c4b7ff 56%,#83d9ff); }
+.v-service-art svg { width:58px; height:58px; position:relative; z-index:2; color:#fff; filter:drop-shadow(0 7px 12px #40316b55); }
+.v-service-orb { position:absolute; display:block; border-radius:44% 56% 61% 39%; transform:rotate(-28deg); filter:blur(1px); box-shadow:inset -15px -15px 30px #fff5, 12px 18px 35px #6540a344; }
+.v-service-orb-one { width:150px; height:115px; top:-26px; right:-12px; background:linear-gradient(135deg,#f9a5db,#a268ed,#60c9f5); }
+.v-service-orb-two { width:116px; height:94px; bottom:-28px; left:-12px; background:linear-gradient(135deg,#e0d4ff,#a7d8ff,#6e9fff); }
+.v-service.sky .v-service-art { background:linear-gradient(135deg,#e6e9ff,#93d3ff,#c6f0ff); }
+.v-service.lemon .v-service-art { background:linear-gradient(135deg,#f3ffac,#c6ec6c,#a6d2c7); }
+.v-service.lavender .v-service-art { background:linear-gradient(135deg,#f4e3ff,#c5baff,#a6c7fa); }
+.v-service.mint .v-service-art { background:linear-gradient(135deg,#d9fff0,#9bdfcb,#a6d4ff); }
+.v-service.peach .v-service-art { background:linear-gradient(135deg,#fff0dc,#ffc4c2,#dfb6fc); }
+.v-service-top { margin-top:0; }
+.v-service h3 { font:700 clamp(21px,2vw,28px)/1.14 Georgia,serif; }
+.v-service p { font-size:14px; line-height:1.5; }
+.v-service a { margin-top:auto; }
+.service-carousel-toolbar button { display:none; }
+@media(max-width:800px) {
+ .v-service-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+ .v-service { min-width:0; min-height:300px; padding:10px 10px 17px; gap:10px; border-radius:20px; }
+ .v-service-art { height:120px; border-radius:14px; }
+ .v-service-art svg { width:42px; height:42px; }
+ .v-service h3 { font-size:20px; }
+ .v-service p { font-size:12px; line-height:1.5; }
+ .v-service small { font-size:9px; }
+ .v-service a { font-size:11px; }
+ .v-location-details { min-height:210px; padding:25px; }
+ .site-assistant { position:static !important; margin:18px 18px 28px auto; align-items:flex-end; }
+ .site-assistant-trigger { min-height:46px; }
+}
+@media(max-width:370px) { .v-service-grid { grid-template-columns:1fr; } .v-service-art { height:160px; } }
