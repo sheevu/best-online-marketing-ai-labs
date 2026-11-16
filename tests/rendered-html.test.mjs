@@ -58,10 +58,29 @@ test("robots and sitemap are public and use only canonical indexable URLs", asyn
   assert.equal(sitemap.headers.get("x-robots-tag"), "all");
   const xml = await sitemap.text();
   assert.match(xml, /https:\/\/sudarshan-ai\.com\/digital-marketing-services/);
-  assert.doesNotMatch(xml, /https:\/\/www\.sudarshan-ai\.com|product-page|<lastmod>/i);
+  assert.doesNotMatch(xml, /https:\/\/www\.sudarshan-ai\.com|<lastmod>/i);
 });
 
 test("unknown routes return 404", async () => {
   const response = await request("/deployment-check-unknown-route");
   assert.equal(response.status, 404);
+});
+
+
+test("all feed products have live self-canonical indexable pages and sitemap entries", async () => {
+  const offers = JSON.parse(await readFile(new URL("../app/lib/pricing-offers.json", import.meta.url), "utf8"));
+  const sitemap = await (await request("/sitemap.xml")).text();
+  assert.equal(offers.length, 22);
+  for (const offer of offers) {
+    const url = `https://sudarshan-ai.com/${offer.seoSlug}`;
+    assert.equal(offer.productUrl, url);
+    assert.ok(sitemap.includes(`<loc>${url}</loc>`), `Missing sitemap entry: ${url}`);
+    const response = await request(`/${offer.seoSlug}`);
+    assert.equal(response.status, 200, offer.seoSlug);
+    const html = await response.text();
+    assert.ok(html.includes(`rel="canonical" href="${url}"`), `Wrong canonical: ${url}`);
+    assert.doesNotMatch(html, /<meta[^>]+content="[^"]*noindex/i);
+    assert.equal((html.match(/<h1\b/g) || []).length, 1);
+    assert.ok(html.includes('application/ld+json'));
+  }
 });
