@@ -7,6 +7,7 @@ export type ServiceCardData = {
   id: string;
   category: string;
   title: string;
+  productPath: string;
   description: string;
   price: number;
   mrp: number;
@@ -60,6 +61,7 @@ export const servicesData: ServiceCardData[] = aLaCarteOffers.map((offer) => {
     id: offer.id,
     category: offer.category,
     title: offer.offerName,
+    productPath: `/${offer.seoSlug}`,
     description: offer.description,
     price: offer.price,
     mrp: offer.mrp,
@@ -160,7 +162,7 @@ export default function AlaCarteServicesGrid({ offers }: { offers: PricingOffer[
             </div>
 
             <div aria-hidden="true" className={`mt-5 flex h-14 w-14 items-center justify-center rounded-2xl text-3xl shadow-sm ${theme.accent}`}>{service.icon}</div>
-            <h4 className="mt-4 mb-2 text-xl leading-snug font-extrabold tracking-tight">{service.title}</h4>
+            <h4 className="mt-4 mb-2 text-xl leading-snug font-extrabold tracking-tight"><a href={service.productPath}>{service.title}</a></h4>
             <p className={`mb-4 line-clamp-3 text-sm leading-relaxed ${theme.muted}`}>{service.description}</p>
 
             <div className={`mt-auto flex flex-wrap items-end justify-between gap-3 border-t pt-4 ${theme.rule}`}>

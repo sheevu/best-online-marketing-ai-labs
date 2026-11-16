@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { pricingOffers } from "./lib/pricing-catalog";
 import { areas } from "./lib/areas";
 import { cities } from "./lib/cities";
 import { serviceCatalog } from "./lib/service-catalog";
@@ -32,6 +33,7 @@ const cityServicePaths = serviceCatalog.flatMap((service) =>
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    ...pricingOffers.map(offer => ({ url: `${SITE_URL}/${offer.seoSlug}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
     ...servicePaths.map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: "weekly" as const, priority: 0.9 })),
     ...catalogServicePaths.map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: "weekly" as const, priority: 0.8 })),

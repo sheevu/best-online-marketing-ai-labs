@@ -90,7 +90,7 @@ export default function PricingCatalog() {
                 <span className="subscription-audience">{scope.audience}</span>
                 {index === 1 && <span className="plan-badge">GROWTH PLAN</span>}
               </div>
-              <h4>{offer.offerName}</h4>
+              <h4><a href={`/${offer.seoSlug}`}>{offer.offerName}</a></h4>
               <p className="subscription-copy">{offer.description}</p>
               <div className="subscription-price-line">
                 <strong>{formatINR(offer.price)}<small>/month</small></strong>
@@ -137,7 +137,7 @@ export default function PricingCatalog() {
               <article className={`comparison-plan ${index === 1 ? "is-featured" : ""}`} key={plan.id} aria-label={`${plan.offerName} plan comparison`}>
                 {index === 1 && <span className="comparison-plan-badge">MOST POPULAR</span>}
                 <p>{scope.audience}</p>
-                <h4>{plan.offerName}</h4>
+                <h4><a href={`/${plan.seoSlug}`}>{plan.offerName}</a></h4>
                 <strong className="comparison-plan-price">{formatINR(plan.price)}<small>/month</small></strong>
                 <ul>{features.map(([label, value]) => (
                   <li key={label} className={value.startsWith("Not included") ? "is-muted" : ""}>
