@@ -176,18 +176,6 @@ export default function AlaCarteServicesGrid({ offers }: { offers: PricingOffer[
               </div>
             </div>
 
-            <details className={`group/seo mt-4 rounded-2xl border px-3 py-2.5 text-xs ${theme.details}`}>
-              <summary className="flex min-h-6 cursor-pointer list-none items-center justify-between gap-2 font-semibold marker:hidden [&::-webkit-details-marker]:hidden">
-                Original SEO listing details
-                <ArrowRight aria-hidden="true" className="shrink-0 transition-transform duration-200 group-open/seo:rotate-90" />
-              </summary>
-              <div className="mt-3 space-y-2 border-t border-current/15 pt-3 leading-relaxed">
-                <p className="font-semibold">{service.seoTitle}</p>
-                <p>{service.sourceMetaDescription}</p>
-                <p><strong>Primary keyword:</strong> {service.primaryKeyword}{service.secondaryKeywords ? ` · ${service.secondaryKeywords}` : ""}</p>
-              </div>
-            </details>
-
             <a
               className={`mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-3 py-3 text-center text-sm leading-snug font-bold shadow-md transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber-300 motion-reduce:transform-none ${theme.action}`}
               href={service.whatsappLink}

@@ -122,13 +122,11 @@ export default function ProductCard({
       {/* Meta & Heading */}
       <span className="v-product-meta">
         <span className="v-meta-num">{String(index + 1).padStart(2, "0")}</span>
-        <span className="v-meta-dot">•</span>
-        <span className="v-meta-kw">{product.primaryKeyword}</span>
       </span>
 
       <h3 className="v-product-title">{product.shortName}</h3>
       <p className="v-product-brand-subtitle">{product.newTitle}</p>
-      <p className="v-product-desc">{product.metaDescription}</p>
+      <p className="v-product-desc">{product.newTitle}. For {product.bestFor.toLowerCase()}.</p>
 
       {/* Inclusions Feature Box */}
       <div className="v-product-features">

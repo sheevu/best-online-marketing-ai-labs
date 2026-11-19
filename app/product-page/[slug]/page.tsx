@@ -40,14 +40,8 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
 
-  const cleanTitle = product.seoTitle.replace(/\s*\|\s*Sudarshan AI Labs.*$/i, "").trim();
-  const brandedTitle = `${cleanTitle} | Sudarshan AI Labs`;
-  const conciseTitle = brandedTitle.length > 60
-    ? product.shortName
-    : cleanTitle;
-  const conciseDescription = product.metaDescription.length > 155
-    ? `${product.metaDescription.slice(0, 152).replace(/[\s,;:.-]+$/, "")}...`
-    : product.metaDescription;
+  const conciseTitle = product.shortName;
+  const conciseDescription = `${product.newTitle}. Confirm the scope and any recurring charges before ordering.`.slice(0, 155);
   const canonicalUrl = `${SITE_URL}/${product.urlSlug}`;
 
   return {
@@ -77,7 +71,7 @@ export async function generateMetadata({
           url: "/sudarshan-lucknow-hero.webp",
           width: 1672,
           height: 941,
-          alt: `${product.brandTitle} by Sudarshan AI Labs`,
+          alt: `${product.shortName} by Sudarshan AI Labs`,
         },
       ],
     },
@@ -100,8 +94,15 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const productUrl = `${SITE_URL}/${product.urlSlug}`;
+  const publicDescription = `${product.newTitle}. Confirm the scope and any recurring charges before ordering.`;
+  const publicFaqs: [string, string][] = [
+    [`What is included in ${product.shortName}?`, `${product.deliverables.slice(0, 4).join("; ")}. The final scope is confirmed before ordering.`],
+    ["How long does delivery take?", "Timing depends on the agreed scope and when required content, access and approvals are available. We confirm timing before work begins."],
+    ["What price applies?", `The current listed offer is ₹${product.offerNumeric.toLocaleString("en-IN")}. Any recurring charges, platform fees, ad spend or exclusions are confirmed before ordering.`],
+    [`Who is ${product.shortName} for?`, `${product.bestFor}. Share your requirements to confirm whether the listed scope fits your business.`],
+  ];
   const whatsappOrderUrl = `https://wa.me/${CONTACT_PHONE.replace(/\D/g, "")}?text=${encodeURIComponent(
-    `Hi Sudarshan AI Labs, I am interested in ${product.brandTitle} at the special offer price of ${product.offerPrice}. Please share details and the onboarding checklist.`
+    `Hi Sudarshan AI Labs, I am interested in ${product.shortName} at the listed price of ${product.offerPrice}. Please confirm the scope and any additional charges.`
   )}`;
 
   // Related products from the same or complementary categories
@@ -116,8 +117,8 @@ export default async function ProductDetailPage({
       {
         "@type": "Product",
         "@id": `${productUrl}#product`,
-        name: product.brandTitle,
-        description: product.metaDescription,
+        name: product.shortName,
+        description: publicDescription,
         sku: `SAL-${product.id}`,
         category: product.category,
         image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
@@ -166,7 +167,7 @@ export default async function ProductDetailPage({
       {
         "@type": "FAQPage",
         "@id": `${productUrl}#faq`,
-        mainEntity: product.faqs.map(([question, answer]) => ({
+        mainEntity: publicFaqs.map(([question, answer]) => ({
           "@type": "Question",
           name: question,
           acceptedAnswer: {
@@ -226,8 +227,8 @@ export default async function ProductDetailPage({
                 <span className="prod-id-tag">ID: {product.id}</span>
               </div>
 
-              <h1 className="prod-title">{product.brandTitle}</h1>
-              <p className="prod-desc">{product.metaDescription}</p>
+              <h1 className="prod-title">{product.shortName}</h1>
+              <p className="prod-desc">{publicDescription}</p>
 
               <div className="prod-highlights-box">
                 <h3>What You Get in This Pack:</h3>
@@ -244,15 +245,15 @@ export default async function ProductDetailPage({
               <div className="prod-trust-signals">
                 <div>
                   <Clock weight="duotone" />
-                  <span>24–72h Fast Setup</span>
+                  <span>Timing confirmed before work</span>
                 </div>
                 <div>
                   <ShieldCheck weight="duotone" />
-                  <span>100% Asset Ownership</span>
+                  <span>Clear scope and handover</span>
                 </div>
                 <div>
                   <Sparkle weight="duotone" />
-                  <span>No Recurring Lock-in</span>
+                  <span>Hindi and English support</span>
                 </div>
               </div>
             </div>
@@ -264,7 +265,7 @@ export default async function ProductDetailPage({
                   <ProductIcon name={product.iconName} weight="duotone" />
                 </div>
                 <div>
-                  <span className="prod-plan-kicker">VERIFIED BRAND OFFER</span>
+                  <span className="prod-plan-kicker">CURRENT LISTED OFFER</span>
                   <h2>{product.shortName}</h2>
                 </div>
               </div>
@@ -285,7 +286,7 @@ export default async function ProductDetailPage({
               </div>
 
               <p className="prod-pricing-subtext">
-                One-time transparent pricing for Lucknow & Uttar Pradesh MSMEs. Full setup, verification & guidance included.
+                Confirm what is included, the timeline, and any recurring or third-party charges before ordering.
               </p>
 
               <div className="prod-cta-actions">
@@ -307,7 +308,7 @@ export default async function ProductDetailPage({
               </div>
 
               <div className="prod-card-footer">
-                <small>Bilingual Support • Hindi & English • Direct Founder Guidance</small>
+                <small>Hindi & English support • Scope confirmed before work begins</small>
               </div>
             </aside>
           </div>
@@ -327,20 +328,15 @@ export default async function ProductDetailPage({
         <div className="prod-specs-grid">
           <article className="prod-spec-card">
             <h3>Primary Objective</h3>
-            <p>{product.longDescription}</p>
+            <ul>{product.deliverables.slice(0, 4).map((item) => <li key={item}>{item}</li>)}</ul>
           </article>
           <article className="prod-spec-card">
             <h3>Target Audience & Best For</h3>
-            <p>{product.bestFor}. Designed for businesses seeking high-intent local customer discovery without wasteful retainers.</p>
+            <p>{product.bestFor}.</p>
           </article>
           <article className="prod-spec-card">
-            <h3>Search & Discoverability Keywords</h3>
-            <div className="prod-keywords-pills">
-              <span className="prod-kw-main">{product.primaryKeyword}</span>
-              {product.secondaryKeywords.map((kw) => (
-                <span key={kw} className="prod-kw-secondary">{kw}</span>
-              ))}
-            </div>
+            <h3>Before you order</h3>
+            <p>Confirm the deliverables, timeline, access requirements, recurring costs and third-party fees in writing.</p>
           </article>
         </div>
       </section>
@@ -354,18 +350,18 @@ export default async function ProductDetailPage({
         <div className="prod-why-grid">
           <div className="prod-why-card">
             <span className="prod-why-num">01</span>
-            <h3>No Lock-in Retainers</h3>
-            <p>You pay for tangible, working assets that belong exclusively to you. No hidden monthly hostage fees or proprietary lock-in.</p>
+            <h3>Clear ownership and terms</h3>
+            <p>Confirm asset ownership, deliverables, recurring fees and cancellation terms before work begins.</p>
           </div>
           <div className="prod-why-card">
             <span className="prod-why-num">02</span>
-            <h3>Real Commercial Signals</h3>
-            <p>We build systems for real enquiries—phone calls, store visits, and WhatsApp conversations—not misleading vanity impressions.</p>
+            <h3>Agreed measurement</h3>
+            <p>Choose relevant measures for the work, such as search visibility, site enquiries, calls or campaign activity.</p>
           </div>
           <div className="prod-why-card">
             <span className="prod-why-num">03</span>
-            <h3>Speed & Agility</h3>
-            <p>While traditional agencies take 4–6 weeks for simple onboarding, our streamlined starter packs are live in 24 to 72 hours.</p>
+            <h3>Delivery expectations</h3>
+            <p>Timing depends on scope, required access and approvals. We confirm a delivery plan before work begins.</p>
           </div>
         </div>
       </section>
@@ -378,7 +374,7 @@ export default async function ProductDetailPage({
           <p>Common questions about scope, delivery timelines, and post-launch support.</p>
         </div>
         <div className="prod-faqs-container">
-          {product.faqs.map(([q, a]) => (
+          {publicFaqs.map(([q, a]) => (
             <details key={q} className="prod-faq-item">
               <summary>
                 <span>{q}</span>
@@ -405,7 +401,7 @@ export default async function ProductDetailPage({
                   <span className="prod-rel-badge">{rel.badge}</span>
                 </div>
                 <h3>{rel.shortName}</h3>
-                <p>{rel.metaDescription}</p>
+                <p>{rel.newTitle}. For {rel.bestFor.toLowerCase()}.</p>
                 <div className="prod-rel-price">
                   <small>Offer Price</small>
                   <span className="price-bold">{rel.offerPrice}</span>
