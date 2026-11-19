@@ -3,6 +3,8 @@ import {
   LEGAL_NAME,
   CONTACT_PHONE,
   CONTACT_EMAIL,
+  STREET_ADDRESS,
+  POSTAL_CODE,
 } from "./site";
 
 export const SITE = SITE_URL;
@@ -17,44 +19,21 @@ export const ref = (id: string) => ({ "@id": id });
 
 export const address = {
   "@type": "PostalAddress",
-  streetAddress: "C-469/C, Indira Nagar, Near HAL",
+  streetAddress: STREET_ADDRESS,
   addressLocality: "Lucknow",
   addressRegion: "Uttar Pradesh",
-  postalCode: "226016",
+  postalCode: POSTAL_CODE,
   addressCountry: "IN",
 };
 
 export const sharedOrganization = () => ({
-  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+  "@type": "Organization",
   "@id": IDS.organization,
   name: "Sudarshan AI Labs",
   legalName: LEGAL_NAME,
   url: `${SITE}/`,
   logo: `${SITE}/apple-touch-icon.png`,
   image: `${SITE}/sudarshan-lucknow-hero.webp`,
-  priceRange: "₹₹",
-  currenciesAccepted: "INR",
-  paymentAccepted: "Cash, UPI, Credit Card, Net Banking",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      opens: "09:30",
-      closes: "19:00",
-    },
-  ],
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 26.8837,
-    longitude: 80.9934,
-  },
   description:
     "Lucknow-based digital marketing, web development and practical AI automation for MSMEs.",
   address,
@@ -364,7 +343,7 @@ export function buildServicePageSchema({
   description,
   areaName = "Lucknow",
   parents = [{ name: "Digital Marketing Services", item: `${SITE}/digital-marketing-services` }],
-  startingPrice = 89,
+  startingPrice,
   faqs,
 }: {
   url: string;

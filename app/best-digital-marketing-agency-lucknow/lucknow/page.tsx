@@ -67,7 +67,7 @@ const page: ServicePageData = {
       "Ask each agency to explain the scope, deliverables, measurement method, ownership of assets and what depends on your team. Compare the same brief and avoid treating guaranteed rankings or sales as proof.",
     ],
     [
-      "Can you support businesses outside Gomti Nagar?",
+      "Can you support businesses outside Lucknow?",
       "Yes. Sudarshan AI Labs works with Lucknow businesses across neighbourhoods and can support suitable projects remotely across Uttar Pradesh and India.",
     ],
     [

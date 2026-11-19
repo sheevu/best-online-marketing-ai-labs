@@ -20,6 +20,7 @@ const catalogServicePaths = serviceCatalog.map((service) => "/" + service.slug);
 const trustPaths = [
   "/contact",
   "/about-sheevum-goel",
+  "/product-page",
   "/privacy-policy",
   "/terms-of-service",
   "/refund-policy",
@@ -32,7 +33,7 @@ const cityServicePaths = serviceCatalog.flatMap((service) =>
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const entries: MetadataRoute.Sitemap = [
     ...pricingOffers.map(offer => ({ url: `${SITE_URL}/${offer.seoSlug}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
     ...servicePaths.map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: "weekly" as const, priority: 0.9 })),
@@ -44,4 +45,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...areas.map((area) => ({ url: `${SITE_URL}/digital-marketing-services/${area.slug}-lucknow`, changeFrequency: "monthly" as const, priority: 0.65 })),
     ...cities.map((city) => ({ url: `${SITE_URL}/digital-marketing-services/uttar-pradesh/${city.slug}`, changeFrequency: "monthly" as const, priority: 0.65 })),
   ];
+  return Array.from(new Map(entries.map((entry) => [entry.url, entry])).values());
 }

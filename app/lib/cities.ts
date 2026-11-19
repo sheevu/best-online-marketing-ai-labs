@@ -53,12 +53,12 @@ export const cities:CityPage[]=[
         "copy": "Automated instant response systems that capture and nurture leads directly on WhatsApp."
       }
     ],
-    "who": "We partner with Lucknow-based founders, clinic directors, institute heads, and retail managers who need a reliable, predictable stream of qualified local inquiries without wasting budget on unproven experiments.",
-    "why": "We combine deep understanding of Lucknow's local buying psychology with performance marketing practices. We focus exclusively on bottom-line business metrics—verified leads, footfall, and booked appointments—rather than vanity likes or empty impressions.",
+    "who": "We work with Lucknow-based founders, clinic directors, institute heads, and retail managers who want to improve local discovery, make enquiries easier to manage, and measure their digital work clearly.",
+    "why": "We connect local search, clear landing pages, focused campaigns and practical follow-up. Measurement is agreed around the business goal, and recommendations reflect the offer, budget and capacity to respond.",
     "faqs": [
       [
         "How long does it take to get stronger visibility on Google Maps in Lucknow?",
-        "Google Business Profile optimizations usually deliver initial map visibility gains within 30 to 60 days depending on local competition in areas like Gomti Nagar or Hazratganj."
+        "Map visibility changes depend on profile accuracy, competition, customer demand and the business category. We review these factors and track agreed measures instead of promising a fixed rank or timeline."
       ],
       [
         "Can you handle Hindi and English ad campaigns for Lucknow audiences?",
@@ -66,7 +66,7 @@ export const cities:CityPage[]=[
       ],
       [
         "Do you offer performance-based Google Ads management for local clinics?",
-        "We structure Google Ads campaigns strictly around cost-per-qualified-lead (CPL) to maximize your return on ad spend."
+        "Where suitable, we agree a target cost per qualified enquiry and review it against the campaign data. Results depend on the offer, audience, budget and follow-up process."
       ]
     ],
     "ctaHeadline": "Ready to Dominate Your Market in Lucknow?",
@@ -488,7 +488,7 @@ export const cities:CityPage[]=[
     "services": [
       {
         "name": "SEO",
-        "copy": "Rank #1 for competitive terms like \"best IAS coaching in Katra\" or \"top hospital in George Town.\""
+        "copy": "Target useful local-intent searches such as IAS coaching in Katra or hospitals in George Town, then measure discovery and enquiry signals."
       },
       {
         "name": "Google Ads",
@@ -546,7 +546,7 @@ export const cities:CityPage[]=[
     "title": "Digital Marketing Services in Bareilly | Local SEO & Ads",
     "meta": "Grow your Bareilly business with targeted SEO, Meta Ads, and e-commerce marketing. Win customers across furniture, medical, and retail sectors.",
     "h1": "Results-Driven Digital Marketing Agency in Bareilly",
-    "intro": "Bareilly serves as a major trade, medical, and manufacturing node connecting Western UP with Rohilkhand. Known for its renowned furniture manufacturing, Zari-Zardozi craft, private medical institutions, and retail hubs along Civil Lines and Rajendra Nagar, competition across the city is accelerating. Traditional local advertising no longer guarantees customer walk-ins or B2B contracts. Our digital marketing services in Bareilly help local enterprises digitize their sales funnels, rank higher on Google, and drive verified inquiries.",
+    "intro": "Bareilly serves as a trade, medical, and manufacturing centre connecting Western Uttar Pradesh with Rohilkhand. Furniture, Zari-Zardozi, healthcare and retail businesses compete across areas such as Civil Lines and Rajendra Nagar. Traditional local advertising cannot show every customer journey. Our digital marketing services help businesses improve online discovery, build clearer enquiry paths and track agreed signals.",
     "need": "As consumer spending in Bareilly grows, buying behavior is moving online. Medical patients from surrounding rural belts search for trusted specialists on their phones, while furniture buyers across India seek custom wooden craft online. Without an active digital presence, Bareilly businesses forfeit market share to national brands and local competitors who capture search intent early.",
     "industries": [
       "Wooden Furniture Manufacturers: Custom furniture makers, hand-carved wood exporters, and wholesale units.",
@@ -743,7 +743,7 @@ export const cities:CityPage[]=[
       },
       {
         "name": "Lead Generation / WhatsApp Funnel",
-        "copy": "Direct inquiry routing system to turn catalog views into instant sales conversations."
+        "copy": "Direct enquiry routing that helps turn catalogue views into timely sales conversations."
       }
     ],
     "who": "We partner with Moradabad handicraft exporters, factory owners, healthcare administrators, school heads, and retail merchants who want to scale their revenue using performance digital marketing.",
@@ -986,7 +986,7 @@ export const cities:CityPage[]=[
       ],
       [
         "Can Meta Ads generate qualified leads for Noida luxury real estate?",
-        "Yes. We deploy video-first ad creatives, pre-qualifying questionnaire forms, and instant sales team CRM routing to ensure lead quality."
+        "Yes. We can combine video-led ads, qualification questions and prompt CRM routing to help teams assess and follow up on enquiries."
       ],
       [
         "What sets your SEO strategy apart for high-competition Noida keywords?",

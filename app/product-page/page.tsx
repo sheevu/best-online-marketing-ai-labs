@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ProductCard from "../_components/ProductCard";
+import { serializeJsonLd } from "../_components/StructuredData";
 import { PRODUCTS } from "../lib/products-data";
 import {
   CONTACT_EMAIL,
@@ -84,7 +85,7 @@ export default function ProductCatalogPage() {
     <main className="product-page-wrapper">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
 
       {/* Global Navigation Header */}

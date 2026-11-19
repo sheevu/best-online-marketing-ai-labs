@@ -5,6 +5,67 @@
   const referral = new URLSearchParams(location.search).get('rwg_token');
   if (referral) document.cookie = `_rwg_token=${encodeURIComponent(referral)}; Max-Age=2592000; Path=/; SameSite=Lax; Secure`;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Sitewide Leeila panel: load the Jotform agent only after a visitor opens it.
+  const assistantPanel = document.querySelector('[data-assistant-panel]');
+  const assistantToggle = document.querySelector('[data-assistant-toggle]');
+  const assistantFrame = document.querySelector('[data-assistant-frame]');
+  const setAssistantOpen = open => {
+    if (!assistantPanel || !assistantToggle) return;
+    assistantPanel.hidden = !open;
+    assistantToggle.setAttribute('aria-expanded', String(open));
+    assistantToggle.querySelector('span').textContent = open ? 'Close chat' : 'Ask Leeila AI';
+    if (open && assistantFrame?.getAttribute('src') === 'about:blank') assistantFrame.src = assistantFrame.dataset.assistantFrame;
+    if (open) assistantPanel.querySelector('[data-assistant-close]')?.focus();
+    else assistantToggle.focus();
+  };
+  assistantToggle?.addEventListener('click', () => setAssistantOpen(assistantPanel.hidden));
+  assistantPanel?.querySelector('[data-assistant-close]')?.addEventListener('click', () => setAssistantOpen(false));
+
+  // One respectful delayed lead prompt per tab; the visitor controls WhatsApp handoff.
+  const leadPopup = document.querySelector('[data-lead-popup]');
+  const leadForm = leadPopup?.querySelector('[data-lead-form]');
+  const leadSeenKey = 'sal-growth-review-prompt-seen';
+  const markLeadSeen = () => { try { sessionStorage.setItem(leadSeenKey, '1'); } catch {} };
+  const closeLeadPopup = () => { if (leadPopup) leadPopup.hidden = true; markLeadSeen(); };
+  const showLeadPopup = () => {
+    if (!leadPopup) return;
+    leadPopup.hidden = false;
+    leadPopup.querySelector('#lead-business')?.focus();
+  };
+  let leadAlreadySeen = false;
+  try { leadAlreadySeen = sessionStorage.getItem(leadSeenKey) === '1'; } catch {}
+  if (leadPopup && !leadAlreadySeen) window.setTimeout(showLeadPopup, 24000);
+  leadPopup?.querySelector('[data-lead-close]')?.addEventListener('click', closeLeadPopup);
+  leadPopup?.addEventListener('mousedown', event => { if (event.target === leadPopup) closeLeadPopup(); });
+  leadForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    const business = leadForm.elements.namedItem('business').value.trim();
+    const goal = leadForm.elements.namedItem('goal').value;
+    const message = [
+      'Hi Sudarshan AI Labs, I would like a free growth review.',
+      business ? `Business / website: ${business}` : '',
+      `My priority: ${goal}`,
+      'I found you on the website.'
+    ].filter(Boolean).join('\n');
+    const phone = leadPopup.dataset.whatsapp || '917080842220';
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    closeLeadPopup();
+  });
+  leadPopup?.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { closeLeadPopup(); return; }
+    if (event.key !== 'Tab') return;
+    const focusable = [...leadPopup.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled])')];
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (!first || !last) return;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !leadPopup?.hidden) closeLeadPopup();
+    else if (event.key === 'Escape' && assistantPanel && !assistantPanel.hidden) setAssistantOpen(false);
+  });
+
   const loadAhrefs = () => {
     if (document.querySelector('script[data-ahrefs-analytics]')) return;
     const script = document.createElement('script');
@@ -248,12 +309,12 @@
       ],
       [
         { h3: "Zero agency lock-in", p: "Complete transfer of domain DNS, source code, ad accounts and automation pipelines.", aText: "Explore our model ↗", aHref: "/about-sheevum-goel#story" },
-        { h3: "Local SEO dominance", p: "Rankings built on authentic Google Business Profiles and localized topical cluster content.", aText: "View local rankings ↗", aHref: "/seo-services-lucknow" },
-        { h3: "Predictable leads", p: "Tailored WhatsApp auto-responders and Hindi-first CRM integrations converting traffic into sales.", aText: "See automation tools ↗", aHref: "/ai-automation-lucknow" }
+        { h3: "Stronger local signals", p: "Accurate profiles, relevant local content and clear service areas can support search visibility; outcomes vary.", aText: "Explore local SEO ↗", aHref: "/seo-services-lucknow" },
+        { h3: "Faster follow-up", p: "WhatsApp auto-responders and Hindi-first CRM flows can help teams organise and respond to enquiries.", aText: "See automation tools ↗", aHref: "/ai-automation-lucknow" }
       ],
       [
-        { h3: "Direct engineering", p: "Work directly with senior AI & growth practitioners, not outsourced junior account reps.", aText: "Read founder profile ↗", aHref: "/about-sheevum-goel" },
-        { h3: "Actionable telemetry", p: "Transparent Google Analytics & Search Console dashboards tracking genuine customer footfall.", aText: "Request an audit ↗", aHref: "/digital-marketing-services" },
+        { h3: "Direct collaboration", p: "Discuss your goals with the founder and the people working on your project.", aText: "Read founder profile ↗", aHref: "/about-sheevum-goel" },
+        { h3: "Useful measurement", p: "Track search visibility, site visits and enquiries with agreed analytics and Search Console measures.", aText: "Request an audit ↗", aHref: "/digital-marketing-services" },
         { h3: "Custom playbooks", p: "Tailored step-by-step SOPs and recorded documentation so your internal team operates independently.", aText: "Get in touch ↗", aHref: "/contact" }
       ]
     ];

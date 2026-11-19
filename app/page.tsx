@@ -8,7 +8,6 @@ import {
   Browsers,
   CaretDown,
   ChartLineUp,
-  ChatCircle,
   CheckCircle,
   GlobeHemisphereWest,
   InstagramLogo,
@@ -28,9 +27,12 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import {
   BLOG_PLAYBOOK_URL,
+  LEGAL_NAME,
   MAP_URL,
   ORGANIZATION_ID,
+  POSTAL_CODE,
   PRIMARY_ADDRESS,
+  STREET_ADDRESS,
   SITE_URL,
   WHATSAPP_URL,
 } from "./lib/site";
@@ -153,8 +155,8 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": ORGANIZATION_ID,
   name: "Sudarshan AI Labs",
-  alternateName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
-  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  alternateName: LEGAL_NAME,
+  legalName: LEGAL_NAME,
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -191,7 +193,7 @@ const localBusinessSchema = {
   "@type": ["LocalBusiness", "ProfessionalService"],
   "@id": `${SITE_URL}/#localbusiness`,
   name: "Sudarshan AI Labs",
-  alternateName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  alternateName: LEGAL_NAME,
   url: SITE_URL,
   image: `${SITE_URL}/sudarshan-lucknow-hero.webp`,
   logo: `${SITE_URL}/sudarshan-site-icon-512.png`,
@@ -202,19 +204,13 @@ const localBusinessSchema = {
   parentOrganization: { "@id": ORGANIZATION_ID },
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Gomti Nagar",
+    streetAddress: STREET_ADDRESS,
     addressLocality: "Lucknow",
     addressRegion: "Uttar Pradesh",
-    postalCode: "226010",
+    postalCode: POSTAL_CODE,
     addressCountry: "IN",
   },
-  geo: { "@type": "GeoCoordinates", latitude: 26.8467, longitude: 80.9462 },
-  openingHoursSpecification: [{
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "09:00",
-    closes: "19:00",
-  }],
+  hasMap: MAP_URL,
   areaServed: [
     { "@type": "City", name: "Lucknow" },
     { "@type": "State", name: "Uttar Pradesh" },
@@ -252,6 +248,18 @@ const serviceSchemas = services.map((service) => ({
   provider: { "@id": ORGANIZATION_ID },
   areaServed: { "@type": "City", name: "Lucknow" },
 }));
+const homePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE_URL}/#webpage`,
+  url: SITE_URL,
+  name: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP",
+  description: "AI agents, Hindi CRM, local SEO, websites and practical digital growth services for Lucknow businesses and MSMEs.",
+  inLanguage: "en-IN",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  publisher: { "@id": ORGANIZATION_ID },
+  mainEntity: { "@id": `${SITE_URL}/#localbusiness` },
+};
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
@@ -260,7 +268,6 @@ export default function Home() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [goal, setGoal] = useState<keyof typeof goals>("visibility");
   const [darkMode, setDarkMode] = useState(false);
-  const [assistantOpen, setAssistantOpen] = useState(false);
   const [locationCount, setLocationCount] = useState(40);
   const locationStat = useRef<HTMLDivElement>(null);
   const serviceRail = useRef<HTMLDivElement>(null);
@@ -359,7 +366,7 @@ export default function Home() {
     <main id="top" className="v-home">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([organizationSchema, localBusinessSchema, faqSchema, ...serviceSchemas]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([homePageSchema, localBusinessSchema, faqSchema, ...serviceSchemas]) }}
       />
       <header className="v-site-header">
         <div className="v-topline">
@@ -686,6 +693,16 @@ export default function Home() {
         </div>
       </section>
 
+      <nav className="home-priority-links" aria-label="Popular Sudarshan AI Labs services">
+        <span>Popular starting points</span>
+        <a href="/digital-marketing-services">Digital marketing</a>
+        <a href="/seo-services-lucknow">Local SEO</a>
+        <a href="/website-design-development-lucknow">Websites</a>
+        <a href="/lead-generation-lucknow">Lead generation</a>
+        <a href="/ai-automation-lucknow">AI automation</a>
+        <a href="/product-page">Plans from ₹89</a>
+      </nav>
+
       <section className="v-section v-services" id="services">
         <div className="v-section-head">
           <div>
@@ -920,7 +937,7 @@ export default function Home() {
             </nav>
           </details>
           <a className="v-map-link" href={MAP_URL} target="_blank" rel="noreferrer">
-            View our primary Gomti Nagar location on Google Maps <ArrowUpRight />
+            View our Indira Nagar office on Google Maps <ArrowUpRight />
           </a>
         </div>
       </section>
@@ -1069,32 +1086,11 @@ export default function Home() {
         <a href={MAP_URL} target="_blank" rel="noreferrer"><MapPin weight="fill" /> Directions</a>
         <a href="tel:+917080842220"><PhoneCall weight="fill" /> Call</a>
       </nav>
-      <aside className={`site-assistant ${assistantOpen ? "is-open" : ""}`} aria-label="Leeila AI assistant">
-        {assistantOpen && (
-          <section className="site-assistant-panel" id="site-assistant-panel" aria-labelledby="site-assistant-title">
-            <header className="site-assistant-heading">
-              <span className="site-assistant-avatar"><Robot weight="fill" /></span>
-              <div><strong id="site-assistant-title">Leeila AI</strong><small>Ask about services, plans or next steps</small></div>
-              <button type="button" onClick={() => setAssistantOpen(false)} aria-label="Close AI assistant"><X weight="bold" /></button>
-            </header>
-            <div className="site-assistant-intro">
-              <span className="assistant-status"><i /> AI assistant</span>
-              <p>Hi, I can help you explore digital marketing, local SEO, websites, automation and our monthly plans.</p>
-              <div className="assistant-prompts"><a href="#products" onClick={() => setAssistantOpen(false)}>Compare plans</a><a href="#services" onClick={() => setAssistantOpen(false)}>Explore services</a><a href={wa} target="_blank" rel="noreferrer">Request a free audit</a></div>
-            </div>
-            <iframe title="Chat with Leeila AI" src="https://agent.jotform.com/019aa7fd4aaa7cccb0ce1b2c0748666c3478" loading="lazy" />
-            <a className="assistant-full-link" href="https://agent.jotform.com/019aa7fd4aaa7cccb0ce1b2c0748666c3478" target="_blank" rel="noreferrer">Open Leeila AI in a new tab <ArrowUpRight /></a>
-          </section>
-        )}
-        <a className="site-assistant-trigger" href="https://agent.jotform.com/019aa7fd4aaa7cccb0ce1b2c0748666c3478" target="_blank" rel="noopener noreferrer" aria-label="Chat with Leeila AI in a new tab">
-          <ChatCircle weight="fill" /><span>Ask Leeila AI</span>
-        </a>
-      </aside>
       <section className="v-map-section" id="location" aria-labelledby="map-section-title">
         <div className="v-map-copy">
           <span className="v-kicker">OUR LUCKNOW SERVICE AREA</span>
           <h2 id="map-section-title">Local support, <em>rooted in Lucknow.</em></h2>
-          <p>Explore the Gomti Nagar area and nearby neighbourhoods. We work with businesses across Lucknow and Uttar Pradesh.</p>
+          <p>Our office is in Indira Nagar near HAL. We work with businesses across Lucknow and Uttar Pradesh. We work with businesses across Lucknow and Uttar Pradesh.</p>
           <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="v-map-directions">
             <MapPin weight="fill" /> Open directions in Google Maps <ArrowUpRight />
           </a>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { serializeJsonLd } from "../_components/StructuredData";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -9,8 +10,7 @@ import {
 import { IDS, ref, SITE } from "../lib/schema";
 
 const OFFER_URL = `${SITE_URL}/offer-lucknow-marketing-services`;
-const CHALLENGE_WHATSAPP =
-  "https://wa.me/919336299912?text=Hi%20Sudarshan%20AI%20Labs%2C%20I%20have%20an%20agency%20quote%20and%20want%20to%20take%20the%20Challenge%20Sudarshan%20offer.";
+const CHALLENGE_WHATSAPP = `https://wa.me/${CONTACT_PHONE.replace(/\D/g, "")}?text=${encodeURIComponent("Hi Sudarshan AI Labs, I have an agency quote and want to discuss the Challenge Sudarshan offer.")}`;
 
 export const metadata: Metadata = {
   title: { absolute: "Beat Any Agency Quote | Sudarshan AI Labs" },
@@ -77,14 +77,6 @@ export default function OfferLucknowMarketingServicesPage() {
           ],
         },
       },
-      {
-        "@type": "SpecialAnnouncement",
-        "@id": `${OFFER_URL}#announcement`,
-        name: "Challenge Sudarshan — Bring Any Agency Quote. We’ll Beat It.",
-        text: "Same scope or better, at a sharper price for MSMEs and businesses in Lucknow and Uttar Pradesh.",
-        url: OFFER_URL,
-        category: "https://schema.org/SpecialAnnouncement",
-      },
     ],
   };
 
@@ -92,7 +84,7 @@ export default function OfferLucknowMarketingServicesPage() {
     <main className="product-page-wrapper offer-page-wrapper">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
 
       {/* Global Navigation Header */}

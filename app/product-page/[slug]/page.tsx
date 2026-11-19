@@ -11,12 +11,14 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import ProductIcon from "../../_components/ProductIcon";
+import { serializeJsonLd } from "../../_components/StructuredData";
 import {
   PRODUCTS,
   getProductBySlug,
 } from "../../lib/products-data";
 import {
   CONTACT_EMAIL,
+  CONTACT_PHONE,
   PRIMARY_ADDRESS,
   SITE_URL,
   WHATSAPP_URL,
@@ -98,7 +100,7 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const productUrl = `${SITE_URL}/${product.urlSlug}`;
-  const whatsappOrderUrl = `https://api.whatsapp.com/send/?phone=918737086884&text=${encodeURIComponent(
+  const whatsappOrderUrl = `https://wa.me/${CONTACT_PHONE.replace(/\D/g, "")}?text=${encodeURIComponent(
     `Hi Sudarshan AI Labs, I am interested in ${product.brandTitle} at the special offer price of ${product.offerPrice}. Please share details and the onboarding checklist.`
   )}`;
 
@@ -126,7 +128,6 @@ export default async function ProductDetailPage({
           url: productUrl,
           priceCurrency: "INR",
           price: product.offerNumeric,
-          priceValidUntil: "2026-12-31",
           itemCondition: "https://schema.org/NewCondition",
           availability: "https://schema.org/InStock",
           seller: ref(IDS.organization),
@@ -181,7 +182,7 @@ export default async function ProductDetailPage({
     <main className="product-page-wrapper">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
 
       {/* Global Navigation Header */}

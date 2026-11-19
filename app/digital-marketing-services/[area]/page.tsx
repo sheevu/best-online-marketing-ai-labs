@@ -131,11 +131,27 @@ export default async function AreaPage({
       { "@type": "ListItem", position: 3, name: a.name, item: url },
     ],
   };
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: a.title,
+    description: a.meta,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": `${absoluteUrl()}#website` },
+    publisher: { "@id": ORGANIZATION_ID },
+    mainEntity: { "@id": `${url}#service` },
+  };
   return (
     <main className="area-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageSchema) }}
       />
       <script
         type="application/ld+json"

@@ -4,7 +4,7 @@ import { ChartLineUp, GlobeHemisphereWest, MagnifyingGlass, Megaphone, Robot, Sp
 import { areas } from "../lib/areas";
 import { serviceCatalog } from "../lib/service-catalog";
 import { serializeJsonLd } from "../_components/StructuredData";
-import { ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, WHATSAPP_URL } from "../lib/site";
+import { LEGAL_NAME, ORGANIZATION_ID, PRIMARY_ADDRESS, SITE_URL, WHATSAPP_URL } from "../lib/site";
 
 const base = SITE_URL;
 const wa = WHATSAPP_URL;
@@ -108,35 +108,15 @@ const faqs = [
 
 const businessSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": ORGANIZATION_ID,
-  name: "Sudarshan AI Labs",
-  legalName: "NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED",
+  "@type": "Service",
+  "@id": `${base}/digital-marketing-services#service`,
+  name: "Digital Marketing Services in Lucknow",
   url: `${base}/digital-marketing-services`,
-  telephone: "+91-7080842220",
-  email: "sudarshanailabs@gmail.com",
   description:
     "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Gomti Nagar",
-    addressLocality: "Lucknow",
-    addressRegion: "Uttar Pradesh",
-    addressCountry: "IN",
-  },
+  provider: { "@id": ORGANIZATION_ID },
   areaServed: { "@type": "City", name: "Lucknow" },
-  priceRange: "Offers from ₹89; monthly plans available",
-  founder: {
-    "@type": "Person",
-    name: "Sheevum Goel",
-    url: `${base}/about-sheevum-goel`,
-  },
-  knowsAbout: services.map((service) => service.title),
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Sudarshan AI Labs service catalogue",
-    url: `${base}/#products`,
-  },
+  serviceType: services.map((service) => service.title),
 };
 const faqSchema = {
   "@context": "https://schema.org",
@@ -160,6 +140,18 @@ const breadcrumbSchema = {
     },
   ],
 };
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${base}/digital-marketing-services#webpage`,
+  url: `${base}/digital-marketing-services`,
+  name: "Digital Marketing Services in Lucknow | Sudarshan AI Labs",
+  description: "Digital marketing services in Lucknow including local SEO, Google Maps optimisation, websites, social media marketing, paid advertising and practical AI automation.",
+  inLanguage: "en-IN",
+  isPartOf: { "@id": `${base}/#website` },
+  publisher: { "@id": ORGANIZATION_ID },
+  mainEntity: { "@id": `${base}/digital-marketing-services#service` },
+};
 
 export default function LucknowServices() {
   return (
@@ -167,7 +159,7 @@ export default function LucknowServices() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd([businessSchema, faqSchema, breadcrumbSchema]),
+          __html: serializeJsonLd([pageSchema, businessSchema, faqSchema, breadcrumbSchema]),
         }}
       />
       <nav className="area-nav" aria-label="Primary navigation">
@@ -408,7 +400,7 @@ export default function LucknowServices() {
       <footer className="area-footer">
         <p>Sudarshan AI Labs • Digital Marketing Services in Lucknow</p>
         <nav aria-label="Legal"><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/refund-policy">Refunds</a><a href="/contact">Contact</a></nav>
-        <span>© 2026 NAVA-NETRA NEURAL SUDARSHAN LABS PRIVATE LIMITED • {PRIMARY_ADDRESS}</span>
+        <span>© 2026 {LEGAL_NAME} • {PRIMARY_ADDRESS}</span>
       </footer>
     </main>
   );

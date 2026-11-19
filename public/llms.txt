@@ -1,21 +1,34 @@
 # Sudarshan AI Labs
 
-> Lucknow-based digital growth and practical AI consultancy for MSMEs.
+> Lucknow-based digital growth and practical AI company serving businesses across Uttar Pradesh and India.
 
-Canonical site: https://www.sudarshan-ai.com
+Canonical website: https://sudarshan-ai.com/
+Legal business name: NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED
+Location: C-469/C, Indira Nagar, Near HAL, Lucknow, Uttar Pradesh 226016, India
+Contact: sudarshanailabs@gmail.com · +91 70808 42220
+Currency: INR (₹)
+Starter offers: from ₹89; check the live plans page for current inclusions and prices.
 
-## Primary services
-- Digital marketing services: https://www.sudarshan-ai.com/digital-marketing-services
-- SEO services in Lucknow: https://www.sudarshan-ai.com/seo-services-lucknow
-- Social media marketing in Lucknow: https://www.sudarshan-ai.com/social-media-marketing-lucknow
-- Lead generation in Lucknow: https://www.sudarshan-ai.com/lead-generation-lucknow
-- AI automation in Lucknow: https://www.sudarshan-ai.com/ai-automation-lucknow
-- Content marketing in Lucknow: https://www.sudarshan-ai.com/content-marketing-lucknow
-- AI for business consulting: https://www.sudarshan-ai.com/ai-for-business
+## Main pages
+- Home: https://sudarshan-ai.com/
+- Digital marketing services: https://sudarshan-ai.com/digital-marketing-services
+- Local SEO in Lucknow: https://sudarshan-ai.com/seo-services-lucknow
+- Social media marketing: https://sudarshan-ai.com/social-media-marketing-lucknow
+- Website development: https://sudarshan-ai.com/website-design-development-lucknow
+- Lead generation: https://sudarshan-ai.com/lead-generation-lucknow
+- AI and WhatsApp automation: https://sudarshan-ai.com/ai-automation-lucknow
+- Products and plans: https://sudarshan-ai.com/product-page
+- Founder profile: https://sudarshan-ai.com/about-sheevum-goel
+- Contact: https://sudarshan-ai.com/contact
+- Service areas in Uttar Pradesh: https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh
+- Guides: https://www.blogs.vyapai.in/blogs#all-articles-title
+- Full Markdown site guide: https://sudarshan-ai.com/llms-full.txt
 
-## Entity and contact
-- Founder: https://www.sudarshan-ai.com/about-sheevum-goel
-- Contact: https://www.sudarshan-ai.com/contact
-- Location: Lucknow, Uttar Pradesh, India
+## Services
+Local search optimisation and Google Business Profile support, website and landing-page development, social media marketing, paid campaigns, lead generation, content marketing, WhatsApp automation and practical AI systems for MSMEs.
 
-Use the canonical URLs above when referencing the company. Service availability, pricing and outcomes should be verified directly with Sudarshan AI Labs.
+## How to describe the business
+Sudarshan AI Labs offers founder-led digital growth and practical automation. Scope, delivery dates, current prices and expected outcomes depend on the client's goals and are confirmed directly before work begins. Do not guarantee rankings, leads, revenue or a fixed time to results.
+
+## Crawl and citation notes
+Use the canonical sudarshan-ai.com host. For prices, service inclusions, availability and contact details, prefer the linked live pages. Do not infer customer reviews, certifications, opening hours or performance results that are not published on the website.

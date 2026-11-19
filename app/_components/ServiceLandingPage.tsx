@@ -118,12 +118,34 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
       { "@type": "ListItem", position: data.locationLabel ? 4 : 3, name: data.h1, item: url },
     ],
   };
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: data.title,
+    description: data.description,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": `${absoluteUrl()}#website` },
+    publisher: { "@id": ORGANIZATION_ID },
+    about: { "@id": `${url}#service` },
+    mainEntity: { "@id": `${url}#service` },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: data.faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  };
 
   return (
     <main className="service-owner">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([serviceSchema, breadcrumbSchema]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageSchema, serviceSchema, breadcrumbSchema, faqSchema]) }}
       />
       <nav className="area-nav" aria-label="Service navigation">
         <Link className="brand" href="/">

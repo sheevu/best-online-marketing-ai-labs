@@ -135,11 +135,27 @@ export default async function CityPage({
       { "@type": "ListItem", position: 3, name: c.name, item: url },
     ],
   };
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: c.h1,
+    description: c.meta,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": `${absoluteUrl()}#website` },
+    publisher: { "@id": ORGANIZATION_ID },
+    mainEntity: { "@id": `${url}#service` },
+  };
   return (
     <main className="city-page area-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(businessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageSchema) }}
       />
       <script
         type="application/ld+json"
