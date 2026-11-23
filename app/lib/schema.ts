@@ -40,6 +40,15 @@ export const sharedOrganization = () => ({
   telephone: CONTACT_PHONE,
   email: CONTACT_EMAIL,
   founder: ref(IDS.founder),
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: CONTACT_PHONE,
+    email: CONTACT_EMAIL,
+    contactType: "sales",
+    availableLanguage: ["English", "Hindi"],
+    areaServed: "IN",
+  },
+  priceRange: "₹89–₹4,500+; custom scopes available",
   areaServed: [
     { "@type": "City", name: "Lucknow" },
     { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
@@ -54,7 +63,7 @@ export const sharedOrganization = () => ({
     "https://www.zaubacorp.com/NAVA-NETRA-NEURAL-SUDARSHAN-LABS-OPC-PRIVATE-LIMITED-U62099UP2025OPC223943",
     "https://github.com/sheevu/NETRA-CRM-1",
     "https://github.com/sheevu",
-    "https://www.instagram.com/surdarshanlabs",
+    
     "https://www.youtube.com/@sheevumgoel",
     "https://pinterest.com/ailabslucknow",
     "https://medium.com/@sheevumgoel",
