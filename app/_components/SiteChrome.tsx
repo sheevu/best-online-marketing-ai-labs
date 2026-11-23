@@ -58,6 +58,9 @@ export default function SiteChrome({ position }: { position: "header" | "footer"
       <nav aria-label="Mobile navigation">
         <ServicesMenu />
         <a href="/product-page">Plans from ₹89</a>
+        <a href="/local-seo-services">Local SEO & Google Maps</a>
+        <a href="/google-ads-management-lucknow">Google Ads</a>
+        <a href="/website-design-development-lucknow">Websites & landing pages</a>
         <LocationsMenu />
         <a href="/about-sheevum-goel">Founder</a>
         <a href={BLOG_PLAYBOOK_URL}>Guides & articles</a>
