@@ -746,6 +746,71 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="v-section v-method" id="creative-digital-marketing" aria-labelledby="creative-marketing-title">
+        <div className="v-section-head">
+          <div>
+            <span className="v-kicker">CREATIVE DIGITAL MARKETING</span>
+            <h2 id="creative-marketing-title">
+              Social media and advertising,
+              <br />
+              <em>connected to a real goal.</em>
+            </h2>
+          </div>
+          <p>
+            Digital marketing is the planned use of online channels to help the
+            right people discover, understand and contact a business. For a
+            Lucknow business, that may combine useful content, social media
+            marketing, paid advertising, search visibility and a clear next step.
+          </p>
+        </div>
+        <div className="method-cards">
+          <article>
+            <span className="glossy-icon" aria-hidden="true"><InstagramLogo weight="duotone" /></span>
+            <div className="method-label"><span className="card-number">01</span><span>PLAN</span></div>
+            <h3>Choose the audience and offer</h3>
+            <p>
+              Start with the customer, location, service and business capacity.
+              A social media advertising platform is a distribution channel;
+              the offer and landing experience still need to make sense.
+            </p>
+            <a href="/social-media-marketing-lucknow">Explore social media marketing <ArrowUpRight /></a>
+          </article>
+          <article>
+            <span className="glossy-icon" aria-hidden="true"><Megaphone weight="duotone" /></span>
+            <div className="method-label"><span className="card-number">02</span><span>CREATE</span></div>
+            <h3>Make creative that answers a question</h3>
+            <p>
+              Build clear videos, graphics and copy around real customer
+              questions. Test a small set of messages and use approved claims,
+              current prices and genuine proof.
+            </p>
+            <a href="/google-ads-management-lucknow">Explore paid advertising <ArrowUpRight /></a>
+          </article>
+          <article>
+            <span className="glossy-icon" aria-hidden="true"><ChartLineUp weight="duotone" /></span>
+            <div className="method-label"><span className="card-number">03</span><span>MEASURE</span></div>
+            <h3>Track enquiries, not just reach</h3>
+            <p>
+              Review qualified calls, WhatsApp conversations, form submissions,
+              cost and follow-up quality. Electronic marketing works best when
+              reporting connects channel activity to the next business action.
+            </p>
+            <a href="/lead-generation-lucknow">Explore lead generation <ArrowUpRight /></a>
+          </article>
+        </div>
+        <div className="v-proof-intro">
+          <CheckCircle weight="duotone" />
+          <p>
+            <strong>Our working standard:</strong> agree the scope, account
+            access, budget, measurement and ownership before launch. Where
+            affiliate marketing or partner networks are considered, define
+            attribution, commission terms and disclosure first; we do not claim
+            to operate an affiliate network.
+          </p>
+          <a href="/contact#contact-options">Discuss a campaign <ArrowUpRight /></a>
+        </div>
+      </section>
+
       <PricingCatalog />
 
       <JotformWebsiteWidget />
@@ -1090,7 +1155,7 @@ export default function Home() {
         <div className="v-map-copy">
           <span className="v-kicker">OUR LUCKNOW SERVICE AREA</span>
           <h2 id="map-section-title">Local support, <em>rooted in Lucknow.</em></h2>
-          <p>Our office is in Indira Nagar near HAL. We work with businesses across Lucknow and Uttar Pradesh. We work with businesses across Lucknow and Uttar Pradesh.</p>
+          <p>Based in Indira Nagar near HAL, Lucknow, NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED operates as Sudarshan AI Labs. We support businesses in Lucknow (LKO), across Uttar Pradesh and elsewhere in India. Our listed office is in Lucknow; service-area coverage does not imply a separate office in every city.</p>
           <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="v-map-directions">
             <MapPin weight="fill" /> Open directions in Google Maps <ArrowUpRight />
           </a>
