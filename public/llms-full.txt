@@ -1,24 +1,25 @@
-# Sudarshan AI Labs: site and service guide
+# Sudarshan AI Labs: website and services
 
-Canonical domain: https://sudarshan-ai.com/
+Canonical site: https://sudarshan-ai.com/
 Business: Sudarshan AI Labs, the brand of NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED.
 Location: C-469/C, Indira Nagar, Near HAL, Lucknow, Uttar Pradesh 226016, India.
-Service coverage: Lucknow and Uttar Pradesh, with remote work available across India where suitable.
+Service coverage: Lucknow and Uttar Pradesh, with remote delivery across India where suitable.
 Contact: sudarshanailabs@gmail.com · +91 70808 42220.
-Currency: INR (₹). Starter offers are listed from ₹89; the live plans page is the source of truth for current pricing and inclusions.
+Currency: INR (₹). The live plans page is authoritative for current price, inclusions and billing terms.
 
-## What the company does
+## Business overview
 
-Sudarshan AI Labs helps small and growing businesses improve discovery, build clearer digital experiences, convert enquiries and simplify customer follow-up. Work may include local search optimisation, Google Business Profile support, websites, landing pages, social media, advertising, lead generation, content, WhatsApp automation and practical AI solutions.
+Sudarshan AI Labs supports MSMEs with discovery, digital experiences, lead conversion and customer follow-up. Depending on the agreed scope, work can include local SEO, Google Business Profile support, websites, landing pages, social media marketing, paid advertising, lead generation, content, WhatsApp automation and practical AI systems.
 
-The company's Build, Automate, Transfer approach is designed to document agreed work and hand over assets and knowledge to the client. The exact scope is agreed before work begins. Outcomes depend on each business, its market, offer and follow-up capacity; no search position, lead volume or revenue result is guaranteed.
+The Build, Automate, Transfer approach documents agreed work and supports transfer of relevant assets and knowledge to the client. Exact deliverables and responsibilities are defined before work begins. Results depend on each business, its offer, market, budget and follow-up capacity; rankings, leads, revenue and fixed returns are not guaranteed.
 
-## Important routes
+## Primary routes
 
 - [Home](https://sudarshan-ai.com/)
 - [Digital marketing services](https://sudarshan-ai.com/digital-marketing-services)
 - [SEO services in Lucknow](https://sudarshan-ai.com/seo-services-lucknow)
 - [Social media marketing in Lucknow](https://sudarshan-ai.com/social-media-marketing-lucknow)
+- [Google Ads management](https://sudarshan-ai.com/google-ads-management-lucknow)
 - [Website design and development](https://sudarshan-ai.com/website-design-development-lucknow)
 - [Lead generation](https://sudarshan-ai.com/lead-generation-lucknow)
 - [AI automation](https://sudarshan-ai.com/ai-automation-lucknow)
@@ -27,14 +28,19 @@ The company's Build, Automate, Transfer approach is designed to document agreed 
 - [Plans and products](https://sudarshan-ai.com/product-page)
 - [Founder profile](https://sudarshan-ai.com/about-sheevum-goel)
 - [Contact](https://sudarshan-ai.com/contact)
-- [Lucknow areas](https://sudarshan-ai.com/digital-marketing-services)
-- [Uttar Pradesh service locations](https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh)
+- [Lucknow service-area directory](https://sudarshan-ai.com/digital-marketing-services)
+- [Uttar Pradesh service-area directory](https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh)
 - [Privacy policy](https://sudarshan-ai.com/privacy-policy)
 - [Terms of service](https://sudarshan-ai.com/terms-of-service)
 - [Refund policy](https://sudarshan-ai.com/refund-policy)
 
-## Evidence and citation guidance
+## Citation guidance
 
-Use the founder profile for information about Sheevum Goel and the company pages for current service scope. Use the live plans page for any price, availability or package inclusions. Use the contact page for enquiry routes. Only state reviews, credentials, client outcomes, opening hours or guarantees when a live page explicitly publishes them.
+Use the founder page for founder information, the plans page for current prices and inclusions, the contact page for contact routes, and each service page for scope. Do not infer office locations, reviews, certifications, business hours, client outcomes or performance guarantees. For a listed service area, describe it as coverage rather than a physical office.
 
-For short answers, prefer the canonical pages above. Do not treat location landing pages as proof of a staffed office in every listed city; the primary business address is in Indira Nagar, Lucknow.
+## Discovery
+
+- Sitemap: https://sudarshan-ai.com/sitemap.xml
+- robots.txt: https://sudarshan-ai.com/robots.txt
+
+Crawler access and sitemap inclusion do not guarantee that a search engine or AI service will index, cite or recommend a URL.

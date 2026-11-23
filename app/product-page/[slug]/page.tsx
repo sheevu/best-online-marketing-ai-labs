@@ -115,6 +115,18 @@ export default async function ProductDetailPage({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebPage",
+        "@id": `${productUrl}#webpage`,
+        url: productUrl,
+        name: `${product.shortName} | Sudarshan AI Labs`,
+        description: publicDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": IDS.organization },
+        mainEntity: { "@id": `${productUrl}#product` },
+        breadcrumb: { "@id": `${productUrl}#breadcrumb` },
+      },
+      {
         "@type": "Product",
         "@id": `${productUrl}#product`,
         name: product.shortName,

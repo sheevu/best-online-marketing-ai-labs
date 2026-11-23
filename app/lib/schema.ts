@@ -12,7 +12,7 @@ export const SITE = SITE_URL;
 export const IDS = Object.freeze({
   organization: `${SITE}/#organization`,
   website: `${SITE}/#website`,
-  founder: `${SITE}/about-sheevum-goel#person`,
+  founder: `${SITE}/about-sheevum-goel#sheevum-goel`,
 });
 
 export const ref = (id: string) => ({ "@id": id });
@@ -32,7 +32,7 @@ export const sharedOrganization = () => ({
   name: "Sudarshan AI Labs",
   legalName: LEGAL_NAME,
   url: `${SITE}/`,
-  logo: `${SITE}/apple-touch-icon.png`,
+  logo: `${SITE}/sudarshan-site-icon-512.png`,
   image: `${SITE}/sudarshan-lucknow-hero.webp`,
   description:
     "Lucknow-based digital marketing, web development and practical AI automation for MSMEs.",
@@ -48,7 +48,6 @@ export const sharedOrganization = () => ({
     availableLanguage: ["English", "Hindi"],
     areaServed: "IN",
   },
-  priceRange: "₹89–₹4,500+; custom scopes available",
   areaServed: [
     { "@type": "City", name: "Lucknow" },
     { "@type": "AdministrativeArea", name: "Uttar Pradesh" },

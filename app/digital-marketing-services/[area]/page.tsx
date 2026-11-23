@@ -103,7 +103,6 @@ export default async function AreaPage({
   );
   const url = absoluteUrl(`/digital-marketing-services/${a.slug}-lucknow`);
   const schema = {
-    "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${url}#service`,
     name: a.title,
@@ -114,8 +113,9 @@ export default async function AreaPage({
     serviceType: "Digital marketing services",
   };
   const faqSchema = {
-    "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    isPartOf: { "@id": `${url}#webpage` },
     mainEntity: a.faqs.map(([q, ans]) => ({
       "@type": "Question",
       name: q,
@@ -123,8 +123,8 @@ export default async function AreaPage({
     })),
   };
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
       { "@type": "ListItem", position: 2, name: "Lucknow Areas", item: absoluteUrl("/digital-marketing-services") },
@@ -132,7 +132,6 @@ export default async function AreaPage({
     ],
   };
   const pageSchema = {
-    "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${url}#webpage`,
     url,
@@ -142,24 +141,13 @@ export default async function AreaPage({
     isPartOf: { "@id": `${absoluteUrl()}#website` },
     publisher: { "@id": ORGANIZATION_ID },
     mainEntity: { "@id": `${url}#service` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
   };
   return (
     <main className="area-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": [schema, pageSchema, faqSchema, breadcrumbSchema] }) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">

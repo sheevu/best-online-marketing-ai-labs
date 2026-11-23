@@ -85,21 +85,21 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
   const areaServed = data.areaServed
     ? [
         { "@type": "City", name: data.areaServed },
-        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
         { "@type": "Country", name: "India" },
       ]
     : [
         { "@type": "City", name: "Lucknow" },
-        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
         { "@type": "Country", name: "India" },
       ];
   const serviceSchema = {
-    "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${url}#service`,
     name: data.h1,
     url,
     description: data.description,
+    serviceType: data.category || "Digital marketing service",
     provider: { "@id": ORGANIZATION_ID },
     areaServed,
     availableChannel: {
@@ -109,8 +109,8 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
     },
   };
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
       { "@type": "ListItem", position: 2, name: "Digital marketing services", item: absoluteUrl("/digital-marketing-services") },
@@ -119,7 +119,6 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
     ],
   };
   const pageSchema = {
-    "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${url}#webpage`,
     url,
@@ -130,10 +129,12 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
     publisher: { "@id": ORGANIZATION_ID },
     about: { "@id": `${url}#service` },
     mainEntity: { "@id": `${url}#service` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
   };
   const faqSchema = {
-    "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    isPartOf: { "@id": `${url}#webpage` },
     mainEntity: data.faqs.map(([question, answer]) => ({
       "@type": "Question",
       name: question,
@@ -145,7 +146,7 @@ export default function ServiceLandingPage({ data }: { data: ServicePageData }) 
     <main className="service-owner">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageSchema, serviceSchema, breadcrumbSchema, faqSchema]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": [pageSchema, serviceSchema, breadcrumbSchema, faqSchema] }) }}
       />
       <nav className="area-nav" aria-label="Service navigation">
         <Link className="brand" href="/">

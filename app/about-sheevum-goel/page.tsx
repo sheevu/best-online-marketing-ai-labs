@@ -95,10 +95,12 @@ export const metadata: Metadata = {
 const profileSchema = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  "@id": profileUrl,
+  "@id": `${profileUrl}#profilepage`,
   url: profileUrl,
+  inLanguage: "en-IN",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  publisher: { "@id": ORGANIZATION_ID },
   name: "About Sheevum Goel - Entrepreneur and Founder of Sudarshan AI Labs",
-  dateModified: "2026-08-20",
   mainEntity: {
     "@type": "Person",
     "@id": `${profileUrl}#sheevum-goel`,

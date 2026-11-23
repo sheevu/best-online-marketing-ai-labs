@@ -48,7 +48,7 @@ const services = [
     title: "Own local search",
     text: "Local SEO and Google Maps systems that help nearby customers find and trust you.",
     tag: "Local visibility",
-    href: "/local-seo-services",
+    href: "/seo-services-lucknow",
     Icon: MapPin,
     theme: "coral",
   },
@@ -151,7 +151,6 @@ const faqs = [
   ],
 ];
 const organizationSchema = {
-  "@context": "https://schema.org",
   "@type": "Organization",
   "@id": ORGANIZATION_ID,
   name: "Sudarshan AI Labs",
@@ -189,7 +188,6 @@ const organizationSchema = {
   ],
 };
 const localBusinessSchema = {
-  "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
   "@id": `${SITE_URL}/#localbusiness`,
   name: "Sudarshan AI Labs",
@@ -213,7 +211,7 @@ const localBusinessSchema = {
   hasMap: MAP_URL,
   areaServed: [
     { "@type": "City", name: "Lucknow" },
-    { "@type": "State", name: "Uttar Pradesh" },
+    { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
     { "@type": "Country", name: "India" },
   ],
   hasOfferCatalog: {
@@ -231,8 +229,8 @@ const localBusinessSchema = {
   sameAs: organizationSchema.sameAs,
 };
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
   mainEntity: faqs.map(([question, answer]) => ({
     "@type": "Question",
     name: question,
@@ -240,8 +238,8 @@ const faqSchema = {
   })),
 };
 const serviceSchemas = services.map((service) => ({
-  "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${SITE_URL}${service.href}#service`,
   name: service.title,
   description: service.text,
   url: `${SITE_URL}${service.href}`,
@@ -249,11 +247,10 @@ const serviceSchemas = services.map((service) => ({
   areaServed: { "@type": "City", name: "Lucknow" },
 }));
 const homePageSchema = {
-  "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": `${SITE_URL}/#webpage`,
   url: SITE_URL,
-  name: "Sudarshan AI Labs | AI Agents & Digital Marketing Services in Lucknow, UP",
+  name: "AI Development & Digital Marketing in Lucknow | Sudarshan AI Labs",
   description: "AI agents, Hindi CRM, local SEO, websites and practical digital growth services for Lucknow businesses and MSMEs.",
   inLanguage: "en-IN",
   isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -366,7 +363,7 @@ export default function Home() {
     <main id="top" className="v-home">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([homePageSchema, localBusinessSchema, faqSchema, ...serviceSchemas]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": [homePageSchema, localBusinessSchema, faqSchema, ...serviceSchemas] }) }}
       />
       <header className="v-site-header">
         <div className="v-topline">
@@ -974,7 +971,7 @@ export default function Home() {
             <a href="/digital-marketing-services/uttar-pradesh">
               Browse UP cities <ArrowRight />
             </a>
-            <a href="/best-digital-marketing-agency-lucknow/lucknow">
+            <a href="/digital-marketing-services/uttar-pradesh/lucknow">
               Digital marketing in Lucknow <ArrowUpRight />
             </a>
           </div>

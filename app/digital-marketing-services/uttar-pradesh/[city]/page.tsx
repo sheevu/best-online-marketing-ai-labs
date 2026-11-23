@@ -22,7 +22,6 @@ const ecosystem = [
     "Visit Our Google Site",
     "/digital-marketing-services",
   ],
-  ["Follow on Instagram", "https://www.instagram.com/surdarshanlabs"],
   ["Join on Facebook", "https://www.facebook.com/sudarshanlabsinc"],
   ["Watch on YouTube", "https://www.youtube.com/@sheevumgoel"],
   ["View Pricing Styles", "https://widgets-pricing-plan-2026.pages.dev/"],
@@ -103,7 +102,6 @@ export default async function CityPage({
     (_, i) => ecosystem[(cityIndex * 3 + i) % ecosystem.length],
   );
   const businessSchema = {
-    "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${url}#service`,
     name: c.h1,
@@ -113,13 +111,14 @@ export default async function CityPage({
     areaServed: {
       "@type": "City",
       name: c.name,
-      containedInPlace: { "@type": "State", name: "Uttar Pradesh" },
+      containedInPlace: { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
     },
     serviceType: "Digital marketing services",
   };
   const faqSchema = {
-    "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    isPartOf: { "@id": `${url}#webpage` },
     mainEntity: c.faqs.map(([q, a]) => ({
       "@type": "Question",
       name: q,
@@ -127,8 +126,8 @@ export default async function CityPage({
     })),
   };
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
       { "@type": "ListItem", position: 2, name: "Uttar Pradesh Cities", item: absoluteUrl("/digital-marketing-services/uttar-pradesh") },
@@ -136,7 +135,6 @@ export default async function CityPage({
     ],
   };
   const pageSchema = {
-    "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${url}#webpage`,
     url,
@@ -146,24 +144,13 @@ export default async function CityPage({
     isPartOf: { "@id": `${absoluteUrl()}#website` },
     publisher: { "@id": ORGANIZATION_ID },
     mainEntity: { "@id": `${url}#service` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
   };
   return (
     <main className="city-page area-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(businessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": [businessSchema, pageSchema, faqSchema, breadcrumbSchema] }) }}
       />
       <nav className="area-nav">
         <a className="brand" href="/">

@@ -84,16 +84,6 @@ const nextConfig: NextConfig = {
         destination: "/digital-marketing-services",
         permanent: true,
       },
-      {
-        source: "/digital-marketing-services/uttar-pradesh/lucknow",
-        destination: "/digital-marketing-services",
-        permanent: true,
-      },
-      {
-        source: "/digital-marketing-services/uttar-pradesh/:city",
-        destination: "/digital-marketing-services/:city",
-        permanent: true,
-      },
     ];
   },
   async headers() {

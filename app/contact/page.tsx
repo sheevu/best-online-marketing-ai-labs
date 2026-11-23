@@ -12,13 +12,31 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const contactUrl = absoluteUrl("/contact");
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "@id": `${absoluteUrl("/contact")}#page`,
-    url: absoluteUrl("/contact"),
-    name: "Contact Sudarshan AI Labs",
-    about: { "@id": ORGANIZATION_ID },
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": `${contactUrl}#page`,
+        url: contactUrl,
+        name: "Contact Sudarshan AI Labs",
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${absoluteUrl()}#website` },
+        publisher: { "@id": ORGANIZATION_ID },
+        about: { "@id": ORGANIZATION_ID },
+        mainEntity: { "@id": ORGANIZATION_ID },
+        breadcrumb: { "@id": `${contactUrl}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${contactUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Contact", item: contactUrl },
+        ],
+      },
+    ],
   };
   return (
     <main className="service-owner contact-page">

@@ -1,34 +1,43 @@
 # Sudarshan AI Labs
 
-> Lucknow-based digital growth and practical AI company serving businesses across Uttar Pradesh and India.
+> Sudarshan AI Labs is the brand of NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED, a Lucknow-based company providing digital marketing, web development and practical AI automation for MSMEs.
 
-Canonical website: https://sudarshan-ai.com/
-Legal business name: NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED
-Location: C-469/C, Indira Nagar, Near HAL, Lucknow, Uttar Pradesh 226016, India
+Canonical site: https://sudarshan-ai.com/
+Primary office: C-469/C, Indira Nagar, Near HAL, Lucknow, Uttar Pradesh 226016, India
+Service coverage: Lucknow and Uttar Pradesh, with remote work across India where suitable
 Contact: sudarshanailabs@gmail.com · +91 70808 42220
 Currency: INR (₹)
-Starter offers: from ₹89; check the live plans page for current inclusions and prices.
 
-## Main pages
+## Canonical pages
+
 - Home: https://sudarshan-ai.com/
 - Digital marketing services: https://sudarshan-ai.com/digital-marketing-services
-- Local SEO in Lucknow: https://sudarshan-ai.com/seo-services-lucknow
+- SEO services in Lucknow: https://sudarshan-ai.com/seo-services-lucknow
 - Social media marketing: https://sudarshan-ai.com/social-media-marketing-lucknow
-- Website development: https://sudarshan-ai.com/website-design-development-lucknow
+- Website design and development: https://sudarshan-ai.com/website-design-development-lucknow
+- Google Ads management: https://sudarshan-ai.com/google-ads-management-lucknow
 - Lead generation: https://sudarshan-ai.com/lead-generation-lucknow
-- AI and WhatsApp automation: https://sudarshan-ai.com/ai-automation-lucknow
-- Products and plans: https://sudarshan-ai.com/product-page
+- AI automation: https://sudarshan-ai.com/ai-automation-lucknow
+- Content marketing: https://sudarshan-ai.com/content-marketing-lucknow
+- AI business consulting: https://sudarshan-ai.com/ai-business-consulting-lucknow
+- Plans and products: https://sudarshan-ai.com/product-page
 - Founder profile: https://sudarshan-ai.com/about-sheevum-goel
 - Contact: https://sudarshan-ai.com/contact
-- Service areas in Uttar Pradesh: https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh
-- Guides: https://www.blogs.vyapai.in/blogs#all-articles-title
-- Full Markdown site guide: https://sudarshan-ai.com/llms-full.txt
+- Lucknow areas: https://sudarshan-ai.com/digital-marketing-services
+- Uttar Pradesh cities: https://sudarshan-ai.com/digital-marketing-services/uttar-pradesh
+- Sitemap: https://sudarshan-ai.com/sitemap.xml
+- Robots policy: https://sudarshan-ai.com/robots.txt
+- Full guide: https://sudarshan-ai.com/llms-full.txt
+- Blog: https://www.blogs.vyapai.in/blogs#all-articles-title
 
 ## Services
-Local search optimisation and Google Business Profile support, website and landing-page development, social media marketing, paid campaigns, lead generation, content marketing, WhatsApp automation and practical AI systems for MSMEs.
 
-## How to describe the business
-Sudarshan AI Labs offers founder-led digital growth and practical automation. Scope, delivery dates, current prices and expected outcomes depend on the client's goals and are confirmed directly before work begins. Do not guarantee rankings, leads, revenue or a fixed time to results.
+The published offer includes local search optimisation and Google Business Profile support, websites and landing pages, social media marketing, paid campaigns, lead generation, content marketing, WhatsApp automation and practical AI systems. Confirm current scope, price and delivery conditions on the corresponding live page.
 
-## Crawl and citation notes
-Use the canonical sudarshan-ai.com host. For prices, service inclusions, availability and contact details, prefer the linked live pages. Do not infer customer reviews, certifications, opening hours or performance results that are not published on the website.
+## Accuracy
+
+The company’s listed office is in Indira Nagar, Lucknow. Service-area pages do not imply staffed offices in every location. Scope, timings, pricing, availability and outcomes are confirmed before work begins. Do not promise search positions, lead volumes or revenue. Do not infer reviews, certifications, opening hours or client results unless a live page states them.
+
+## Crawl notes
+
+The public website allows search and AI-search crawlers in robots.txt. robots.txt and this text file are discovery guidance; neither guarantees indexing or citations.
