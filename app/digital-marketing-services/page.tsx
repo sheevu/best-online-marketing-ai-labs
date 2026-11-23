@@ -31,11 +31,13 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   keywords: [
-    "best digital marketing services in Lucknow",
     "digital marketing services in Lucknow",
-    "Lucknow online marketing",
-    "digital marketing agency in Lucknow",
-    "local SEO services Lucknow",
+    "creative digital marketing in Lucknow",
+    "social media marketing in Lucknow",
+    "social media advertising",
+    "electronic marketing",
+    "digital marketing in Uttar Pradesh",
+    "NAVA-NETRA NEURAL SUDARSHAN AI LABS",
   ],
 };
 
@@ -211,6 +213,57 @@ export default function LucknowServices() {
           </p>
         </aside>
       </header>
+
+      <section className="pillar-intro" aria-labelledby="marketing-basics-title">
+        <div>
+          <p className="eyebrow">A PRACTICAL GUIDE</p>
+          <h2 id="marketing-basics-title">
+            What digital marketing means for a business in Lucknow
+          </h2>
+        </div>
+        <div>
+          <p>
+            Digital marketing, sometimes called electronic marketing, is the
+            planned use of online channels to reach customers and make the next
+            step clear. It can include search, useful website content, social
+            media marketing, paid social media advertising, email, online
+            marketplaces and partner referrals. The right mix depends on the
+            customer and the business goal—not on using every channel.
+          </p>
+          <p>
+            Creative digital marketing connects the message to the experience:
+            a useful post or advertisement should lead to a relevant page,
+            product detail, booking option or conversation. For a Lucknow
+            business, location references such as LKO, Lucknow, Lucknow Uttar
+            Pradesh and India should be used only where they help a customer
+            understand actual coverage or find a relevant service.
+          </p>
+          <p>
+            NAVA-NETRA NEURAL SUDARSHAN LABS (OPC) PRIVATE LIMITED operates
+            under the Sudarshan AI Labs brand. Based in Lucknow, Uttar Pradesh,
+            the company focuses on practical digital marketing and AI-enabled
+            business support for MSMEs. Service availability in Lucknow,
+            Uttar Pradesh or elsewhere in India is described separately from
+            the company’s physical office address.
+          </p>
+          <p>
+            Before choosing a social media advertising platform, review who
+            uses it, the audience controls, creative formats, tracking options,
+            total media budget and the destination after the click. Ask what
+            counts as a qualified enquiry, who owns the ad account and creative,
+            and how results will be reported. Reach and likes can be useful
+            diagnostics, but they are not the same as sales.
+          </p>
+          <p>
+            Affiliate marketing is a referral model in which a partner may
+            receive an agreed commission for a tracked sale or lead. It needs
+            written terms, reliable attribution, transparent disclosures and
+            checks for invalid traffic. It is not the same as multi-level
+            network marketing. Discuss it as a possible channel only after the
+            product, margins and compliance requirements are suitable.
+          </p>
+        </div>
+      </section>
 
       <section className="pillar-intro">
         <div>
